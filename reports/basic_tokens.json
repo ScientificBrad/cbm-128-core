@@ -1,0 +1,2009 @@
+{
+  "rom_set": {
+    "lower_rom": "basic-4000.318018-02.bin ($4000-$7FFF)",
+    "upper_rom": "basic-8000.318019-02.bin ($8000-$BFFF)"
+  },
+  "summary": {
+    "primary_token_count": 126,
+    "fe_prefixed_statement_count": 37,
+    "ce_prefixed_function_count": 9,
+    "operator_table_entries": 10,
+    "error_message_count": 41
+  },
+  "primary_tokens": [
+    {
+      "token_hex": "$80",
+      "token_dec": 128,
+      "keyword": "END",
+      "table_addr": "$4417",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$46FC",
+      "handler_addr": "$4BCD"
+    },
+    {
+      "token_hex": "$81",
+      "token_dec": 129,
+      "keyword": "FOR",
+      "table_addr": "$441A",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$46FE",
+      "handler_addr": "$5DF9"
+    },
+    {
+      "token_hex": "$82",
+      "token_dec": 130,
+      "keyword": "NEXT",
+      "table_addr": "$441D",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4700",
+      "handler_addr": "$57F4"
+    },
+    {
+      "token_hex": "$83",
+      "token_dec": 131,
+      "keyword": "DATA",
+      "table_addr": "$4421",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4702",
+      "handler_addr": "$528F"
+    },
+    {
+      "token_hex": "$84",
+      "token_dec": 132,
+      "keyword": "INPUT#",
+      "table_addr": "$4425",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4704",
+      "handler_addr": "$5648"
+    },
+    {
+      "token_hex": "$85",
+      "token_dec": 133,
+      "keyword": "INPUT",
+      "table_addr": "$442B",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4706",
+      "handler_addr": "$5662"
+    },
+    {
+      "token_hex": "$86",
+      "token_dec": 134,
+      "keyword": "DIM",
+      "table_addr": "$4430",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4708",
+      "handler_addr": "$587B"
+    },
+    {
+      "token_hex": "$87",
+      "token_dec": 135,
+      "keyword": "READ",
+      "table_addr": "$4433",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$470A",
+      "handler_addr": "$56A9"
+    },
+    {
+      "token_hex": "$88",
+      "token_dec": 136,
+      "keyword": "LET",
+      "table_addr": "$4437",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$470C",
+      "handler_addr": "$53C6"
+    },
+    {
+      "token_hex": "$89",
+      "token_dec": 137,
+      "keyword": "GOTO",
+      "table_addr": "$443A",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$470E",
+      "handler_addr": "$59DB"
+    },
+    {
+      "token_hex": "$8A",
+      "token_dec": 138,
+      "keyword": "RUN",
+      "table_addr": "$443E",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4710",
+      "handler_addr": "$5A9B"
+    },
+    {
+      "token_hex": "$8B",
+      "token_dec": 139,
+      "keyword": "IF",
+      "table_addr": "$4441",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4712",
+      "handler_addr": "$52C5"
+    },
+    {
+      "token_hex": "$8C",
+      "token_dec": 140,
+      "keyword": "RESTORE",
+      "table_addr": "$4443",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4714",
+      "handler_addr": "$5ACA"
+    },
+    {
+      "token_hex": "$8D",
+      "token_dec": 141,
+      "keyword": "GOSUB",
+      "table_addr": "$444A",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4716",
+      "handler_addr": "$59CF"
+    },
+    {
+      "token_hex": "$8E",
+      "token_dec": 142,
+      "keyword": "RETURN",
+      "table_addr": "$444F",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4718",
+      "handler_addr": "$5262"
+    },
+    {
+      "token_hex": "$8F",
+      "token_dec": 143,
+      "keyword": "REM",
+      "table_addr": "$4455",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$471A",
+      "handler_addr": "$529D"
+    },
+    {
+      "token_hex": "$90",
+      "token_dec": 144,
+      "keyword": "STOP",
+      "table_addr": "$4458",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$471C",
+      "handler_addr": "$4BCB"
+    },
+    {
+      "token_hex": "$91",
+      "token_dec": 145,
+      "keyword": "ON",
+      "table_addr": "$445C",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$471E",
+      "handler_addr": "$53A3"
+    },
+    {
+      "token_hex": "$92",
+      "token_dec": 146,
+      "keyword": "WAIT",
+      "table_addr": "$445E",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4720",
+      "handler_addr": "$6C2D"
+    },
+    {
+      "token_hex": "$93",
+      "token_dec": 147,
+      "keyword": "LOAD",
+      "table_addr": "$4462",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4722",
+      "handler_addr": "$912C"
+    },
+    {
+      "token_hex": "$94",
+      "token_dec": 148,
+      "keyword": "SAVE",
+      "table_addr": "$4466",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4724",
+      "handler_addr": "$9112"
+    },
+    {
+      "token_hex": "$95",
+      "token_dec": 149,
+      "keyword": "VERIFY",
+      "table_addr": "$446A",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4726",
+      "handler_addr": "$9129"
+    },
+    {
+      "token_hex": "$96",
+      "token_dec": 150,
+      "keyword": "DEF",
+      "table_addr": "$4470",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4728",
+      "handler_addr": "$84FA"
+    },
+    {
+      "token_hex": "$97",
+      "token_dec": 151,
+      "keyword": "POKE",
+      "table_addr": "$4473",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$472A",
+      "handler_addr": "$80E5"
+    },
+    {
+      "token_hex": "$98",
+      "token_dec": 152,
+      "keyword": "PRINT#",
+      "table_addr": "$4477",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$472C",
+      "handler_addr": "$553A"
+    },
+    {
+      "token_hex": "$99",
+      "token_dec": 153,
+      "keyword": "PRINT",
+      "table_addr": "$447D",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$472E",
+      "handler_addr": "$555A"
+    },
+    {
+      "token_hex": "$9A",
+      "token_dec": 154,
+      "keyword": "CONT",
+      "table_addr": "$4482",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4730",
+      "handler_addr": "$5A60"
+    },
+    {
+      "token_hex": "$9B",
+      "token_dec": 155,
+      "keyword": "LIST",
+      "table_addr": "$4486",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4732",
+      "handler_addr": "$50E2"
+    },
+    {
+      "token_hex": "$9C",
+      "token_dec": 156,
+      "keyword": "CLR",
+      "table_addr": "$448A",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4734",
+      "handler_addr": "$51F8"
+    },
+    {
+      "token_hex": "$9D",
+      "token_dec": 157,
+      "keyword": "CMD",
+      "table_addr": "$448D",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4736",
+      "handler_addr": "$5540"
+    },
+    {
+      "token_hex": "$9E",
+      "token_dec": 158,
+      "keyword": "SYS",
+      "table_addr": "$4490",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4738",
+      "handler_addr": "$5885"
+    },
+    {
+      "token_hex": "$9F",
+      "token_dec": 159,
+      "keyword": "OPEN",
+      "table_addr": "$4493",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$473A",
+      "handler_addr": "$918D"
+    },
+    {
+      "token_hex": "$A0",
+      "token_dec": 160,
+      "keyword": "CLOSE",
+      "table_addr": "$4497",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$473C",
+      "handler_addr": "$919A"
+    },
+    {
+      "token_hex": "$A1",
+      "token_dec": 161,
+      "keyword": "GET",
+      "table_addr": "$449C",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$473E",
+      "handler_addr": "$5612"
+    },
+    {
+      "token_hex": "$A2",
+      "token_dec": 162,
+      "keyword": "NEW",
+      "table_addr": "$449F",
+      "category": "statement_primary",
+      "dispatch_table_addr": "$4740",
+      "handler_addr": "$51D6"
+    },
+    {
+      "token_hex": "$A3",
+      "token_dec": 163,
+      "keyword": "TAB(",
+      "table_addr": "$44A2",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$55B9 (PRINT TAB() handler)"
+    },
+    {
+      "token_hex": "$A4",
+      "token_dec": 164,
+      "keyword": "TO",
+      "table_addr": "$44A6",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$577D (FOR..TO / DRAW..TO)"
+    },
+    {
+      "token_hex": "$A5",
+      "token_dec": 165,
+      "keyword": "FN",
+      "table_addr": "$44A8",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$7CD1 (FN user function evaluator)"
+    },
+    {
+      "token_hex": "$A6",
+      "token_dec": 166,
+      "keyword": "SPC(",
+      "table_addr": "$44AA",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$55B9 (PRINT SPC() handler)"
+    },
+    {
+      "token_hex": "$A7",
+      "token_dec": 167,
+      "keyword": "THEN",
+      "table_addr": "$44AE",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$59A7 (IF..THEN handler)"
+    },
+    {
+      "token_hex": "$A8",
+      "token_dec": 168,
+      "keyword": "NOT",
+      "table_addr": "$44B2",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$8484 (NOT logical negation)"
+    },
+    {
+      "token_hex": "$A9",
+      "token_dec": 169,
+      "keyword": "STEP",
+      "table_addr": "$44B5",
+      "category": "auxiliary_keyword",
+      "handler_addr": "$578A (FOR..STEP / graphic STEP)"
+    },
+    {
+      "token_hex": "$AA",
+      "token_dec": 170,
+      "keyword": "+",
+      "table_addr": "$44B9",
+      "category": "operator",
+      "precedence": "$79",
+      "dispatch_table_addr": "$4828",
+      "handler_addr": "$8848"
+    },
+    {
+      "token_hex": "$AB",
+      "token_dec": 171,
+      "keyword": "-",
+      "table_addr": "$44BA",
+      "category": "operator",
+      "precedence": "$79",
+      "dispatch_table_addr": "$482B",
+      "handler_addr": "$8831"
+    },
+    {
+      "token_hex": "$AC",
+      "token_dec": 172,
+      "keyword": "*",
+      "table_addr": "$44BB",
+      "category": "operator",
+      "precedence": "$7B",
+      "dispatch_table_addr": "$482E",
+      "handler_addr": "$8A27"
+    },
+    {
+      "token_hex": "$AD",
+      "token_dec": 173,
+      "keyword": "/",
+      "table_addr": "$44BC",
+      "category": "operator",
+      "precedence": "$7B",
+      "dispatch_table_addr": "$4831",
+      "handler_addr": "$8B4C"
+    },
+    {
+      "token_hex": "$AE",
+      "token_dec": 174,
+      "keyword": "^",
+      "table_addr": "$44BD",
+      "category": "operator",
+      "precedence": "$7F",
+      "dispatch_table_addr": "$4834",
+      "handler_addr": "$8FC1"
+    },
+    {
+      "token_hex": "$AF",
+      "token_dec": 175,
+      "keyword": "AND",
+      "table_addr": "$44BE",
+      "category": "operator",
+      "precedence": "$50",
+      "dispatch_table_addr": "$4837",
+      "handler_addr": "$4C89"
+    },
+    {
+      "token_hex": "$B0",
+      "token_dec": 176,
+      "keyword": "OR",
+      "table_addr": "$44C1",
+      "category": "operator",
+      "precedence": "$46",
+      "dispatch_table_addr": "$483A",
+      "handler_addr": "$4C86"
+    },
+    {
+      "token_hex": "$B1",
+      "token_dec": 177,
+      "keyword": ">",
+      "table_addr": "$44C3",
+      "category": "operator",
+      "precedence": "$64",
+      "dispatch_table_addr": "$4843",
+      "handler_addr": "$4CB6 (relational) / $5848 (LET=)"
+    },
+    {
+      "token_hex": "$B2",
+      "token_dec": 178,
+      "keyword": "=",
+      "table_addr": "$44C4",
+      "category": "operator",
+      "precedence": "$64",
+      "dispatch_table_addr": "$4843",
+      "handler_addr": "$4CB6 (relational) / $5848 (LET=)"
+    },
+    {
+      "token_hex": "$B3",
+      "token_dec": 179,
+      "keyword": "<",
+      "table_addr": "$44C5",
+      "category": "operator",
+      "precedence": "$64",
+      "dispatch_table_addr": "$4843",
+      "handler_addr": "$4CB6 (relational) / $5848 (LET=)"
+    },
+    {
+      "token_hex": "$B4",
+      "token_dec": 180,
+      "keyword": "SGN",
+      "table_addr": "$44C6",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47D8",
+      "handler_addr": "$8C65"
+    },
+    {
+      "token_hex": "$B5",
+      "token_dec": 181,
+      "keyword": "INT",
+      "table_addr": "$44C9",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47DA",
+      "handler_addr": "$8CFB"
+    },
+    {
+      "token_hex": "$B6",
+      "token_dec": 182,
+      "keyword": "ABS",
+      "table_addr": "$44CC",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47DC",
+      "handler_addr": "$8C84"
+    },
+    {
+      "token_hex": "$B7",
+      "token_dec": 183,
+      "keyword": "USR",
+      "table_addr": "$44CF",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47DE",
+      "handler_addr": "$1218"
+    },
+    {
+      "token_hex": "$B8",
+      "token_dec": 184,
+      "keyword": "FRE",
+      "table_addr": "$44D2",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47E0",
+      "handler_addr": "$8000"
+    },
+    {
+      "token_hex": "$B9",
+      "token_dec": 185,
+      "keyword": "POS",
+      "table_addr": "$44D5",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47E2",
+      "handler_addr": "$84D0"
+    },
+    {
+      "token_hex": "$BA",
+      "token_dec": 186,
+      "keyword": "SQR",
+      "table_addr": "$44D8",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47E4",
+      "handler_addr": "$8FB7"
+    },
+    {
+      "token_hex": "$BB",
+      "token_dec": 187,
+      "keyword": "RND",
+      "table_addr": "$44DB",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47E6",
+      "handler_addr": "$8434"
+    },
+    {
+      "token_hex": "$BC",
+      "token_dec": 188,
+      "keyword": "LOG",
+      "table_addr": "$44DE",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47E8",
+      "handler_addr": "$89CA"
+    },
+    {
+      "token_hex": "$BD",
+      "token_dec": 189,
+      "keyword": "EXP",
+      "table_addr": "$44E1",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47EA",
+      "handler_addr": "$9033"
+    },
+    {
+      "token_hex": "$BE",
+      "token_dec": 190,
+      "keyword": "COS",
+      "table_addr": "$44E4",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47EC",
+      "handler_addr": "$9409"
+    },
+    {
+      "token_hex": "$BF",
+      "token_dec": 191,
+      "keyword": "SIN",
+      "table_addr": "$44E7",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47EE",
+      "handler_addr": "$9410"
+    },
+    {
+      "token_hex": "$C0",
+      "token_dec": 192,
+      "keyword": "TAN",
+      "table_addr": "$44EA",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47F0",
+      "handler_addr": "$9459"
+    },
+    {
+      "token_hex": "$C1",
+      "token_dec": 193,
+      "keyword": "ATN",
+      "table_addr": "$44ED",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47F2",
+      "handler_addr": "$94B3"
+    },
+    {
+      "token_hex": "$C2",
+      "token_dec": 194,
+      "keyword": "PEEK",
+      "table_addr": "$44F0",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47F4",
+      "handler_addr": "$80C5"
+    },
+    {
+      "token_hex": "$C3",
+      "token_dec": 195,
+      "keyword": "LEN",
+      "table_addr": "$44F4",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47F6",
+      "handler_addr": "$8668"
+    },
+    {
+      "token_hex": "$C4",
+      "token_dec": 196,
+      "keyword": "STR$",
+      "table_addr": "$44F7",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47F8",
+      "handler_addr": "$85AE"
+    },
+    {
+      "token_hex": "$C5",
+      "token_dec": 197,
+      "keyword": "VAL",
+      "table_addr": "$44FB",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47FA",
+      "handler_addr": "$804A"
+    },
+    {
+      "token_hex": "$C6",
+      "token_dec": 198,
+      "keyword": "ASC",
+      "table_addr": "$44FE",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47FC",
+      "handler_addr": "$8677"
+    },
+    {
+      "token_hex": "$C7",
+      "token_dec": 199,
+      "keyword": "CHR$",
+      "table_addr": "$4501",
+      "category": "function_primary",
+      "dispatch_table_addr": "$47FE",
+      "handler_addr": "$85BF"
+    },
+    {
+      "token_hex": "$C8",
+      "token_dec": 200,
+      "keyword": "LEFT$",
+      "table_addr": "$4505",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4800",
+      "handler_addr": "$85D6"
+    },
+    {
+      "token_hex": "$C9",
+      "token_dec": 201,
+      "keyword": "RIGHT$",
+      "table_addr": "$450A",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4802",
+      "handler_addr": "$860A"
+    },
+    {
+      "token_hex": "$CA",
+      "token_dec": 202,
+      "keyword": "MID$",
+      "table_addr": "$4510",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4804",
+      "handler_addr": "$861C"
+    },
+    {
+      "token_hex": "$CB",
+      "token_dec": 203,
+      "keyword": "GO",
+      "table_addr": "$4514",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4806",
+      "handler_addr": "$8182"
+    },
+    {
+      "token_hex": "$CC",
+      "token_dec": 204,
+      "keyword": "RGR",
+      "table_addr": "$4516",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4808",
+      "handler_addr": "$819B"
+    },
+    {
+      "token_hex": "$CD",
+      "token_dec": 205,
+      "keyword": "RCLR",
+      "table_addr": "$4519",
+      "category": "function_primary",
+      "dispatch_table_addr": "$480A (intercepted at $4BF7)",
+      "handler_addr": "$81D7"
+    },
+    {
+      "token_hex": "$CE",
+      "token_dec": 206,
+      "keyword": "\u0000",
+      "table_addr": "$451D",
+      "category": "prefix_placeholder",
+      "dispatch_table_addr": "$480C (intercepted at $4BF3 -> $4C54)",
+      "handler_addr": "$4C54"
+    },
+    {
+      "token_hex": "$CF",
+      "token_dec": 207,
+      "keyword": "JOY",
+      "table_addr": "$451E",
+      "category": "function_primary",
+      "dispatch_table_addr": "$480E",
+      "handler_addr": "$9B0C"
+    },
+    {
+      "token_hex": "$D0",
+      "token_dec": 208,
+      "keyword": "RDOT",
+      "table_addr": "$4521",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4810",
+      "handler_addr": "$8076"
+    },
+    {
+      "token_hex": "$D1",
+      "token_dec": 209,
+      "keyword": "DEC",
+      "table_addr": "$4525",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4812",
+      "handler_addr": "$8142"
+    },
+    {
+      "token_hex": "$D2",
+      "token_dec": 210,
+      "keyword": "HEX$",
+      "table_addr": "$4528",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4814",
+      "handler_addr": "$80F6"
+    },
+    {
+      "token_hex": "$D3",
+      "token_dec": 211,
+      "keyword": "ERR$",
+      "table_addr": "$452C",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4816",
+      "handler_addr": "$824D"
+    },
+    {
+      "token_hex": "$D4",
+      "token_dec": 212,
+      "keyword": "INSTR",
+      "table_addr": "$4530",
+      "category": "function_primary",
+      "dispatch_table_addr": "$4818",
+      "handler_addr": "$837C"
+    },
+    {
+      "token_hex": "$D5",
+      "token_dec": 213,
+      "keyword": "ELSE",
+      "table_addr": "$4535",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4742",
+      "handler_addr": "$5391"
+    },
+    {
+      "token_hex": "$D6",
+      "token_dec": 214,
+      "keyword": "RESUME",
+      "table_addr": "$4539",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4744",
+      "handler_addr": "$5F62"
+    },
+    {
+      "token_hex": "$D7",
+      "token_dec": 215,
+      "keyword": "TRAP",
+      "table_addr": "$453F",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4746",
+      "handler_addr": "$5F4D"
+    },
+    {
+      "token_hex": "$D8",
+      "token_dec": 216,
+      "keyword": "TRON",
+      "table_addr": "$4543",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4748",
+      "handler_addr": "$58B4"
+    },
+    {
+      "token_hex": "$D9",
+      "token_dec": 217,
+      "keyword": "TROFF",
+      "table_addr": "$4547",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$474A",
+      "handler_addr": "$58B7"
+    },
+    {
+      "token_hex": "$DA",
+      "token_dec": 218,
+      "keyword": "SOUND",
+      "table_addr": "$454C",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$474C",
+      "handler_addr": "$71EC"
+    },
+    {
+      "token_hex": "$DB",
+      "token_dec": 219,
+      "keyword": "VOL",
+      "table_addr": "$4551",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$474E",
+      "handler_addr": "$71C5"
+    },
+    {
+      "token_hex": "$DC",
+      "token_dec": 220,
+      "keyword": "AUTO",
+      "table_addr": "$4554",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4750",
+      "handler_addr": "$5975"
+    },
+    {
+      "token_hex": "$DD",
+      "token_dec": 221,
+      "keyword": "PUDEF",
+      "table_addr": "$4558",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4752",
+      "handler_addr": "$5F34"
+    },
+    {
+      "token_hex": "$DE",
+      "token_dec": 222,
+      "keyword": "GRAPHIC",
+      "table_addr": "$455D",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4754",
+      "handler_addr": "$6B5A"
+    },
+    {
+      "token_hex": "$DF",
+      "token_dec": 223,
+      "keyword": "PAINT",
+      "table_addr": "$4564",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4756",
+      "handler_addr": "$61A8"
+    },
+    {
+      "token_hex": "$E0",
+      "token_dec": 224,
+      "keyword": "CHAR",
+      "table_addr": "$4569",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4758",
+      "handler_addr": "$67D7"
+    },
+    {
+      "token_hex": "$E1",
+      "token_dec": 225,
+      "keyword": "BOX",
+      "table_addr": "$456D",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$475A",
+      "handler_addr": "$62B7"
+    },
+    {
+      "token_hex": "$E2",
+      "token_dec": 226,
+      "keyword": "CIRCLE",
+      "table_addr": "$4570",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$475C",
+      "handler_addr": "$668E"
+    },
+    {
+      "token_hex": "$E3",
+      "token_dec": 227,
+      "keyword": "GSHAPE",
+      "table_addr": "$4576",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$475E",
+      "handler_addr": "$658D"
+    },
+    {
+      "token_hex": "$E4",
+      "token_dec": 228,
+      "keyword": "SSHAPE",
+      "table_addr": "$457C",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4760",
+      "handler_addr": "$642B"
+    },
+    {
+      "token_hex": "$E5",
+      "token_dec": 229,
+      "keyword": "DRAW",
+      "table_addr": "$4582",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4762",
+      "handler_addr": "$6797"
+    },
+    {
+      "token_hex": "$E6",
+      "token_dec": 230,
+      "keyword": "LOCATE",
+      "table_addr": "$4586",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4764",
+      "handler_addr": "$6955"
+    },
+    {
+      "token_hex": "$E7",
+      "token_dec": 231,
+      "keyword": "COLOR",
+      "table_addr": "$458C",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4766",
+      "handler_addr": "$69E2"
+    },
+    {
+      "token_hex": "$E8",
+      "token_dec": 232,
+      "keyword": "SCNCLR",
+      "table_addr": "$4591",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4768",
+      "handler_addr": "$6A79"
+    },
+    {
+      "token_hex": "$E9",
+      "token_dec": 233,
+      "keyword": "SCALE",
+      "table_addr": "$4597",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$476A",
+      "handler_addr": "$6960"
+    },
+    {
+      "token_hex": "$EA",
+      "token_dec": 234,
+      "keyword": "HELP",
+      "table_addr": "$459C",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$476C",
+      "handler_addr": "$5986"
+    },
+    {
+      "token_hex": "$EB",
+      "token_dec": 235,
+      "keyword": "DO",
+      "table_addr": "$45A0",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$476E",
+      "handler_addr": "$5FE0"
+    },
+    {
+      "token_hex": "$EC",
+      "token_dec": 236,
+      "keyword": "LOOP",
+      "table_addr": "$45A2",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4770",
+      "handler_addr": "$608A"
+    },
+    {
+      "token_hex": "$ED",
+      "token_dec": 237,
+      "keyword": "EXIT",
+      "table_addr": "$45A6",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4772",
+      "handler_addr": "$6039"
+    },
+    {
+      "token_hex": "$EE",
+      "token_dec": 238,
+      "keyword": "DIRECTORY",
+      "table_addr": "$45AA",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4774",
+      "handler_addr": "$A07E"
+    },
+    {
+      "token_hex": "$EF",
+      "token_dec": 239,
+      "keyword": "DSAVE",
+      "table_addr": "$45B3",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4776",
+      "handler_addr": "$A18C"
+    },
+    {
+      "token_hex": "$F0",
+      "token_dec": 240,
+      "keyword": "DLOAD",
+      "table_addr": "$45B8",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4778",
+      "handler_addr": "$A1A7"
+    },
+    {
+      "token_hex": "$F1",
+      "token_dec": 241,
+      "keyword": "HEADER",
+      "table_addr": "$45BD",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$477A",
+      "handler_addr": "$A267"
+    },
+    {
+      "token_hex": "$F2",
+      "token_dec": 242,
+      "keyword": "SCRATCH",
+      "table_addr": "$45C3",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$477C",
+      "handler_addr": "$A2A1"
+    },
+    {
+      "token_hex": "$F3",
+      "token_dec": 243,
+      "keyword": "COLLECT",
+      "table_addr": "$45CA",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$477E",
+      "handler_addr": "$A32F"
+    },
+    {
+      "token_hex": "$F4",
+      "token_dec": 244,
+      "keyword": "COPY",
+      "table_addr": "$45D1",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4780",
+      "handler_addr": "$A346"
+    },
+    {
+      "token_hex": "$F5",
+      "token_dec": 245,
+      "keyword": "RENAME",
+      "table_addr": "$45D5",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4782",
+      "handler_addr": "$A36E"
+    },
+    {
+      "token_hex": "$F6",
+      "token_dec": 246,
+      "keyword": "BACKUP",
+      "table_addr": "$45DB",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4784",
+      "handler_addr": "$A37C"
+    },
+    {
+      "token_hex": "$F7",
+      "token_dec": 247,
+      "keyword": "DELETE",
+      "table_addr": "$45E1",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4786",
+      "handler_addr": "$5E87"
+    },
+    {
+      "token_hex": "$F8",
+      "token_dec": 248,
+      "keyword": "RENUMBER",
+      "table_addr": "$45E7",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$4788",
+      "handler_addr": "$5AF8"
+    },
+    {
+      "token_hex": "$F9",
+      "token_dec": 249,
+      "keyword": "KEY",
+      "table_addr": "$45EF",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$478A",
+      "handler_addr": "$610A"
+    },
+    {
+      "token_hex": "$FA",
+      "token_dec": 250,
+      "keyword": "MONITOR",
+      "table_addr": "$45F2",
+      "category": "statement_extended_single_byte",
+      "dispatch_table_addr": "$478C",
+      "handler_addr": "$B000"
+    },
+    {
+      "token_hex": "$FB",
+      "token_dec": 251,
+      "keyword": "USING",
+      "table_addr": "$45F9",
+      "category": "clause_keyword",
+      "handler_addr": "$555C -> $9520 (PRINT USING)"
+    },
+    {
+      "token_hex": "$FC",
+      "token_dec": 252,
+      "keyword": "UNTIL",
+      "table_addr": "$45FE",
+      "category": "clause_keyword",
+      "handler_addr": "$5FF6 / $608C (DO / LOOP UNTIL)"
+    },
+    {
+      "token_hex": "$FD",
+      "token_dec": 253,
+      "keyword": "WHILE",
+      "table_addr": "$4603",
+      "category": "clause_keyword",
+      "handler_addr": "$5FF6 / $608C (DO / LOOP WHILE)"
+    }
+  ],
+  "fe_prefixed_statement_tokens": [
+    {
+      "token_hex": "$FE $02",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$02",
+      "sub_token_dec": 2,
+      "keyword": "BANK",
+      "table_addr": "$4609",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$478E",
+      "handler_addr": "$6BC9"
+    },
+    {
+      "token_hex": "$FE $03",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$03",
+      "sub_token_dec": 3,
+      "keyword": "FILTER",
+      "table_addr": "$460D",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$4790",
+      "handler_addr": "$7046"
+    },
+    {
+      "token_hex": "$FE $04",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$04",
+      "sub_token_dec": 4,
+      "keyword": "PLAY",
+      "table_addr": "$4613",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$4792",
+      "handler_addr": "$6DE1"
+    },
+    {
+      "token_hex": "$FE $05",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$05",
+      "sub_token_dec": 5,
+      "keyword": "TEMPO",
+      "table_addr": "$4617",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$4794",
+      "handler_addr": "$6FD7"
+    },
+    {
+      "token_hex": "$FE $06",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$06",
+      "sub_token_dec": 6,
+      "keyword": "MOVSPR",
+      "table_addr": "$461C",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$4796",
+      "handler_addr": "$6CC6"
+    },
+    {
+      "token_hex": "$FE $07",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$07",
+      "sub_token_dec": 7,
+      "keyword": "SPRITE",
+      "table_addr": "$4622",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$4798",
+      "handler_addr": "$6C4F"
+    },
+    {
+      "token_hex": "$FE $08",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$08",
+      "sub_token_dec": 8,
+      "keyword": "SPRCOLOR",
+      "table_addr": "$4628",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$479A",
+      "handler_addr": "$7190"
+    },
+    {
+      "token_hex": "$FE $09",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$09",
+      "sub_token_dec": 9,
+      "keyword": "RREG",
+      "table_addr": "$4630",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$479C",
+      "handler_addr": "$58BD"
+    },
+    {
+      "token_hex": "$FE $0A",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0A",
+      "sub_token_dec": 10,
+      "keyword": "ENVELOPE",
+      "table_addr": "$4634",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$479E",
+      "handler_addr": "$70C1"
+    },
+    {
+      "token_hex": "$FE $0B",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0B",
+      "sub_token_dec": 11,
+      "keyword": "SLEEP",
+      "table_addr": "$463C",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47A0",
+      "handler_addr": "$6BD7"
+    },
+    {
+      "token_hex": "$FE $0C",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0C",
+      "sub_token_dec": 12,
+      "keyword": "CATALOG",
+      "table_addr": "$4641",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47A2",
+      "handler_addr": "$A07E"
+    },
+    {
+      "token_hex": "$FE $0D",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0D",
+      "sub_token_dec": 13,
+      "keyword": "DOPEN",
+      "table_addr": "$4648",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47A4",
+      "handler_addr": "$A11D"
+    },
+    {
+      "token_hex": "$FE $0E",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0E",
+      "sub_token_dec": 14,
+      "keyword": "APPEND",
+      "table_addr": "$464D",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47A6",
+      "handler_addr": "$A134"
+    },
+    {
+      "token_hex": "$FE $0F",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$0F",
+      "sub_token_dec": 15,
+      "keyword": "DCLOSE",
+      "table_addr": "$4653",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47A8",
+      "handler_addr": "$A16F"
+    },
+    {
+      "token_hex": "$FE $10",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$10",
+      "sub_token_dec": 16,
+      "keyword": "BSAVE",
+      "table_addr": "$4659",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47AA",
+      "handler_addr": "$A1C8"
+    },
+    {
+      "token_hex": "$FE $11",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$11",
+      "sub_token_dec": 17,
+      "keyword": "BLOAD",
+      "table_addr": "$465E",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47AC",
+      "handler_addr": "$A218"
+    },
+    {
+      "token_hex": "$FE $12",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$12",
+      "sub_token_dec": 18,
+      "keyword": "RECORD",
+      "table_addr": "$4663",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47AE",
+      "handler_addr": "$A2D7"
+    },
+    {
+      "token_hex": "$FE $13",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$13",
+      "sub_token_dec": 19,
+      "keyword": "CONCAT",
+      "table_addr": "$4669",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47B0",
+      "handler_addr": "$A362"
+    },
+    {
+      "token_hex": "$FE $14",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$14",
+      "sub_token_dec": 20,
+      "keyword": "DVERIFY",
+      "table_addr": "$466F",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47B2",
+      "handler_addr": "$A1A4"
+    },
+    {
+      "token_hex": "$FE $15",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$15",
+      "sub_token_dec": 21,
+      "keyword": "DCLEAR",
+      "table_addr": "$4676",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47B4",
+      "handler_addr": "$A322"
+    },
+    {
+      "token_hex": "$FE $16",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$16",
+      "sub_token_dec": 22,
+      "keyword": "SPRSAV",
+      "table_addr": "$467C",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47B6",
+      "handler_addr": "$76EC"
+    },
+    {
+      "token_hex": "$FE $17",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$17",
+      "sub_token_dec": 23,
+      "keyword": "COLLISION",
+      "table_addr": "$4682",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47B8",
+      "handler_addr": "$7164"
+    },
+    {
+      "token_hex": "$FE $18",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$18",
+      "sub_token_dec": 24,
+      "keyword": "BEGIN",
+      "table_addr": "$468B",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47BA",
+      "handler_addr": "$796C"
+    },
+    {
+      "token_hex": "$FE $19",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$19",
+      "sub_token_dec": 25,
+      "keyword": "BEND",
+      "table_addr": "$4690",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47BC",
+      "handler_addr": "$528F"
+    },
+    {
+      "token_hex": "$FE $1A",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1A",
+      "sub_token_dec": 26,
+      "keyword": "WINDOW",
+      "table_addr": "$4694",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47BE",
+      "handler_addr": "$72CC"
+    },
+    {
+      "token_hex": "$FE $1B",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1B",
+      "sub_token_dec": 27,
+      "keyword": "BOOT",
+      "table_addr": "$469A",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47C0",
+      "handler_addr": "$7335"
+    },
+    {
+      "token_hex": "$FE $1C",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1C",
+      "sub_token_dec": 28,
+      "keyword": "WIDTH",
+      "table_addr": "$469E",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47C2",
+      "handler_addr": "$71B6"
+    },
+    {
+      "token_hex": "$FE $1D",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1D",
+      "sub_token_dec": 29,
+      "keyword": "SPRDEF",
+      "table_addr": "$46A3",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47C4",
+      "handler_addr": "$7372"
+    },
+    {
+      "token_hex": "$FE $1E",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1E",
+      "sub_token_dec": 30,
+      "keyword": "QUIT",
+      "table_addr": "$46A9",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47C6",
+      "handler_addr": "$4846"
+    },
+    {
+      "token_hex": "$FE $1F",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$1F",
+      "sub_token_dec": 31,
+      "keyword": "STASH",
+      "table_addr": "$46AD",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47C8",
+      "handler_addr": "$AA1F"
+    },
+    {
+      "token_hex": "$FE $20",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$20",
+      "sub_token_dec": 32,
+      "keyword": " ",
+      "table_addr": "$46B2",
+      "category": "reserved_fe_slot",
+      "dispatch_table_addr": "$47CA",
+      "handler_addr": "$0001"
+    },
+    {
+      "token_hex": "$FE $21",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$21",
+      "sub_token_dec": 33,
+      "keyword": "FETCH",
+      "table_addr": "$46B3",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47CC",
+      "handler_addr": "$AA24"
+    },
+    {
+      "token_hex": "$FE $22",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$22",
+      "sub_token_dec": 34,
+      "keyword": " ",
+      "table_addr": "$46B8",
+      "category": "reserved_fe_slot",
+      "dispatch_table_addr": "$47CE",
+      "handler_addr": "$0001"
+    },
+    {
+      "token_hex": "$FE $23",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$23",
+      "sub_token_dec": 35,
+      "keyword": "SWAP",
+      "table_addr": "$46B9",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47D0",
+      "handler_addr": "$AA29"
+    },
+    {
+      "token_hex": "$FE $24",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$24",
+      "sub_token_dec": 36,
+      "keyword": "OFF",
+      "table_addr": "$46BD",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47D2",
+      "handler_addr": "$4846"
+    },
+    {
+      "token_hex": "$FE $25",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$25",
+      "sub_token_dec": 37,
+      "keyword": "FAST",
+      "table_addr": "$46C0",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47D4",
+      "handler_addr": "$77B3"
+    },
+    {
+      "token_hex": "$FE $26",
+      "prefix_byte": "$FE",
+      "sub_token_hex": "$26",
+      "sub_token_dec": 38,
+      "keyword": "SLOW",
+      "table_addr": "$46C4",
+      "category": "statement_fe_prefixed",
+      "dispatch_table_addr": "$47D6",
+      "handler_addr": "$77C4"
+    }
+  ],
+  "ce_prefixed_function_tokens": [
+    {
+      "token_hex": "$CE $02",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$02",
+      "sub_token_dec": 2,
+      "keyword": "POT",
+      "table_addr": "$46C9",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4816",
+      "handler_addr": "$824D"
+    },
+    {
+      "token_hex": "$CE $03",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$03",
+      "sub_token_dec": 3,
+      "keyword": "BUMP",
+      "table_addr": "$46CC",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4818",
+      "handler_addr": "$837C"
+    },
+    {
+      "token_hex": "$CE $04",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$04",
+      "sub_token_dec": 4,
+      "keyword": "PEN",
+      "table_addr": "$46D0",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$481A",
+      "handler_addr": "$82AE"
+    },
+    {
+      "token_hex": "$CE $05",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$05",
+      "sub_token_dec": 5,
+      "keyword": "RSPPOS",
+      "table_addr": "$46D3",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$481C",
+      "handler_addr": "$8397"
+    },
+    {
+      "token_hex": "$CE $06",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$06",
+      "sub_token_dec": 6,
+      "keyword": "RSPRITE",
+      "table_addr": "$46D9",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$481E",
+      "handler_addr": "$831E"
+    },
+    {
+      "token_hex": "$CE $07",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$07",
+      "sub_token_dec": 7,
+      "keyword": "RSPCOLOR",
+      "table_addr": "$46E0",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4820",
+      "handler_addr": "$8361"
+    },
+    {
+      "token_hex": "$CE $08",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$08",
+      "sub_token_dec": 8,
+      "keyword": "XOR",
+      "table_addr": "$46E8",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4822",
+      "handler_addr": "$83E1"
+    },
+    {
+      "token_hex": "$CE $09",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$09",
+      "sub_token_dec": 9,
+      "keyword": "RWINDOW",
+      "table_addr": "$46EB",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4824",
+      "handler_addr": "$8407"
+    },
+    {
+      "token_hex": "$CE $0A",
+      "prefix_byte": "$CE",
+      "sub_token_hex": "$0A",
+      "sub_token_dec": 10,
+      "keyword": "POINTER",
+      "table_addr": "$46F2",
+      "category": "function_ce_prefixed",
+      "dispatch_table_addr": "$4826",
+      "handler_addr": "$82FA"
+    }
+  ],
+  "operator_precedence_table": [
+    {
+      "index": 0,
+      "symbol": "+",
+      "token": "$AA",
+      "description": "Addition / String Concatenation",
+      "table_addr": "$4828",
+      "precedence_hex": "$79",
+      "precedence_dec": 121,
+      "handler_addr": "$8848"
+    },
+    {
+      "index": 1,
+      "symbol": "-",
+      "token": "$AB",
+      "description": "Subtraction",
+      "table_addr": "$482B",
+      "precedence_hex": "$79",
+      "precedence_dec": 121,
+      "handler_addr": "$8831"
+    },
+    {
+      "index": 2,
+      "symbol": "*",
+      "token": "$AC",
+      "description": "Multiplication",
+      "table_addr": "$482E",
+      "precedence_hex": "$7B",
+      "precedence_dec": 123,
+      "handler_addr": "$8A27"
+    },
+    {
+      "index": 3,
+      "symbol": "/",
+      "token": "$AD",
+      "description": "Division",
+      "table_addr": "$4831",
+      "precedence_hex": "$7B",
+      "precedence_dec": 123,
+      "handler_addr": "$8B4C"
+    },
+    {
+      "index": 4,
+      "symbol": "^",
+      "token": "$AE",
+      "description": "Exponentiation",
+      "table_addr": "$4834",
+      "precedence_hex": "$7F",
+      "precedence_dec": 127,
+      "handler_addr": "$8FC1"
+    },
+    {
+      "index": 5,
+      "symbol": "AND",
+      "token": "$AF",
+      "description": "Bitwise 16-bit AND",
+      "table_addr": "$4837",
+      "precedence_hex": "$50",
+      "precedence_dec": 80,
+      "handler_addr": "$4C89"
+    },
+    {
+      "index": 6,
+      "symbol": "OR",
+      "token": "$B0",
+      "description": "Bitwise 16-bit OR",
+      "table_addr": "$483A",
+      "precedence_hex": "$46",
+      "precedence_dec": 70,
+      "handler_addr": "$4C86"
+    },
+    {
+      "index": 7,
+      "symbol": "NEG",
+      "token": "$AB (unary)",
+      "description": "Unary Negation",
+      "table_addr": "$483D",
+      "precedence_hex": "$7D",
+      "precedence_dec": 125,
+      "handler_addr": "$8FFA"
+    },
+    {
+      "index": 8,
+      "symbol": "NOT",
+      "token": "$A8 (unary)",
+      "description": "Logical/Bitwise NOT",
+      "table_addr": "$4840",
+      "precedence_hex": "$5A",
+      "precedence_dec": 90,
+      "handler_addr": "$7930"
+    },
+    {
+      "index": 9,
+      "symbol": "REL",
+      "token": "$B1..$B3",
+      "description": "Relational Comparison (>, =, <)",
+      "table_addr": "$4843",
+      "precedence_hex": "$64",
+      "precedence_dec": 100,
+      "handler_addr": "$4CB6"
+    }
+  ],
+  "error_messages": [
+    {
+      "error_code_dec": 1,
+      "error_code_hex": "$01",
+      "addr": "$484B",
+      "message": "TOO MANY FILES"
+    },
+    {
+      "error_code_dec": 2,
+      "error_code_hex": "$02",
+      "addr": "$4859",
+      "message": "FILE OPEN"
+    },
+    {
+      "error_code_dec": 3,
+      "error_code_hex": "$03",
+      "addr": "$4862",
+      "message": "FILE NOT OPEN"
+    },
+    {
+      "error_code_dec": 4,
+      "error_code_hex": "$04",
+      "addr": "$486F",
+      "message": "FILE NOT FOUND"
+    },
+    {
+      "error_code_dec": 5,
+      "error_code_hex": "$05",
+      "addr": "$487D",
+      "message": "DEVICE NOT PRESENT"
+    },
+    {
+      "error_code_dec": 6,
+      "error_code_hex": "$06",
+      "addr": "$488F",
+      "message": "NOT INPUT FILE"
+    },
+    {
+      "error_code_dec": 7,
+      "error_code_hex": "$07",
+      "addr": "$489D",
+      "message": "NOT OUTPUT FILE"
+    },
+    {
+      "error_code_dec": 8,
+      "error_code_hex": "$08",
+      "addr": "$48AC",
+      "message": "MISSING FILE NAME"
+    },
+    {
+      "error_code_dec": 9,
+      "error_code_hex": "$09",
+      "addr": "$48BD",
+      "message": "ILLEGAL DEVICE NUMBER"
+    },
+    {
+      "error_code_dec": 10,
+      "error_code_hex": "$0A",
+      "addr": "$48D2",
+      "message": "NEXT WITHOUT FOR"
+    },
+    {
+      "error_code_dec": 11,
+      "error_code_hex": "$0B",
+      "addr": "$48E2",
+      "message": "SYNTAX"
+    },
+    {
+      "error_code_dec": 12,
+      "error_code_hex": "$0C",
+      "addr": "$48E8",
+      "message": "RETURN WITHOUT GOSUB"
+    },
+    {
+      "error_code_dec": 13,
+      "error_code_hex": "$0D",
+      "addr": "$48FC",
+      "message": "OUT OF DATA"
+    },
+    {
+      "error_code_dec": 14,
+      "error_code_hex": "$0E",
+      "addr": "$4907",
+      "message": "ILLEGAL QUANTITY"
+    },
+    {
+      "error_code_dec": 15,
+      "error_code_hex": "$0F",
+      "addr": "$4917",
+      "message": "OVERFLOW"
+    },
+    {
+      "error_code_dec": 16,
+      "error_code_hex": "$10",
+      "addr": "$491F",
+      "message": "OUT OF MEMORY"
+    },
+    {
+      "error_code_dec": 17,
+      "error_code_hex": "$11",
+      "addr": "$492C",
+      "message": "UNDEF'D STATEMENT"
+    },
+    {
+      "error_code_dec": 18,
+      "error_code_hex": "$12",
+      "addr": "$493D",
+      "message": "BAD SUBSCRIPT"
+    },
+    {
+      "error_code_dec": 19,
+      "error_code_hex": "$13",
+      "addr": "$494A",
+      "message": "REDIM'D ARRAY"
+    },
+    {
+      "error_code_dec": 20,
+      "error_code_hex": "$14",
+      "addr": "$4957",
+      "message": "DIVISION BY ZERO"
+    },
+    {
+      "error_code_dec": 21,
+      "error_code_hex": "$15",
+      "addr": "$4967",
+      "message": "ILLEGAL DIRECT"
+    },
+    {
+      "error_code_dec": 22,
+      "error_code_hex": "$16",
+      "addr": "$4975",
+      "message": "TYPE MISMATCH"
+    },
+    {
+      "error_code_dec": 23,
+      "error_code_hex": "$17",
+      "addr": "$4982",
+      "message": "STRING TOO LONG"
+    },
+    {
+      "error_code_dec": 24,
+      "error_code_hex": "$18",
+      "addr": "$4991",
+      "message": "FILE DATA"
+    },
+    {
+      "error_code_dec": 25,
+      "error_code_hex": "$19",
+      "addr": "$499A",
+      "message": "FORMULA TOO COMPLEX"
+    },
+    {
+      "error_code_dec": 26,
+      "error_code_hex": "$1A",
+      "addr": "$49AD",
+      "message": "CAN'T CONTINUE"
+    },
+    {
+      "error_code_dec": 27,
+      "error_code_hex": "$1B",
+      "addr": "$49BB",
+      "message": "UNDEF'D FUNCTION"
+    },
+    {
+      "error_code_dec": 28,
+      "error_code_hex": "$1C",
+      "addr": "$49CB",
+      "message": "VERIFY"
+    },
+    {
+      "error_code_dec": 29,
+      "error_code_hex": "$1D",
+      "addr": "$49D1",
+      "message": "LOAD"
+    },
+    {
+      "error_code_dec": 30,
+      "error_code_hex": "$1E",
+      "addr": "$49D5",
+      "message": "BREAK\u0000 "
+    },
+    {
+      "error_code_dec": 31,
+      "error_code_hex": "$1F",
+      "addr": "$49DC",
+      "message": "CAN'T RESUME"
+    },
+    {
+      "error_code_dec": 32,
+      "error_code_hex": "$20",
+      "addr": "$49E8",
+      "message": "LOOP NOT FOUND"
+    },
+    {
+      "error_code_dec": 33,
+      "error_code_hex": "$21",
+      "addr": "$49F6",
+      "message": "LOOP WITHOUT DO"
+    },
+    {
+      "error_code_dec": 34,
+      "error_code_hex": "$22",
+      "addr": "$4A05",
+      "message": "DIRECT MODE ONLY"
+    },
+    {
+      "error_code_dec": 35,
+      "error_code_hex": "$23",
+      "addr": "$4A15",
+      "message": "NO GRAPHICS AREA"
+    },
+    {
+      "error_code_dec": 36,
+      "error_code_hex": "$24",
+      "addr": "$4A25",
+      "message": "BAD DISK"
+    },
+    {
+      "error_code_dec": 37,
+      "error_code_hex": "$25",
+      "addr": "$4A2D",
+      "message": "BEND NOT FOUND"
+    },
+    {
+      "error_code_dec": 38,
+      "error_code_hex": "$26",
+      "addr": "$4A3B",
+      "message": "LINE NUMBER TOO LARGE"
+    },
+    {
+      "error_code_dec": 39,
+      "error_code_hex": "$27",
+      "addr": "$4A50",
+      "message": "UNRESOLVED REFERENCE"
+    },
+    {
+      "error_code_dec": 40,
+      "error_code_hex": "$28",
+      "addr": "$4A64",
+      "message": "UNIMPLEMENTED COMMAND"
+    },
+    {
+      "error_code_dec": 41,
+      "error_code_hex": "$29",
+      "addr": "$4A79",
+      "message": "FILE READ"
+    }
+  ]
+}

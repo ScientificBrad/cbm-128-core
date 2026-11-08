@@ -1,0 +1,3267 @@
+{
+  "b4_for_offset": "0x099A",
+  "b4_for_cpu": "$499A",
+  "b4_err_offset": "0x084B",
+  "b4_err_cpu": "$484B",
+  "b4_cbm_offset": "0x01BF",
+  "b4_cbm_cpu": "$41BF",
+  "trailing_bytes": {
+    "b4_7FFC_7FFF": [
+      "0xFF",
+      "0xFF",
+      "0x00",
+      "0x4C"
+    ],
+    "b8_BFFC_BFFF": [
+      "0xFF",
+      "0xFF",
+      "0x00",
+      "0x3A"
+    ],
+    "kn_CEFC_CFFF": [
+      "0xFF",
+      "0xFF",
+      "0x00",
+      "0xC3"
+    ],
+    "kn_DFEC_DFFF": [
+      "0x03",
+      "0x08",
+      "0x0D",
+      "0x00",
+      "0x05",
+      "0x0A",
+      "0x0F",
+      "0x03",
+      "0x08",
+      "0x0D",
+      "0x01",
+      "0x06",
+      "0x0B",
+      "0x10",
+      "0x04",
+      "0x09",
+      "0x0E",
+      "0x02",
+      "0x07",
+      "0x0C"
+    ],
+    "kn_FEFC_FF09": [
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0xFF",
+      "0x78",
+      "0x48",
+      "0x8A",
+      "0x48",
+      "0x98"
+    ],
+    "kn_FF80": "0x00"
+  },
+  "checksum_byte_tests": {
+    "b4_sum_mod256": "0x40",
+    "b4_last_byte": "0x4C",
+    "b8_sum_mod256": "0x80",
+    "b8_last_byte": "0x3A"
+  },
+  "b4_strings": [
+    {
+      "offset": "0x0000",
+      "cpu_addr": "$4000",
+      "length": 4,
+      "text": "L#@L"
+    },
+    {
+      "offset": "0x000C",
+      "cpu_addr": "$400C",
+      "length": 4,
+      "text": " zA "
+    },
+    {
+      "offset": "0x0014",
+      "cpu_addr": "$4014",
+      "length": 4,
+      "text": "A 8R"
+    },
+    {
+      "offset": "0x001C",
+      "cpu_addr": "$401C",
+      "length": 4,
+      "text": "XL7M"
+    },
+    {
+      "offset": "0x0023",
+      "cpu_addr": "$4023",
+      "length": 10,
+      "text": " zA QB E@ "
+    },
+    {
+      "offset": "0x01BC",
+      "cpu_addr": "$41BC",
+      "length": 148,
+      "text": "\\r@ COMMODORE BASIC V7.0 122365 BYTES FREE\\r@   (C)1985 COMMODORE ELECTRONICS, LTD.\\r@         (C)1977 MICROSOFT CORP.\\r@           ALL RIGHTS RESERVED\\r"
+    },
+    {
+      "offset": "0x026A",
+      "cpu_addr": "$426A",
+      "length": 5,
+      "text": "M\\rCQQ"
+    },
+    {
+      "offset": "0x03AF",
+      "cpu_addr": "$43AF",
+      "length": 4,
+      "text": "`e\\rH"
+    },
+    {
+      "offset": "0x0415",
+      "cpu_addr": "$4415",
+      "length": 4,
+      "text": "\\r`EN"
+    },
+    {
+      "offset": "0x0425",
+      "cpu_addr": "$4425",
+      "length": 5,
+      "text": "INPUT"
+    },
+    {
+      "offset": "0x042B",
+      "cpu_addr": "$442B",
+      "length": 4,
+      "text": "INPU"
+    },
+    {
+      "offset": "0x0443",
+      "cpu_addr": "$4443",
+      "length": 6,
+      "text": "RESTOR"
+    },
+    {
+      "offset": "0x044A",
+      "cpu_addr": "$444A",
+      "length": 4,
+      "text": "GOSU"
+    },
+    {
+      "offset": "0x044F",
+      "cpu_addr": "$444F",
+      "length": 5,
+      "text": "RETUR"
+    },
+    {
+      "offset": "0x046A",
+      "cpu_addr": "$446A",
+      "length": 5,
+      "text": "VERIF"
+    },
+    {
+      "offset": "0x0477",
+      "cpu_addr": "$4477",
+      "length": 5,
+      "text": "PRINT"
+    },
+    {
+      "offset": "0x047D",
+      "cpu_addr": "$447D",
+      "length": 4,
+      "text": "PRIN"
+    },
+    {
+      "offset": "0x0497",
+      "cpu_addr": "$4497",
+      "length": 4,
+      "text": "CLOS"
+    },
+    {
+      "offset": "0x0505",
+      "cpu_addr": "$4505",
+      "length": 4,
+      "text": "LEFT"
+    },
+    {
+      "offset": "0x050A",
+      "cpu_addr": "$450A",
+      "length": 5,
+      "text": "RIGHT"
+    },
+    {
+      "offset": "0x0530",
+      "cpu_addr": "$4530",
+      "length": 4,
+      "text": "INST"
+    },
+    {
+      "offset": "0x0539",
+      "cpu_addr": "$4539",
+      "length": 5,
+      "text": "RESUM"
+    },
+    {
+      "offset": "0x0547",
+      "cpu_addr": "$4547",
+      "length": 4,
+      "text": "TROF"
+    },
+    {
+      "offset": "0x054C",
+      "cpu_addr": "$454C",
+      "length": 4,
+      "text": "SOUN"
+    },
+    {
+      "offset": "0x0558",
+      "cpu_addr": "$4558",
+      "length": 4,
+      "text": "PUDE"
+    },
+    {
+      "offset": "0x055D",
+      "cpu_addr": "$455D",
+      "length": 6,
+      "text": "GRAPHI"
+    },
+    {
+      "offset": "0x0564",
+      "cpu_addr": "$4564",
+      "length": 4,
+      "text": "PAIN"
+    },
+    {
+      "offset": "0x0570",
+      "cpu_addr": "$4570",
+      "length": 5,
+      "text": "CIRCL"
+    },
+    {
+      "offset": "0x0576",
+      "cpu_addr": "$4576",
+      "length": 5,
+      "text": "GSHAP"
+    },
+    {
+      "offset": "0x057C",
+      "cpu_addr": "$457C",
+      "length": 5,
+      "text": "SSHAP"
+    },
+    {
+      "offset": "0x0586",
+      "cpu_addr": "$4586",
+      "length": 5,
+      "text": "LOCAT"
+    },
+    {
+      "offset": "0x058C",
+      "cpu_addr": "$458C",
+      "length": 4,
+      "text": "COLO"
+    },
+    {
+      "offset": "0x0591",
+      "cpu_addr": "$4591",
+      "length": 5,
+      "text": "SCNCL"
+    },
+    {
+      "offset": "0x0597",
+      "cpu_addr": "$4597",
+      "length": 4,
+      "text": "SCAL"
+    },
+    {
+      "offset": "0x05AA",
+      "cpu_addr": "$45AA",
+      "length": 8,
+      "text": "DIRECTOR"
+    },
+    {
+      "offset": "0x05B3",
+      "cpu_addr": "$45B3",
+      "length": 4,
+      "text": "DSAV"
+    },
+    {
+      "offset": "0x05B8",
+      "cpu_addr": "$45B8",
+      "length": 4,
+      "text": "DLOA"
+    },
+    {
+      "offset": "0x05BD",
+      "cpu_addr": "$45BD",
+      "length": 5,
+      "text": "HEADE"
+    },
+    {
+      "offset": "0x05C3",
+      "cpu_addr": "$45C3",
+      "length": 6,
+      "text": "SCRATC"
+    },
+    {
+      "offset": "0x05CA",
+      "cpu_addr": "$45CA",
+      "length": 6,
+      "text": "COLLEC"
+    },
+    {
+      "offset": "0x05D5",
+      "cpu_addr": "$45D5",
+      "length": 5,
+      "text": "RENAM"
+    },
+    {
+      "offset": "0x05DB",
+      "cpu_addr": "$45DB",
+      "length": 5,
+      "text": "BACKU"
+    },
+    {
+      "offset": "0x05E1",
+      "cpu_addr": "$45E1",
+      "length": 5,
+      "text": "DELET"
+    },
+    {
+      "offset": "0x05E7",
+      "cpu_addr": "$45E7",
+      "length": 7,
+      "text": "RENUMBE"
+    },
+    {
+      "offset": "0x05F2",
+      "cpu_addr": "$45F2",
+      "length": 6,
+      "text": "MONITO"
+    },
+    {
+      "offset": "0x05F9",
+      "cpu_addr": "$45F9",
+      "length": 4,
+      "text": "USIN"
+    },
+    {
+      "offset": "0x05FE",
+      "cpu_addr": "$45FE",
+      "length": 4,
+      "text": "UNTI"
+    },
+    {
+      "offset": "0x0603",
+      "cpu_addr": "$4603",
+      "length": 4,
+      "text": "WHIL"
+    },
+    {
+      "offset": "0x060D",
+      "cpu_addr": "$460D",
+      "length": 5,
+      "text": "FILTE"
+    },
+    {
+      "offset": "0x0617",
+      "cpu_addr": "$4617",
+      "length": 4,
+      "text": "TEMP"
+    },
+    {
+      "offset": "0x061C",
+      "cpu_addr": "$461C",
+      "length": 5,
+      "text": "MOVSP"
+    },
+    {
+      "offset": "0x0622",
+      "cpu_addr": "$4622",
+      "length": 5,
+      "text": "SPRIT"
+    },
+    {
+      "offset": "0x0628",
+      "cpu_addr": "$4628",
+      "length": 7,
+      "text": "SPRCOLO"
+    },
+    {
+      "offset": "0x0634",
+      "cpu_addr": "$4634",
+      "length": 7,
+      "text": "ENVELOP"
+    },
+    {
+      "offset": "0x063C",
+      "cpu_addr": "$463C",
+      "length": 4,
+      "text": "SLEE"
+    },
+    {
+      "offset": "0x0641",
+      "cpu_addr": "$4641",
+      "length": 6,
+      "text": "CATALO"
+    },
+    {
+      "offset": "0x0648",
+      "cpu_addr": "$4648",
+      "length": 4,
+      "text": "DOPE"
+    },
+    {
+      "offset": "0x064D",
+      "cpu_addr": "$464D",
+      "length": 5,
+      "text": "APPEN"
+    },
+    {
+      "offset": "0x0653",
+      "cpu_addr": "$4653",
+      "length": 5,
+      "text": "DCLOS"
+    },
+    {
+      "offset": "0x0659",
+      "cpu_addr": "$4659",
+      "length": 4,
+      "text": "BSAV"
+    },
+    {
+      "offset": "0x065E",
+      "cpu_addr": "$465E",
+      "length": 4,
+      "text": "BLOA"
+    },
+    {
+      "offset": "0x0663",
+      "cpu_addr": "$4663",
+      "length": 5,
+      "text": "RECOR"
+    },
+    {
+      "offset": "0x0669",
+      "cpu_addr": "$4669",
+      "length": 5,
+      "text": "CONCA"
+    },
+    {
+      "offset": "0x066F",
+      "cpu_addr": "$466F",
+      "length": 6,
+      "text": "DVERIF"
+    },
+    {
+      "offset": "0x0676",
+      "cpu_addr": "$4676",
+      "length": 5,
+      "text": "DCLEA"
+    },
+    {
+      "offset": "0x067C",
+      "cpu_addr": "$467C",
+      "length": 5,
+      "text": "SPRSA"
+    },
+    {
+      "offset": "0x0682",
+      "cpu_addr": "$4682",
+      "length": 8,
+      "text": "COLLISIO"
+    },
+    {
+      "offset": "0x068B",
+      "cpu_addr": "$468B",
+      "length": 4,
+      "text": "BEGI"
+    },
+    {
+      "offset": "0x0694",
+      "cpu_addr": "$4694",
+      "length": 5,
+      "text": "WINDO"
+    },
+    {
+      "offset": "0x069E",
+      "cpu_addr": "$469E",
+      "length": 4,
+      "text": "WIDT"
+    },
+    {
+      "offset": "0x06A3",
+      "cpu_addr": "$46A3",
+      "length": 5,
+      "text": "SPRDE"
+    },
+    {
+      "offset": "0x06AD",
+      "cpu_addr": "$46AD",
+      "length": 4,
+      "text": "STAS"
+    },
+    {
+      "offset": "0x06B3",
+      "cpu_addr": "$46B3",
+      "length": 4,
+      "text": "FETC"
+    },
+    {
+      "offset": "0x06D3",
+      "cpu_addr": "$46D3",
+      "length": 5,
+      "text": "RSPPO"
+    },
+    {
+      "offset": "0x06D9",
+      "cpu_addr": "$46D9",
+      "length": 6,
+      "text": "RSPRIT"
+    },
+    {
+      "offset": "0x06E0",
+      "cpu_addr": "$46E0",
+      "length": 7,
+      "text": "RSPCOLO"
+    },
+    {
+      "offset": "0x06EB",
+      "cpu_addr": "$46EB",
+      "length": 6,
+      "text": "RWINDO"
+    },
+    {
+      "offset": "0x06F2",
+      "cpu_addr": "$46F2",
+      "length": 6,
+      "text": "POINTE"
+    },
+    {
+      "offset": "0x0703",
+      "cpu_addr": "$4703",
+      "length": 7,
+      "text": "RGVaVzX"
+    },
+    {
+      "offset": "0x071F",
+      "cpu_addr": "$471F",
+      "length": 4,
+      "text": "S,l+"
+    },
+    {
+      "offset": "0x072C",
+      "cpu_addr": "$472C",
+      "length": 6,
+      "text": "9UYU_Z"
+    },
+    {
+      "offset": "0x0743",
+      "cpu_addr": "$4743",
+      "length": 5,
+      "text": "Sa_L_"
+    },
+    {
+      "offset": "0x074F",
+      "cpu_addr": "$474F",
+      "length": 7,
+      "text": "qtY3_Yk"
+    },
+    {
+      "offset": "0x0767",
+      "cpu_addr": "$4767",
+      "length": 5,
+      "text": "ixj_i"
+    },
+    {
+      "offset": "0x07B7",
+      "cpu_addr": "$47B7",
+      "length": 5,
+      "text": "vcqky"
+    },
+    {
+      "offset": "0x07C3",
+      "cpu_addr": "$47C3",
+      "length": 5,
+      "text": "qqsEH"
+    },
+    {
+      "offset": "0x0840",
+      "cpu_addr": "$4840",
+      "length": 4,
+      "text": "Z/yd"
+    },
+    {
+      "offset": "0x0847",
+      "cpu_addr": "$4847",
+      "length": 17,
+      "text": "(L<MTOO MANY FILE"
+    },
+    {
+      "offset": "0x0859",
+      "cpu_addr": "$4859",
+      "length": 8,
+      "text": "FILE OPE"
+    },
+    {
+      "offset": "0x0862",
+      "cpu_addr": "$4862",
+      "length": 12,
+      "text": "FILE NOT OPE"
+    },
+    {
+      "offset": "0x086F",
+      "cpu_addr": "$486F",
+      "length": 13,
+      "text": "FILE NOT FOUN"
+    },
+    {
+      "offset": "0x087D",
+      "cpu_addr": "$487D",
+      "length": 17,
+      "text": "DEVICE NOT PRESEN"
+    },
+    {
+      "offset": "0x088F",
+      "cpu_addr": "$488F",
+      "length": 13,
+      "text": "NOT INPUT FIL"
+    },
+    {
+      "offset": "0x089D",
+      "cpu_addr": "$489D",
+      "length": 14,
+      "text": "NOT OUTPUT FIL"
+    },
+    {
+      "offset": "0x08AC",
+      "cpu_addr": "$48AC",
+      "length": 16,
+      "text": "MISSING FILE NAM"
+    },
+    {
+      "offset": "0x08BD",
+      "cpu_addr": "$48BD",
+      "length": 20,
+      "text": "ILLEGAL DEVICE NUMBE"
+    },
+    {
+      "offset": "0x08D2",
+      "cpu_addr": "$48D2",
+      "length": 15,
+      "text": "NEXT WITHOUT FO"
+    },
+    {
+      "offset": "0x08E2",
+      "cpu_addr": "$48E2",
+      "length": 5,
+      "text": "SYNTA"
+    },
+    {
+      "offset": "0x08E8",
+      "cpu_addr": "$48E8",
+      "length": 19,
+      "text": "RETURN WITHOUT GOSU"
+    },
+    {
+      "offset": "0x08FC",
+      "cpu_addr": "$48FC",
+      "length": 10,
+      "text": "OUT OF DAT"
+    },
+    {
+      "offset": "0x0907",
+      "cpu_addr": "$4907",
+      "length": 15,
+      "text": "ILLEGAL QUANTIT"
+    },
+    {
+      "offset": "0x0917",
+      "cpu_addr": "$4917",
+      "length": 7,
+      "text": "OVERFLO"
+    },
+    {
+      "offset": "0x091F",
+      "cpu_addr": "$491F",
+      "length": 12,
+      "text": "OUT OF MEMOR"
+    },
+    {
+      "offset": "0x092C",
+      "cpu_addr": "$492C",
+      "length": 16,
+      "text": "UNDEF'D STATEMEN"
+    },
+    {
+      "offset": "0x093D",
+      "cpu_addr": "$493D",
+      "length": 12,
+      "text": "BAD SUBSCRIP"
+    },
+    {
+      "offset": "0x094A",
+      "cpu_addr": "$494A",
+      "length": 12,
+      "text": "REDIM'D ARRA"
+    },
+    {
+      "offset": "0x0957",
+      "cpu_addr": "$4957",
+      "length": 15,
+      "text": "DIVISION BY ZER"
+    },
+    {
+      "offset": "0x0967",
+      "cpu_addr": "$4967",
+      "length": 13,
+      "text": "ILLEGAL DIREC"
+    },
+    {
+      "offset": "0x0975",
+      "cpu_addr": "$4975",
+      "length": 12,
+      "text": "TYPE MISMATC"
+    },
+    {
+      "offset": "0x0982",
+      "cpu_addr": "$4982",
+      "length": 14,
+      "text": "STRING TOO LON"
+    },
+    {
+      "offset": "0x0991",
+      "cpu_addr": "$4991",
+      "length": 8,
+      "text": "FILE DAT"
+    },
+    {
+      "offset": "0x099A",
+      "cpu_addr": "$499A",
+      "length": 18,
+      "text": "FORMULA TOO COMPLE"
+    },
+    {
+      "offset": "0x09AD",
+      "cpu_addr": "$49AD",
+      "length": 13,
+      "text": "CAN'T CONTINU"
+    },
+    {
+      "offset": "0x09BB",
+      "cpu_addr": "$49BB",
+      "length": 15,
+      "text": "UNDEF'D FUNCTIO"
+    },
+    {
+      "offset": "0x09CB",
+      "cpu_addr": "$49CB",
+      "length": 5,
+      "text": "VERIF"
+    },
+    {
+      "offset": "0x09D5",
+      "cpu_addr": "$49D5",
+      "length": 5,
+      "text": "BREAK"
+    },
+    {
+      "offset": "0x09DC",
+      "cpu_addr": "$49DC",
+      "length": 11,
+      "text": "CAN'T RESUM"
+    },
+    {
+      "offset": "0x09E8",
+      "cpu_addr": "$49E8",
+      "length": 13,
+      "text": "LOOP NOT FOUN"
+    },
+    {
+      "offset": "0x09F6",
+      "cpu_addr": "$49F6",
+      "length": 14,
+      "text": "LOOP WITHOUT D"
+    },
+    {
+      "offset": "0x0A05",
+      "cpu_addr": "$4A05",
+      "length": 15,
+      "text": "DIRECT MODE ONL"
+    },
+    {
+      "offset": "0x0A15",
+      "cpu_addr": "$4A15",
+      "length": 15,
+      "text": "NO GRAPHICS ARE"
+    },
+    {
+      "offset": "0x0A25",
+      "cpu_addr": "$4A25",
+      "length": 7,
+      "text": "BAD DIS"
+    },
+    {
+      "offset": "0x0A2D",
+      "cpu_addr": "$4A2D",
+      "length": 13,
+      "text": "BEND NOT FOUN"
+    },
+    {
+      "offset": "0x0A3B",
+      "cpu_addr": "$4A3B",
+      "length": 20,
+      "text": "LINE NUMBER TOO LARG"
+    },
+    {
+      "offset": "0x0A50",
+      "cpu_addr": "$4A50",
+      "length": 19,
+      "text": "UNRESOLVED REFERENC"
+    },
+    {
+      "offset": "0x0A64",
+      "cpu_addr": "$4A64",
+      "length": 20,
+      "text": "UNIMPLEMENTED COMMAN"
+    },
+    {
+      "offset": "0x0A79",
+      "cpu_addr": "$4A79",
+      "length": 8,
+      "text": "FILE REA"
+    },
+    {
+      "offset": "0x0AF3",
+      "cpu_addr": "$4AF3",
+      "length": 4,
+      "text": " ?K "
+    },
+    {
+      "offset": "0x0B30",
+      "cpu_addr": "$4B30",
+      "length": 4,
+      "text": "JL7M"
+    },
+    {
+      "offset": "0x0BD3",
+      "cpu_addr": "$4BD3",
+      "length": 4,
+      "text": "\\r 4K"
+    },
+    {
+      "offset": "0x0BEA",
+      "cpu_addr": "$4BEA",
+      "length": 5,
+      "text": "BREAK"
+    },
+    {
+      "offset": "0x0BF2",
+      "cpu_addr": "$4BF2",
+      "length": 5,
+      "text": "ML7M`"
+    },
+    {
+      "offset": "0x0C15",
+      "cpu_addr": "$4C15",
+      "length": 5,
+      "text": "% Yy "
+    },
+    {
+      "offset": "0x0C1B",
+      "cpu_addr": "$4C1B",
+      "length": 5,
+      "text": "w \\y "
+    },
+    {
+      "offset": "0x0C38",
+      "cpu_addr": "$4C38",
+      "length": 8,
+      "text": "L?L Pyh8"
+    },
+    {
+      "offset": "0x0C61",
+      "cpu_addr": "$4C61",
+      "length": 4,
+      "text": " Yy "
+    },
+    {
+      "offset": "0x0C74",
+      "cpu_addr": "$4C74",
+      "length": 4,
+      "text": "8 }L"
+    },
+    {
+      "offset": "0x0CA3",
+      "cpu_addr": "$4CA3",
+      "length": 4,
+      "text": "gE\\r%"
+    },
+    {
+      "offset": "0x0CAC",
+      "cpu_addr": "$4CAC",
+      "length": 4,
+      "text": "fE\\r%"
+    },
+    {
+      "offset": "0x0CB1",
+      "cpu_addr": "$4CB1",
+      "length": 6,
+      "text": "E\\rL<y "
+    },
+    {
+      "offset": "0x0D2D",
+      "cpu_addr": "$4D2D",
+      "length": 8,
+      "text": "\\rREADY.\\r"
+    },
+    {
+      "offset": "0x0DA2",
+      "cpu_addr": "$4DA2",
+      "length": 4,
+      "text": " 8R "
+    },
+    {
+      "offset": "0x0DA8",
+      "cpu_addr": "$4DA8",
+      "length": 6,
+      "text": " ERROR"
+    },
+    {
+      "offset": "0x0DE9",
+      "cpu_addr": "$4DE9",
+      "length": 4,
+      "text": "\\r dP"
+    },
+    {
+      "offset": "0x0E6A",
+      "cpu_addr": "$4E6A",
+      "length": 6,
+      "text": " 8R OO"
+    },
+    {
+      "offset": "0x0F0F",
+      "cpu_addr": "$4F0F",
+      "length": 6,
+      "text": " OO TR"
+    },
+    {
+      "offset": "0x1043",
+      "cpu_addr": "$5043",
+      "length": 4,
+      "text": "`L:M"
+    },
+    {
+      "offset": "0x1260",
+      "cpu_addr": "$5260",
+      "length": 4,
+      "text": ">`hh"
+    },
+    {
+      "offset": "0x126D",
+      "cpu_addr": "$526D",
+      "length": 6,
+      "text": "L<M PP"
+    },
+    {
+      "offset": "0x12E7",
+      "cpu_addr": "$52E7",
+      "length": 4,
+      "text": "  S "
+    },
+    {
+      "offset": "0x131D",
+      "cpu_addr": "$531D",
+      "length": 4,
+      "text": "L?K "
+    },
+    {
+      "offset": "0x135D",
+      "cpu_addr": "$535D",
+      "length": 4,
+      "text": "RL)S"
+    },
+    {
+      "offset": "0x1370",
+      "cpu_addr": "$5370",
+      "length": 7,
+      "text": "  SL S`"
+    },
+    {
+      "offset": "0x1378",
+      "cpu_addr": "$5378",
+      "length": 4,
+      "text": "%L<M"
+    },
+    {
+      "offset": "0x139D",
+      "cpu_addr": "$539D",
+      "length": 4,
+      "text": "  SL"
+    },
+    {
+      "offset": "0x13B6",
+      "cpu_addr": "$53B6",
+      "length": 5,
+      "text": "hLYK "
+    },
+    {
+      "offset": "0x13DA",
+      "cpu_addr": "$53DA",
+      "length": 4,
+      "text": "wh* "
+    },
+    {
+      "offset": "0x1419",
+      "cpu_addr": "$5419",
+      "length": 5,
+      "text": "r HT "
+    },
+    {
+      "offset": "0x1423",
+      "cpu_addr": "$5423",
+      "length": 6,
+      "text": "r HT 8"
+    },
+    {
+      "offset": "0x1534",
+      "cpu_addr": "$5534",
+      "length": 4,
+      "text": "%8`h"
+    },
+    {
+      "offset": "0x1539",
+      "cpu_addr": "$5539",
+      "length": 8,
+      "text": "` @ULXV "
+    },
+    {
+      "offset": "0x1546",
+      "cpu_addr": "$5546",
+      "length": 4,
+      "text": ", ^y"
+    },
+    {
+      "offset": "0x1550",
+      "cpu_addr": "$5550",
+      "length": 5,
+      "text": "(LZU "
+    },
+    {
+      "offset": "0x15D7",
+      "cpu_addr": "$55D7",
+      "length": 7,
+      "text": "LcULly "
+    },
+    {
+      "offset": "0x1622",
+      "cpu_addr": "$5622",
+      "length": 4,
+      "text": "L5V "
+    },
+    {
+      "offset": "0x162C",
+      "cpu_addr": "$562C",
+      "length": 4,
+      "text": ", ^y"
+    },
+    {
+      "offset": "0x164C",
+      "cpu_addr": "$564C",
+      "length": 4,
+      "text": ", ^y"
+    },
+    {
+      "offset": "0x166A",
+      "cpu_addr": "$566A",
+      "length": 5,
+      "text": "; ^y "
+    },
+    {
+      "offset": "0x1687",
+      "cpu_addr": "$5687",
+      "length": 4,
+      "text": " XVL"
+    },
+    {
+      "offset": "0x1736",
+      "cpu_addr": "$5736",
+      "length": 4,
+      "text": "TLDW"
+    },
+    {
+      "offset": "0x1761",
+      "cpu_addr": "$5761",
+      "length": 4,
+      "text": "L<M "
+    },
+    {
+      "offset": "0x1767",
+      "cpu_addr": "$5767",
+      "length": 17,
+      "text": "?REDO FROM START\\r"
+    },
+    {
+      "offset": "0x1796",
+      "cpu_addr": "$5796",
+      "length": 4,
+      "text": " \\yL"
+    },
+    {
+      "offset": "0x17B9",
+      "cpu_addr": "$57B9",
+      "length": 15,
+      "text": "?EXTRA IGNORED\\r"
+    },
+    {
+      "offset": "0x17FC",
+      "cpu_addr": "$57FC",
+      "length": 4,
+      "text": " YP "
+    },
+    {
+      "offset": "0x1819",
+      "cpu_addr": "$5819",
+      "length": 6,
+      "text": "L<M PP"
+    },
+    {
+      "offset": "0x1876",
+      "cpu_addr": "$5876",
+      "length": 5,
+      "text": ";` \\y"
+    },
+    {
+      "offset": "0x1900",
+      "cpu_addr": "$5900",
+      "length": 5,
+      "text": "w Yy "
+    },
+    {
+      "offset": "0x191F",
+      "cpu_addr": "$591F",
+      "length": 4,
+      "text": "w Vy"
+    },
+    {
+      "offset": "0x1925",
+      "cpu_addr": "$5925",
+      "length": 4,
+      "text": " ^y "
+    },
+    {
+      "offset": "0x1972",
+      "cpu_addr": "$5972",
+      "length": 4,
+      "text": "L(} "
+    },
+    {
+      "offset": "0x1982",
+      "cpu_addr": "$5982",
+      "length": 4,
+      "text": "uL7M"
+    },
+    {
+      "offset": "0x19A4",
+      "cpu_addr": "$59A4",
+      "length": 6,
+      "text": " #QFUL"
+    },
+    {
+      "offset": "0x19FE",
+      "cpu_addr": "$59FE",
+      "length": 4,
+      "text": ". hP"
+    },
+    {
+      "offset": "0x1A17",
+      "cpu_addr": "$5A17",
+      "length": 6,
+      "text": "L<MLly"
+    },
+    {
+      "offset": "0x1A51",
+      "cpu_addr": "$5A51",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x1AAB",
+      "cpu_addr": "$5AAB",
+      "length": 5,
+      "text": "Q OO "
+    },
+    {
+      "offset": "0x1B35",
+      "cpu_addr": "$5B35",
+      "length": 4,
+      "text": "L(} "
+    },
+    {
+      "offset": "0x1B5A",
+      "cpu_addr": "$5B5A",
+      "length": 4,
+      "text": " dP8"
+    },
+    {
+      "offset": "0x1B68",
+      "cpu_addr": "$5B68",
+      "length": 4,
+      "text": " h] "
+    },
+    {
+      "offset": "0x1B99",
+      "cpu_addr": "$5B99",
+      "length": 4,
+      "text": "&L<M"
+    },
+    {
+      "offset": "0x1BFA",
+      "cpu_addr": "$5BFA",
+      "length": 5,
+      "text": "^ TR "
+    },
+    {
+      "offset": "0x1C03",
+      "cpu_addr": "$5C03",
+      "length": 4,
+      "text": "Lh] "
+    },
+    {
+      "offset": "0x1CC3",
+      "cpu_addr": "$5CC3",
+      "length": 4,
+      "text": "`L:M"
+    },
+    {
+      "offset": "0x1D18",
+      "cpu_addr": "$5D18",
+      "length": 5,
+      "text": "\\ h] "
+    },
+    {
+      "offset": "0x1D2A",
+      "cpu_addr": "$5D2A",
+      "length": 5,
+      "text": "<L<M "
+    },
+    {
+      "offset": "0x1D62",
+      "cpu_addr": "$5D62",
+      "length": 4,
+      "text": "[ u]"
+    },
+    {
+      "offset": "0x1D71",
+      "cpu_addr": "$5D71",
+      "length": 4,
+      "text": "dLTR"
+    },
+    {
+      "offset": "0x1E0B",
+      "cpu_addr": "$5E0B",
+      "length": 8,
+      "text": "O GP PP "
+    },
+    {
+      "offset": "0x1E30",
+      "cpu_addr": "$5E30",
+      "length": 4,
+      "text": " ^y "
+    },
+    {
+      "offset": "0x1E82",
+      "cpu_addr": "$5E82",
+      "length": 6,
+      "text": "}`Lly "
+    },
+    {
+      "offset": "0x1E99",
+      "cpu_addr": "$5E99",
+      "length": 4,
+      "text": "' dP"
+    },
+    {
+      "offset": "0x1F11",
+      "cpu_addr": "$5F11",
+      "length": 5,
+      "text": "P dP "
+    },
+    {
+      "offset": "0x1F30",
+      "cpu_addr": "$5F30",
+      "length": 6,
+      "text": "`Lly {"
+    },
+    {
+      "offset": "0x1F3D",
+      "cpu_addr": "$5F3D",
+      "length": 4,
+      "text": "L(} "
+    },
+    {
+      "offset": "0x1FD7",
+      "cpu_addr": "$5FD7",
+      "length": 4,
+      "text": "`Lly"
+    },
+    {
+      "offset": "0x2008",
+      "cpu_addr": "$6008",
+      "length": 4,
+      "text": "LG` "
+    },
+    {
+      "offset": "0x2041",
+      "cpu_addr": "$6041",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x2055",
+      "cpu_addr": "$6055",
+      "length": 4,
+      "text": " D`L"
+    },
+    {
+      "offset": "0x205A",
+      "cpu_addr": "$605A",
+      "length": 4,
+      "text": "` |S"
+    },
+    {
+      "offset": "0x20B8",
+      "cpu_addr": "$60B8",
+      "length": 5,
+      "text": "!L<M "
+    },
+    {
+      "offset": "0x20ED",
+      "cpu_addr": "$60ED",
+      "length": 6,
+      "text": "w \\y {"
+    },
+    {
+      "offset": "0x2106",
+      "cpu_addr": "$6106",
+      "length": 4,
+      "text": "`L:M"
+    },
+    {
+      "offset": "0x211B",
+      "cpu_addr": "$611B",
+      "length": 6,
+      "text": "LlyLFH"
+    },
+    {
+      "offset": "0x219D",
+      "cpu_addr": "$619D",
+      "length": 8,
+      "text": "($RHC+\"\\r"
+    },
+    {
+      "offset": "0x221A",
+      "cpu_addr": "$621A",
+      "length": 4,
+      "text": "c |b"
+    },
+    {
+      "offset": "0x222F",
+      "cpu_addr": "$622F",
+      "length": 4,
+      "text": "d |b"
+    },
+    {
+      "offset": "0x2297",
+      "cpu_addr": "$6297",
+      "length": 4,
+      "text": "L:Mh"
+    },
+    {
+      "offset": "0x2350",
+      "cpu_addr": "$6350",
+      "length": 4,
+      "text": "JH m"
+    },
+    {
+      "offset": "0x23F5",
+      "cpu_addr": "$63F5",
+      "length": 25,
+      "text": "FRED B\\rTERRY R\\rMIKE I\\r gg"
+    },
+    {
+      "offset": "0x2714",
+      "cpu_addr": "$6714",
+      "length": 4,
+      "text": " Pg "
+    },
+    {
+      "offset": "0x2740",
+      "cpu_addr": "$6740",
+      "length": 5,
+      "text": " Pg 0"
+    },
+    {
+      "offset": "0x2749",
+      "cpu_addr": "$6749",
+      "length": 6,
+      "text": "- RgL0"
+    },
+    {
+      "offset": "0x280F",
+      "cpu_addr": "$680F",
+      "length": 5,
+      "text": " \\y {"
+    },
+    {
+      "offset": "0x28DA",
+      "cpu_addr": "$68DA",
+      "length": 4,
+      "text": "`H p"
+    },
+    {
+      "offset": "0x292D",
+      "cpu_addr": "$692D",
+      "length": 4,
+      "text": "JEwI"
+    },
+    {
+      "offset": "0x2943",
+      "cpu_addr": "$6943",
+      "length": 4,
+      "text": "wJEw"
+    },
+    {
+      "offset": "0x2953",
+      "cpu_addr": "$6953",
+      "length": 4,
+      "text": "h` t"
+    },
+    {
+      "offset": "0x29C3",
+      "cpu_addr": "$69C3",
+      "length": 5,
+      "text": "` \\y "
+    },
+    {
+      "offset": "0x29D4",
+      "cpu_addr": "$69D4",
+      "length": 4,
+      "text": "`L(}"
+    },
+    {
+      "offset": "0x2A43",
+      "cpu_addr": "$6A43",
+      "length": 4,
+      "text": " \\jL"
+    },
+    {
+      "offset": "0x2AB7",
+      "cpu_addr": "$6AB7",
+      "length": 4,
+      "text": "0JJJ"
+    },
+    {
+      "offset": "0x2ACF",
+      "cpu_addr": "$6ACF",
+      "length": 4,
+      "text": "k 0k"
+    },
+    {
+      "offset": "0x2BC0",
+      "cpu_addr": "$6BC0",
+      "length": 4,
+      "text": "kL(}"
+    },
+    {
+      "offset": "0x2BD3",
+      "cpu_addr": "$6BD3",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x2C48",
+      "cpu_addr": "$6C48",
+      "length": 4,
+      "text": "EL%K"
+    },
+    {
+      "offset": "0x2C96",
+      "cpu_addr": "$6C96",
+      "length": 5,
+      "text": "l`L(}"
+    },
+    {
+      "offset": "0x2CE6",
+      "cpu_addr": "$6CE6",
+      "length": 4,
+      "text": "Pa0:"
+    },
+    {
+      "offset": "0x2DAE",
+      "cpu_addr": "$6DAE",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x2DDC",
+      "cpu_addr": "$6DDC",
+      "length": 7,
+      "text": "!,7BM {"
+    },
+    {
+      "offset": "0x2E45",
+      "cpu_addr": "$6E45",
+      "length": 4,
+      "text": "Llo8"
+    },
+    {
+      "offset": "0x2EEF",
+      "cpu_addr": "$6EEF",
+      "length": 4,
+      "text": "<p E"
+    },
+    {
+      "offset": "0x2EFF",
+      "cpu_addr": "$6EFF",
+      "length": 4,
+      "text": "nL(}"
+    },
+    {
+      "offset": "0x2F49",
+      "cpu_addr": "$6F49",
+      "length": 5,
+      "text": "0'Jn-"
+    },
+    {
+      "offset": "0x2FE0",
+      "cpu_addr": "$6FE0",
+      "length": 4,
+      "text": "`L(}"
+    },
+    {
+      "offset": "0x2FE7",
+      "cpu_addr": "$6FE7",
+      "length": 11,
+      "text": "WHQISVOTXUM"
+    },
+    {
+      "offset": "0x3005",
+      "cpu_addr": "$7005",
+      "length": 9,
+      "text": "LPUZ_ekrx"
+    },
+    {
+      "offset": "0x302A",
+      "cpu_addr": "$702A",
+      "length": 4,
+      "text": "!AAA"
+    },
+    {
+      "offset": "0x30BD",
+      "cpu_addr": "$70BD",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x318C",
+      "cpu_addr": "$718C",
+      "length": 4,
+      "text": "`L(}"
+    },
+    {
+      "offset": "0x31B2",
+      "cpu_addr": "$71B2",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x31C1",
+      "cpu_addr": "$71C1",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x31E8",
+      "cpu_addr": "$71E8",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x3297",
+      "cpu_addr": "$7297",
+      "length": 4,
+      "text": "9p E"
+    },
+    {
+      "offset": "0x345A",
+      "cpu_addr": "$745A",
+      "length": 4,
+      "text": " Jv "
+    },
+    {
+      "offset": "0x3462",
+      "cpu_addr": "$7462",
+      "length": 5,
+      "text": "H Jvh"
+    },
+    {
+      "offset": "0x34A6",
+      "cpu_addr": "$74A6",
+      "length": 5,
+      "text": "vh ?v"
+    },
+    {
+      "offset": "0x34EF",
+      "cpu_addr": "$74EF",
+      "length": 5,
+      "text": "PNLZt"
+    },
+    {
+      "offset": "0x353B",
+      "cpu_addr": "$753B",
+      "length": 4,
+      "text": "vLRt"
+    },
+    {
+      "offset": "0x35FA",
+      "cpu_addr": "$75FA",
+      "length": 4,
+      "text": "v ?v"
+    },
+    {
+      "offset": "0x3662",
+      "cpu_addr": "$7662",
+      "length": 11,
+      "text": "`COPY FROM?"
+    },
+    {
+      "offset": "0x366E",
+      "cpu_addr": "$766E",
+      "length": 16,
+      "text": "SPRITE NUMBER?  "
+    },
+    {
+      "offset": "0x368E",
+      "cpu_addr": "$768E",
+      "length": 4,
+      "text": "A\\rCt"
+    },
+    {
+      "offset": "0x36A3",
+      "cpu_addr": "$76A3",
+      "length": 15,
+      "text": "uAu>ucufu/tQuuu"
+    },
+    {
+      "offset": "0x36EB",
+      "cpu_addr": "$76EB",
+      "length": 4,
+      "text": "` |w"
+    },
+    {
+      "offset": "0x3795",
+      "cpu_addr": "$7795",
+      "length": 4,
+      "text": "`L(}"
+    },
+    {
+      "offset": "0x37B0",
+      "cpu_addr": "$77B0",
+      "length": 5,
+      "text": "h8` E"
+    },
+    {
+      "offset": "0x3849",
+      "cpu_addr": "$7849",
+      "length": 6,
+      "text": "wH qxh"
+    },
+    {
+      "offset": "0x3876",
+      "cpu_addr": "$7876",
+      "length": 4,
+      "text": ")HH "
+    },
+    {
+      "offset": "0x3880",
+      "cpu_addr": "$7880",
+      "length": 4,
+      "text": "wLly"
+    },
+    {
+      "offset": "0x38A7",
+      "cpu_addr": "$78A7",
+      "length": 4,
+      "text": "cHl$"
+    },
+    {
+      "offset": "0x394F",
+      "cpu_addr": "$794F",
+      "length": 5,
+      "text": "K Yy "
+    },
+    {
+      "offset": "0x3973",
+      "cpu_addr": "$7973",
+      "length": 6,
+      "text": "hhLKx "
+    },
+    {
+      "offset": "0x3BA9",
+      "cpu_addr": "$7BA9",
+      "length": 4,
+      "text": "[ f|"
+    },
+    {
+      "offset": "0x3CE7",
+      "cpu_addr": "$7CE7",
+      "length": 4,
+      "text": " Vyh"
+    },
+    {
+      "offset": "0x3D45",
+      "cpu_addr": "$7D45",
+      "length": 5,
+      "text": "} q~ "
+    },
+    {
+      "offset": "0x3D84",
+      "cpu_addr": "$7D84",
+      "length": 4,
+      "text": "a >~"
+    },
+    {
+      "offset": "0x3DFA",
+      "cpu_addr": "$7DFA",
+      "length": 6,
+      "text": "L%}L:M"
+    }
+  ],
+  "b8_strings": [
+    {
+      "offset": "0x0008",
+      "cpu_addr": "$8008",
+      "length": 5,
+      "text": "1L(}8"
+    },
+    {
+      "offset": "0x0074",
+      "cpu_addr": "$8074",
+      "length": 4,
+      "text": "r` n"
+    },
+    {
+      "offset": "0x00B2",
+      "cpu_addr": "$80B2",
+      "length": 4,
+      "text": "&r&s"
+    },
+    {
+      "offset": "0x0136",
+      "cpu_addr": "$8136",
+      "length": 4,
+      "text": "L(}H"
+    },
+    {
+      "offset": "0x016B",
+      "cpu_addr": "$816B",
+      "length": 7,
+      "text": "HJJJJ t"
+    },
+    {
+      "offset": "0x018F",
+      "cpu_addr": "$818F",
+      "length": 4,
+      "text": "***i"
+    },
+    {
+      "offset": "0x01B4",
+      "cpu_addr": "$81B4",
+      "length": 5,
+      "text": "0(L(}"
+    },
+    {
+      "offset": "0x024D",
+      "cpu_addr": "$824D",
+      "length": 4,
+      "text": " Vy "
+    },
+    {
+      "offset": "0x02AB",
+      "cpu_addr": "$82AB",
+      "length": 7,
+      "text": "L(} Vy "
+    },
+    {
+      "offset": "0x02FD",
+      "cpu_addr": "$82FD",
+      "length": 6,
+      "text": " Yy <{"
+    },
+    {
+      "offset": "0x030A",
+      "cpu_addr": "$830A",
+      "length": 4,
+      "text": "H Vy"
+    },
+    {
+      "offset": "0x031B",
+      "cpu_addr": "$831B",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x0327",
+      "cpu_addr": "$8327",
+      "length": 5,
+      "text": "H \\y "
+    },
+    {
+      "offset": "0x0361",
+      "cpu_addr": "$8361",
+      "length": 4,
+      "text": " Vy "
+    },
+    {
+      "offset": "0x0379",
+      "cpu_addr": "$8379",
+      "length": 7,
+      "text": "L(} Vy "
+    },
+    {
+      "offset": "0x0394",
+      "cpu_addr": "$8394",
+      "length": 4,
+      "text": "L(} "
+    },
+    {
+      "offset": "0x03A0",
+      "cpu_addr": "$83A0",
+      "length": 5,
+      "text": "H \\y "
+    },
+    {
+      "offset": "0x03F3",
+      "cpu_addr": "$83F3",
+      "length": 5,
+      "text": " VyhE"
+    },
+    {
+      "offset": "0x0406",
+      "cpu_addr": "$8406",
+      "length": 5,
+      "text": "` Vy "
+    },
+    {
+      "offset": "0x0431",
+      "cpu_addr": "$8431",
+      "length": 5,
+      "text": "L(} W"
+    },
+    {
+      "offset": "0x04C3",
+      "cpu_addr": "$84C3",
+      "length": 4,
+      "text": "L(}L"
+    },
+    {
+      "offset": "0x04D6",
+      "cpu_addr": "$84D6",
+      "length": 4,
+      "text": "L<y$"
+    },
+    {
+      "offset": "0x04F6",
+      "cpu_addr": "$84F6",
+      "length": 6,
+      "text": "\"L<M ("
+    },
+    {
+      "offset": "0x050C",
+      "cpu_addr": "$850C",
+      "length": 4,
+      "text": "w Vy"
+    },
+    {
+      "offset": "0x0512",
+      "cpu_addr": "$8512",
+      "length": 4,
+      "text": " ^yH"
+    },
+    {
+      "offset": "0x0542",
+      "cpu_addr": "$8542",
+      "length": 6,
+      "text": "PH Py "
+    },
+    {
+      "offset": "0x0597",
+      "cpu_addr": "$8597",
+      "length": 4,
+      "text": "Llyh"
+    },
+    {
+      "offset": "0x05D0",
+      "cpu_addr": "$85D0",
+      "length": 4,
+      "text": "dhhL"
+    },
+    {
+      "offset": "0x0627",
+      "cpu_addr": "$8627",
+      "length": 4,
+      "text": " \\y "
+    },
+    {
+      "offset": "0x064D",
+      "cpu_addr": "$864D",
+      "length": 4,
+      "text": " Vyh"
+    },
+    {
+      "offset": "0x0654",
+      "cpu_addr": "$8654",
+      "length": 4,
+      "text": "Whhh"
+    },
+    {
+      "offset": "0x07B7",
+      "cpu_addr": "$87B7",
+      "length": 5,
+      "text": "8H8e5"
+    },
+    {
+      "offset": "0x0809",
+      "cpu_addr": "$8809",
+      "length": 4,
+      "text": " \\yL"
+    },
+    {
+      "offset": "0x080F",
+      "cpu_addr": "$880F",
+      "length": 4,
+      "text": " \\y "
+    },
+    {
+      "offset": "0x082A",
+      "cpu_addr": "$882A",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x08DB",
+      "cpu_addr": "$88DB",
+      "length": 4,
+      "text": "h`eX"
+    },
+    {
+      "offset": "0x08FF",
+      "cpu_addr": "$88FF",
+      "length": 9,
+      "text": "q&g&f&e&d"
+    },
+    {
+      "offset": "0x091A",
+      "cpu_addr": "$891A",
+      "length": 12,
+      "text": "Bfdfefffgfq`"
+    },
+    {
+      "offset": "0x0A79",
+      "cpu_addr": "$8A79",
+      "length": 11,
+      "text": "(f(f)f*f+fq"
+    },
+    {
+      "offset": "0x0B35",
+      "cpu_addr": "$8B35",
+      "length": 5,
+      "text": "L<M 8"
+    },
+    {
+      "offset": "0x0B8A",
+      "cpu_addr": "$8B8A",
+      "length": 7,
+      "text": "n&m&l&k"
+    },
+    {
+      "offset": "0x0C36",
+      "cpu_addr": "$8C36",
+      "length": 4,
+      "text": "q` G"
+    },
+    {
+      "offset": "0x0C94",
+      "cpu_addr": "$8C94",
+      "length": 4,
+      "text": "&Eh0"
+    },
+    {
+      "offset": "0x0D73",
+      "cpu_addr": "$8D73",
+      "length": 5,
+      "text": "fa$aP"
+    },
+    {
+      "offset": "0x0DCA",
+      "cpu_addr": "$8DCA",
+      "length": 7,
+      "text": "d$b0!L]"
+    },
+    {
+      "offset": "0x0E29",
+      "cpu_addr": "$8E29",
+      "length": 4,
+      "text": " IN "
+    },
+    {
+      "offset": "0x100B",
+      "cpu_addr": "$900B",
+      "length": 6,
+      "text": "q4X>Vt"
+    },
+    {
+      "offset": "0x101E",
+      "cpu_addr": "$901E",
+      "length": 5,
+      "text": "*|cYX"
+    },
+    {
+      "offset": "0x10D5",
+      "cpu_addr": "$90D5",
+      "length": 5,
+      "text": "L<M E"
+    },
+    {
+      "offset": "0x10EA",
+      "cpu_addr": "$90EA",
+      "length": 4,
+      "text": "`H E"
+    },
+    {
+      "offset": "0x115A",
+      "cpu_addr": "$915A",
+      "length": 4,
+      "text": "\\rOK\\r"
+    },
+    {
+      "offset": "0x1178",
+      "cpu_addr": "$9178",
+      "length": 7,
+      "text": " *M OO "
+    },
+    {
+      "offset": "0x1183",
+      "cpu_addr": "$9183",
+      "length": 11,
+      "text": "M TR OOL5R "
+    },
+    {
+      "offset": "0x11E8",
+      "cpu_addr": "$91E8",
+      "length": 7,
+      "text": "hh` \\y "
+    },
+    {
+      "offset": "0x124E",
+      "cpu_addr": "$924E",
+      "length": 5,
+      "text": "h(` E"
+    },
+    {
+      "offset": "0x138E",
+      "cpu_addr": "$938E",
+      "length": 4,
+      "text": "\"$Z0"
+    },
+    {
+      "offset": "0x14FF",
+      "cpu_addr": "$94FF",
+      "length": 4,
+      "text": "dpL}"
+    },
+    {
+      "offset": "0x1505",
+      "cpu_addr": "$9505",
+      "length": 5,
+      "text": "Qz}c0"
+    },
+    {
+      "offset": "0x1557",
+      "cpu_addr": "$9557",
+      "length": 4,
+      "text": "; ^y"
+    },
+    {
+      "offset": "0x15CE",
+      "cpu_addr": "$95CE",
+      "length": 4,
+      "text": "8fw "
+    },
+    {
+      "offset": "0x168B",
+      "cpu_addr": "$968B",
+      "length": 4,
+      "text": "x8n0"
+    },
+    {
+      "offset": "0x193E",
+      "cpu_addr": "$993E",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x1A85",
+      "cpu_addr": "$9A85",
+      "length": 4,
+      "text": "HiZ "
+    },
+    {
+      "offset": "0x1B15",
+      "cpu_addr": "$9B15",
+      "length": 5,
+      "text": "L(} I"
+    },
+    {
+      "offset": "0x1D97",
+      "cpu_addr": "$9D97",
+      "length": 4,
+      "text": "h` |"
+    },
+    {
+      "offset": "0x1E2D",
+      "cpu_addr": "$9E2D",
+      "length": 4,
+      "text": "8` t"
+    },
+    {
+      "offset": "0x1E4E",
+      "cpu_addr": "$9E4E",
+      "length": 5,
+      "text": "`L(} "
+    },
+    {
+      "offset": "0x1E6C",
+      "cpu_addr": "$9E6C",
+      "length": 4,
+      "text": "` \\y"
+    },
+    {
+      "offset": "0x1E81",
+      "cpu_addr": "$9E81",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x1FC6",
+      "cpu_addr": "$9FC6",
+      "length": 5,
+      "text": "D OO "
+    },
+    {
+      "offset": "0x1FD2",
+      "cpu_addr": "$9FD2",
+      "length": 4,
+      "text": "$$v0"
+    },
+    {
+      "offset": "0x207A",
+      "cpu_addr": "$A07A",
+      "length": 5,
+      "text": "#L<M "
+    },
+    {
+      "offset": "0x229C",
+      "cpu_addr": "$A29C",
+      "length": 6,
+      "text": "$L<M` "
+    },
+    {
+      "offset": "0x22D3",
+      "cpu_addr": "$A2D3",
+      "length": 4,
+      "text": "`Lly"
+    },
+    {
+      "offset": "0x22D8",
+      "cpu_addr": "$A2D8",
+      "length": 5,
+      "text": "# ^y "
+    },
+    {
+      "offset": "0x2319",
+      "cpu_addr": "$A319",
+      "length": 4,
+      "text": "}L(}"
+    },
+    {
+      "offset": "0x231F",
+      "cpu_addr": "$A31F",
+      "length": 4,
+      "text": "L<M "
+    },
+    {
+      "offset": "0x2387",
+      "cpu_addr": "$A387",
+      "length": 4,
+      "text": "Lly "
+    },
+    {
+      "offset": "0x242B",
+      "cpu_addr": "$A42B",
+      "length": 4,
+      "text": "LlyL"
+    },
+    {
+      "offset": "0x2494",
+      "cpu_addr": "$A494",
+      "length": 4,
+      "text": "bL(}"
+    },
+    {
+      "offset": "0x257E",
+      "cpu_addr": "$A57E",
+      "length": 5,
+      "text": "7L(} "
+    },
+    {
+      "offset": "0x25B5",
+      "cpu_addr": "$A5B5",
+      "length": 5,
+      "text": "`Lly "
+    },
+    {
+      "offset": "0x25EF",
+      "cpu_addr": "$A5EF",
+      "length": 4,
+      "text": "L<M "
+    },
+    {
+      "offset": "0x25F9",
+      "cpu_addr": "$A5F9",
+      "length": 4,
+      "text": " Yy "
+    },
+    {
+      "offset": "0x25FF",
+      "cpu_addr": "$A5FF",
+      "length": 4,
+      "text": "LVyL"
+    },
+    {
+      "offset": "0x260C",
+      "cpu_addr": "$A60C",
+      "length": 4,
+      "text": " Yy "
+    },
+    {
+      "offset": "0x27DE",
+      "cpu_addr": "$A7DE",
+      "length": 4,
+      "text": "L<M$"
+    },
+    {
+      "offset": "0x27E8",
+      "cpu_addr": "$A7E8",
+      "length": 13,
+      "text": "ARE YOU SURE?"
+    },
+    {
+      "offset": "0x2829",
+      "cpu_addr": "$A829",
+      "length": 7,
+      "text": "`,0 YEK"
+    },
+    {
+      "offset": "0x2A65",
+      "cpu_addr": "$AA65",
+      "length": 5,
+      "text": "L(} G"
+    },
+    {
+      "offset": "0x2E65",
+      "cpu_addr": "$AE65",
+      "length": 5,
+      "text": "wj_^]"
+    },
+    {
+      "offset": "0x2E6B",
+      "cpu_addr": "$AE6B",
+      "length": 24,
+      "text": "!=$7?\"U $J0':N/5MLO@GFhi"
+    },
+    {
+      "offset": "0x2EAB",
+      "cpu_addr": "$AEAB",
+      "length": 8,
+      "text": "affyys89"
+    },
+    {
+      "offset": "0x2EB4",
+      "cpu_addr": "$AEB4",
+      "length": 5,
+      "text": "o{lxo"
+    },
+    {
+      "offset": "0x2EC9",
+      "cpu_addr": "$AEC9",
+      "length": 4,
+      "text": "\\JV2"
+    },
+    {
+      "offset": "0x2ECE",
+      "cpu_addr": "$AECE",
+      "length": 5,
+      "text": "QNX\\Q"
+    },
+    {
+      "offset": "0x2ED6",
+      "cpu_addr": "$AED6",
+      "length": 5,
+      "text": "ZN@F,"
+    },
+    {
+      "offset": "0x2EDC",
+      "cpu_addr": "$AEDC",
+      "length": 5,
+      "text": "CMANG"
+    },
+    {
+      "offset": "0x2F03",
+      "cpu_addr": "$AF03",
+      "length": 5,
+      "text": "L<yLB"
+    },
+    {
+      "offset": "0x2F6F",
+      "cpu_addr": "$AF6F",
+      "length": 5,
+      "text": "L(HL0"
+    },
+    {
+      "offset": "0x2F78",
+      "cpu_addr": "$AF78",
+      "length": 4,
+      "text": "LPgL"
+    },
+    {
+      "offset": "0x2F86",
+      "cpu_addr": "$AF86",
+      "length": 5,
+      "text": "QLOOL"
+    },
+    {
+      "offset": "0x2F8C",
+      "cpu_addr": "$AF8C",
+      "length": 5,
+      "text": "CLdPL"
+    },
+    {
+      "offset": "0x300C",
+      "cpu_addr": "$B00C",
+      "length": 6,
+      "text": "\\rBREAK"
+    },
+    {
+      "offset": "0x303D",
+      "cpu_addr": "$B03D",
+      "length": 8,
+      "text": "\\rMONITOR"
+    },
+    {
+      "offset": "0x3053",
+      "cpu_addr": "$B053",
+      "length": 26,
+      "text": "\\r    PC  SR AC XR YR SP\\r; "
+    },
+    {
+      "offset": "0x30E6",
+      "cpu_addr": "$B0E6",
+      "length": 22,
+      "text": "ACDFGHJMRTX@.>;$+&%LSV"
+    },
+    {
+      "offset": "0x3120",
+      "cpu_addr": "$B120",
+      "length": 4,
+      "text": "fx t"
+    },
+    {
+      "offset": "0x3133",
+      "cpu_addr": "$B133",
+      "length": 4,
+      "text": "hx w"
+    },
+    {
+      "offset": "0x3146",
+      "cpu_addr": "$B146",
+      "length": 4,
+      "text": "hx z"
+    },
+    {
+      "offset": "0x316E",
+      "cpu_addr": "$B16E",
+      "length": 6,
+      "text": "Fbfaf`"
+    },
+    {
+      "offset": "0x33C7",
+      "cpu_addr": "$B3C7",
+      "length": 6,
+      "text": " ERROR"
+    },
+    {
+      "offset": "0x366F",
+      "cpu_addr": "$B66F",
+      "length": 5,
+      "text": "JJJJ)"
+    },
+    {
+      "offset": "0x36B1",
+      "cpu_addr": "$B6B1",
+      "length": 4,
+      "text": "d&c*"
+    },
+    {
+      "offset": "0x36CB",
+      "cpu_addr": "$B6CB",
+      "length": 4,
+      "text": "0\"E3"
+    },
+    {
+      "offset": "0x3715",
+      "cpu_addr": "$B715",
+      "length": 7,
+      "text": ",),#($Y"
+    },
+    {
+      "offset": "0x3762",
+      "cpu_addr": "$B762",
+      "length": 5,
+      "text": "bZH&b"
+    },
+    {
+      "offset": "0x3785",
+      "cpu_addr": "$B785",
+      "length": 6,
+      "text": "tttrDh"
+    },
+    {
+      "offset": "0x3793",
+      "cpu_addr": "$B793",
+      "length": 4,
+      "text": "&&rr"
+    },
+    {
+      "offset": "0x379B",
+      "cpu_addr": "$B79B",
+      "length": 4,
+      "text": "&HDD"
+    },
+    {
+      "offset": "0x37A1",
+      "cpu_addr": "$B7A1",
+      "length": 4,
+      "text": "\\r   "
+    },
+    {
+      "offset": "0x3832",
+      "cpu_addr": "$B832",
+      "length": 5,
+      "text": "`&a&b"
+    },
+    {
+      "offset": "0x38D7",
+      "cpu_addr": "$B8D7",
+      "length": 6,
+      "text": "hJJJJ)"
+    },
+    {
+      "offset": "0x3A1C",
+      "cpu_addr": "$BA1C",
+      "length": 6,
+      "text": "Fhfgff"
+    }
+  ],
+  "kn_strings": [
+    {
+      "offset": "0x055F",
+      "cpu_addr": "$C55F",
+      "length": 6,
+      "text": ")@I@JJ"
+    },
+    {
+      "offset": "0x0800",
+      "cpu_addr": "$C800",
+      "length": 4,
+      "text": "H`l6"
+    },
+    {
+      "offset": "0x0EB2",
+      "cpu_addr": "$CEB2",
+      "length": 54,
+      "text": "GRAPHICDLOAD\"DIRECTORY\\rSCNCLR\\rDSAVE\"RUN\\rLIST\\rMONITOR\\rD"
+    },
+    {
+      "offset": "0x0EE9",
+      "cpu_addr": "$CEE9",
+      "length": 12,
+      "text": "\"*\\rRUN\\rHELP\\r"
+    },
+    {
+      "offset": "0x1008",
+      "cpu_addr": "$D008",
+      "length": 5,
+      "text": "1w<>?"
+    },
+    {
+      "offset": "0x102A",
+      "cpu_addr": "$D02A",
+      "length": 4,
+      "text": "~#fo"
+    },
+    {
+      "offset": "0x106B",
+      "cpu_addr": "$D06B",
+      "length": 4,
+      "text": "y\\r\\r>"
+    },
+    {
+      "offset": "0x10EE",
+      "cpu_addr": "$D0EE",
+      "length": 11,
+      "text": "CPM+    SYS"
+    },
+    {
+      "offset": "0x11F6",
+      "cpu_addr": "$D1F6",
+      "length": 17,
+      "text": "BOOTING CP/M PLUS"
+    },
+    {
+      "offset": "0x1254",
+      "cpu_addr": "$D254",
+      "length": 11,
+      "text": "DATA TABLES"
+    },
+    {
+      "offset": "0x127D",
+      "cpu_addr": "$D27D",
+      "length": 11,
+      "text": "COMMON CODE"
+    },
+    {
+      "offset": "0x1294",
+      "cpu_addr": "$D294",
+      "length": 11,
+      "text": "BANKED CODE"
+    },
+    {
+      "offset": "0x12AB",
+      "cpu_addr": "$D2AB",
+      "length": 13,
+      "text": "BIOS8502 CODE"
+    },
+    {
+      "offset": "0x12BF",
+      "cpu_addr": "$D2BF",
+      "length": 7,
+      "text": ":0<G:/<"
+    },
+    {
+      "offset": "0x1485",
+      "cpu_addr": "$D485",
+      "length": 21,
+      "text": "32K MAX CPM+.SYS SIZE"
+    },
+    {
+      "offset": "0x14AD",
+      "cpu_addr": "$D4AD",
+      "length": 10,
+      "text": "READ ERROR"
+    },
+    {
+      "offset": "0x14BB",
+      "cpu_addr": "$D4BB",
+      "length": 22,
+      "text": " - HIT RETURN TO RETRY"
+    },
+    {
+      "offset": "0x14D3",
+      "cpu_addr": "$D4D3",
+      "length": 22,
+      "text": "DEL TO ENTER C128 MODE"
+    },
+    {
+      "offset": "0x150A",
+      "cpu_addr": "$D50A",
+      "length": 14,
+      "text": " CPM+.SYS FILE"
+    },
+    {
+      "offset": "0x168E",
+      "cpu_addr": "$D68E",
+      "length": 5,
+      "text": "O(<<2"
+    },
+    {
+      "offset": "0x1798",
+      "cpu_addr": "$D798",
+      "length": 6,
+      "text": "=(,T]+"
+    },
+    {
+      "offset": "0x1983",
+      "cpu_addr": "$D983",
+      "length": 5,
+      "text": ":\\r$w:"
+    },
+    {
+      "offset": "0x198B",
+      "cpu_addr": "$D98B",
+      "length": 5,
+      "text": "O(_<2"
+    },
+    {
+      "offset": "0x1A29",
+      "cpu_addr": "$DA29",
+      "length": 4,
+      "text": ":\\r$w"
+    },
+    {
+      "offset": "0x1A72",
+      "cpu_addr": "$DA72",
+      "length": 6,
+      "text": "(?BKT]"
+    },
+    {
+      "offset": "0x1A87",
+      "cpu_addr": "$DA87",
+      "length": 4,
+      "text": ":\\r$w"
+    },
+    {
+      "offset": "0x1AFD",
+      "cpu_addr": "$DAFD",
+      "length": 5,
+      "text": "RDM!/"
+    },
+    {
+      "offset": "0x1B68",
+      "cpu_addr": "$DB68",
+      "length": 6,
+      "text": "pO:\\r$/"
+    },
+    {
+      "offset": "0x1BB4",
+      "cpu_addr": "$DBB4",
+      "length": 6,
+      "text": "$O:\\r$W"
+    },
+    {
+      "offset": "0x1BBD",
+      "cpu_addr": "$DBBD",
+      "length": 4,
+      "text": "G:\\r$"
+    },
+    {
+      "offset": "0x1BC4",
+      "cpu_addr": "$DBC4",
+      "length": 4,
+      "text": "2\\r$*"
+    },
+    {
+      "offset": "0x1C72",
+      "cpu_addr": "$DC72",
+      "length": 7,
+      "text": ")))T]))"
+    },
+    {
+      "offset": "0x1CCD",
+      "cpu_addr": "$DCCD",
+      "length": 4,
+      "text": "OEl&"
+    },
+    {
+      "offset": "0x1CD2",
+      "cpu_addr": "$DCD2",
+      "length": 8,
+      "text": "))))T]))"
+    },
+    {
+      "offset": "0x1D69",
+      "cpu_addr": "$DD69",
+      "length": 4,
+      "text": "1 x1"
+    },
+    {
+      "offset": "0x1D78",
+      "cpu_addr": "$DD78",
+      "length": 4,
+      "text": "1 x1"
+    },
+    {
+      "offset": "0x1DD1",
+      "cpu_addr": "$DDD1",
+      "length": 5,
+      "text": "1 O1)"
+    },
+    {
+      "offset": "0x1EA5",
+      "cpu_addr": "$DEA5",
+      "length": 4,
+      "text": "i:` "
+    },
+    {
+      "offset": "0x1ECD",
+      "cpu_addr": "$DECD",
+      "length": 16,
+      "text": "`\\rss tt 0 8:1U0L"
+    },
+    {
+      "offset": "0x1FA1",
+      "cpu_addr": "$DFA1",
+      "length": 5,
+      "text": "Kp1\\r\\r"
+    },
+    {
+      "offset": "0x1FA8",
+      "cpu_addr": "$DFA8",
+      "length": 4,
+      "text": "l\\r??"
+    },
+    {
+      "offset": "0x232A",
+      "cpu_addr": "$E32A",
+      "length": 5,
+      "text": "\"}#d$"
+    },
+    {
+      "offset": "0x24E7",
+      "cpu_addr": "$E4E7",
+      "length": 4,
+      "text": "0L s"
+    },
+    {
+      "offset": "0x2572",
+      "cpu_addr": "$E572",
+      "length": 4,
+      "text": "`x,:"
+    },
+    {
+      "offset": "0x2602",
+      "cpu_addr": "$E602",
+      "length": 4,
+      "text": "G0?F"
+    },
+    {
+      "offset": "0x2E93",
+      "cpu_addr": "$EE93",
+      "length": 4,
+      "text": "(` W"
+    },
+    {
+      "offset": "0x36AD",
+      "cpu_addr": "$F6AD",
+      "length": 14,
+      "text": "h8`\\rI/O ERROR "
+    },
+    {
+      "offset": "0x36BC",
+      "cpu_addr": "$F6BC",
+      "length": 10,
+      "text": "\\rSEARCHING"
+    },
+    {
+      "offset": "0x36CB",
+      "cpu_addr": "$F6CB",
+      "length": 18,
+      "text": "\\rPRESS PLAY ON TAP"
+    },
+    {
+      "offset": "0x36DE",
+      "cpu_addr": "$F6DE",
+      "length": 26,
+      "text": "PRESS RECORD & PLAY ON TAP"
+    },
+    {
+      "offset": "0x36F9",
+      "cpu_addr": "$F6F9",
+      "length": 7,
+      "text": "\\rLOADIN"
+    },
+    {
+      "offset": "0x3701",
+      "cpu_addr": "$F701",
+      "length": 7,
+      "text": "\\rSAVING"
+    },
+    {
+      "offset": "0x3709",
+      "cpu_addr": "$F709",
+      "length": 9,
+      "text": "\\rVERIFYIN"
+    },
+    {
+      "offset": "0x3713",
+      "cpu_addr": "$F713",
+      "length": 6,
+      "text": "\\rFOUND"
+    },
+    {
+      "offset": "0x390B",
+      "cpu_addr": "$F90B",
+      "length": 9,
+      "text": "\\rBOOTING "
+    },
+    {
+      "offset": "0x392F",
+      "cpu_addr": "$F92F",
+      "length": 4,
+      "text": "...\\r"
+    },
+    {
+      "offset": "0x3A05",
+      "cpu_addr": "$FA05",
+      "length": 19,
+      "text": "i:`00 10 0 31:1UI#H"
+    },
+    {
+      "offset": "0x3A88",
+      "cpu_addr": "$FA88",
+      "length": 7,
+      "text": "3WA4ZSE"
+    },
+    {
+      "offset": "0x3A90",
+      "cpu_addr": "$FA90",
+      "length": 35,
+      "text": "5RD6CFTX7YG8BHUV9IJ0MKON+PL-.:@,\\*;"
+    },
+    {
+      "offset": "0x3ACC",
+      "cpu_addr": "$FACC",
+      "length": 4,
+      "text": "\\r693"
+    },
+    {
+      "offset": "0x3C30",
+      "cpu_addr": "$FC30",
+      "length": 4,
+      "text": "\\r693"
+    }
+  ],
+  "z8_strings": [
+    {
+      "offset": "0x0008",
+      "cpu_addr": "$0008",
+      "length": 5,
+      "text": "1w<>?"
+    },
+    {
+      "offset": "0x002A",
+      "cpu_addr": "$002A",
+      "length": 4,
+      "text": "~#fo"
+    },
+    {
+      "offset": "0x006B",
+      "cpu_addr": "$006B",
+      "length": 4,
+      "text": "y\\r\\r>"
+    },
+    {
+      "offset": "0x00EE",
+      "cpu_addr": "$00EE",
+      "length": 11,
+      "text": "CPM+    SYS"
+    },
+    {
+      "offset": "0x01F6",
+      "cpu_addr": "$01F6",
+      "length": 17,
+      "text": "BOOTING CP/M PLUS"
+    },
+    {
+      "offset": "0x0254",
+      "cpu_addr": "$0254",
+      "length": 11,
+      "text": "DATA TABLES"
+    },
+    {
+      "offset": "0x027D",
+      "cpu_addr": "$027D",
+      "length": 11,
+      "text": "COMMON CODE"
+    },
+    {
+      "offset": "0x0294",
+      "cpu_addr": "$0294",
+      "length": 11,
+      "text": "BANKED CODE"
+    },
+    {
+      "offset": "0x02AB",
+      "cpu_addr": "$02AB",
+      "length": 13,
+      "text": "BIOS8502 CODE"
+    },
+    {
+      "offset": "0x02BF",
+      "cpu_addr": "$02BF",
+      "length": 7,
+      "text": ":0<G:/<"
+    },
+    {
+      "offset": "0x0485",
+      "cpu_addr": "$0485",
+      "length": 21,
+      "text": "32K MAX CPM+.SYS SIZE"
+    },
+    {
+      "offset": "0x04AD",
+      "cpu_addr": "$04AD",
+      "length": 10,
+      "text": "READ ERROR"
+    },
+    {
+      "offset": "0x04BB",
+      "cpu_addr": "$04BB",
+      "length": 22,
+      "text": " - HIT RETURN TO RETRY"
+    },
+    {
+      "offset": "0x04D3",
+      "cpu_addr": "$04D3",
+      "length": 22,
+      "text": "DEL TO ENTER C128 MODE"
+    },
+    {
+      "offset": "0x050A",
+      "cpu_addr": "$050A",
+      "length": 14,
+      "text": " CPM+.SYS FILE"
+    },
+    {
+      "offset": "0x068E",
+      "cpu_addr": "$068E",
+      "length": 5,
+      "text": "O(<<2"
+    },
+    {
+      "offset": "0x0798",
+      "cpu_addr": "$0798",
+      "length": 6,
+      "text": "=(,T]+"
+    },
+    {
+      "offset": "0x0983",
+      "cpu_addr": "$0983",
+      "length": 5,
+      "text": ":\\r$w:"
+    },
+    {
+      "offset": "0x098B",
+      "cpu_addr": "$098B",
+      "length": 5,
+      "text": "O(_<2"
+    },
+    {
+      "offset": "0x0A29",
+      "cpu_addr": "$0A29",
+      "length": 4,
+      "text": ":\\r$w"
+    },
+    {
+      "offset": "0x0A72",
+      "cpu_addr": "$0A72",
+      "length": 6,
+      "text": "(?BKT]"
+    },
+    {
+      "offset": "0x0A87",
+      "cpu_addr": "$0A87",
+      "length": 4,
+      "text": ":\\r$w"
+    },
+    {
+      "offset": "0x0AFD",
+      "cpu_addr": "$0AFD",
+      "length": 5,
+      "text": "RDM!/"
+    },
+    {
+      "offset": "0x0B68",
+      "cpu_addr": "$0B68",
+      "length": 6,
+      "text": "pO:\\r$/"
+    },
+    {
+      "offset": "0x0BB4",
+      "cpu_addr": "$0BB4",
+      "length": 6,
+      "text": "$O:\\r$W"
+    },
+    {
+      "offset": "0x0BBD",
+      "cpu_addr": "$0BBD",
+      "length": 4,
+      "text": "G:\\r$"
+    },
+    {
+      "offset": "0x0BC4",
+      "cpu_addr": "$0BC4",
+      "length": 4,
+      "text": "2\\r$*"
+    },
+    {
+      "offset": "0x0C72",
+      "cpu_addr": "$0C72",
+      "length": 7,
+      "text": ")))T]))"
+    },
+    {
+      "offset": "0x0CCD",
+      "cpu_addr": "$0CCD",
+      "length": 4,
+      "text": "OEl&"
+    },
+    {
+      "offset": "0x0CD2",
+      "cpu_addr": "$0CD2",
+      "length": 8,
+      "text": "))))T]))"
+    },
+    {
+      "offset": "0x0D69",
+      "cpu_addr": "$0D69",
+      "length": 4,
+      "text": "1 x1"
+    },
+    {
+      "offset": "0x0D78",
+      "cpu_addr": "$0D78",
+      "length": 4,
+      "text": "1 x1"
+    },
+    {
+      "offset": "0x0DD1",
+      "cpu_addr": "$0DD1",
+      "length": 5,
+      "text": "1 O1)"
+    },
+    {
+      "offset": "0x0EA5",
+      "cpu_addr": "$0EA5",
+      "length": 4,
+      "text": "i:` "
+    },
+    {
+      "offset": "0x0ECD",
+      "cpu_addr": "$0ECD",
+      "length": 16,
+      "text": "`\\rss tt 0 8:1U0L"
+    },
+    {
+      "offset": "0x0FA1",
+      "cpu_addr": "$0FA1",
+      "length": 5,
+      "text": "Kp1\\r\\r"
+    },
+    {
+      "offset": "0x0FA8",
+      "cpu_addr": "$0FA8",
+      "length": 4,
+      "text": "l\\r??"
+    }
+  ],
+  "b4_tokens_decoded": [
+    {
+      "offset": "0x099A",
+      "cpu_addr": "$499A",
+      "text": "FORMULA TOO COMPLEX"
+    },
+    {
+      "offset": "0x09AD",
+      "cpu_addr": "$49AD",
+      "text": "CAN'T CONTINUE"
+    },
+    {
+      "offset": "0x09BB",
+      "cpu_addr": "$49BB",
+      "text": "UNDEF'D FUNCTION"
+    },
+    {
+      "offset": "0x09CB",
+      "cpu_addr": "$49CB",
+      "text": "VERIFY"
+    },
+    {
+      "offset": "0x09D1",
+      "cpu_addr": "$49D1",
+      "text": "LOAD"
+    },
+    {
+      "offset": "0x09D5",
+      "cpu_addr": "$49D5",
+      "text": "BREAK",
+      "terminated_by": "0x00"
+    }
+  ],
+  "b4_errors_decoded": [
+    {
+      "offset": "0x084B",
+      "cpu_addr": "$484B",
+      "text": "TOO MANY FILES"
+    },
+    {
+      "offset": "0x0859",
+      "cpu_addr": "$4859",
+      "text": "FILE OPEN"
+    },
+    {
+      "offset": "0x0862",
+      "cpu_addr": "$4862",
+      "text": "FILE NOT OPEN"
+    },
+    {
+      "offset": "0x086F",
+      "cpu_addr": "$486F",
+      "text": "FILE NOT FOUND"
+    },
+    {
+      "offset": "0x087D",
+      "cpu_addr": "$487D",
+      "text": "DEVICE NOT PRESENT"
+    },
+    {
+      "offset": "0x088F",
+      "cpu_addr": "$488F",
+      "text": "NOT INPUT FILE"
+    },
+    {
+      "offset": "0x089D",
+      "cpu_addr": "$489D",
+      "text": "NOT OUTPUT FILE"
+    },
+    {
+      "offset": "0x08AC",
+      "cpu_addr": "$48AC",
+      "text": "MISSING FILE NAME"
+    },
+    {
+      "offset": "0x08BD",
+      "cpu_addr": "$48BD",
+      "text": "ILLEGAL DEVICE NUMBER"
+    },
+    {
+      "offset": "0x08D2",
+      "cpu_addr": "$48D2",
+      "text": "NEXT WITHOUT FOR"
+    },
+    {
+      "offset": "0x08E2",
+      "cpu_addr": "$48E2",
+      "text": "SYNTAX"
+    },
+    {
+      "offset": "0x08E8",
+      "cpu_addr": "$48E8",
+      "text": "RETURN WITHOUT GOSUB"
+    },
+    {
+      "offset": "0x08FC",
+      "cpu_addr": "$48FC",
+      "text": "OUT OF DATA"
+    },
+    {
+      "offset": "0x0907",
+      "cpu_addr": "$4907",
+      "text": "ILLEGAL QUANTITY"
+    },
+    {
+      "offset": "0x0917",
+      "cpu_addr": "$4917",
+      "text": "OVERFLOW"
+    },
+    {
+      "offset": "0x091F",
+      "cpu_addr": "$491F",
+      "text": "OUT OF MEMORY"
+    },
+    {
+      "offset": "0x092C",
+      "cpu_addr": "$492C",
+      "text": "UNDEF'D STATEMENT"
+    },
+    {
+      "offset": "0x093D",
+      "cpu_addr": "$493D",
+      "text": "BAD SUBSCRIPT"
+    },
+    {
+      "offset": "0x094A",
+      "cpu_addr": "$494A",
+      "text": "REDIM'D ARRAY"
+    },
+    {
+      "offset": "0x0957",
+      "cpu_addr": "$4957",
+      "text": "DIVISION BY ZERO"
+    },
+    {
+      "offset": "0x0967",
+      "cpu_addr": "$4967",
+      "text": "ILLEGAL DIRECT"
+    },
+    {
+      "offset": "0x0975",
+      "cpu_addr": "$4975",
+      "text": "TYPE MISMATCH"
+    },
+    {
+      "offset": "0x0982",
+      "cpu_addr": "$4982",
+      "text": "STRING TOO LONG"
+    },
+    {
+      "offset": "0x0991",
+      "cpu_addr": "$4991",
+      "text": "FILE DATA"
+    },
+    {
+      "offset": "0x099A",
+      "cpu_addr": "$499A",
+      "text": "FORMULA TOO COMPLEX"
+    },
+    {
+      "offset": "0x09AD",
+      "cpu_addr": "$49AD",
+      "text": "CAN'T CONTINUE"
+    },
+    {
+      "offset": "0x09BB",
+      "cpu_addr": "$49BB",
+      "text": "UNDEF'D FUNCTION"
+    },
+    {
+      "offset": "0x09CB",
+      "cpu_addr": "$49CB",
+      "text": "VERIFY"
+    },
+    {
+      "offset": "0x09D1",
+      "cpu_addr": "$49D1",
+      "text": "LOAD"
+    },
+    {
+      "offset": "0x09D5",
+      "cpu_addr": "$49D5",
+      "text": "BREAK",
+      "terminated_by": "0x00"
+    }
+  ]
+}

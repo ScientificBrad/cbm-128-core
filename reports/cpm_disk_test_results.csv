@@ -1,0 +1,6 @@
+Disk,SHA-256,Boot,CPM Prompt,DIR,Notes
+1985 baseline (cpm_1985.d64),49ff87df4f0a4502d34144f1ac9c6ee4616baad9a1035efcacd0b7490e310cf2,PASS,PASS (A>),PASS,"Boots to '8 DEC 85', displays 10 files in 40 and 80 col"
+1985 original (cpm.system.622-580745.d64),49ff87df4f0a4502d34144f1ac9c6ee4616baad9a1035efcacd0b7490e310cf2,PASS,PASS (A>),PASS,"Identical bit-for-bit image of original 1985 release"
+1987 revision (cpm_1987.d64),89a12f44fe1dc899153f835aec6e5759601f8c9b90c0ba0dff286558b3f7fe45,PASS,PASS (A>),PASS,"Boots to '28 MAY 87', displays 14 files; TYPE READ.ME verified"
+May 1987 extracted (cpm_28may87_extracted.d64),fdde8de25afd91c8acab0bcbe4d6ad13572a6f97c68f3b8638e5f84491735ec7,PASS,PASS (A>),PASS,"Extracted from 28may87-1.d64.gz; boots to '28 MAY 87'"
+Utilities (cpm.utilities.d64),ef12514c1adaf882fc05234536ba09958355f575ad8c3abf63a5e75942f70792,N/A,N/A,PASS (as B:),"Non-bootable utilities disk; tested as Drive 9 (B:); B:DATE and B:TYPE verified"

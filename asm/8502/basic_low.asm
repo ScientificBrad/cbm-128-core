@@ -1,0 +1,7064 @@
+; =============================================================================
+; Commodore 128 BASIC 7.0 Lower ROM (318018-02)
+; Source ROM: basic-4000.318018-02.bin (16384 bytes, $4000-$7FFF)
+; Architecture: MOS 8502
+; Phase 6 Bit-Exact Reconstructible Assembly Source
+; =============================================================================
+    .ORG $4000
+
+BASIC_COLD_ENTRY:
+    JMP   $4023              ; $4000: 4C 23 40 (BASIC_COLD_START)
+BASIC_WARM_ENTRY:
+    JMP   $4009              ; $4003: 4C 09 40 (BASIC_WARM_START)
+BASIC_IRQ_INIT_VEC:
+    JMP   $A84D              ; $4006: 4C 4D A8 (BASIC_INIT_UPPER)
+BASIC_WARM_START:
+    JSR   $FFCC              ; $4009: 20 CC FF (J_CLRCH)
+    JSR   $417A              ; $400C: 20 7A 41
+    JSR   $418D              ; $400F: 20 8D 41
+    JSR   $4112              ; $4012: 20 12 41
+    JSR   $5238              ; $4015: 20 38 52
+    LDA   #$00               ; $4018: A9 00   
+    STA   $15                ; $401A: 85 15   
+    CLI                      ; $401C: 58      
+    JMP   $4D37              ; $401D: 4C 37 4D (BASIC_READY_LOOP)
+    BRK                      ; $4020: 00      
+; --- [PADDING] Unused Padding After Cold Start ($FF) ($4021-$4022) ---
+    .BYTE $FF, $FF                               ; $4021 [PADDING] |..|
+BASIC_COLD_START:
+    JSR   $417A              ; $4023: 20 7A 41
+    JSR   $4251              ; $4026: 20 51 42 (TEST_AUTOBOOT_CART)
+    JSR   $4045              ; $4029: 20 45 40 (INIT_VECTORS_AND_RAM)
+    JSR   $419B              ; $402C: 20 9B 41 (INIT_VIC_SID_GRAPHICS)
+    LDA   $0A04              ; $402F: AD 04 0A
+    ORA   #$01               ; $4032: 09 01   
+    STA   $0A04              ; $4034: 8D 04 0A
+    LDX   #$03               ; $4037: A2 03   
+    STX   $0A00              ; $4039: 8E 00 0A
+    LDX   #$FB               ; $403C: A2 FB   
+    TXS                      ; $403E: 9A      
+    JSR   $FF56              ; $403F: 20 56 FF (J_PHOENIX)
+    JMP   $401C              ; $4042: 4C 1C 40
+INIT_VECTORS_AND_RAM:
+    LDA   #$4C               ; $4045: A9 4C   
+    STA   $56                ; $4047: 85 56   
+    STA   $1218              ; $4049: 8D 18 12 (CMD_USR)
+    LDA   #$28               ; $404C: A9 28   
+    LDY   #$7D               ; $404E: A0 7D   
+    STA   $1219              ; $4050: 8D 19 12
+    STY   $121A              ; $4053: 8C 1A 12
+    LDA   #$9F               ; $4056: A9 9F   
+    LDY   #$84               ; $4058: A0 84   
+    STA   $117A              ; $405A: 8D 7A 11
+    STY   $117B              ; $405D: 8C 7B 11
+    LDA   #$3C               ; $4060: A9 3C   
+    LDY   #$79               ; $4062: A0 79   
+    STA   $117C              ; $4064: 8D 7C 11
+    STY   $117D              ; $4067: 8C 7D 11
+    LDX   #$55               ; $406A: A2 55   
+    LDA   $4278,X            ; $406C: BD 78 42
+    STA   $037F,X            ; $406F: 9D 7F 03
+    DEX                      ; $4072: CA      
+    BNE   $406C              ; $4073: D0 F7   
+    STX   $03DF              ; $4075: 8E DF 03
+    STX   $15                ; $4078: 86 15   
+    STX   $1A                ; $407A: 86 1A   
+    STX   $116F              ; $407C: 8E 6F 11
+    STX   $1C00              ; $407F: 8E 00 1C
+    STX   $76                ; $4082: 86 76   
+    STX   $74                ; $4084: 86 74   
+    STX   $75                ; $4086: 86 75   
+    STX   $116B              ; $4088: 8E 6B 11
+    STX   $116A              ; $408B: 8E 6A 11
+    STX   $116C              ; $408E: 8E 6C 11
+    STX   $121B              ; $4091: 8E 1B 12
+    STX   $011C              ; $4094: 8E 1C 01
+    STX   $1276              ; $4097: 8E 76 12
+    STX   $1277              ; $409A: 8E 77 12
+    STX   $1278              ; $409D: 8E 78 12
+    STX   $127F              ; $40A0: 8E 7F 12
+    LDY   #$58               ; $40A3: A0 58   
+    STA   $117E,Y            ; $40A5: 99 7E 11
+    DEY                      ; $40A8: 88      
+    BPL   $40A5              ; $40A9: 10 FA   
+    INX                      ; $40AB: E8      
+    STX   $01FD              ; $40AC: 8E FD 01
+    STX   $01FC              ; $40AF: 8E FC 01
+    LDX   #$0F               ; $40B2: A2 0F   
+    STX   $03D5              ; $40B4: 8E D5 03
+    LDX   #$0D               ; $40B7: A2 0D   
+    STX   $86                ; $40B9: 86 86   
+    LDX   #$01               ; $40BB: A2 01   
+    STX   $84                ; $40BD: 86 84   
+    LDX   #$02               ; $40BF: A2 02   
+    STX   $85                ; $40C1: 86 85   
+    JSR   $6A5C              ; $40C3: 20 5C 6A
+    LDX   #$1B               ; $40C6: A2 1B   
+    STX   $18                ; $40C8: 86 18   
+    LDX   #$01               ; $40CA: A2 01   
+    LDY   #$1C               ; $40CC: A0 1C   
+    STX   $2D                ; $40CE: 86 2D   
+    STY   $2E                ; $40D0: 84 2E   
+    LDA   #$00               ; $40D2: A9 00   
+    LDY   #$04               ; $40D4: A0 04   
+    STA   $2F                ; $40D6: 85 2F   
+    STY   $30                ; $40D8: 84 30   
+    LDA   #$00               ; $40DA: A9 00   
+    LDY   #$FF               ; $40DC: A0 FF   
+    STA   $1212              ; $40DE: 8D 12 12
+    STY   $1213              ; $40E1: 8C 13 12
+    LDA   #$00               ; $40E4: A9 00   
+    LDY   #$FF               ; $40E6: A0 FF   
+    STA   $39                ; $40E8: 85 39   
+    STY   $3A                ; $40EA: 84 3A   
+    LDX   #$3F               ; $40EC: A2 3F   
+    LDY   #$07               ; $40EE: A0 07   
+    TXA                      ; $40F0: 8A      
+    STA   $07F8,Y            ; $40F1: 99 F8 07
+    DEX                      ; $40F4: CA      
+    DEY                      ; $40F5: 88      
+    BPL   $40F0              ; $40F6: 10 F8   
+    LDA   #$00               ; $40F8: A9 00   
+    LDX   #$6C               ; $40FA: A2 6C   
+    STA   $117E,X            ; $40FC: 9D 7E 11
+    DEX                      ; $40FF: CA      
+    BPL   $40FC              ; $4100: 10 FA   
+    JSR   $4112              ; $4102: 20 12 41
+    LDA   #$D0               ; $4105: A9 D0   
+    STA   $11EC              ; $4107: 8D EC 11
+    LDA   #$D8               ; $410A: A9 D8   
+    STA   $11EB              ; $410C: 8D EB 11
+    JMP   $51D9              ; $410F: 4C D9 51
+    LDA   #$20               ; $4112: A9 20   
+    LDY   #$01               ; $4114: A0 01   
+    STA   $1229              ; $4116: 8D 29 12
+    STY   $122A              ; $4119: 8C 2A 12
+    LDA   #$04               ; $411C: A9 04   
+    STA   $122B              ; $411E: 8D 2B 12
+    LDA   #$10               ; $4121: A9 10   
+    STA   $1222              ; $4123: 8D 22 12
+    LDA   #$00               ; $4126: A9 00   
+    STA   $D404              ; $4128: 8D 04 D4
+    STA   $D40B              ; $412B: 8D 0B D4
+    STA   $D412              ; $412E: 8D 12 D4
+    STA   $12FD              ; $4131: 8D FD 12
+    LDA   #$0F               ; $4134: A9 0F   
+    STA   $1274              ; $4136: 8D 74 12
+    STA   $1275              ; $4139: 8D 75 12
+    STA   $D418              ; $413C: 8D 18 D4
+    LDY   #$1D               ; $413F: A0 1D   
+    LDA   $7011,Y            ; $4141: B9 11 70
+    STA   $123F,Y            ; $4144: 99 3F 12
+    DEY                      ; $4147: 88      
+    BPL   $4141              ; $4148: 10 F7   
+    LDX   #$09               ; $414A: A2 09   
+    LDA   $702F,X            ; $414C: BD 2F 70
+    STA   $1267,X            ; $414F: 9D 67 12
+    DEX                      ; $4152: CA      
+    BPL   $414C              ; $4153: 10 F7   
+    STX   $1285              ; $4155: 8E 85 12
+    STX   $1286              ; $4158: 8E 86 12
+    STX   $1287              ; $415B: 8E 87 12
+    STX   $1224              ; $415E: 8E 24 12
+    STX   $1226              ; $4161: 8E 26 12
+    STX   $1228              ; $4164: 8E 28 12
+    LDY   #$02               ; $4167: A0 02   
+INIT_MMU_PRECONFIGS:
+    STY   $122F              ; $4169: 8C 2F 12
+    LDX   #$00               ; $416C: A2 00   
+    JSR   $6EB2              ; $416E: 20 B2 6E
+    DEC   $122F              ; $4171: CE 2F 12
+    BPL   $416C              ; $4174: 10 F6   
+    INC   $122F              ; $4176: EE 2F 12
+    RTS                      ; $4179: 60      
+    JSR   $A845              ; $417A: 20 45 A8
+    LDX   #$03               ; $417D: A2 03   
+    LDA   $4189,X            ; $417F: BD 89 41
+    STA   $D501,X            ; $4182: 9D 01 D5 (MMU_PCRA)
+    DEX                      ; $4185: CA      
+    BPL   $417F              ; $4186: 10 F7   
+    RTS                      ; $4188: 60      
+; --- [DATA] MMU Preconfiguration Init Table ($D501-$D504 = $3F,$7F,$01,$41) ($4189-$418C) ---
+    .BYTE $3F, $7F, $01, $41                     ; $4189 [IDENTIFIED_DATA] |?..A|
+    LDA   #$00               ; $418D: A9 00   
+    LDY   #$07               ; $418F: A0 07   
+    LDX   $6DD9,Y            ; $4191: BE D9 6D
+    STA   $117E,X            ; $4194: 9D 7E 11
+    DEY                      ; $4197: 88      
+    BPL   $4191              ; $4198: 10 F7   
+    RTS                      ; $419A: 60      
+INIT_VIC_SID_GRAPHICS:
+    LDY   #$00               ; $419B: A0 00   
+    LDA   $41BB,Y            ; $419D: B9 BB 41
+    CMP   #$40               ; $41A0: C9 40   
+    BNE   $41B2              ; $41A2: D0 0E   
+    BIT   $D7                ; $41A4: 24 D7   
+    BPL   $41B5              ; $41A6: 10 0D   
+    LDX   #$13               ; $41A8: A2 13   
+    LDA   #$20               ; $41AA: A9 20   
+    JSR   $9269              ; $41AC: 20 69 92
+    DEX                      ; $41AF: CA      
+    BNE   $41AA              ; $41B0: D0 F8   
+    JSR   $9269              ; $41B2: 20 69 92
+    INY                      ; $41B5: C8      
+    CPY   #$96               ; $41B6: C0 96   
+; --- [DATA] BASIC 7.0 Startup Sign-On Banner & Copyright Strings ($41B8-$424F) ---
+    .BYTE $D0, $E3, $60, $93, $0D, $40, $20, $43 ; $41B8 [IDENTIFIED_DATA] |..`..@ C|
+    .BYTE $4F, $4D, $4D, $4F, $44, $4F, $52, $45 ; $41C0 [IDENTIFIED_DATA] |OMMODORE|
+    .BYTE $20, $42, $41, $53, $49, $43, $20, $56 ; $41C8 [IDENTIFIED_DATA] | BASIC V|
+    .BYTE $37, $2E, $30, $20, $31, $32, $32, $33 ; $41D0 [IDENTIFIED_DATA] |7.0 1223|
+    .BYTE $36, $35, $20, $42, $59, $54, $45, $53 ; $41D8 [IDENTIFIED_DATA] |65 BYTES|
+    .BYTE $20, $46, $52, $45, $45, $0D, $40, $20 ; $41E0 [IDENTIFIED_DATA] | FREE.@ |
+    .BYTE $20, $20, $28, $43, $29, $31, $39, $38 ; $41E8 [IDENTIFIED_DATA] |  (C)198|
+    .BYTE $35, $20, $43, $4F, $4D, $4D, $4F, $44 ; $41F0 [IDENTIFIED_DATA] |5 COMMOD|
+    .BYTE $4F, $52, $45, $20, $45, $4C, $45, $43 ; $41F8 [IDENTIFIED_DATA] |ORE ELEC|
+    .BYTE $54, $52, $4F, $4E, $49, $43, $53, $2C ; $4200 [IDENTIFIED_DATA] |TRONICS,|
+    .BYTE $20, $4C, $54, $44, $2E, $0D, $40, $20 ; $4208 [IDENTIFIED_DATA] | LTD..@ |
+    .BYTE $20, $20, $20, $20, $20, $20, $20, $20 ; $4210 [IDENTIFIED_DATA] |        |
+    .BYTE $28, $43, $29, $31, $39, $37, $37, $20 ; $4218 [IDENTIFIED_DATA] |(C)1977 |
+    .BYTE $4D, $49, $43, $52, $4F, $53, $4F, $46 ; $4220 [IDENTIFIED_DATA] |MICROSOF|
+    .BYTE $54, $20, $43, $4F, $52, $50, $2E, $0D ; $4228 [IDENTIFIED_DATA] |T CORP..|
+    .BYTE $40, $20, $20, $20, $20, $20, $20, $20 ; $4230 [IDENTIFIED_DATA] |@       |
+    .BYTE $20, $20, $20, $20, $41, $4C, $4C, $20 ; $4238 [IDENTIFIED_DATA] |    ALL |
+    .BYTE $52, $49, $47, $48, $54, $53, $20, $52 ; $4240 [IDENTIFIED_DATA] |RIGHTS R|
+    .BYTE $45, $53, $45, $52, $56, $45, $44, $0D ; $4248 [IDENTIFIED_DATA] |ESERVED.|
+    BRK                      ; $4250: 00      
+TEST_AUTOBOOT_CART:
+; --- [DATA] Default VIC-IIe / SID / Sprite Initialization Tables ($4251-$4278) ---
+    .BYTE $A2, $11, $BD, $67, $42, $9D, $00, $03 ; $4251 [IDENTIFIED_DATA] |...gB...|
+    .BYTE $CA, $10, $F7, $A9, $78, $8D, $FC, $02 ; $4259 [IDENTIFIED_DATA] |....x...|
+    .BYTE $A9, $4C, $8D, $FD, $02, $60, $3F, $4D ; $4261 [IDENTIFIED_DATA] |.L...`?M|
+    .BYTE $C6, $4D, $0D, $43, $51, $51, $A2, $4A ; $4269 [IDENTIFIED_DATA] |.M.CQQ.J|
+    .BYTE $DA, $78, $21, $43, $CD, $51, $A9, $4B ; $4271 [IDENTIFIED_DATA] |.x!C.Q.K|
+COMMON_RAM_TEMPLATE:
+    INC   $3D                ; $4279: E6 3D   
+    BNE   $427F              ; $427B: D0 02   
+    INC   $3E                ; $427D: E6 3E   
+    STA   $FF01              ; $427F: 8D 01 FF (MMU_LCRA_TOP)
+    LDY   #$00               ; $4282: A0 00   
+    LDA   ($3D),Y            ; $4284: B1 3D   
+    STA   $FF03              ; $4286: 8D 03 FF (MMU_LCRC_TOP)
+    CMP   #$3A               ; $4289: C9 3A   
+    BCS   $4297              ; $428B: B0 0A   
+    CMP   #$20               ; $428D: C9 20   
+    BEQ   $4279              ; $428F: F0 E8    (COMMON_RAM_TEMPLATE)
+    SEC                      ; $4291: 38      
+    SBC   #$30               ; $4292: E9 30   
+    SEC                      ; $4294: 38      
+    SBC   #$D0               ; $4295: E9 D0   
+    RTS                      ; $4297: 60      
+    STA   $03A6              ; $4298: 8D A6 03
+    STA   $FF01              ; $429B: 8D 01 FF (MMU_LCRA_TOP)
+    LDA   ($00),Y            ; $429E: B1 00   
+    STA   $FF03              ; $42A0: 8D 03 FF (MMU_LCRC_TOP)
+    RTS                      ; $42A3: 60      
+    STA   $03B2              ; $42A4: 8D B2 03
+    STA   $FF02              ; $42A7: 8D 02 FF (MMU_LCRB_TOP)
+    LDA   ($00),Y            ; $42AA: B1 00   
+    STA   $FF04              ; $42AC: 8D 04 FF (MMU_LCRD_TOP)
+    RTS                      ; $42AF: 60      
+    STA   $FF02              ; $42B0: 8D 02 FF (MMU_LCRB_TOP)
+    LDA   ($24),Y            ; $42B3: B1 24   
+    STA   $FF04              ; $42B5: 8D 04 FF (MMU_LCRD_TOP)
+    RTS                      ; $42B8: 60      
+    STA   $FF01              ; $42B9: 8D 01 FF (MMU_LCRA_TOP)
+    LDA   ($26),Y            ; $42BC: B1 26   
+    STA   $FF03              ; $42BE: 8D 03 FF (MMU_LCRC_TOP)
+    RTS                      ; $42C1: 60      
+    STA   $FF01              ; $42C2: 8D 01 FF (MMU_LCRA_TOP)
+    LDA   ($3D),Y            ; $42C5: B1 3D   
+    STA   $FF03              ; $42C7: 8D 03 FF (MMU_LCRC_TOP)
+    RTS                      ; $42CA: 60      
+    BRK                      ; $42CB: 00      
+    BRK                      ; $42CC: 00      
+    BRK                      ; $42CD: 00      
+BANK0_BANK1_HELPERS:
+    LDA   #$50               ; $42CE: A9 50   
+    JMP   $03AB              ; $42D0: 4C AB 03
+    LDA   #$3F               ; $42D3: A9 3F   
+    JMP   $03AB              ; $42D5: 4C AB 03
+    LDA   #$52               ; $42D8: A9 52   
+    JMP   $03AB              ; $42DA: 4C AB 03
+    LDA   #$5C               ; $42DD: A9 5C   
+    JMP   $039F              ; $42DF: 4C 9F 03
+    LDA   #$5C               ; $42E2: A9 5C   
+    JMP   $03AB              ; $42E4: 4C AB 03
+    LDA   #$66               ; $42E7: A9 66   
+    JMP   $03AB              ; $42E9: 4C AB 03
+    LDA   #$61               ; $42EC: A9 61   
+    JMP   $039F              ; $42EE: 4C 9F 03
+    LDA   #$70               ; $42F1: A9 70   
+    JMP   $039F              ; $42F3: 4C 9F 03
+    LDA   #$70               ; $42F6: A9 70   
+    JMP   $03AB              ; $42F8: 4C AB 03
+    LDA   #$50               ; $42FB: A9 50   
+    JMP   $03AB              ; $42FD: 4C AB 03
+    LDA   #$61               ; $4300: A9 61   
+    JMP   $03AB              ; $4302: 4C AB 03
+    LDA   #$24               ; $4305: A9 24   
+    JMP   $039F              ; $4307: 4C 9F 03
+CRUNCH:
+    JMP   ($0304)            ; $430A: 6C 04 03
+    LDA   $3D                ; $430D: A5 3D   
+    PHA                      ; $430F: 48      
+    LDA   $3E                ; $4310: A5 3E   
+    PHA                      ; $4312: 48      
+    JSR   $0386              ; $4313: 20 86 03
+    JMP   $431C              ; $4316: 4C 1C 43
+    JSR   $0380              ; $4319: 20 80 03
+    BCC   $4319              ; $431C: 90 FB   
+    JMP   ($030C)            ; $431E: 6C 0C 03
+    BCS   $4326              ; $4321: B0 03   
+    JMP   $43B2              ; $4323: 4C B2 43
+    CMP   #$00               ; $4326: C9 00   
+    BEQ   $43A1              ; $4328: F0 77   
+    CMP   #$3A               ; $432A: C9 3A   
+    BEQ   $4319              ; $432C: F0 EB   
+    CMP   #$3F               ; $432E: C9 3F   
+    BNE   $4336              ; $4330: D0 04   
+    LDA   #$99               ; $4332: A9 99   
+    BNE   $4386              ; $4334: D0 50   
+    CMP   #$80               ; $4336: C9 80   
+    BCC   $4345              ; $4338: 90 0B   
+    CMP   #$FF               ; $433A: C9 FF   
+    BEQ   $4319              ; $433C: F0 DB   
+    LDY   #$01               ; $433E: A0 01   
+    JSR   $43CC              ; $4340: 20 CC 43
+    BEQ   $4313              ; $4343: F0 CE   
+    CMP   #$22               ; $4345: C9 22   
+    BNE   $4356              ; $4347: D0 0D   
+    JSR   $0380              ; $4349: 20 80 03
+    CMP   #$00               ; $434C: C9 00   
+    BEQ   $43A1              ; $434E: F0 51   
+    CMP   #$22               ; $4350: C9 22   
+    BEQ   $4319              ; $4352: F0 C5   
+    BNE   $4349              ; $4354: D0 F3   
+    LDA   #$46               ; $4356: A9 46   
+    LDY   #$09               ; $4358: A0 09   
+    JSR   $43E2              ; $435A: 20 E2 43
+    BCC   $4365              ; $435D: 90 06   
+    LDA   #$81               ; $435F: A9 81   
+    LDX   #$00               ; $4361: A2 00   
+    BEQ   $43B0              ; $4363: F0 4B   
+    LDA   #$46               ; $4365: A9 46   
+    LDY   #$C9               ; $4367: A0 C9   
+    JSR   $43E2              ; $4369: 20 E2 43
+    BCC   $4374              ; $436C: 90 06   
+    LDA   #$81               ; $436E: A9 81   
+    LDX   #$FF               ; $4370: A2 FF   
+    BNE   $43B0              ; $4372: D0 3C   
+    LDA   #$44               ; $4374: A9 44   
+    LDY   #$17               ; $4376: A0 17   
+    JSR   $43E2              ; $4378: 20 E2 43
+    BCC   $4319              ; $437B: 90 9C   
+    CPY   #$00               ; $437D: C0 00   
+    BEQ   $4384              ; $437F: F0 03   
+    JSR   $43CC              ; $4381: 20 CC 43
+    LDA   $0D                ; $4384: A5 0D   
+    LDY   #$00               ; $4386: A0 00   
+    STA   ($3D),Y            ; $4388: 91 3D   
+    CMP   #$8F               ; $438A: C9 8F   
+    BEQ   $439B              ; $438C: F0 0D   
+    CMP   #$83               ; $438E: C9 83   
+    BNE   $4319              ; $4390: D0 87   
+    JSR   $0380              ; $4392: 20 80 03
+    JSR   $528F              ; $4395: 20 8F 52 (CMD_DATA)
+    JMP   $4313              ; $4398: 4C 13 43
+    JSR   $0380              ; $439B: 20 80 03
+    JSR   $529D              ; $439E: 20 9D 52 (CMD_REM)
+    LDX   $3D                ; $43A1: A6 3D   
+    PLA                      ; $43A3: 68      
+    STA   $3E                ; $43A4: 85 3E   
+    PLA                      ; $43A6: 68      
+    STA   $3D                ; $43A7: 85 3D   
+    SEC                      ; $43A9: 38      
+    TXA                      ; $43AA: 8A      
+    SBC   $3D                ; $43AB: E5 3D   
+    TAY                      ; $43AD: A8      
+    INY                      ; $43AE: C8      
+    RTS                      ; $43AF: 60      
+    ADC   $0D                ; $43B0: 65 0D   
+    PHA                      ; $43B2: 48      
+    DEY                      ; $43B3: 88      
+    JSR   $43CC              ; $43B4: 20 CC 43
+    LDA   #$FE               ; $43B7: A9 FE   
+    INX                      ; $43B9: E8      
+    BNE   $43BE              ; $43BA: D0 02   
+    LDA   #$CE               ; $43BC: A9 CE   
+    LDY   #$00               ; $43BE: A0 00   
+    STA   ($3D),Y            ; $43C0: 91 3D   
+    INY                      ; $43C2: C8      
+    PLA                      ; $43C3: 68      
+    STA   ($3D),Y            ; $43C4: 91 3D   
+    JSR   $0380              ; $43C6: 20 80 03
+    JMP   $4319              ; $43C9: 4C 19 43
+    CLC                      ; $43CC: 18      
+    TYA                      ; $43CD: 98      
+    ADC   $3D                ; $43CE: 65 3D   
+    STA   $24                ; $43D0: 85 24   
+    LDA   $3E                ; $43D2: A5 3E   
+    ADC   #$00               ; $43D4: 69 00   
+    STA   $25                ; $43D6: 85 25   
+    LDY   #$FF               ; $43D8: A0 FF   
+    INY                      ; $43DA: C8      
+    LDA   ($24),Y            ; $43DB: B1 24   
+    STA   ($3D),Y            ; $43DD: 91 3D   
+    BNE   $43DA              ; $43DF: D0 F9   
+    RTS                      ; $43E1: 60      
+    STA   $25                ; $43E2: 85 25   
+    STY   $24                ; $43E4: 84 24   
+    LDY   #$00               ; $43E6: A0 00   
+    STY   $0D                ; $43E8: 84 0D   
+    DEY                      ; $43EA: 88      
+    INY                      ; $43EB: C8      
+    LDA   ($3D),Y            ; $43EC: B1 3D   
+    SEC                      ; $43EE: 38      
+    SBC   ($24),Y            ; $43EF: F1 24   
+    BEQ   $43EB              ; $43F1: F0 F8   
+    CMP   #$80               ; $43F3: C9 80   
+    BEQ   $4412              ; $43F5: F0 1B   
+    LDA   ($24),Y            ; $43F7: B1 24   
+    BMI   $43FE              ; $43F9: 30 03   
+    INY                      ; $43FB: C8      
+    BNE   $43F7              ; $43FC: D0 F9   
+    INY                      ; $43FE: C8      
+    INC   $0D                ; $43FF: E6 0D   
+    CLC                      ; $4401: 18      
+    TYA                      ; $4402: 98      
+    ADC   $24                ; $4403: 65 24   
+    STA   $24                ; $4405: 85 24   
+    BCC   $440B              ; $4407: 90 02   
+    INC   $25                ; $4409: E6 25   
+    CLC                      ; $440B: 18      
+    LDY   #$00               ; $440C: A0 00   
+    LDA   ($24),Y            ; $440E: B1 24   
+    BNE   $43EC              ; $4410: D0 DA   
+    ORA   $0D                ; $4412: 05 0D   
+    STA   $0D                ; $4414: 85 0D   
+    RTS                      ; $4416: 60      
+BASIC_TOKEN_TABLE_1:
+; --- [DATA] Primary Keyword Token Table (126 Tokens, $80-$FD) ($4417-$4608) ---
+    .BYTE $45, $4E, $C4, $46, $4F, $D2, $4E, $45 ; $4417 [IDENTIFIED_DATA] |EN.FO.NE|
+    .BYTE $58, $D4, $44, $41, $54, $C1, $49, $4E ; $441F [IDENTIFIED_DATA] |X.DAT.IN|
+    .BYTE $50, $55, $54, $A3, $49, $4E, $50, $55 ; $4427 [IDENTIFIED_DATA] |PUT.INPU|
+    .BYTE $D4, $44, $49, $CD, $52, $45, $41, $C4 ; $442F [IDENTIFIED_DATA] |.DI.REA.|
+    .BYTE $4C, $45, $D4, $47, $4F, $54, $CF, $52 ; $4437 [IDENTIFIED_DATA] |LE.GOT.R|
+    .BYTE $55, $CE, $49, $C6, $52, $45, $53, $54 ; $443F [IDENTIFIED_DATA] |U.I.REST|
+    .BYTE $4F, $52, $C5, $47, $4F, $53, $55, $C2 ; $4447 [IDENTIFIED_DATA] |OR.GOSU.|
+    .BYTE $52, $45, $54, $55, $52, $CE, $52, $45 ; $444F [IDENTIFIED_DATA] |RETUR.RE|
+    .BYTE $CD, $53, $54, $4F, $D0, $4F, $CE, $57 ; $4457 [IDENTIFIED_DATA] |.STO.O.W|
+    .BYTE $41, $49, $D4, $4C, $4F, $41, $C4, $53 ; $445F [IDENTIFIED_DATA] |AI.LOA.S|
+    .BYTE $41, $56, $C5, $56, $45, $52, $49, $46 ; $4467 [IDENTIFIED_DATA] |AV.VERIF|
+    .BYTE $D9, $44, $45, $C6, $50, $4F, $4B, $C5 ; $446F [IDENTIFIED_DATA] |.DE.POK.|
+    .BYTE $50, $52, $49, $4E, $54, $A3, $50, $52 ; $4477 [IDENTIFIED_DATA] |PRINT.PR|
+    .BYTE $49, $4E, $D4, $43, $4F, $4E, $D4, $4C ; $447F [IDENTIFIED_DATA] |IN.CON.L|
+    .BYTE $49, $53, $D4, $43, $4C, $D2, $43, $4D ; $4487 [IDENTIFIED_DATA] |IS.CL.CM|
+    .BYTE $C4, $53, $59, $D3, $4F, $50, $45, $CE ; $448F [IDENTIFIED_DATA] |.SY.OPE.|
+    .BYTE $43, $4C, $4F, $53, $C5, $47, $45, $D4 ; $4497 [IDENTIFIED_DATA] |CLOS.GE.|
+    .BYTE $4E, $45, $D7, $54, $41, $42, $A8, $54 ; $449F [IDENTIFIED_DATA] |NE.TAB.T|
+    .BYTE $CF, $46, $CE, $53, $50, $43, $A8, $54 ; $44A7 [IDENTIFIED_DATA] |.F.SPC.T|
+    .BYTE $48, $45, $CE, $4E, $4F, $D4, $53, $54 ; $44AF [IDENTIFIED_DATA] |HE.NO.ST|
+    .BYTE $45, $D0, $AB, $AD, $AA, $AF, $DE, $41 ; $44B7 [IDENTIFIED_DATA] |E......A|
+    .BYTE $4E, $C4, $4F, $D2, $BE, $BD, $BC, $53 ; $44BF [IDENTIFIED_DATA] |N.O....S|
+    .BYTE $47, $CE, $49, $4E, $D4, $41, $42, $D3 ; $44C7 [IDENTIFIED_DATA] |G.IN.AB.|
+    .BYTE $55, $53, $D2, $46, $52, $C5, $50, $4F ; $44CF [IDENTIFIED_DATA] |US.FR.PO|
+    .BYTE $D3, $53, $51, $D2, $52, $4E, $C4, $4C ; $44D7 [IDENTIFIED_DATA] |.SQ.RN.L|
+    .BYTE $4F, $C7, $45, $58, $D0, $43, $4F, $D3 ; $44DF [IDENTIFIED_DATA] |O.EX.CO.|
+    .BYTE $53, $49, $CE, $54, $41, $CE, $41, $54 ; $44E7 [IDENTIFIED_DATA] |SI.TA.AT|
+    .BYTE $CE, $50, $45, $45, $CB, $4C, $45, $CE ; $44EF [IDENTIFIED_DATA] |.PEE.LE.|
+    .BYTE $53, $54, $52, $A4, $56, $41, $CC, $41 ; $44F7 [IDENTIFIED_DATA] |STR.VA.A|
+    .BYTE $53, $C3, $43, $48, $52, $A4, $4C, $45 ; $44FF [IDENTIFIED_DATA] |S.CHR.LE|
+    .BYTE $46, $54, $A4, $52, $49, $47, $48, $54 ; $4507 [IDENTIFIED_DATA] |FT.RIGHT|
+    .BYTE $A4, $4D, $49, $44, $A4, $47, $CF, $52 ; $450F [IDENTIFIED_DATA] |.MID.G.R|
+    .BYTE $47, $D2, $52, $43, $4C, $D2, $80, $4A ; $4517 [IDENTIFIED_DATA] |G.RCL..J|
+    .BYTE $4F, $D9, $52, $44, $4F, $D4, $44, $45 ; $451F [IDENTIFIED_DATA] |O.RDO.DE|
+    .BYTE $C3, $48, $45, $58, $A4, $45, $52, $52 ; $4527 [IDENTIFIED_DATA] |.HEX.ERR|
+    .BYTE $A4, $49, $4E, $53, $54, $D2, $45, $4C ; $452F [IDENTIFIED_DATA] |.INST.EL|
+    .BYTE $53, $C5, $52, $45, $53, $55, $4D, $C5 ; $4537 [IDENTIFIED_DATA] |S.RESUM.|
+    .BYTE $54, $52, $41, $D0, $54, $52, $4F, $CE ; $453F [IDENTIFIED_DATA] |TRA.TRO.|
+    .BYTE $54, $52, $4F, $46, $C6, $53, $4F, $55 ; $4547 [IDENTIFIED_DATA] |TROF.SOU|
+    .BYTE $4E, $C4, $56, $4F, $CC, $41, $55, $54 ; $454F [IDENTIFIED_DATA] |N.VO.AUT|
+    .BYTE $CF, $50, $55, $44, $45, $C6, $47, $52 ; $4557 [IDENTIFIED_DATA] |.PUDE.GR|
+    .BYTE $41, $50, $48, $49, $C3, $50, $41, $49 ; $455F [IDENTIFIED_DATA] |APHI.PAI|
+    .BYTE $4E, $D4, $43, $48, $41, $D2, $42, $4F ; $4567 [IDENTIFIED_DATA] |N.CHA.BO|
+    .BYTE $D8, $43, $49, $52, $43, $4C, $C5, $47 ; $456F [IDENTIFIED_DATA] |.CIRCL.G|
+    .BYTE $53, $48, $41, $50, $C5, $53, $53, $48 ; $4577 [IDENTIFIED_DATA] |SHAP.SSH|
+    .BYTE $41, $50, $C5, $44, $52, $41, $D7, $4C ; $457F [IDENTIFIED_DATA] |AP.DRA.L|
+    .BYTE $4F, $43, $41, $54, $C5, $43, $4F, $4C ; $4587 [IDENTIFIED_DATA] |OCAT.COL|
+    .BYTE $4F, $D2, $53, $43, $4E, $43, $4C, $D2 ; $458F [IDENTIFIED_DATA] |O.SCNCL.|
+    .BYTE $53, $43, $41, $4C, $C5, $48, $45, $4C ; $4597 [IDENTIFIED_DATA] |SCAL.HEL|
+    .BYTE $D0, $44, $CF, $4C, $4F, $4F, $D0, $45 ; $459F [IDENTIFIED_DATA] |.D.LOO.E|
+    .BYTE $58, $49, $D4, $44, $49, $52, $45, $43 ; $45A7 [IDENTIFIED_DATA] |XI.DIREC|
+    .BYTE $54, $4F, $52, $D9, $44, $53, $41, $56 ; $45AF [IDENTIFIED_DATA] |TOR.DSAV|
+    .BYTE $C5, $44, $4C, $4F, $41, $C4, $48, $45 ; $45B7 [IDENTIFIED_DATA] |.DLOA.HE|
+    .BYTE $41, $44, $45, $D2, $53, $43, $52, $41 ; $45BF [IDENTIFIED_DATA] |ADE.SCRA|
+    .BYTE $54, $43, $C8, $43, $4F, $4C, $4C, $45 ; $45C7 [IDENTIFIED_DATA] |TC.COLLE|
+    .BYTE $43, $D4, $43, $4F, $50, $D9, $52, $45 ; $45CF [IDENTIFIED_DATA] |C.COP.RE|
+    .BYTE $4E, $41, $4D, $C5, $42, $41, $43, $4B ; $45D7 [IDENTIFIED_DATA] |NAM.BACK|
+    .BYTE $55, $D0, $44, $45, $4C, $45, $54, $C5 ; $45DF [IDENTIFIED_DATA] |U.DELET.|
+    .BYTE $52, $45, $4E, $55, $4D, $42, $45, $D2 ; $45E7 [IDENTIFIED_DATA] |RENUMBE.|
+    .BYTE $4B, $45, $D9, $4D, $4F, $4E, $49, $54 ; $45EF [IDENTIFIED_DATA] |KE.MONIT|
+    .BYTE $4F, $D2, $55, $53, $49, $4E, $C7, $55 ; $45F7 [IDENTIFIED_DATA] |O.USIN.U|
+    .BYTE $4E, $54, $49, $CC, $57, $48, $49, $4C ; $45FF [IDENTIFIED_DATA] |NTI.WHIL|
+    .BYTE $C5, $00                               ; $4607 [IDENTIFIED_DATA] |..|
+BASIC_TOKEN_TABLE_CE:
+; --- [DATA] Extended $FE Statement Keyword Table (37 Tokens, $FE $02-$26) ($4609-$46C8) ---
+    .BYTE $42, $41, $4E, $CB, $46, $49, $4C, $54 ; $4609 [IDENTIFIED_DATA] |BAN.FILT|
+    .BYTE $45, $D2, $50, $4C, $41, $D9, $54, $45 ; $4611 [IDENTIFIED_DATA] |E.PLA.TE|
+    .BYTE $4D, $50, $CF, $4D, $4F, $56, $53, $50 ; $4619 [IDENTIFIED_DATA] |MP.MOVSP|
+    .BYTE $D2, $53, $50, $52, $49, $54, $C5, $53 ; $4621 [IDENTIFIED_DATA] |.SPRIT.S|
+    .BYTE $50, $52, $43, $4F, $4C, $4F, $D2, $52 ; $4629 [IDENTIFIED_DATA] |PRCOLO.R|
+    .BYTE $52, $45, $C7, $45, $4E, $56, $45, $4C ; $4631 [IDENTIFIED_DATA] |RE.ENVEL|
+    .BYTE $4F, $50, $C5, $53, $4C, $45, $45, $D0 ; $4639 [IDENTIFIED_DATA] |OP.SLEE.|
+    .BYTE $43, $41, $54, $41, $4C, $4F, $C7, $44 ; $4641 [IDENTIFIED_DATA] |CATALO.D|
+    .BYTE $4F, $50, $45, $CE, $41, $50, $50, $45 ; $4649 [IDENTIFIED_DATA] |OPE.APPE|
+    .BYTE $4E, $C4, $44, $43, $4C, $4F, $53, $C5 ; $4651 [IDENTIFIED_DATA] |N.DCLOS.|
+    .BYTE $42, $53, $41, $56, $C5, $42, $4C, $4F ; $4659 [IDENTIFIED_DATA] |BSAV.BLO|
+    .BYTE $41, $C4, $52, $45, $43, $4F, $52, $C4 ; $4661 [IDENTIFIED_DATA] |A.RECOR.|
+    .BYTE $43, $4F, $4E, $43, $41, $D4, $44, $56 ; $4669 [IDENTIFIED_DATA] |CONCA.DV|
+    .BYTE $45, $52, $49, $46, $D9, $44, $43, $4C ; $4671 [IDENTIFIED_DATA] |ERIF.DCL|
+    .BYTE $45, $41, $D2, $53, $50, $52, $53, $41 ; $4679 [IDENTIFIED_DATA] |EA.SPRSA|
+    .BYTE $D6, $43, $4F, $4C, $4C, $49, $53, $49 ; $4681 [IDENTIFIED_DATA] |.COLLISI|
+    .BYTE $4F, $CE, $42, $45, $47, $49, $CE, $42 ; $4689 [IDENTIFIED_DATA] |O.BEGI.B|
+    .BYTE $45, $4E, $C4, $57, $49, $4E, $44, $4F ; $4691 [IDENTIFIED_DATA] |EN.WINDO|
+    .BYTE $D7, $42, $4F, $4F, $D4, $57, $49, $44 ; $4699 [IDENTIFIED_DATA] |.BOO.WID|
+    .BYTE $54, $C8, $53, $50, $52, $44, $45, $C6 ; $46A1 [IDENTIFIED_DATA] |T.SPRDE.|
+    .BYTE $51, $55, $49, $D4, $53, $54, $41, $53 ; $46A9 [IDENTIFIED_DATA] |QUI.STAS|
+    .BYTE $C8, $A0, $46, $45, $54, $43, $C8, $A0 ; $46B1 [IDENTIFIED_DATA] |..FETC..|
+    .BYTE $53, $57, $41, $D0, $4F, $46, $C6, $46 ; $46B9 [IDENTIFIED_DATA] |SWA.OF.F|
+    .BYTE $41, $53, $D4, $53, $4C, $4F, $D7, $00 ; $46C1 [IDENTIFIED_DATA] |AS.SLO..|
+BASIC_TOKEN_TABLE_FE:
+; --- [DATA] Extended $CE Function Keyword Table (9 Tokens, $CE $02-$0A) ($46C9-$46FB) ---
+    .BYTE $50, $4F, $D4, $42, $55, $4D, $D0, $50 ; $46C9 [IDENTIFIED_DATA] |PO.BUM.P|
+    .BYTE $45, $CE, $52, $53, $50, $50, $4F, $D3 ; $46D1 [IDENTIFIED_DATA] |E.RSPPO.|
+    .BYTE $52, $53, $50, $52, $49, $54, $C5, $52 ; $46D9 [IDENTIFIED_DATA] |RSPRIT.R|
+    .BYTE $53, $50, $43, $4F, $4C, $4F, $D2, $58 ; $46E1 [IDENTIFIED_DATA] |SPCOLO.X|
+    .BYTE $4F, $D2, $52, $57, $49, $4E, $44, $4F ; $46E9 [IDENTIFIED_DATA] |O.RWINDO|
+    .BYTE $D7, $50, $4F, $49, $4E, $54, $45, $D2 ; $46F1 [IDENTIFIED_DATA] |.POINTE.|
+    .BYTE $00, $00, $00                          ; $46F9 [IDENTIFIED_DATA] |...|
+STMDSP_TABLE:
+; --- [DATA] Statement Dispatch Vector Table (STMDSP, 110 RTS-1 Vectors) ($46FC-$47D7) ---
+    .BYTE $CC, $4B, $F8, $5D, $F3, $57, $8E, $52 ; $46FC [IDENTIFIED_DATA] |.K.].W.R|
+    .BYTE $47, $56, $61, $56, $7A, $58, $A8, $56 ; $4704 [IDENTIFIED_DATA] |GVaVzX.V|
+    .BYTE $C5, $53, $DA, $59, $9A, $5A, $C4, $52 ; $470C [IDENTIFIED_DATA] |.S.Y.Z.R|
+    .BYTE $C9, $5A, $CE, $59, $61, $52, $9C, $52 ; $4714 [IDENTIFIED_DATA] |.Z.YaR.R|
+    .BYTE $CA, $4B, $A2, $53, $2C, $6C, $2B, $91 ; $471C [IDENTIFIED_DATA] |.K.S,l+.|
+    .BYTE $11, $91, $28, $91, $F9, $84, $E4, $80 ; $4724 [IDENTIFIED_DATA] |..(.....|
+    .BYTE $39, $55, $59, $55, $5F, $5A, $E1, $50 ; $472C [IDENTIFIED_DATA] |9UYU_Z.P|
+    .BYTE $F7, $51, $3F, $55, $84, $58, $8C, $91 ; $4734 [IDENTIFIED_DATA] |.Q?U.X..|
+    .BYTE $99, $91, $11, $56, $D5, $51, $90, $53 ; $473C [IDENTIFIED_DATA] |...V.Q.S|
+    .BYTE $61, $5F, $4C, $5F, $B3, $58, $B6, $58 ; $4744 [IDENTIFIED_DATA] |a_L_.X.X|
+    .BYTE $EB, $71, $C4, $71, $74, $59, $33, $5F ; $474C [IDENTIFIED_DATA] |.q.qtY3_|
+    .BYTE $59, $6B, $A7, $61, $D6, $67, $B6, $62 ; $4754 [IDENTIFIED_DATA] |Yk.a.g.b|
+    .BYTE $8D, $66, $8C, $65, $2A, $64, $96, $67 ; $475C [IDENTIFIED_DATA] |.f.e*d.g|
+    .BYTE $54, $69, $E1, $69, $78, $6A, $5F, $69 ; $4764 [IDENTIFIED_DATA] |Ti.ixj_i|
+    .BYTE $85, $59, $DF, $5F, $89, $60, $38, $60 ; $476C [IDENTIFIED_DATA] |.Y._.`8`|
+    .BYTE $7D, $A0, $8B, $A1, $A6, $A1, $66, $A2 ; $4774 [IDENTIFIED_DATA] |}.....f.|
+    .BYTE $A0, $A2, $2E, $A3, $45, $A3, $6D, $A3 ; $477C [IDENTIFIED_DATA] |....E.m.|
+    .BYTE $7B, $A3, $86, $5E, $F7, $5A, $09, $61 ; $4784 [IDENTIFIED_DATA] |{..^.Z.a|
+    .BYTE $FF, $AF, $C8, $6B, $45, $70, $E0, $6D ; $478C [IDENTIFIED_DATA] |...kEp.m|
+    .BYTE $D6, $6F, $C5, $6C, $4E, $6C, $8F, $71 ; $4794 [IDENTIFIED_DATA] |.o.lNl.q|
+    .BYTE $BC, $58, $C0, $70, $D6, $6B, $7D, $A0 ; $479C [IDENTIFIED_DATA] |.X.p.k}.|
+    .BYTE $1C, $A1, $33, $A1, $6E, $A1, $C7, $A1 ; $47A4 [IDENTIFIED_DATA] |..3.n...|
+    .BYTE $17, $A2, $D6, $A2, $61, $A3, $A3, $A1 ; $47AC [IDENTIFIED_DATA] |....a...|
+    .BYTE $21, $A3, $EB, $76, $63, $71, $6B, $79 ; $47B4 [IDENTIFIED_DATA] |!..vcqky|
+    .BYTE $8E, $52, $CB, $72, $34, $73, $B5, $71 ; $47BC [IDENTIFIED_DATA] |.R.r4s.q|
+    .BYTE $71, $73, $45, $48, $1E, $AA, $00, $00 ; $47C4 [IDENTIFIED_DATA] |qsEH....|
+    .BYTE $23, $AA, $00, $00, $28, $AA, $45, $48 ; $47CC [IDENTIFIED_DATA] |#...(.EH|
+    .BYTE $B2, $77, $C3, $77                     ; $47D4 [IDENTIFIED_DATA] |.w.w|
+FUNDSP_TABLE:
+; --- [DATA] Function Dispatch Vector Table (FUNDSP, 40 Direct Vectors) ($47D8-$4827) ---
+    .BYTE $65, $8C, $FB, $8C, $84, $8C, $18, $12 ; $47D8 [IDENTIFIED_DATA] |e.......|
+    .BYTE $00, $80, $D0, $84, $B7, $8F, $34, $84 ; $47E0 [IDENTIFIED_DATA] |......4.|
+    .BYTE $CA, $89, $33, $90, $09, $94, $10, $94 ; $47E8 [IDENTIFIED_DATA] |..3.....|
+    .BYTE $59, $94, $B3, $94, $C5, $80, $68, $86 ; $47F0 [IDENTIFIED_DATA] |Y.....h.|
+    .BYTE $AE, $85, $4A, $80, $77, $86, $BF, $85 ; $47F8 [IDENTIFIED_DATA] |..J.w...|
+    .BYTE $D6, $85, $0A, $86, $1C, $86, $82, $81 ; $4800 [IDENTIFIED_DATA] |........|
+    .BYTE $9B, $81, $00, $00, $03, $82, $0C, $9B ; $4808 [IDENTIFIED_DATA] |........|
+    .BYTE $76, $80, $42, $81, $F6, $80, $4D, $82 ; $4810 [IDENTIFIED_DATA] |v.B...M.|
+    .BYTE $7C, $83, $AE, $82, $97, $83, $1E, $83 ; $4818 [IDENTIFIED_DATA] ||.......|
+    .BYTE $61, $83, $E1, $83, $07, $84, $FA, $82 ; $4820 [IDENTIFIED_DATA] |a.......|
+OPTAB_TABLE:
+; --- [DATA] Operator Precedence & Dispatch Table (OPTAB, 10 Entries) ($4828-$4845) ---
+    .BYTE $79, $47, $88, $79, $30, $88, $7B, $26 ; $4828 [IDENTIFIED_DATA] |yG.y0.{&|
+    .BYTE $8A, $7B, $4B, $8B, $7F, $C0, $8F, $50 ; $4830 [IDENTIFIED_DATA] |.{K....P|
+    .BYTE $88, $4C, $46, $85, $4C, $7D, $F9, $8F ; $4838 [IDENTIFIED_DATA] |.LF.L}..|
+    .BYTE $5A, $2F, $79, $64, $B5, $4C           ; $4840 [IDENTIFIED_DATA] |Z/yd.L|
+UNIMPL_CMD_ERR:
+    LDX   #$28               ; $4846: A2 28   
+    JMP   $4D3C              ; $4848: 4C 3C 4D (BASIC_ERROR_ENTRY)
+BASIC_ERROR_MSG_TABLE:
+; --- [DATA] BASIC 7.0 Error Message String Table (41 Messages, $01-$29) ($484B-$4A81) ---
+    .BYTE $54, $4F, $4F, $20, $4D, $41, $4E, $59 ; $484B [IDENTIFIED_DATA] |TOO MANY|
+    .BYTE $20, $46, $49, $4C, $45, $D3, $46, $49 ; $4853 [IDENTIFIED_DATA] | FILE.FI|
+    .BYTE $4C, $45, $20, $4F, $50, $45, $CE, $46 ; $485B [IDENTIFIED_DATA] |LE OPE.F|
+    .BYTE $49, $4C, $45, $20, $4E, $4F, $54, $20 ; $4863 [IDENTIFIED_DATA] |ILE NOT |
+    .BYTE $4F, $50, $45, $CE, $46, $49, $4C, $45 ; $486B [IDENTIFIED_DATA] |OPE.FILE|
+    .BYTE $20, $4E, $4F, $54, $20, $46, $4F, $55 ; $4873 [IDENTIFIED_DATA] | NOT FOU|
+    .BYTE $4E, $C4, $44, $45, $56, $49, $43, $45 ; $487B [IDENTIFIED_DATA] |N.DEVICE|
+    .BYTE $20, $4E, $4F, $54, $20, $50, $52, $45 ; $4883 [IDENTIFIED_DATA] | NOT PRE|
+    .BYTE $53, $45, $4E, $D4, $4E, $4F, $54, $20 ; $488B [IDENTIFIED_DATA] |SEN.NOT |
+    .BYTE $49, $4E, $50, $55, $54, $20, $46, $49 ; $4893 [IDENTIFIED_DATA] |INPUT FI|
+    .BYTE $4C, $C5, $4E, $4F, $54, $20, $4F, $55 ; $489B [IDENTIFIED_DATA] |L.NOT OU|
+    .BYTE $54, $50, $55, $54, $20, $46, $49, $4C ; $48A3 [IDENTIFIED_DATA] |TPUT FIL|
+    .BYTE $C5, $4D, $49, $53, $53, $49, $4E, $47 ; $48AB [IDENTIFIED_DATA] |.MISSING|
+    .BYTE $20, $46, $49, $4C, $45, $20, $4E, $41 ; $48B3 [IDENTIFIED_DATA] | FILE NA|
+    .BYTE $4D, $C5, $49, $4C, $4C, $45, $47, $41 ; $48BB [IDENTIFIED_DATA] |M.ILLEGA|
+    .BYTE $4C, $20, $44, $45, $56, $49, $43, $45 ; $48C3 [IDENTIFIED_DATA] |L DEVICE|
+    .BYTE $20, $4E, $55, $4D, $42, $45, $D2, $4E ; $48CB [IDENTIFIED_DATA] | NUMBE.N|
+    .BYTE $45, $58, $54, $20, $57, $49, $54, $48 ; $48D3 [IDENTIFIED_DATA] |EXT WITH|
+    .BYTE $4F, $55, $54, $20, $46, $4F, $D2, $53 ; $48DB [IDENTIFIED_DATA] |OUT FO.S|
+    .BYTE $59, $4E, $54, $41, $D8, $52, $45, $54 ; $48E3 [IDENTIFIED_DATA] |YNTA.RET|
+    .BYTE $55, $52, $4E, $20, $57, $49, $54, $48 ; $48EB [IDENTIFIED_DATA] |URN WITH|
+    .BYTE $4F, $55, $54, $20, $47, $4F, $53, $55 ; $48F3 [IDENTIFIED_DATA] |OUT GOSU|
+    .BYTE $C2, $4F, $55, $54, $20, $4F, $46, $20 ; $48FB [IDENTIFIED_DATA] |.OUT OF |
+    .BYTE $44, $41, $54, $C1, $49, $4C, $4C, $45 ; $4903 [IDENTIFIED_DATA] |DAT.ILLE|
+    .BYTE $47, $41, $4C, $20, $51, $55, $41, $4E ; $490B [IDENTIFIED_DATA] |GAL QUAN|
+    .BYTE $54, $49, $54, $D9, $4F, $56, $45, $52 ; $4913 [IDENTIFIED_DATA] |TIT.OVER|
+    .BYTE $46, $4C, $4F, $D7, $4F, $55, $54, $20 ; $491B [IDENTIFIED_DATA] |FLO.OUT |
+    .BYTE $4F, $46, $20, $4D, $45, $4D, $4F, $52 ; $4923 [IDENTIFIED_DATA] |OF MEMOR|
+    .BYTE $D9, $55, $4E, $44, $45, $46, $27, $44 ; $492B [IDENTIFIED_DATA] |.UNDEF'D|
+    .BYTE $20, $53, $54, $41, $54, $45, $4D, $45 ; $4933 [IDENTIFIED_DATA] | STATEME|
+    .BYTE $4E, $D4, $42, $41, $44, $20, $53, $55 ; $493B [IDENTIFIED_DATA] |N.BAD SU|
+    .BYTE $42, $53, $43, $52, $49, $50, $D4, $52 ; $4943 [IDENTIFIED_DATA] |BSCRIP.R|
+    .BYTE $45, $44, $49, $4D, $27, $44, $20, $41 ; $494B [IDENTIFIED_DATA] |EDIM'D A|
+    .BYTE $52, $52, $41, $D9, $44, $49, $56, $49 ; $4953 [IDENTIFIED_DATA] |RRA.DIVI|
+    .BYTE $53, $49, $4F, $4E, $20, $42, $59, $20 ; $495B [IDENTIFIED_DATA] |SION BY |
+    .BYTE $5A, $45, $52, $CF, $49, $4C, $4C, $45 ; $4963 [IDENTIFIED_DATA] |ZER.ILLE|
+    .BYTE $47, $41, $4C, $20, $44, $49, $52, $45 ; $496B [IDENTIFIED_DATA] |GAL DIRE|
+    .BYTE $43, $D4, $54, $59, $50, $45, $20, $4D ; $4973 [IDENTIFIED_DATA] |C.TYPE M|
+    .BYTE $49, $53, $4D, $41, $54, $43, $C8, $53 ; $497B [IDENTIFIED_DATA] |ISMATC.S|
+    .BYTE $54, $52, $49, $4E, $47, $20, $54, $4F ; $4983 [IDENTIFIED_DATA] |TRING TO|
+    .BYTE $4F, $20, $4C, $4F, $4E, $C7, $46, $49 ; $498B [IDENTIFIED_DATA] |O LON.FI|
+    .BYTE $4C, $45, $20, $44, $41, $54, $C1, $46 ; $4993 [IDENTIFIED_DATA] |LE DAT.F|
+    .BYTE $4F, $52, $4D, $55, $4C, $41, $20, $54 ; $499B [IDENTIFIED_DATA] |ORMULA T|
+    .BYTE $4F, $4F, $20, $43, $4F, $4D, $50, $4C ; $49A3 [IDENTIFIED_DATA] |OO COMPL|
+    .BYTE $45, $D8, $43, $41, $4E, $27, $54, $20 ; $49AB [IDENTIFIED_DATA] |E.CAN'T |
+    .BYTE $43, $4F, $4E, $54, $49, $4E, $55, $C5 ; $49B3 [IDENTIFIED_DATA] |CONTINU.|
+    .BYTE $55, $4E, $44, $45, $46, $27, $44, $20 ; $49BB [IDENTIFIED_DATA] |UNDEF'D |
+    .BYTE $46, $55, $4E, $43, $54, $49, $4F, $CE ; $49C3 [IDENTIFIED_DATA] |FUNCTIO.|
+    .BYTE $56, $45, $52, $49, $46, $D9, $4C, $4F ; $49CB [IDENTIFIED_DATA] |VERIF.LO|
+    .BYTE $41, $C4, $42, $52, $45, $41, $4B, $00 ; $49D3 [IDENTIFIED_DATA] |A.BREAK.|
+    .BYTE $A0, $43, $41, $4E, $27, $54, $20, $52 ; $49DB [IDENTIFIED_DATA] |.CAN'T R|
+    .BYTE $45, $53, $55, $4D, $C5, $4C, $4F, $4F ; $49E3 [IDENTIFIED_DATA] |ESUM.LOO|
+    .BYTE $50, $20, $4E, $4F, $54, $20, $46, $4F ; $49EB [IDENTIFIED_DATA] |P NOT FO|
+    .BYTE $55, $4E, $C4, $4C, $4F, $4F, $50, $20 ; $49F3 [IDENTIFIED_DATA] |UN.LOOP |
+    .BYTE $57, $49, $54, $48, $4F, $55, $54, $20 ; $49FB [IDENTIFIED_DATA] |WITHOUT |
+    .BYTE $44, $CF, $44, $49, $52, $45, $43, $54 ; $4A03 [IDENTIFIED_DATA] |D.DIRECT|
+    .BYTE $20, $4D, $4F, $44, $45, $20, $4F, $4E ; $4A0B [IDENTIFIED_DATA] | MODE ON|
+    .BYTE $4C, $D9, $4E, $4F, $20, $47, $52, $41 ; $4A13 [IDENTIFIED_DATA] |L.NO GRA|
+    .BYTE $50, $48, $49, $43, $53, $20, $41, $52 ; $4A1B [IDENTIFIED_DATA] |PHICS AR|
+    .BYTE $45, $C1, $42, $41, $44, $20, $44, $49 ; $4A23 [IDENTIFIED_DATA] |E.BAD DI|
+    .BYTE $53, $CB, $42, $45, $4E, $44, $20, $4E ; $4A2B [IDENTIFIED_DATA] |S.BEND N|
+    .BYTE $4F, $54, $20, $46, $4F, $55, $4E, $C4 ; $4A33 [IDENTIFIED_DATA] |OT FOUN.|
+    .BYTE $4C, $49, $4E, $45, $20, $4E, $55, $4D ; $4A3B [IDENTIFIED_DATA] |LINE NUM|
+    .BYTE $42, $45, $52, $20, $54, $4F, $4F, $20 ; $4A43 [IDENTIFIED_DATA] |BER TOO |
+    .BYTE $4C, $41, $52, $47, $C5, $55, $4E, $52 ; $4A4B [IDENTIFIED_DATA] |LARG.UNR|
+    .BYTE $45, $53, $4F, $4C, $56, $45, $44, $20 ; $4A53 [IDENTIFIED_DATA] |ESOLVED |
+    .BYTE $52, $45, $46, $45, $52, $45, $4E, $43 ; $4A5B [IDENTIFIED_DATA] |REFERENC|
+    .BYTE $C5, $55, $4E, $49, $4D, $50, $4C, $45 ; $4A63 [IDENTIFIED_DATA] |.UNIMPLE|
+    .BYTE $4D, $45, $4E, $54, $45, $44, $20, $43 ; $4A6B [IDENTIFIED_DATA] |MENTED C|
+    .BYTE $4F, $4D, $4D, $41, $4E, $C4, $46, $49 ; $4A73 [IDENTIFIED_DATA] |OMMAN.FI|
+    .BYTE $4C, $45, $20, $52, $45, $41, $C4      ; $4A7B [IDENTIFIED_DATA] |LE REA.|
+FIND_ERRMSG:
+    TAX                      ; $4A82: AA      
+    LDY   #$00               ; $4A83: A0 00   
+BASIC_ERROR_HANDLER:
+    LDA   #$4B               ; $4A85: A9 4B   
+    STA   $26                ; $4A87: 85 26   
+    LDA   #$48               ; $4A89: A9 48   
+    STA   $27                ; $4A8B: 85 27   
+    DEX                      ; $4A8D: CA      
+    BMI   $4A9E              ; $4A8E: 30 0E   
+    LDA   ($26),Y            ; $4A90: B1 26   
+    PHA                      ; $4A92: 48      
+    INC   $26                ; $4A93: E6 26   
+    BNE   $4A99              ; $4A95: D0 02   
+    INC   $27                ; $4A97: E6 27   
+    PLA                      ; $4A99: 68      
+    BPL   $4A90              ; $4A9A: 10 F4   
+    BMI   $4A8D              ; $4A9C: 30 EF   
+    RTS                      ; $4A9E: 60      
+    JMP   ($0308)            ; $4A9F: 6C 08 03
+NEWSTT:
+    BIT   $7F                ; $4AA2: 24 7F   
+    BPL   $4AF0              ; $4AA4: 10 4A   
+    LDA   $127F              ; $4AA6: AD 7F 12
+    BMI   $4AF0              ; $4AA9: 30 45   
+    LDX   #$02               ; $4AAB: A2 02   
+    LDA   $1276,X            ; $4AAD: BD 76 12
+    BEQ   $4AED              ; $4AB0: F0 3B   
+    LDA   #$00               ; $4AB2: A9 00   
+    STA   $1276,X            ; $4AB4: 9D 76 12
+    LDA   $1279,X            ; $4AB7: BD 79 12
+    STA   $16                ; $4ABA: 85 16   
+    LDA   $127C,X            ; $4ABC: BD 7C 12
+    STA   $17                ; $4ABF: 85 17   
+    TXA                      ; $4AC1: 8A      
+    PHA                      ; $4AC2: 48      
+    LDA   $3D                ; $4AC3: A5 3D   
+    PHA                      ; $4AC5: 48      
+    LDA   $3E                ; $4AC6: A5 3E   
+    PHA                      ; $4AC8: 48      
+    LDA   $127F              ; $4AC9: AD 7F 12
+    ORA   #$80               ; $4ACC: 09 80   
+    STA   $127F              ; $4ACE: 8D 7F 12
+    JSR   $0380              ; $4AD1: 20 80 03
+    JSR   $5A1D              ; $4AD4: 20 1D 5A
+    JSR   $59E2              ; $4AD7: 20 E2 59
+    JSR   $4AF6              ; $4ADA: 20 F6 4A
+    LDA   $127F              ; $4ADD: AD 7F 12
+    AND   #$7F               ; $4AE0: 29 7F   
+    STA   $127F              ; $4AE2: 8D 7F 12
+    PLA                      ; $4AE5: 68      
+    STA   $3E                ; $4AE6: 85 3E   
+    PLA                      ; $4AE8: 68      
+    STA   $3D                ; $4AE9: 85 3D   
+    PLA                      ; $4AEB: 68      
+    TAX                      ; $4AEC: AA      
+    DEX                      ; $4AED: CA      
+    BPL   $4AAD              ; $4AEE: 10 BD   
+    JSR   $0380              ; $4AF0: 20 80 03
+    JSR   $4B3F              ; $4AF3: 20 3F 4B
+    JSR   $4BB5              ; $4AF6: 20 B5 4B
+    BIT   $7F                ; $4AF9: 24 7F   
+    BPL   $4B03              ; $4AFB: 10 06   
+    JSR   $4B34              ; $4AFD: 20 34 4B
+    TSX                      ; $4B00: BA      
+    STX   $82                ; $4B01: 86 82   
+    LDY   #$00               ; $4B03: A0 00   
+    JSR   $03C9              ; $4B05: 20 C9 03
+    BEQ   $4B0D              ; $4B08: F0 03   
+    JMP   $4BAE              ; $4B0A: 4C AE 4B
+    BIT   $7F                ; $4B0D: 24 7F   
+    BPL   $4B31              ; $4B0F: 10 20   
+    LDY   #$02               ; $4B11: A0 02   
+    JSR   $03C9              ; $4B13: 20 C9 03
+    BEQ   $4B31              ; $4B16: F0 19   
+    INY                      ; $4B18: C8      
+    JSR   $03C9              ; $4B19: 20 C9 03
+    STA   $3B                ; $4B1C: 85 3B   
+    INY                      ; $4B1E: C8      
+    JSR   $03C9              ; $4B1F: 20 C9 03
+    STA   $3C                ; $4B22: 85 3C   
+    TYA                      ; $4B24: 98      
+    CLC                      ; $4B25: 18      
+    ADC   $3D                ; $4B26: 65 3D   
+    STA   $3D                ; $4B28: 85 3D   
+    BCC   $4B2E              ; $4B2A: 90 02   
+    INC   $3E                ; $4B2C: E6 3E   
+    JMP   $4A9F              ; $4B2E: 4C 9F 4A
+    JMP   $4D37              ; $4B31: 4C 37 4D (BASIC_READY_LOOP)
+    LDA   $3D                ; $4B34: A5 3D   
+    LDY   $3E                ; $4B36: A4 3E   
+    STA   $1202              ; $4B38: 8D 02 12
+    STY   $1203              ; $4B3B: 8C 03 12
+    RTS                      ; $4B3E: 60      
+    BEQ   $4B3E              ; $4B3F: F0 FD   
+    BIT   $116F              ; $4B41: 2C 6F 11
+    BPL   $4B59              ; $4B44: 10 13   
+    BIT   $7F                ; $4B46: 24 7F   
+    BPL   $4B59              ; $4B48: 10 0F   
+    PHA                      ; $4B4A: 48      
+    LDA   #$5B               ; $4B4B: A9 5B   
+    JSR   $560C              ; $4B4D: 20 0C 56
+    JSR   $8E2E              ; $4B50: 20 2E 8E
+    LDA   #$5D               ; $4B53: A9 5D   
+    JSR   $560C              ; $4B55: 20 0C 56
+    PLA                      ; $4B58: 68      
+    CMP   #$FE               ; $4B59: C9 FE   
+    BEQ   $4B94              ; $4B5B: F0 37   
+    CMP   #$CB               ; $4B5D: C9 CB   
+    BNE   $4B64              ; $4B5F: D0 03   
+    JMP   $5A3D              ; $4B61: 4C 3D 5A
+    CMP   #$CA               ; $4B64: C9 CA   
+    BEQ   $4B8B              ; $4B66: F0 23   
+GONE:
+    CMP   #$FB               ; $4B68: C9 FB   
+    BCS   $4BAB              ; $4B6A: B0 3F   
+    CMP   #$A3               ; $4B6C: C9 A3   
+    BCC   $4B76              ; $4B6E: 90 06   
+    CMP   #$D5               ; $4B70: C9 D5   
+    BCC   $4BAB              ; $4B72: 90 37   
+    SBC   #$32               ; $4B74: E9 32   
+    SEC                      ; $4B76: 38      
+    SBC   #$80               ; $4B77: E9 80   
+    BCS   $4B7E              ; $4B79: B0 03   
+    JMP   $53C6              ; $4B7B: 4C C6 53 (CMD_LET)
+    ASL   A                  ; $4B7E: 0A      
+    TAY                      ; $4B7F: A8      
+    LDA   $46FD,Y            ; $4B80: B9 FD 46
+    PHA                      ; $4B83: 48      
+    LDA   $46FC,Y            ; $4B84: B9 FC 46 (STMDSP_TABLE)
+    PHA                      ; $4B87: 48      
+    JMP   $0380              ; $4B88: 4C 80 03
+    LDA   #$59               ; $4B8B: A9 59   
+    PHA                      ; $4B8D: 48      
+    LDA   #$00               ; $4B8E: A9 00   
+    PHA                      ; $4B90: 48      
+    JMP   $0380              ; $4B91: 4C 80 03
+    JSR   $0380              ; $4B94: 20 80 03
+    BEQ   $4BAB              ; $4B97: F0 12   
+    CMP   #$02               ; $4B99: C9 02   
+    BCC   $4BA5              ; $4B9B: 90 08   
+    CMP   #$27               ; $4B9D: C9 27   
+    BCS   $4BA5              ; $4B9F: B0 04   
+    ADC   #$47               ; $4BA1: 69 47   
+    BNE   $4B7E              ; $4BA3: D0 D9   
+    SEC                      ; $4BA5: 38      
+    JMP   ($0310)            ; $4BA6: 6C 10 03
+    BCC   $4B91              ; $4BA9: 90 E6   
+    JMP   $796C              ; $4BAB: 4C 6C 79 (CMD_FE_BEGIN)
+    CMP   #$3A               ; $4BAE: C9 3A   
+    BNE   $4BAB              ; $4BB0: D0 F9   
+    JMP   $4A9F              ; $4BB2: 4C 9F 4A
+    JSR   $9293              ; $4BB5: 20 93 92
+    BEQ   $4BBB              ; $4BB8: F0 01   
+    RTS                      ; $4BBA: 60      
+    LDY   $120C              ; $4BBB: AC 0C 12
+    INY                      ; $4BBE: C8      
+    BEQ   $4BD0              ; $4BBF: F0 0F   
+    JSR   $9293              ; $4BC1: 20 93 92
+    BEQ   $4BC1              ; $4BC4: F0 FB   
+    LDX   #$1E               ; $4BC6: A2 1E   
+    JMP   $4D3C              ; $4BC8: 4C 3C 4D (BASIC_ERROR_ENTRY)
+CMD_STOP:
+    BCS   $4BCE              ; $4BCB: B0 01   
+CMD_END:
+    CLC                      ; $4BCD: 18      
+    BNE   $4BF6              ; $4BCE: D0 26   
+    BIT   $7F                ; $4BD0: 24 7F   
+    BPL   $4BE1              ; $4BD2: 10 0D   
+    JSR   $4B34              ; $4BD4: 20 34 4B
+    LDA   $3B                ; $4BD7: A5 3B   
+    LDY   $3C                ; $4BD9: A4 3C   
+    STA   $1200              ; $4BDB: 8D 00 12
+    STY   $1201              ; $4BDE: 8C 01 12
+    PLA                      ; $4BE1: 68      
+    PLA                      ; $4BE2: 68      
+    BCC   $4BF3              ; $4BE3: 90 0E   
+    JSR   $9281              ; $4BE5: 20 81 92
+    ORA   $420A              ; $4BE8: 0D 0A 42
+    .BYTE $52                                ; $4BEB: 52 [UNRESOLVED]
+    EOR   $41                ; $4BEC: 45 41   
+    .BYTE $4B                                ; $4BEE: 4B [UNRESOLVED]
+EVAL_FUNCTION:
+    BRK                      ; $4BEF: 00      
+    JMP   $4DAF              ; $4BF0: 4C AF 4D
+    JMP   $4D37              ; $4BF3: 4C 37 4D (BASIC_READY_LOOP)
+    RTS                      ; $4BF6: 60      
+    CMP   #$CE               ; $4BF7: C9 CE   
+    BEQ   $4C54              ; $4BF9: F0 59    (CMD__x00)
+    CMP   #$D5               ; $4BFB: C9 D5   
+    BCS   $4BAB              ; $4BFD: B0 AC   
+    CMP   #$CB               ; $4BFF: C9 CB   
+    BCC   $4C05              ; $4C01: 90 02   
+    SBC   #$01               ; $4C03: E9 01   
+    PHA                      ; $4C05: 48      
+    TAX                      ; $4C06: AA      
+    JSR   $0380              ; $4C07: 20 80 03
+    CPX   #$D3               ; $4C0A: E0 D3   
+    BEQ   $4C16              ; $4C0C: F0 08   
+    CPX   #$CB               ; $4C0E: E0 CB   
+    BCS   $4C3B              ; $4C10: B0 29   
+    CPX   #$C8               ; $4C12: E0 C8   
+    BCC   $4C3B              ; $4C14: 90 25   
+    JSR   $7959              ; $4C16: 20 59 79
+    JSR   $77EF              ; $4C19: 20 EF 77 (FRMEVL)
+    JSR   $795C              ; $4C1C: 20 5C 79
+    JSR   $77DD              ; $4C1F: 20 DD 77
+    PLA                      ; $4C22: 68      
+    CMP   #$D3               ; $4C23: C9 D3   
+    BEQ   $4C80              ; $4C25: F0 59   
+    TAX                      ; $4C27: AA      
+    LDA   $67                ; $4C28: A5 67   
+    PHA                      ; $4C2A: 48      
+    LDA   $66                ; $4C2B: A5 66   
+    PHA                      ; $4C2D: 48      
+    TXA                      ; $4C2E: 8A      
+    PHA                      ; $4C2F: 48      
+    JSR   $87F4              ; $4C30: 20 F4 87
+    PLA                      ; $4C33: 68      
+    TAY                      ; $4C34: A8      
+    TXA                      ; $4C35: 8A      
+    PHA                      ; $4C36: 48      
+    TYA                      ; $4C37: 98      
+    JMP   $4C3F              ; $4C38: 4C 3F 4C
+    JSR   $7950              ; $4C3B: 20 50 79 (CHKCHAR_HELPERS)
+    PLA                      ; $4C3E: 68      
+    SEC                      ; $4C3F: 38      
+    SBC   #$B4               ; $4C40: E9 B4   
+    ASL   A                  ; $4C42: 0A      
+    TAY                      ; $4C43: A8      
+    LDA   $47D9,Y            ; $4C44: B9 D9 47
+    STA   $58                ; $4C47: 85 58   
+    LDA   $47D8,Y            ; $4C49: B9 D8 47 (FUNDSP_TABLE)
+    STA   $57                ; $4C4C: 85 57   
+    JSR.W $0056              ; $4C4E: 20 56 00
+    JMP   $77DA              ; $4C51: 4C DA 77
+CMD__x00:
+    JSR   $0380              ; $4C54: 20 80 03
+    BEQ   $4C83              ; $4C57: F0 2A   
+    CMP   #$0A               ; $4C59: C9 0A   
+    BEQ   $4C68              ; $4C5B: F0 0B   
+    PHA                      ; $4C5D: 48      
+    JSR   $0380              ; $4C5E: 20 80 03
+    JSR   $7959              ; $4C61: 20 59 79
+    JSR   $77EF              ; $4C64: 20 EF 77 (FRMEVL)
+    PLA                      ; $4C67: 68      
+    CMP   #$02               ; $4C68: C9 02   
+    BCC   $4C74              ; $4C6A: 90 08   
+    CMP   #$0B               ; $4C6C: C9 0B   
+    BCS   $4C74              ; $4C6E: B0 04   
+    ADC   #$D1               ; $4C70: 69 D1   
+    BNE   $4C3F              ; $4C72: D0 CB   
+    SEC                      ; $4C74: 38      
+    JSR   $4C7D              ; $4C75: 20 7D 4C
+    BCS   $4C83              ; $4C78: B0 09   
+    JMP   $77DA              ; $4C7A: 4C DA 77
+    JMP   ($02FC)            ; $4C7D: 6C FC 02
+    JMP   $99C1              ; $4C80: 4C C1 99
+    JMP   $796C              ; $4C83: 4C 6C 79 (CMD_FE_BEGIN)
+OP_OR_AND:
+    LDY   #$FF               ; $4C86: A0 FF   
+    BIT.W $00A0              ; $4C88: 2C A0 00
+    STY   $0D                ; $4C8B: 84 0D   
+    JSR   $84B4              ; $4C8D: 20 B4 84 (INT_FP_CONVERSIONS)
+    LDA   $66                ; $4C90: A5 66   
+    EOR   $0D                ; $4C92: 45 0D   
+    STA   $09                ; $4C94: 85 09   
+    LDA   $67                ; $4C96: A5 67   
+    EOR   $0D                ; $4C98: 45 0D   
+    STA   $0A                ; $4C9A: 85 0A   
+    JSR   $8C28              ; $4C9C: 20 28 8C
+    JSR   $84B4              ; $4C9F: 20 B4 84 (INT_FP_CONVERSIONS)
+    LDA   $67                ; $4CA2: A5 67   
+    EOR   $0D                ; $4CA4: 45 0D   
+    AND   $0A                ; $4CA6: 25 0A   
+    EOR   $0D                ; $4CA8: 45 0D   
+    TAY                      ; $4CAA: A8      
+    LDA   $66                ; $4CAB: A5 66   
+    EOR   $0D                ; $4CAD: 45 0D   
+    AND   $09                ; $4CAF: 25 09   
+    EOR   $0D                ; $4CB1: 45 0D   
+    JMP   $793C              ; $4CB3: 4C 3C 79
+OP_RELATIONAL:
+    JSR   $77DE              ; $4CB6: 20 DE 77
+    BCS   $4CCE              ; $4CB9: B0 13   
+    LDA   $6F                ; $4CBB: A5 6F   
+    ORA   #$7F               ; $4CBD: 09 7F   
+    AND   $6B                ; $4CBF: 25 6B   
+    STA   $6B                ; $4CC1: 85 6B   
+    LDA   #$6A               ; $4CC3: A9 6A   
+    LDY   #$00               ; $4CC5: A0 00   
+    JSR   $8C87              ; $4CC7: 20 87 8C
+    TAX                      ; $4CCA: AA      
+    JMP   $4D01              ; $4CCB: 4C 01 4D
+    LDA   #$00               ; $4CCE: A9 00   
+    STA   $0F                ; $4CD0: 85 0F   
+    DEC   $4F                ; $4CD2: C6 4F   
+    JSR   $8781              ; $4CD4: 20 81 87
+    STA   $63                ; $4CD7: 85 63   
+    STX   $64                ; $4CD9: 86 64   
+    STY   $65                ; $4CDB: 84 65   
+    LDA   $6D                ; $4CDD: A5 6D   
+    LDY   $6E                ; $4CDF: A4 6E   
+    JSR   $8785              ; $4CE1: 20 85 87
+    STX   $6D                ; $4CE4: 86 6D   
+    STY   $6E                ; $4CE6: 84 6E   
+    TAX                      ; $4CE8: AA      
+    SEC                      ; $4CE9: 38      
+    SBC   $63                ; $4CEA: E5 63   
+    BEQ   $4CF6              ; $4CEC: F0 08   
+    LDA   #$01               ; $4CEE: A9 01   
+    BCC   $4CF6              ; $4CF0: 90 04   
+    LDX   $63                ; $4CF2: A6 63   
+    LDA   #$FF               ; $4CF4: A9 FF   
+    STA   $68                ; $4CF6: 85 68   
+    LDY   #$FF               ; $4CF8: A0 FF   
+    INX                      ; $4CFA: E8      
+    INY                      ; $4CFB: C8      
+    DEX                      ; $4CFC: CA      
+    BNE   $4D06              ; $4CFD: D0 07   
+    LDX   $68                ; $4CFF: A6 68   
+    BMI   $4D1E              ; $4D01: 30 1B   
+    CLC                      ; $4D03: 18      
+    BCC   $4D1E              ; $4D04: 90 18   
+    LDA   #$6D               ; $4D06: A9 6D   
+    JSR   $03AB              ; $4D08: 20 AB 03
+    PHA                      ; $4D0B: 48      
+    LDA   #$64               ; $4D0C: A9 64   
+    JSR   $03AB              ; $4D0E: 20 AB 03
+    STA   $79                ; $4D11: 85 79   
+    PLA                      ; $4D13: 68      
+    CMP   $79                ; $4D14: C5 79   
+    BEQ   $4CFB              ; $4D16: F0 E3   
+    LDX   #$FF               ; $4D18: A2 FF   
+    BCS   $4D1E              ; $4D1A: B0 02   
+    LDX   #$01               ; $4D1C: A2 01   
+    INX                      ; $4D1E: E8      
+; --- [DATA] Error Handler Message Fragments (' ERROR', ' IN ') ($4D1F-$4D2B) ---
+    .BYTE $8A, $2A, $25, $14, $F0, $02, $A9, $FF ; $4D1F [IDENTIFIED_DATA] |.*%.....|
+    .BYTE $4C, $68, $8C, $20, $81                ; $4D27 [IDENTIFIED_DATA] |Lh. .|
+ERR_SYNTAX_DIV0:
+    .BYTE $92                                ; $4D2C: 92 [UNRESOLVED]
+BASIC_READY_STR:
+; --- [DATA] READY. Prompt String ($4D2D-$4D36) ---
+    .BYTE $0D, $52, $45, $41, $44, $59, $2E, $0D ; $4D2D [IDENTIFIED_DATA] |.READY..|
+    .BYTE $00, $60                               ; $4D35 [IDENTIFIED_DATA] |.`|
+BASIC_READY_LOOP:
+    LDX   #$80               ; $4D37: A2 80   
+    BIT   $10A2              ; $4D39: 2C A2 10
+BASIC_ERROR_ENTRY:
+    JMP   ($0300)            ; $4D3C: 6C 00 03
+    STA   $FF03              ; $4D3F: 8D 03 FF (MMU_LCRC_TOP)
+    TXA                      ; $4D42: 8A      
+    BMI   $4DB7              ; $4D43: 30 72   
+    STX   $1208              ; $4D45: 8E 08 12
+    BIT   $7F                ; $4D48: 24 7F   
+    BPL   $4D7C              ; $4D4A: 10 30   
+    LDY   #$01               ; $4D4C: A0 01   
+    LDA.W $003B,Y            ; $4D4E: B9 3B 00
+    STA   $1209,Y            ; $4D51: 99 09 12
+    LDA   $1202,Y            ; $4D54: B9 02 12
+    STA   $120E,Y            ; $4D57: 99 0E 12
+    DEY                      ; $4D5A: 88      
+    BPL   $4D4E              ; $4D5B: 10 F1   
+    LDY   $120C              ; $4D5D: AC 0C 12
+    INY                      ; $4D60: C8      
+    BEQ   $4D7C              ; $4D61: F0 19   
+    DEY                      ; $4D63: 88      
+    STY   $17                ; $4D64: 84 17   
+    STY   $120D              ; $4D66: 8C 0D 12
+    LDY   $120B              ; $4D69: AC 0B 12
+    STY   $16                ; $4D6C: 84 16   
+    LDX   #$FF               ; $4D6E: A2 FF   
+    STX   $120C              ; $4D70: 8E 0C 12
+    LDX   $82                ; $4D73: A6 82   
+    TXS                      ; $4D75: 9A      
+    JSR   $59FB              ; $4D76: 20 FB 59
+    JMP   $4AF6              ; $4D79: 4C F6 4A
+    DEX                      ; $4D7C: CA      
+    TXA                      ; $4D7D: 8A      
+    JSR   $4A82              ; $4D7E: 20 82 4A (FIND_ERRMSG)
+    JSR   $926F              ; $4D81: 20 6F 92
+    LDA   #$00               ; $4D84: A9 00   
+    STA   $15                ; $4D86: 85 15   
+    BIT   $D7                ; $4D88: 24 D7   
+    BMI   $4D8E              ; $4D8A: 30 02   
+    STA   $D8                ; $4D8C: 85 D8   
+    JSR   $5598              ; $4D8E: 20 98 55
+    JSR   $560A              ; $4D91: 20 0A 56
+    LDY   #$00               ; $4D94: A0 00   
+    LDA   ($26),Y            ; $4D96: B1 26   
+    PHA                      ; $4D98: 48      
+    AND   #$7F               ; $4D99: 29 7F   
+    JSR   $560C              ; $4D9B: 20 0C 56
+    INY                      ; $4D9E: C8      
+    PLA                      ; $4D9F: 68      
+    BPL   $4D96              ; $4DA0: 10 F4   
+    JSR   $5238              ; $4DA2: 20 38 52
+    JSR   $9281              ; $4DA5: 20 81 92
+    JSR   $5245              ; $4DA8: 20 45 52
+    .BYTE $52                                ; $4DAB: 52 [UNRESOLVED]
+    .BYTE $4F                                ; $4DAC: 4F [UNRESOLVED]
+    .BYTE $52                                ; $4DAD: 52 [UNRESOLVED]
+    BRK                      ; $4DAE: 00      
+    LDY   $3C                ; $4DAF: A4 3C   
+    INY                      ; $4DB1: C8      
+    BEQ   $4DB7              ; $4DB2: F0 03   
+    JSR   $8E26              ; $4DB4: 20 26 8E
+    JSR   $4D2A              ; $4DB7: 20 2A 4D
+    LDA   #$80               ; $4DBA: A9 80   
+    JSR   $FF90              ; $4DBC: 20 90 FF (J_SETMSG)
+    LDA   #$00               ; $4DBF: A9 00   
+    STA   $7F                ; $4DC1: 85 7F   
+    JMP   ($0302)            ; $4DC3: 6C 02 03
+MAIN_LINE_LOOP:
+    LDX   #$FF               ; $4DC6: A2 FF   
+    STX   $3C                ; $4DC8: 86 3C   
+    JSR   $4F93              ; $4DCA: 20 93 4F (BASIC_NEWSTT_GONE)
+    STX   $3D                ; $4DCD: 86 3D   
+    STY   $3E                ; $4DCF: 84 3E   
+    JSR   $0380              ; $4DD1: 20 80 03
+    TAX                      ; $4DD4: AA      
+    BEQ   $4DC3              ; $4DD5: F0 EC   
+    BCC   $4DE2              ; $4DD7: 90 09   
+    JSR   $430A              ; $4DD9: 20 0A 43 (CRUNCH)
+    JSR   $0386              ; $4DDC: 20 86 03
+    JMP   $4AF3              ; $4DDF: 4C F3 4A
+    JSR   $50A0              ; $4DE2: 20 A0 50
+    JSR   $430A              ; $4DE5: 20 0A 43 (CRUNCH)
+    STY   $0D                ; $4DE8: 84 0D   
+    JSR   $5064              ; $4DEA: 20 64 50
+    BCC   $4E6A              ; $4DED: 90 7B   
+    LDY   #$00               ; $4DEF: A0 00   
+    JSR   $42EC              ; $4DF1: 20 EC 42
+    SEC                      ; $4DF4: 38      
+    SBC   $61                ; $4DF5: E5 61   
+    SEC                      ; $4DF7: 38      
+    SBC   #$04               ; $4DF8: E9 04   
+    SBC   $0D                ; $4DFA: E5 0D   
+    BCS   $4E1A              ; $4DFC: B0 1C   
+    EOR   #$FF               ; $4DFE: 49 FF   
+    ADC   #$01               ; $4E00: 69 01   
+    LDY   $1211              ; $4E02: AC 11 12
+    ADC   $1210              ; $4E05: 6D 10 12
+    BCC   $4E0B              ; $4E08: 90 01   
+    INY                      ; $4E0A: C8      
+    CPY   $1213              ; $4E0B: CC 13 12
+    BCC   $4E1A              ; $4E0E: 90 0A   
+    BNE   $4E17              ; $4E10: D0 05   
+    CMP   $1212              ; $4E12: CD 12 12
+    BCC   $4E1A              ; $4E15: 90 03   
+    JMP   $4D3A              ; $4E17: 4C 3A 4D
+    LDY   #$01               ; $4E1A: A0 01   
+    JSR   $42EC              ; $4E1C: 20 EC 42
+    STA   $25                ; $4E1F: 85 25   
+    LDA   $1210              ; $4E21: AD 10 12
+    STA   $24                ; $4E24: 85 24   
+    LDA   $62                ; $4E26: A5 62   
+    STA   $27                ; $4E28: 85 27   
+    DEY                      ; $4E2A: 88      
+    JSR   $42EC              ; $4E2B: 20 EC 42
+    CLC                      ; $4E2E: 18      
+    SBC   $61                ; $4E2F: E5 61   
+    EOR   #$FF               ; $4E31: 49 FF   
+    CLC                      ; $4E33: 18      
+    ADC   $1210              ; $4E34: 6D 10 12
+    STA   $1210              ; $4E37: 8D 10 12
+    STA   $26                ; $4E3A: 85 26   
+    LDA   $1211              ; $4E3C: AD 11 12
+    ADC   #$FF               ; $4E3F: 69 FF   
+    STA   $1211              ; $4E41: 8D 11 12
+    SBC   $62                ; $4E44: E5 62   
+    TAX                      ; $4E46: AA      
+    SEC                      ; $4E47: 38      
+    LDA   $61                ; $4E48: A5 61   
+    SBC   $1210              ; $4E4A: ED 10 12
+    TAY                      ; $4E4D: A8      
+    BCS   $4E53              ; $4E4E: B0 03   
+    INX                      ; $4E50: E8      
+    DEC   $27                ; $4E51: C6 27   
+    CLC                      ; $4E53: 18      
+    ADC   $24                ; $4E54: 65 24   
+    BCC   $4E5B              ; $4E56: 90 03   
+    DEC   $25                ; $4E58: C6 25   
+    CLC                      ; $4E5A: 18      
+    JSR   $4305              ; $4E5B: 20 05 43
+    STA   ($26),Y            ; $4E5E: 91 26   
+    INY                      ; $4E60: C8      
+    BNE   $4E5B              ; $4E61: D0 F8   
+    INC   $25                ; $4E63: E6 25   
+    INC   $27                ; $4E65: E6 27   
+    DEX                      ; $4E67: CA      
+    BNE   $4E5B              ; $4E68: D0 F1   
+    JSR   $5238              ; $4E6A: 20 38 52
+    JSR   $4F4F              ; $4E6D: 20 4F 4F
+    LDY   #$00               ; $4E70: A0 00   
+    LDA   ($3D),Y            ; $4E72: B1 3D   
+    BNE   $4E79              ; $4E74: D0 03   
+    JMP   $4DD5              ; $4E76: 4C D5 4D
+    CLC                      ; $4E79: 18      
+    LDA   $1210              ; $4E7A: AD 10 12
+    LDY   $1211              ; $4E7D: AC 11 12
+    STA   $5C                ; $4E80: 85 5C   
+    STY   $5D                ; $4E82: 84 5D   
+    ADC   $0D                ; $4E84: 65 0D   
+    BCC   $4E89              ; $4E86: 90 01   
+    INY                      ; $4E88: C8      
+    CLC                      ; $4E89: 18      
+    ADC   #$04               ; $4E8A: 69 04   
+    BCC   $4E8F              ; $4E8C: 90 01   
+    INY                      ; $4E8E: C8      
+    STA   $5A                ; $4E8F: 85 5A   
+    STY   $5B                ; $4E91: 84 5B   
+    CPY   $1213              ; $4E93: CC 13 12
+    BCC   $4EA2              ; $4E96: 90 0A   
+    BNE   $4E9F              ; $4E98: D0 05   
+    CMP   $1212              ; $4E9A: CD 12 12
+    BCC   $4EA2              ; $4E9D: 90 03   
+    JMP   $4D3A              ; $4E9F: 4C 3A 4D
+    STA   $1210              ; $4EA2: 8D 10 12
+    STY   $1211              ; $4EA5: 8C 11 12
+    SEC                      ; $4EA8: 38      
+    LDA   $5C                ; $4EA9: A5 5C   
+    SBC   $61                ; $4EAB: E5 61   
+    STA   $24                ; $4EAD: 85 24   
+    TAY                      ; $4EAF: A8      
+    LDA   $5D                ; $4EB0: A5 5D   
+    SBC   $62                ; $4EB2: E5 62   
+    TAX                      ; $4EB4: AA      
+    INX                      ; $4EB5: E8      
+    TYA                      ; $4EB6: 98      
+    BEQ   $4EDE              ; $4EB7: F0 25   
+    LDA   $5C                ; $4EB9: A5 5C   
+    SEC                      ; $4EBB: 38      
+    SBC   $24                ; $4EBC: E5 24   
+    STA   $5C                ; $4EBE: 85 5C   
+    BCS   $4EC5              ; $4EC0: B0 03   
+    DEC   $5D                ; $4EC2: C6 5D   
+    SEC                      ; $4EC4: 38      
+    LDA   $5A                ; $4EC5: A5 5A   
+    SBC   $24                ; $4EC7: E5 24   
+    STA   $5A                ; $4EC9: 85 5A   
+    BCS   $4ED6              ; $4ECB: B0 09   
+    DEC   $5B                ; $4ECD: C6 5B   
+    BCC   $4ED6              ; $4ECF: 90 05   
+    JSR   $42DD              ; $4ED1: 20 DD 42
+    STA   ($5A),Y            ; $4ED4: 91 5A   
+    DEY                      ; $4ED6: 88      
+    BNE   $4ED1              ; $4ED7: D0 F8   
+    JSR   $42DD              ; $4ED9: 20 DD 42
+    STA   ($5A),Y            ; $4EDC: 91 5A   
+    DEC   $5D                ; $4EDE: C6 5D   
+    DEC   $5B                ; $4EE0: C6 5B   
+    DEX                      ; $4EE2: CA      
+    BNE   $4ED6              ; $4EE3: D0 F1   
+    LDY   #$00               ; $4EE5: A0 00   
+    LDA   #$01               ; $4EE7: A9 01   
+    STA   ($61),Y            ; $4EE9: 91 61   
+    INY                      ; $4EEB: C8      
+    STA   ($61),Y            ; $4EEC: 91 61   
+    INY                      ; $4EEE: C8      
+    LDA   $16                ; $4EEF: A5 16   
+LNKPRG_FINDLINE:
+    STA   ($61),Y            ; $4EF1: 91 61   
+    LDA   $17                ; $4EF3: A5 17   
+    INY                      ; $4EF5: C8      
+    STA   ($61),Y            ; $4EF6: 91 61   
+    CLC                      ; $4EF8: 18      
+    LDA   $61                ; $4EF9: A5 61   
+    ADC   #$04               ; $4EFB: 69 04   
+    STA   $61                ; $4EFD: 85 61   
+    BCC   $4F03              ; $4EFF: 90 02   
+    INC   $62                ; $4F01: E6 62   
+    LDY   $0D                ; $4F03: A4 0D   
+    DEY                      ; $4F05: 88      
+    LDA   ($3D),Y            ; $4F06: B1 3D   
+    STA   ($61),Y            ; $4F08: 91 61   
+    DEY                      ; $4F0A: 88      
+    CPY   #$FF               ; $4F0B: C0 FF   
+    BNE   $4F06              ; $4F0D: D0 F7   
+    JSR   $4F4F              ; $4F0F: 20 4F 4F
+    JSR   $5254              ; $4F12: 20 54 52
+    LDA   $74                ; $4F15: A5 74   
+    ORA   $75                ; $4F17: 05 75   
+    BEQ   $4F4C              ; $4F19: F0 31   
+    LDA   $16                ; $4F1B: A5 16   
+    CLC                      ; $4F1D: 18      
+    ADC   $74                ; $4F1E: 65 74   
+    STA   $65                ; $4F20: 85 65   
+    LDA   $17                ; $4F22: A5 17   
+    ADC   $75                ; $4F24: 65 75   
+    BCS   $4F4C              ; $4F26: B0 24   
+    CMP   #$FA               ; $4F28: C9 FA   
+    BCS   $4F4C              ; $4F2A: B0 20   
+    STA   $64                ; $4F2C: 85 64   
+    LDX   #$90               ; $4F2E: A2 90   
+    SEC                      ; $4F30: 38      
+    JSR   $8C75              ; $4F31: 20 75 8C
+    JSR   $8E42              ; $4F34: 20 42 8E
+    LDX   #$00               ; $4F37: A2 00   
+    LDA   $0101,X            ; $4F39: BD 01 01
+    BEQ   $4F44              ; $4F3C: F0 06   
+    STA   $034A,X            ; $4F3E: 9D 4A 03
+    INX                      ; $4F41: E8      
+    BNE   $4F39              ; $4F42: D0 F5   
+    LDA   #$1D               ; $4F44: A9 1D   
+    STA   $034A,X            ; $4F46: 9D 4A 03
+    INX                      ; $4F49: E8      
+    STX   $D0                ; $4F4A: 86 D0   
+    JMP   $4DC3              ; $4F4C: 4C C3 4D
+    LDA   $2D                ; $4F4F: A5 2D   
+    LDY   $2E                ; $4F51: A4 2E   
+    STA   $24                ; $4F53: 85 24   
+    STY   $25                ; $4F55: 84 25   
+    CLC                      ; $4F57: 18      
+    LDY   #$00               ; $4F58: A0 00   
+    JSR   $4305              ; $4F5A: 20 05 43
+    BNE   $4F65              ; $4F5D: D0 06   
+    INY                      ; $4F5F: C8      
+    JSR   $4305              ; $4F60: 20 05 43
+    BEQ   $4F92              ; $4F63: F0 2D   
+    LDY   #$04               ; $4F65: A0 04   
+    INY                      ; $4F67: C8      
+    JSR   $4305              ; $4F68: 20 05 43
+    BNE   $4F67              ; $4F6B: D0 FA   
+    INY                      ; $4F6D: C8      
+    TYA                      ; $4F6E: 98      
+    ADC   $24                ; $4F6F: 65 24   
+    TAX                      ; $4F71: AA      
+    LDY   #$00               ; $4F72: A0 00   
+    STA   ($24),Y            ; $4F74: 91 24   
+    TYA                      ; $4F76: 98      
+    ADC   $25                ; $4F77: 65 25   
+    INY                      ; $4F79: C8      
+    STA   ($24),Y            ; $4F7A: 91 24   
+    STX   $24                ; $4F7C: 86 24   
+    STA   $25                ; $4F7E: 85 25   
+    BCC   $4F58              ; $4F80: 90 D6   
+    CLC                      ; $4F82: 18      
+    LDA   $24                ; $4F83: A5 24   
+    LDY   $25                ; $4F85: A4 25   
+    ADC   #$02               ; $4F87: 69 02   
+    BCC   $4F8C              ; $4F89: 90 01   
+    INY                      ; $4F8B: C8      
+    STA   $1210              ; $4F8C: 8D 10 12
+    STY   $1211              ; $4F8F: 8C 11 12
+    RTS                      ; $4F92: 60      
+BASIC_NEWSTT_GONE:
+    LDX   #$00               ; $4F93: A2 00   
+    JSR   $90E5              ; $4F95: 20 E5 90
+    CMP   #$0D               ; $4F98: C9 0D   
+    BNE   $4F9F              ; $4F9A: D0 03   
+    JMP   $558B              ; $4F9C: 4C 8B 55
+    STA   $0200,X            ; $4F9F: 9D 00 02
+    INX                      ; $4FA2: E8      
+    CPX   #$A1               ; $4FA3: E0 A1   
+    BCC   $4F95              ; $4FA5: 90 EE   
+    JMP   $A5ED              ; $4FA7: 4C ED A5
+RUNTIME_STACK_MGR:
+    STA   $02                ; $4FAA: 85 02   
+    JSR   $5047              ; $4FAC: 20 47 50
+    LDA   $3F                ; $4FAF: A5 3F   
+    CMP   #$FF               ; $4FB1: C9 FF   
+    BNE   $4FBB              ; $4FB3: D0 06   
+    LDA   $40                ; $4FB5: A5 40   
+    CMP   #$09               ; $4FB7: C9 09   
+    BEQ   $4FFB              ; $4FB9: F0 40   
+    STA   $FF03              ; $4FBB: 8D 03 FF (MMU_LCRC_TOP)
+    LDY   #$00               ; $4FBE: A0 00   
+    LDA   $02                ; $4FC0: A5 02   
+    CMP   #$81               ; $4FC2: C9 81   
+    BNE   $4FE1              ; $4FC4: D0 1B   
+    CMP   ($3F),Y            ; $4FC6: D1 3F   
+    BNE   $4FFD              ; $4FC8: D0 33   
+    LDY   #$02               ; $4FCA: A0 02   
+    LDA   $4C                ; $4FCC: A5 4C   
+    CMP   #$FF               ; $4FCE: C9 FF   
+    BEQ   $4FFD              ; $4FD0: F0 2B   
+    CMP   ($3F),Y            ; $4FD2: D1 3F   
+    BNE   $4FDD              ; $4FD4: D0 07   
+    DEY                      ; $4FD6: 88      
+    LDA   $4B                ; $4FD7: A5 4B   
+    CMP   ($3F),Y            ; $4FD9: D1 3F   
+    BEQ   $4FFD              ; $4FDB: F0 20   
+    LDX   #$12               ; $4FDD: A2 12   
+    BNE   $4FEF              ; $4FDF: D0 0E   
+    LDA   ($3F),Y            ; $4FE1: B1 3F   
+    CMP   $02                ; $4FE3: C5 02   
+    BEQ   $4FFD              ; $4FE5: F0 16   
+    LDX   #$12               ; $4FE7: A2 12   
+    CMP   #$81               ; $4FE9: C9 81   
+    BEQ   $4FEF              ; $4FEB: F0 02   
+    LDX   #$05               ; $4FED: A2 05   
+    TXA                      ; $4FEF: 8A      
+    CLC                      ; $4FF0: 18      
+    ADC   $3F                ; $4FF1: 65 3F   
+    STA   $3F                ; $4FF3: 85 3F   
+    BCC   $4FAF              ; $4FF5: 90 B8   
+    INC   $40                ; $4FF7: E6 40   
+    BNE   $4FAF              ; $4FF9: D0 B4   
+    LDY   #$01               ; $4FFB: A0 01   
+    RTS                      ; $4FFD: 60      
+    EOR   #$FF               ; $4FFE: 49 FF   
+    SEC                      ; $5000: 38      
+    ADC   $7D                ; $5001: 65 7D   
+    STA   $7D                ; $5003: 85 7D   
+    LDY   $7E                ; $5005: A4 7E   
+    BCS   $500A              ; $5007: B0 01   
+    DEY                      ; $5009: 88      
+    STY   $7E                ; $500A: 84 7E   
+    CPY   #$08               ; $500C: C0 08   
+    BCC   $5044              ; $500E: 90 34   
+    BNE   $5016              ; $5010: D0 04   
+    CMP   $7D                ; $5012: C5 7D   
+    BCC   $5044              ; $5014: 90 2E   
+    RTS                      ; $5016: 60      
+    CPY   $36                ; $5017: C4 36   
+    BCC   $5043              ; $5019: 90 28   
+    BNE   $5021              ; $501B: D0 04   
+    CMP   $35                ; $501D: C5 35   
+    BCC   $5043              ; $501F: 90 22   
+    PHA                      ; $5021: 48      
+    LDX   #$09               ; $5022: A2 09   
+    TYA                      ; $5024: 98      
+    PHA                      ; $5025: 48      
+    LDA   $59,X              ; $5026: B5 59   
+    DEX                      ; $5028: CA      
+    BPL   $5025              ; $5029: 10 FA   
+    JSR   $92EA              ; $502B: 20 EA 92 (GARBAG_COLLECT)
+    LDX   #$F7               ; $502E: A2 F7   
+    PLA                      ; $5030: 68      
+    STA   $63,X              ; $5031: 95 63   
+    INX                      ; $5033: E8      
+    BMI   $5030              ; $5034: 30 FA   
+    PLA                      ; $5036: 68      
+    TAY                      ; $5037: A8      
+    PLA                      ; $5038: 68      
+    CPY   $36                ; $5039: C4 36   
+    BCC   $5043              ; $503B: 90 06   
+    BNE   $5044              ; $503D: D0 05   
+    CMP   $35                ; $503F: C5 35   
+    BCS   $5044              ; $5041: B0 01   
+    RTS                      ; $5043: 60      
+    JMP   $4D3A              ; $5044: 4C 3A 4D
+    LDA   $7D                ; $5047: A5 7D   
+    STA   $3F                ; $5049: 85 3F   
+    LDA   $7E                ; $504B: A5 7E   
+    STA   $40                ; $504D: 85 40   
+    RTS                      ; $504F: 60      
+    LDA   $3F                ; $5050: A5 3F   
+    STA   $7D                ; $5052: 85 7D   
+    LDA   $40                ; $5054: A5 40   
+    STA   $7E                ; $5056: 85 7E   
+    RTS                      ; $5058: 60      
+    TYA                      ; $5059: 98      
+    CLC                      ; $505A: 18      
+    ADC   $7D                ; $505B: 65 7D   
+    STA   $7D                ; $505D: 85 7D   
+    BCC   $5063              ; $505F: 90 02   
+    INC   $7E                ; $5061: E6 7E   
+    RTS                      ; $5063: 60      
+    LDA   $2D                ; $5064: A5 2D   
+    LDX   $2E                ; $5066: A6 2E   
+    LDY   #$01               ; $5068: A0 01   
+    STA   $61                ; $506A: 85 61   
+    STX   $62                ; $506C: 86 62   
+    JSR   $42EC              ; $506E: 20 EC 42
+    BEQ   $509E              ; $5071: F0 2B   
+    INY                      ; $5073: C8      
+    INY                      ; $5074: C8      
+    JSR   $42EC              ; $5075: 20 EC 42
+    STA   $79                ; $5078: 85 79   
+    LDA   $17                ; $507A: A5 17   
+    CMP   $79                ; $507C: C5 79   
+    BCC   $509F              ; $507E: 90 1F   
+    BEQ   $5085              ; $5080: F0 03   
+    DEY                      ; $5082: 88      
+    BNE   $5093              ; $5083: D0 0E   
+    DEY                      ; $5085: 88      
+    JSR   $42EC              ; $5086: 20 EC 42
+    STA   $79                ; $5089: 85 79   
+    LDA   $16                ; $508B: A5 16   
+    CMP   $79                ; $508D: C5 79   
+    BCC   $509F              ; $508F: 90 0E   
+    BEQ   $509F              ; $5091: F0 0C   
+    DEY                      ; $5093: 88      
+    JSR   $42EC              ; $5094: 20 EC 42
+    TAX                      ; $5097: AA      
+    DEY                      ; $5098: 88      
+    JSR   $42EC              ; $5099: 20 EC 42
+    BCS   $5068              ; $509C: B0 CA   
+    CLC                      ; $509E: 18      
+    RTS                      ; $509F: 60      
+    LDX   #$00               ; $50A0: A2 00   
+    STX   $0A                ; $50A2: 86 0A   
+    STX   $16                ; $50A4: 86 16   
+    STX   $17                ; $50A6: 86 17   
+    BCS   $50E1              ; $50A8: B0 37   
+    INC   $0A                ; $50AA: E6 0A   
+    SBC   #$2F               ; $50AC: E9 2F   
+    STA   $09                ; $50AE: 85 09   
+    LDA   $17                ; $50B0: A5 17   
+    STA   $24                ; $50B2: 85 24   
+    CMP   #$19               ; $50B4: C9 19   
+    BCC   $50BB              ; $50B6: 90 03   
+    JMP   $796C              ; $50B8: 4C 6C 79 (CMD_FE_BEGIN)
+    LDA   $16                ; $50BB: A5 16   
+    ASL   A                  ; $50BD: 0A      
+    ROL   $24                ; $50BE: 26 24   
+    ASL   A                  ; $50C0: 0A      
+    ROL   $24                ; $50C1: 26 24   
+    ADC   $16                ; $50C3: 65 16   
+    STA   $16                ; $50C5: 85 16   
+    LDA   $24                ; $50C7: A5 24   
+    ADC   $17                ; $50C9: 65 17   
+    STA   $17                ; $50CB: 85 17   
+    ASL   $16                ; $50CD: 06 16   
+    ROL   $17                ; $50CF: 26 17   
+    LDA   $16                ; $50D1: A5 16   
+    ADC   $09                ; $50D3: 65 09   
+    STA   $16                ; $50D5: 85 16   
+    BCC   $50DB              ; $50D7: 90 02   
+    INC   $17                ; $50D9: E6 17   
+    JSR   $0380              ; $50DB: 20 80 03
+    JMP   $50A8              ; $50DE: 4C A8 50
+    RTS                      ; $50E1: 60      
+CMD_LIST:
+    JSR   $5EFB              ; $50E2: 20 FB 5E
+    LDY   #$01               ; $50E5: A0 01   
+    JSR   $42EC              ; $50E7: 20 EC 42
+    BNE   $50F2              ; $50EA: D0 06   
+    DEY                      ; $50EC: 88      
+    JSR   $42EC              ; $50ED: 20 EC 42
+    BEQ   $5120              ; $50F0: F0 2E   
+    JSR   $4BB5              ; $50F2: 20 B5 4B
+    JSR   $5598              ; $50F5: 20 98 55
+    LDY   #$02               ; $50F8: A0 02   
+    JSR   $42EC              ; $50FA: 20 EC 42
+    TAX                      ; $50FD: AA      
+    INY                      ; $50FE: C8      
+    JSR   $42EC              ; $50FF: 20 EC 42
+    CMP   $17                ; $5102: C5 17   
+    BNE   $510A              ; $5104: D0 04   
+    CPX   $16                ; $5106: E4 16   
+    BEQ   $510C              ; $5108: F0 02   
+    BCS   $5120              ; $510A: B0 14   
+    JSR   $5123              ; $510C: 20 23 51
+    LDY   #$00               ; $510F: A0 00   
+    JSR   $42EC              ; $5111: 20 EC 42
+    TAX                      ; $5114: AA      
+    INY                      ; $5115: C8      
+    JSR   $42EC              ; $5116: 20 EC 42
+    STX   $61                ; $5119: 86 61   
+    STA   $62                ; $511B: 85 62   
+    JMP   $50E5              ; $511D: 4C E5 50
+    JMP   $5598              ; $5120: 4C 98 55
+    LDY   #$03               ; $5123: A0 03   
+    STY   $4B                ; $5125: 84 4B   
+    STY   $11                ; $5127: 84 11   
+    JSR   $8E32              ; $5129: 20 32 8E
+    LDA   #$20               ; $512C: A9 20   
+    LDY   $4B                ; $512E: A4 4B   
+    AND   #$7F               ; $5130: 29 7F   
+    JSR   $560C              ; $5132: 20 0C 56
+    CMP   #$22               ; $5135: C9 22   
+    BNE   $513F              ; $5137: D0 06   
+    LDA   $11                ; $5139: A5 11   
+    EOR   #$FF               ; $513B: 49 FF   
+    STA   $11                ; $513D: 85 11   
+    INY                      ; $513F: C8      
+    BEQ   $5120              ; $5140: F0 DE   
+    BIT   $55                ; $5142: 24 55   
+    BPL   $5149              ; $5144: 10 03   
+    JSR   $59AC              ; $5146: 20 AC 59
+    JSR   $42EC              ; $5149: 20 EC 42
+    BEQ   $518B              ; $514C: F0 3D   
+QPLOP_DETOKENIZE:
+    JMP   ($0306)            ; $514E: 6C 06 03
+    BPL   $5132              ; $5151: 10 DF   
+    CMP   #$FF               ; $5153: C9 FF   
+    BEQ   $5132              ; $5155: F0 DB   
+    BIT   $11                ; $5157: 24 11   
+    BMI   $5132              ; $5159: 30 D7   
+    CMP   #$FE               ; $515B: C9 FE   
+    BEQ   $518C              ; $515D: F0 2D   
+    CMP   #$CE               ; $515F: C9 CE   
+    BEQ   $51A6              ; $5161: F0 43   
+    TAX                      ; $5163: AA      
+    STY   $4B                ; $5164: 84 4B   
+    LDA   #$44               ; $5166: A9 44   
+    LDY   #$17               ; $5168: A0 17   
+    STA   $25                ; $516A: 85 25   
+    STY   $24                ; $516C: 84 24   
+    LDY   #$00               ; $516E: A0 00   
+    DEX                      ; $5170: CA      
+    BPL   $5182              ; $5171: 10 0F   
+    LDA   ($24),Y            ; $5173: B1 24   
+    PHA                      ; $5175: 48      
+    INC   $24                ; $5176: E6 24   
+    BNE   $517C              ; $5178: D0 02   
+    INC   $25                ; $517A: E6 25   
+    PLA                      ; $517C: 68      
+    BPL   $5173              ; $517D: 10 F4   
+    BMI   $5170              ; $517F: 30 EF   
+    INY                      ; $5181: C8      
+    LDA   ($24),Y            ; $5182: B1 24   
+    BMI   $512E              ; $5184: 30 A8   
+    JSR   $560C              ; $5186: 20 0C 56
+    BNE   $5181              ; $5189: D0 F6   
+    RTS                      ; $518B: 60      
+    TAX                      ; $518C: AA      
+    INY                      ; $518D: C8      
+    JSR   $42EC              ; $518E: 20 EC 42
+    BEQ   $5132              ; $5191: F0 9F   
+    STY   $4B                ; $5193: 84 4B   
+    CMP   #$02               ; $5195: C9 02   
+    BCC   $51C0              ; $5197: 90 27   
+    CMP   #$27               ; $5199: C9 27   
+    BCS   $51C0              ; $519B: B0 23   
+    ADC   #$7E               ; $519D: 69 7E   
+    TAX                      ; $519F: AA      
+    LDY   #$09               ; $51A0: A0 09   
+    LDA   #$46               ; $51A2: A9 46   
+    BNE   $516A              ; $51A4: D0 C4   
+    TAX                      ; $51A6: AA      
+    INY                      ; $51A7: C8      
+    JSR   $42EC              ; $51A8: 20 EC 42
+    BEQ   $5132              ; $51AB: F0 85   
+    STY   $4B                ; $51AD: 84 4B   
+    CMP   #$02               ; $51AF: C9 02   
+    BCC   $51C0              ; $51B1: 90 0D   
+    CMP   #$0B               ; $51B3: C9 0B   
+    BCS   $51C0              ; $51B5: B0 09   
+    ADC   #$7E               ; $51B7: 69 7E   
+    TAX                      ; $51B9: AA      
+    LDY   #$C9               ; $51BA: A0 C9   
+    LDA   #$46               ; $51BC: A9 46   
+    BNE   $516A              ; $51BE: D0 AA   
+    CPX   #$FE               ; $51C0: E0 FE   
+    BNE   $51C7              ; $51C2: D0 03   
+    LDX   #$00               ; $51C4: A2 00   
+    BIT   $FFA2              ; $51C6: 2C A2 FF (J_SETTMO)
+    SEC                      ; $51C9: 38      
+    JMP   ($030E)            ; $51CA: 6C 0E 03
+    BCS   $51D3              ; $51CD: B0 04   
+    LDY   #$00               ; $51CF: A0 00   
+    BEQ   $5182              ; $51D1: F0 AF   
+    JMP   $5132              ; $51D3: 4C 32 51
+CMD_NEW:
+    BEQ   $51D9              ; $51D6: F0 01   
+    RTS                      ; $51D8: 60      
+    LDA   #$00               ; $51D9: A9 00   
+    TAY                      ; $51DB: A8      
+    STA   ($2D),Y            ; $51DC: 91 2D   
+    INY                      ; $51DE: C8      
+    STA   ($2D),Y            ; $51DF: 91 2D   
+    STA   $116F              ; $51E1: 8D 6F 11
+    LDA   $2D                ; $51E4: A5 2D   
+    CLC                      ; $51E6: 18      
+    ADC   #$02               ; $51E7: 69 02   
+    STA   $1210              ; $51E9: 8D 10 12
+    LDA   $2E                ; $51EC: A5 2E   
+    ADC   #$00               ; $51EE: 69 00   
+    STA   $1211              ; $51F0: 8D 11 12
+    JSR   $5254              ; $51F3: 20 54 52
+    LDA   #$00               ; $51F6: A9 00   
+CMD_CLR:
+    BNE   $524F              ; $51F8: D0 55   
+    JSR   $927B              ; $51FA: 20 7B 92
+    LDY   #$00               ; $51FD: A0 00   
+    STY   $7A                ; $51FF: 84 7A   
+    DEY                      ; $5201: 88      
+    STY   $120C              ; $5202: 8C 0C 12
+    STY   $1209              ; $5205: 8C 09 12
+    STY   $120A              ; $5208: 8C 0A 12
+    STY   $1208              ; $520B: 8C 08 12
+    LDA   $39                ; $520E: A5 39   
+    LDY   $3A                ; $5210: A4 3A   
+    STA   $35                ; $5212: 85 35   
+    STY   $36                ; $5214: 84 36   
+    LDA   #$FF               ; $5216: A9 FF   
+    LDY   #$09               ; $5218: A0 09   
+    STA   $7D                ; $521A: 85 7D   
+    STY   $7E                ; $521C: 84 7E   
+    LDA   $2F                ; $521E: A5 2F   
+    LDY   $30                ; $5220: A4 30   
+    STA   $31                ; $5222: 85 31   
+    STY   $32                ; $5224: 84 32   
+    STA   $33                ; $5226: 85 33   
+    STY   $34                ; $5228: 84 34   
+    LDX   #$03               ; $522A: A2 03   
+    LDA   $5250,X            ; $522C: BD 50 52
+    STA   $1204,X            ; $522F: 9D 04 12
+    DEX                      ; $5232: CA      
+    BPL   $522C              ; $5233: 10 F7   
+    JSR   $5AE1              ; $5235: 20 E1 5A
+    LDX   #$1B               ; $5238: A2 1B   
+    STX   $18                ; $523A: 86 18   
+    PLA                      ; $523C: 68      
+    TAY                      ; $523D: A8      
+    PLA                      ; $523E: 68      
+    LDX   #$FA               ; $523F: A2 FA   
+    TXS                      ; $5241: 9A      
+    PHA                      ; $5242: 48      
+    TYA                      ; $5243: 98      
+    PHA                      ; $5244: 48      
+    LDA   #$00               ; $5245: A9 00   
+    STA   $1203              ; $5247: 8D 03 12
+    STA   $12                ; $524A: 85 12   
+    STA   $03DF              ; $524C: 8D DF 03
+    RTS                      ; $524F: 60      
+    JSR   $2E2C              ; $5250: 20 2C 2E
+    BIT   $18                ; $5253: 24 18   
+    LDA   $2D                ; $5255: A5 2D   
+    ADC   #$FF               ; $5257: 69 FF   
+    STA   $3D                ; $5259: 85 3D   
+    LDA   $2E                ; $525B: A5 2E   
+    ADC   #$FF               ; $525D: 69 FF   
+    STA   $3E                ; $525F: 85 3E   
+    RTS                      ; $5261: 60      
+CMD_RETURN:
+    PLA                      ; $5262: 68      
+    PLA                      ; $5263: 68      
+    LDA   #$8D               ; $5264: A9 8D   
+    JSR   $4FAA              ; $5266: 20 AA 4F (RUNTIME_STACK_MGR)
+    BEQ   $5270              ; $5269: F0 05   
+    LDX   #$0C               ; $526B: A2 0C   
+    JMP   $4D3C              ; $526D: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JSR   $5050              ; $5270: 20 50 50
+    LDY   #$05               ; $5273: A0 05   
+    JSR   $5059              ; $5275: 20 59 50
+    DEY                      ; $5278: 88      
+    LDA   ($3F),Y            ; $5279: B1 3F   
+    STA   $3E                ; $527B: 85 3E   
+    DEY                      ; $527D: 88      
+    LDA   ($3F),Y            ; $527E: B1 3F   
+    STA   $3D                ; $5280: 85 3D   
+    DEY                      ; $5282: 88      
+    LDA   ($3F),Y            ; $5283: B1 3F   
+    JSR   $A83B              ; $5285: 20 3B A8
+; --- [DATA] BREAK Message String ($5288-$528E) ---
+    .BYTE $B1, $3F, $85, $3B, $4C, $8F, $52      ; $5288 [IDENTIFIED_DATA] |.?.;L.R|
+CMD_DATA:
+    JSR   $52A2              ; $528F: 20 A2 52
+    TYA                      ; $5292: 98      
+    CLC                      ; $5293: 18      
+    ADC   $3D                ; $5294: 65 3D   
+    STA   $3D                ; $5296: 85 3D   
+    BCC   $529C              ; $5298: 90 02   
+    INC   $3E                ; $529A: E6 3E   
+    RTS                      ; $529C: 60      
+CMD_REM:
+    JSR   $52A5              ; $529D: 20 A5 52
+    BEQ   $5292              ; $52A0: F0 F0   
+    LDX   #$3A               ; $52A2: A2 3A   
+    BIT.W $00A2              ; $52A4: 2C A2 00
+    STX   $09                ; $52A7: 86 09   
+    LDY   #$00               ; $52A9: A0 00   
+    STY   $0A                ; $52AB: 84 0A   
+    LDA   $0A                ; $52AD: A5 0A   
+    LDX   $09                ; $52AF: A6 09   
+    STA   $09                ; $52B1: 85 09   
+    STX   $0A                ; $52B3: 86 0A   
+    JSR   $03C9              ; $52B5: 20 C9 03
+    BEQ   $529C              ; $52B8: F0 E2   
+    CMP   $0A                ; $52BA: C5 0A   
+    BEQ   $529C              ; $52BC: F0 DE   
+    INY                      ; $52BE: C8      
+    CMP   #$22               ; $52BF: C9 22   
+    BNE   $52B5              ; $52C1: D0 F2   
+    BEQ   $52AD              ; $52C3: F0 E8   
+CMD_IF:
+    JSR   $77EF              ; $52C5: 20 EF 77 (FRMEVL)
+    JSR   $0386              ; $52C8: 20 86 03
+    CMP   #$89               ; $52CB: C9 89   
+    BEQ   $52D4              ; $52CD: F0 05   
+    LDA   #$A7               ; $52CF: A9 A7   
+    JSR   $795E              ; $52D1: 20 5E 79
+    LDA   $63                ; $52D4: A5 63   
+    BNE   $52FE              ; $52D6: D0 26   
+    JSR   $0386              ; $52D8: 20 86 03
+    CMP   #$FE               ; $52DB: C9 FE   
+    BNE   $52EA              ; $52DD: D0 0B   
+    INY                      ; $52DF: C8      
+    JSR   $03C9              ; $52E0: 20 C9 03
+    CMP   #$18               ; $52E3: C9 18   
+    BNE   $52EA              ; $52E5: D0 03   
+    JSR   $5320              ; $52E7: 20 20 53
+    JSR   $528F              ; $52EA: 20 8F 52 (CMD_DATA)
+    LDY   #$00               ; $52ED: A0 00   
+    JSR   $03C9              ; $52EF: 20 C9 03
+    BEQ   $529D              ; $52F2: F0 A9    (CMD_REM)
+    JSR   $0380              ; $52F4: 20 80 03
+    CMP   #$D5               ; $52F7: C9 D5   
+    BNE   $52EA              ; $52F9: D0 EF   
+    JSR   $0380              ; $52FB: 20 80 03
+    JSR   $0386              ; $52FE: 20 86 03
+    BEQ   $531A              ; $5301: F0 17   
+    BCS   $5308              ; $5303: B0 03   
+    JMP   $59DB              ; $5305: 4C DB 59 (CMD_GOTO)
+    CMP   #$FE               ; $5308: C9 FE   
+    BNE   $531A              ; $530A: D0 0E   
+    INY                      ; $530C: C8      
+    JSR   $03C9              ; $530D: 20 C9 03
+    CMP   #$18               ; $5310: C9 18   
+    BNE   $531A              ; $5312: D0 06   
+    JSR   $0380              ; $5314: 20 80 03
+    JSR   $0380              ; $5317: 20 80 03
+    JSR   $0386              ; $531A: 20 86 03
+    JMP   $4B3F              ; $531D: 4C 3F 4B
+    JSR   $0380              ; $5320: 20 80 03
+    BNE   $534C              ; $5323: D0 27   
+    CMP   #$3A               ; $5325: C9 3A   
+    BEQ   $5320              ; $5327: F0 F7   
+    BIT   $7F                ; $5329: 24 7F   
+    BPL   $5377              ; $532B: 10 4A   
+    LDY   #$02               ; $532D: A0 02   
+    JSR   $03C9              ; $532F: 20 C9 03
+    BEQ   $5377              ; $5332: F0 43   
+    INY                      ; $5334: C8      
+    JSR   $03C9              ; $5335: 20 C9 03
+    STA   $3B                ; $5338: 85 3B   
+    INY                      ; $533A: C8      
+    JSR   $03C9              ; $533B: 20 C9 03
+    STA   $3C                ; $533E: 85 3C   
+    TYA                      ; $5340: 98      
+    CLC                      ; $5341: 18      
+    ADC   $3D                ; $5342: 65 3D   
+    STA   $3D                ; $5344: 85 3D   
+    BCC   $5320              ; $5346: 90 D8   
+    INC   $3E                ; $5348: E6 3E   
+    BNE   $5320              ; $534A: D0 D4   
+    CMP   #$22               ; $534C: C9 22   
+    BNE   $5357              ; $534E: D0 07   
+    JSR   $537C              ; $5350: 20 7C 53
+    BEQ   $5325              ; $5353: F0 D0   
+    BNE   $5320              ; $5355: D0 C9   
+    CMP   #$8F               ; $5357: C9 8F   
+    BNE   $5361              ; $5359: D0 06   
+    JSR   $529D              ; $535B: 20 9D 52 (CMD_REM)
+    JMP   $5329              ; $535E: 4C 29 53
+    CMP   #$FE               ; $5361: C9 FE   
+    BNE   $5320              ; $5363: D0 BB   
+    JSR   $0380              ; $5365: 20 80 03
+    CMP   #$19               ; $5368: C9 19   
+    BEQ   $5376              ; $536A: F0 0A   
+    CMP   #$18               ; $536C: C9 18   
+    BNE   $5320              ; $536E: D0 B0   
+    JSR   $5320              ; $5370: 20 20 53
+    JMP   $5320              ; $5373: 4C 20 53
+    RTS                      ; $5376: 60      
+    LDX   #$25               ; $5377: A2 25   
+    JMP   $4D3C              ; $5379: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    LDY   #$00               ; $537C: A0 00   
+    INC   $3D                ; $537E: E6 3D   
+    BNE   $5384              ; $5380: D0 02   
+    INC   $3E                ; $5382: E6 3E   
+    JSR   $03C9              ; $5384: 20 C9 03
+    BEQ   $5390              ; $5387: F0 07   
+    CMP   #$22               ; $5389: C9 22   
+    BNE   $537E              ; $538B: D0 F1   
+    JMP   $0380              ; $538D: 4C 80 03
+    RTS                      ; $5390: 60      
+CMD_ELSE:
+    CMP   #$FE               ; $5391: C9 FE   
+    BNE   $53A0              ; $5393: D0 0B   
+    INY                      ; $5395: C8      
+    JSR   $03C9              ; $5396: 20 C9 03
+    CMP   #$18               ; $5399: C9 18   
+    BNE   $53A0              ; $539B: D0 03   
+    JSR   $5320              ; $539D: 20 20 53
+    JMP   $529D              ; $53A0: 4C 9D 52 (CMD_REM)
+CMD_ON:
+    JSR   $87F4              ; $53A3: 20 F4 87
+    PHA                      ; $53A6: 48      
+    CMP   #$8D               ; $53A7: C9 8D   
+    BEQ   $53B2              ; $53A9: F0 07   
+    CMP   #$89               ; $53AB: C9 89   
+    BEQ   $53B2              ; $53AD: F0 03   
+    JMP   $796C              ; $53AF: 4C 6C 79 (CMD_FE_BEGIN)
+    DEC   $67                ; $53B2: C6 67   
+    BNE   $53BA              ; $53B4: D0 04   
+    PLA                      ; $53B6: 68      
+    JMP   $4B59              ; $53B7: 4C 59 4B
+    JSR   $0380              ; $53BA: 20 80 03
+    JSR   $50A0              ; $53BD: 20 A0 50
+    CMP   #$2C               ; $53C0: C9 2C   
+    BEQ   $53B2              ; $53C2: F0 EE   
+    PLA                      ; $53C4: 68      
+    RTS                      ; $53C5: 60      
+CMD_LET:
+    JSR   $7AAF              ; $53C6: 20 AF 7A (PTRGET)
+    STA   $4B                ; $53C9: 85 4B   
+    STY   $4C                ; $53CB: 84 4C   
+    LDA   #$B2               ; $53CD: A9 B2   
+    JSR   $795E              ; $53CF: 20 5E 79
+    LDA   $10                ; $53D2: A5 10   
+    PHA                      ; $53D4: 48      
+    LDA   $0F                ; $53D5: A5 0F   
+    PHA                      ; $53D7: 48      
+    JSR   $77EF              ; $53D8: 20 EF 77 (FRMEVL)
+    PLA                      ; $53DB: 68      
+    ROL   A                  ; $53DC: 2A      
+    JSR   $77DE              ; $53DD: 20 DE 77
+    BNE   $5404              ; $53E0: D0 22   
+    PLA                      ; $53E2: 68      
+    BPL   $53FA              ; $53E3: 10 15   
+    JSR   $8C47              ; $53E5: 20 47 8C
+    JSR   $84B4              ; $53E8: 20 B4 84 (INT_FP_CONVERSIONS)
+    LDY   #$00               ; $53EB: A0 00   
+    LDA   $66                ; $53ED: A5 66   
+    STA   $FF04              ; $53EF: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($4B),Y            ; $53F2: 91 4B   
+    INY                      ; $53F4: C8      
+    LDA   $67                ; $53F5: A5 67   
+    STA   ($4B),Y            ; $53F7: 91 4B   
+    RTS                      ; $53F9: 60      
+    LDX   $4B                ; $53FA: A6 4B   
+    LDY   $4C                ; $53FC: A4 4C   
+    STA   $FF04              ; $53FE: 8D 04 FF (MMU_LCRD_TOP)
+    JMP   $8C00              ; $5401: 4C 00 8C
+    PLA                      ; $5404: 68      
+    LDY   $4C                ; $5405: A4 4C   
+    CPY   #$03               ; $5407: C0 03   
+    BNE   $547D              ; $5409: D0 72   
+    JSR   $8781              ; $540B: 20 81 87
+    CMP   #$06               ; $540E: C9 06   
+    BNE   $5450              ; $5410: D0 3E   
+    LDY   #$00               ; $5412: A0 00   
+    STY   $63                ; $5414: 84 63   
+    STY   $68                ; $5416: 84 68   
+    STY   $72                ; $5418: 84 72   
+    JSR   $5448              ; $541A: 20 48 54
+    JSR   $8B17              ; $541D: 20 17 8B
+    INC   $72                ; $5420: E6 72   
+    LDY   $72                ; $5422: A4 72   
+    JSR   $5448              ; $5424: 20 48 54
+    JSR   $8C38              ; $5427: 20 38 8C
+    TAX                      ; $542A: AA      
+    BEQ   $5432              ; $542B: F0 05   
+    INX                      ; $542D: E8      
+    TXA                      ; $542E: 8A      
+    JSR   $8B22              ; $542F: 20 22 8B
+    LDY   $72                ; $5432: A4 72   
+    INY                      ; $5434: C8      
+    CPY   #$06               ; $5435: C0 06   
+    BNE   $5418              ; $5437: D0 DF   
+    JSR   $8B17              ; $5439: 20 17 8B
+    JSR   $8CC7              ; $543C: 20 C7 8C
+    LDX   $66                ; $543F: A6 66   
+    LDY   $65                ; $5441: A4 65   
+    LDA   $67                ; $5443: A5 67   
+    JMP   $FFDB              ; $5445: 4C DB FF (J_SETTIM)
+    JSR   $03B7              ; $5448: 20 B7 03
+    JSR   $0390              ; $544B: 20 90 03
+    BCC   $5453              ; $544E: 90 03   
+    JMP   $7D28              ; $5450: 4C 28 7D
+    SBC   #$2F               ; $5453: E9 2F   
+    JMP   $8DB0              ; $5455: 4C B0 8D
+    PLA                      ; $5458: 68      
+    INY                      ; $5459: C8      
+    CMP   $36                ; $545A: C5 36   
+    BCC   $5476              ; $545C: 90 18   
+    BNE   $5468              ; $545E: D0 08   
+    DEY                      ; $5460: 88      
+    JSR   $42E7              ; $5461: 20 E7 42
+    CMP   $35                ; $5464: C5 35   
+    BCC   $5476              ; $5466: 90 0E   
+    LDY   $67                ; $5468: A4 67   
+    CPY   $30                ; $546A: C4 30   
+    BCC   $5476              ; $546C: 90 08   
+    BNE   $5494              ; $546E: D0 24   
+    LDA   $66                ; $5470: A5 66   
+    CMP   $2F                ; $5472: C5 2F   
+    BCS   $5494              ; $5474: B0 1E   
+    LDA   $66                ; $5476: A5 66   
+    LDY   $67                ; $5478: A4 67   
+    JMP   $54B2              ; $547A: 4C B2 54
+    LDY   #$02               ; $547D: A0 02   
+    JSR   $42E7              ; $547F: 20 E7 42
+    CMP   $7C                ; $5482: C5 7C   
+    BNE   $545A              ; $5484: D0 D4   
+    PHA                      ; $5486: 48      
+    DEY                      ; $5487: 88      
+    JSR   $42E7              ; $5488: 20 E7 42
+    CMP   $7B                ; $548B: C5 7B   
+    BNE   $5458              ; $548D: D0 C9   
+    LDA   $7A                ; $548F: A5 7A   
+    BEQ   $5458              ; $5491: F0 C5   
+    PLA                      ; $5493: 68      
+    LDY   #$00               ; $5494: A0 00   
+    JSR   $42E7              ; $5496: 20 E7 42
+    JSR   $8688              ; $5499: 20 88 86
+    LDA   $52                ; $549C: A5 52   
+    LDY   $53                ; $549E: A4 53   
+    STA   $70                ; $54A0: 85 70   
+    STY   $71                ; $54A2: 84 71   
+    JSR   $874E              ; $54A4: 20 4E 87
+    LDA   $70                ; $54A7: A5 70   
+    LDY   $71                ; $54A9: A4 71   
+    JSR   $87E0              ; $54AB: 20 E0 87
+    LDA   #$63               ; $54AE: A9 63   
+    LDY   #$00               ; $54B0: A0 00   
+    STA   $52                ; $54B2: 85 52   
+    STY   $53                ; $54B4: 84 53   
+    STA   $24                ; $54B6: 85 24   
+    STY   $25                ; $54B8: 84 25   
+    JSR   $87E0              ; $54BA: 20 E0 87
+    JSR   $54F6              ; $54BD: 20 F6 54
+    BCC   $54D0              ; $54C0: 90 0E   
+    LDY   #$00               ; $54C2: A0 00   
+    LDA   $4B                ; $54C4: A5 4B   
+    STA   $FF04              ; $54C6: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($24),Y            ; $54C9: 91 24   
+    INY                      ; $54CB: C8      
+    LDA   $4C                ; $54CC: A5 4C   
+    STA   ($24),Y            ; $54CE: 91 24   
+    LDA   $4B                ; $54D0: A5 4B   
+    STA   $24                ; $54D2: 85 24   
+    LDA   $4C                ; $54D4: A5 4C   
+    STA   $25                ; $54D6: 85 25   
+    JSR   $54F6              ; $54D8: 20 F6 54
+    BCC   $54E9              ; $54DB: 90 0C   
+    DEY                      ; $54DD: 88      
+    LDA   #$FF               ; $54DE: A9 FF   
+    STA   $FF04              ; $54E0: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($24),Y            ; $54E3: 91 24   
+    DEY                      ; $54E5: 88      
+    TXA                      ; $54E6: 8A      
+    STA   ($24),Y            ; $54E7: 91 24   
+    LDY   #$02               ; $54E9: A0 02   
+    LDA   #$52               ; $54EB: A9 52   
+    JSR   $03AB              ; $54ED: 20 AB 03
+    STA   ($4B),Y            ; $54F0: 91 4B   
+    DEY                      ; $54F2: 88      
+    BPL   $54EB              ; $54F3: 10 F6   
+    RTS                      ; $54F5: 60      
+    LDY   #$00               ; $54F6: A0 00   
+    JSR   $03B7              ; $54F8: 20 B7 03
+    PHA                      ; $54FB: 48      
+    BEQ   $5537              ; $54FC: F0 39   
+    INY                      ; $54FE: C8      
+    JSR   $03B7              ; $54FF: 20 B7 03
+    TAX                      ; $5502: AA      
+    INY                      ; $5503: C8      
+    JSR   $03B7              ; $5504: 20 B7 03
+    CMP   $3A                ; $5507: C5 3A   
+    BCC   $5511              ; $5509: 90 06   
+    BNE   $5537              ; $550B: D0 2A   
+    CPX   $39                ; $550D: E4 39   
+    BCS   $5537              ; $550F: B0 26   
+    JSR   $03B7              ; $5511: 20 B7 03
+    CMP   $36                ; $5514: C5 36   
+    BCC   $5537              ; $5516: 90 1F   
+    BNE   $551E              ; $5518: D0 04   
+    CPX   $35                ; $551A: E4 35   
+    BCC   $5537              ; $551C: 90 19   
+    CMP   $7C                ; $551E: C5 7C   
+    BNE   $5526              ; $5520: D0 04   
+    CPX   $7B                ; $5522: E4 7B   
+    BEQ   $5537              ; $5524: F0 11   
+    STX   $24                ; $5526: 86 24   
+    STA   $25                ; $5528: 85 25   
+    PLA                      ; $552A: 68      
+    TAX                      ; $552B: AA      
+    CLC                      ; $552C: 18      
+    ADC   $24                ; $552D: 65 24   
+    STA   $24                ; $552F: 85 24   
+    BCC   $5535              ; $5531: 90 02   
+    INC   $25                ; $5533: E6 25   
+    SEC                      ; $5535: 38      
+    RTS                      ; $5536: 60      
+    PLA                      ; $5537: 68      
+    CLC                      ; $5538: 18      
+    RTS                      ; $5539: 60      
+CMD_PRINT_:
+    JSR   $5540              ; $553A: 20 40 55 (CMD_CMD)
+    JMP   $5658              ; $553D: 4C 58 56
+CMD_CMD:
+    JSR   $87F4              ; $5540: 20 F4 87
+    BEQ   $554A              ; $5543: F0 05   
+    LDA   #$2C               ; $5545: A9 2C   
+    JSR   $795E              ; $5547: 20 5E 79
+    PHP                      ; $554A: 08      
+    STX   $15                ; $554B: 86 15   
+    JSR   $90EB              ; $554D: 20 EB 90
+    PLP                      ; $5550: 28      
+    JMP   $555A              ; $5551: 4C 5A 55 (CMD_PRINT)
+    JSR   $55E5              ; $5554: 20 E5 55
+    JSR   $0386              ; $5557: 20 86 03
+CMD_PRINT:
+    BEQ   $5598              ; $555A: F0 3C   
+    CMP   #$FB               ; $555C: C9 FB   
+    BNE   $5563              ; $555E: D0 03   
+    JMP   $9520              ; $5560: 4C 20 95 (PRINT_USING_PUDEF)
+    BEQ   $55A8              ; $5563: F0 43   
+    CMP   #$A3               ; $5565: C9 A3   
+    BEQ   $55B9              ; $5567: F0 50   
+    CMP   #$A6               ; $5569: C9 A6   
+    CLC                      ; $556B: 18      
+    BEQ   $55B9              ; $556C: F0 4B   
+    CMP   #$2C               ; $556E: C9 2C   
+    BEQ   $55A9              ; $5570: F0 37   
+    CMP   #$3B               ; $5572: C9 3B   
+    BEQ   $55D4              ; $5574: F0 5E   
+    JSR   $77EF              ; $5576: 20 EF 77 (FRMEVL)
+    BIT   $0F                ; $5579: 24 0F   
+    BMI   $5554              ; $557B: 30 D7   
+    JSR   $8E42              ; $557D: 20 42 8E
+    JSR   $869A              ; $5580: 20 9A 86
+    JSR   $55E5              ; $5583: 20 E5 55
+    JSR   $5600              ; $5586: 20 00 56
+    BNE   $5557              ; $5589: D0 CC   
+    LDA   #$00               ; $558B: A9 00   
+    STA   $0200,X            ; $558D: 9D 00 02
+    LDX   #$FF               ; $5590: A2 FF   
+    LDY   #$01               ; $5592: A0 01   
+    LDA   $15                ; $5594: A5 15   
+    BNE   $55A8              ; $5596: D0 10   
+    LDA   #$0D               ; $5598: A9 0D   
+    JSR   $560C              ; $559A: 20 0C 56
+    BIT   $15                ; $559D: 24 15   
+    BPL   $55A6              ; $559F: 10 05   
+    LDA   #$0A               ; $55A1: A9 0A   
+    JSR   $560C              ; $55A3: 20 0C 56
+    EOR   #$FF               ; $55A6: 49 FF   
+    RTS                      ; $55A8: 60      
+    SEC                      ; $55A9: 38      
+    JSR   $928D              ; $55AA: 20 8D 92
+    TYA                      ; $55AD: 98      
+    SEC                      ; $55AE: 38      
+    SBC   #$0A               ; $55AF: E9 0A   
+    BCS   $55AF              ; $55B1: B0 FC   
+    EOR   #$FF               ; $55B3: 49 FF   
+    ADC   #$01               ; $55B5: 69 01   
+    BNE   $55CF              ; $55B7: D0 16   
+    PHP                      ; $55B9: 08      
+    SEC                      ; $55BA: 38      
+    JSR   $928D              ; $55BB: 20 8D 92
+    STY   $0B                ; $55BE: 84 0B   
+    JSR   $87F1              ; $55C0: 20 F1 87 (GETBYT_GETADR)
+    CMP   #$29               ; $55C3: C9 29   
+    BNE   $55DA              ; $55C5: D0 13   
+    PLP                      ; $55C7: 28      
+    BCC   $55D0              ; $55C8: 90 06   
+    TXA                      ; $55CA: 8A      
+    SBC   $0B                ; $55CB: E5 0B   
+    BCC   $55D4              ; $55CD: 90 05   
+    TAX                      ; $55CF: AA      
+    INX                      ; $55D0: E8      
+    DEX                      ; $55D1: CA      
+    BNE   $55DD              ; $55D2: D0 09   
+    JSR   $0380              ; $55D4: 20 80 03
+    JMP   $5563              ; $55D7: 4C 63 55
+    JMP   $796C              ; $55DA: 4C 6C 79 (CMD_FE_BEGIN)
+    JSR   $5600              ; $55DD: 20 00 56
+    BNE   $55D1              ; $55E0: D0 EF   
+    JSR   $869A              ; $55E2: 20 9A 86
+    JSR   $8781              ; $55E5: 20 81 87
+    TAX                      ; $55E8: AA      
+    LDY   #$00               ; $55E9: A0 00   
+    INX                      ; $55EB: E8      
+    DEX                      ; $55EC: CA      
+    BEQ   $55A8              ; $55ED: F0 B9   
+    JSR   $03B7              ; $55EF: 20 B7 03
+    JSR   $560C              ; $55F2: 20 0C 56
+    INY                      ; $55F5: C8      
+    CMP   #$0D               ; $55F6: C9 0D   
+    BNE   $55EC              ; $55F8: D0 F2   
+    JSR   $55A6              ; $55FA: 20 A6 55
+    JMP   $55EC              ; $55FD: 4C EC 55
+    LDA   $15                ; $5600: A5 15   
+    BEQ   $5607              ; $5602: F0 03   
+    LDA   #$20               ; $5604: A9 20   
+    BIT   $1DA9              ; $5606: 2C A9 1D
+    BIT   $3FA9              ; $5609: 2C A9 3F
+    JSR   $90DF              ; $560C: 20 DF 90
+    AND   #$FF               ; $560F: 29 FF   
+    RTS                      ; $5611: 60      
+CMD_GET:
+    JSR   $84D9              ; $5612: 20 D9 84
+    STA   $77                ; $5615: 85 77   
+    CMP   #$23               ; $5617: C9 23   
+    BEQ   $5625              ; $5619: F0 0A   
+    CMP   #$F9               ; $561B: C9 F9   
+    BNE   $5635              ; $561D: D0 16   
+    JSR   $0380              ; $561F: 20 80 03
+    JMP   $5635              ; $5622: 4C 35 56
+    JSR   $0380              ; $5625: 20 80 03
+    JSR   $87F4              ; $5628: 20 F4 87
+    LDA   #$2C               ; $562B: A9 2C   
+    JSR   $795E              ; $562D: 20 5E 79
+    STX   $15                ; $5630: 86 15   
+    JSR   $90FD              ; $5632: 20 FD 90
+    LDX   #$01               ; $5635: A2 01   
+    LDY   #$02               ; $5637: A0 02   
+    LDA   #$00               ; $5639: A9 00   
+    STA   $0201              ; $563B: 8D 01 02
+    LDA   #$40               ; $563E: A9 40   
+    JSR   $56B2              ; $5640: 20 B2 56
+    LDX   $15                ; $5643: A6 15   
+    BNE   $565A              ; $5645: D0 13   
+    RTS                      ; $5647: 60      
+CMD_INPUT_:
+    JSR   $87F4              ; $5648: 20 F4 87
+    LDA   #$2C               ; $564B: A9 2C   
+    JSR   $795E              ; $564D: 20 5E 79
+    STX   $15                ; $5650: 86 15   
+    JSR   $90FD              ; $5652: 20 FD 90
+    JSR   $5671              ; $5655: 20 71 56
+    LDA   $15                ; $5658: A5 15   
+    JSR   $926F              ; $565A: 20 6F 92
+    LDX   #$00               ; $565D: A2 00   
+    STX   $15                ; $565F: 86 15   
+    RTS                      ; $5661: 60      
+CMD_INPUT:
+    CMP   #$22               ; $5662: C9 22   
+    BNE   $5671              ; $5664: D0 0B   
+    JSR   $7913              ; $5666: 20 13 79
+    LDA   #$3B               ; $5669: A9 3B   
+    JSR   $795E              ; $566B: 20 5E 79
+    JSR   $55E5              ; $566E: 20 E5 55
+    JSR   $84D9              ; $5671: 20 D9 84
+    LDA   #$2C               ; $5674: A9 2C   
+    STA   $01FF              ; $5676: 8D FF 01
+    JSR   $569C              ; $5679: 20 9C 56
+    LDA   $15                ; $567C: A5 15   
+    BEQ   $568D              ; $567E: F0 0D   
+    JSR   $9251              ; $5680: 20 51 92
+    AND   #$02               ; $5683: 29 02   
+    BEQ   $568D              ; $5685: F0 06   
+    JSR   $5658              ; $5687: 20 58 56
+    JMP   $528F              ; $568A: 4C 8F 52 (CMD_DATA)
+    LDA   $0200              ; $568D: AD 00 02
+    BNE   $56B0              ; $5690: D0 1E   
+    LDA   $15                ; $5692: A5 15   
+    BNE   $5679              ; $5694: D0 E3   
+    JSR   $52A2              ; $5696: 20 A2 52
+    JMP   $5292              ; $5699: 4C 92 52
+    LDA   $15                ; $569C: A5 15   
+    BNE   $56A6              ; $569E: D0 06   
+    JSR   $560A              ; $56A0: 20 0A 56
+    JSR   $5604              ; $56A3: 20 04 56
+    JMP   $4F93              ; $56A6: 4C 93 4F (BASIC_NEWSTT_GONE)
+CMD_READ:
+    .BYTE $A6                                ; $56A9: A6 [UNRESOLVED]
+; --- [DATA] REDO FROM START / EXTRA IGNORED Prompt Table ($56AA-$56B1) ---
+    .BYTE $43, $A4, $44, $A9, $98, $2C, $A9, $00 ; $56AA [IDENTIFIED_DATA] |C.D..,..|
+    STA   $13                ; $56B2: 85 13   
+    STX   $45                ; $56B4: 86 45   
+    STY   $46                ; $56B6: 84 46   
+    JSR   $7AAF              ; $56B8: 20 AF 7A (PTRGET)
+    STA   $4B                ; $56BB: 85 4B   
+    STY   $4C                ; $56BD: 84 4C   
+    LDX   #$01               ; $56BF: A2 01   
+    LDA   $3D,X              ; $56C1: B5 3D   
+    STA   $4D,X              ; $56C3: 95 4D   
+    LDA   $45,X              ; $56C5: B5 45   
+    STA   $3D,X              ; $56C7: 95 3D   
+    DEX                      ; $56C9: CA      
+    BPL   $56C1              ; $56CA: 10 F5   
+    JSR   $0386              ; $56CC: 20 86 03
+    BNE   $5702              ; $56CF: D0 31   
+    BIT   $13                ; $56D1: 24 13   
+    BVC   $56EF              ; $56D3: 50 1A   
+    LDA   $77                ; $56D5: A5 77   
+    CMP   #$F9               ; $56D7: C9 F9   
+    BNE   $56E3              ; $56D9: D0 08   
+    JSR   $9109              ; $56DB: 20 09 91
+    TAX                      ; $56DE: AA      
+    BEQ   $56DB              ; $56DF: F0 FA   
+    BNE   $56E6              ; $56E1: D0 03   
+    JSR   $9109              ; $56E3: 20 09 91
+    STA   $0200              ; $56E6: 8D 00 02
+    LDX   #$FF               ; $56E9: A2 FF   
+    LDY   #$01               ; $56EB: A0 01   
+    BNE   $56FE              ; $56ED: D0 0F   
+    BPL   $56F4              ; $56EF: 10 03   
+    JMP   $57CA              ; $56F1: 4C CA 57
+    LDA   $15                ; $56F4: A5 15   
+    BNE   $56FB              ; $56F6: D0 03   
+    JSR   $560A              ; $56F8: 20 0A 56
+    JSR   $569C              ; $56FB: 20 9C 56
+    STX   $3D                ; $56FE: 86 3D   
+    STY   $3E                ; $5700: 84 3E   
+    JSR   $0380              ; $5702: 20 80 03
+    BIT   $0F                ; $5705: 24 0F   
+    BPL   $573A              ; $5707: 10 31   
+    BIT   $13                ; $5709: 24 13   
+    BVC   $5716              ; $570B: 50 09   
+    INX                      ; $570D: E8      
+    STX   $3D                ; $570E: 86 3D   
+    LDA   #$00               ; $5710: A9 00   
+    STA   $09                ; $5712: 85 09   
+    BEQ   $5722              ; $5714: F0 0C   
+    STA   $09                ; $5716: 85 09   
+    CMP   #$22               ; $5718: C9 22   
+    BEQ   $5723              ; $571A: F0 07   
+    LDA   #$3A               ; $571C: A9 3A   
+    STA   $09                ; $571E: 85 09   
+    LDA   #$2C               ; $5720: A9 2C   
+    CLC                      ; $5722: 18      
+    STA   $0A                ; $5723: 85 0A   
+    LDA   $3D                ; $5725: A5 3D   
+    LDY   $3E                ; $5727: A4 3E   
+    ADC   #$00               ; $5729: 69 00   
+    BCC   $572E              ; $572B: 90 01   
+    INY                      ; $572D: C8      
+    JSR   $86A0              ; $572E: 20 A0 86
+    JSR   $791F              ; $5731: 20 1F 79
+    JSR   $5405              ; $5734: 20 05 54
+    JMP   $5744              ; $5737: 4C 44 57
+    LDX   #$00               ; $573A: A2 00   
+    JSR   $8D22              ; $573C: 20 22 8D
+    LDA   $10                ; $573F: A5 10   
+    JSR   $53E3              ; $5741: 20 E3 53
+    JSR   $0386              ; $5744: 20 86 03
+    BEQ   $5784              ; $5747: F0 3B   
+    CMP   #$2C               ; $5749: C9 2C   
+    BEQ   $5784              ; $574B: F0 37   
+    LDA   $13                ; $574D: A5 13   
+    BEQ   $575B              ; $574F: F0 0A   
+    BMI   $5757              ; $5751: 30 04   
+    LDX   $15                ; $5753: A6 15   
+    BNE   $575F              ; $5755: D0 08   
+    LDX   #$16               ; $5757: A2 16   
+    BNE   $5761              ; $5759: D0 06   
+    LDA   $15                ; $575B: A5 15   
+    BEQ   $5764              ; $575D: F0 05   
+    LDX   #$18               ; $575F: A2 18   
+    JMP   $4D3C              ; $5761: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JSR   $9281              ; $5764: 20 81 92
+    .BYTE $3F                                ; $5767: 3F [UNRESOLVED]
+    .BYTE $52                                ; $5768: 52 [UNRESOLVED]
+    EOR   $44                ; $5769: 45 44   
+    .BYTE $4F                                ; $576B: 4F [UNRESOLVED]
+    JSR   $5246              ; $576C: 20 46 52
+    .BYTE $4F                                ; $576F: 4F [UNRESOLVED]
+    EOR   $5320              ; $5770: 4D 20 53
+    .BYTE $54                                ; $5773: 54 [UNRESOLVED]
+    EOR   ($52,X)            ; $5774: 41 52   
+    .BYTE $54                                ; $5776: 54 [UNRESOLVED]
+    ORA   $AD00              ; $5777: 0D 00 AD
+    .BYTE $02                                ; $577A: 02 [UNRESOLVED]
+    .BYTE $12                                ; $577B: 12 [UNRESOLVED]
+    LDY   $1203              ; $577C: AC 03 12
+    STA   $3D                ; $577F: 85 3D   
+    STY   $3E                ; $5781: 84 3E   
+    RTS                      ; $5783: 60      
+    LDX   #$01               ; $5784: A2 01   
+    LDA   $3D,X              ; $5786: B5 3D   
+    STA   $45,X              ; $5788: 95 45   
+    LDA   $4D,X              ; $578A: B5 4D   
+    STA   $3D,X              ; $578C: 95 3D   
+    DEX                      ; $578E: CA      
+    BPL   $5786              ; $578F: 10 F5   
+    JSR   $0386              ; $5791: 20 86 03
+    BEQ   $579C              ; $5794: F0 06   
+    JSR   $795C              ; $5796: 20 5C 79
+    JMP   $56B8              ; $5799: 4C B8 56
+    LDA   $45                ; $579C: A5 45   
+    LDY   $46                ; $579E: A4 46   
+    LDX   $13                ; $57A0: A6 13   
+    BPL   $57A9              ; $57A2: 10 05   
+    STA   $43                ; $57A4: 85 43   
+    STY   $44                ; $57A6: 84 44   
+    RTS                      ; $57A8: 60      
+    LDY   #$00               ; $57A9: A0 00   
+    LDA   #$45               ; $57AB: A9 45   
+    JSR   $039F              ; $57AD: 20 9F 03
+    BEQ   $57C9              ; $57B0: F0 17   
+    LDA   $15                ; $57B2: A5 15   
+    BNE   $57C9              ; $57B4: D0 13   
+    JSR   $9281              ; $57B6: 20 81 92
+    .BYTE $3F                                ; $57B9: 3F [UNRESOLVED]
+    EOR   $58                ; $57BA: 45 58   
+    .BYTE $54                                ; $57BC: 54 [UNRESOLVED]
+    .BYTE $52                                ; $57BD: 52 [UNRESOLVED]
+    EOR   ($20,X)            ; $57BE: 41 20   
+    EOR   #$47               ; $57C0: 49 47   
+    LSR   $524F              ; $57C2: 4E 4F 52
+    EOR   $44                ; $57C5: 45 44   
+    ORA   $6000              ; $57C7: 0D 00 60
+    JSR   $52A2              ; $57CA: 20 A2 52
+    INY                      ; $57CD: C8      
+    TAX                      ; $57CE: AA      
+    BNE   $57E6              ; $57CF: D0 15   
+    LDX   #$0D               ; $57D1: A2 0D   
+    INY                      ; $57D3: C8      
+    JSR   $03C9              ; $57D4: 20 C9 03
+    BEQ   $5819              ; $57D7: F0 40   
+    INY                      ; $57D9: C8      
+    JSR   $03C9              ; $57DA: 20 C9 03
+    STA   $41                ; $57DD: 85 41   
+    INY                      ; $57DF: C8      
+    JSR   $03C9              ; $57E0: 20 C9 03
+    INY                      ; $57E3: C8      
+    STA   $42                ; $57E4: 85 42   
+    JSR   $5292              ; $57E6: 20 92 52
+    JSR   $0386              ; $57E9: 20 86 03
+    TAX                      ; $57EC: AA      
+    CPX   #$83               ; $57ED: E0 83   
+    BNE   $57CA              ; $57EF: D0 D9   
+    JMP   $5702              ; $57F1: 4C 02 57
+CMD_NEXT:
+    BNE   $5809              ; $57F4: D0 13   
+    LDY   #$FF               ; $57F6: A0 FF   
+    BNE   $580E              ; $57F8: D0 14   
+    LDY   #$12               ; $57FA: A0 12   
+    JSR   $5059              ; $57FC: 20 59 50
+    JSR   $0386              ; $57FF: 20 86 03
+    CMP   #$2C               ; $5802: C9 2C   
+    BNE   $5877              ; $5804: D0 71   
+    JSR   $0380              ; $5806: 20 80 03
+    JSR   $7AAF              ; $5809: 20 AF 7A (PTRGET)
+    STA   $4B                ; $580C: 85 4B   
+    STY   $4C                ; $580E: 84 4C   
+    LDA   #$81               ; $5810: A9 81   
+    JSR   $4FAA              ; $5812: 20 AA 4F (RUNTIME_STACK_MGR)
+    BEQ   $581C              ; $5815: F0 05   
+    LDX   #$0A               ; $5817: A2 0A   
+    JMP   $4D3C              ; $5819: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JSR   $5050              ; $581C: 20 50 50
+    LDA   $3F                ; $581F: A5 3F   
+    CLC                      ; $5821: 18      
+    ADC   #$03               ; $5822: 69 03   
+    LDY   $40                ; $5824: A4 40   
+    BCC   $5829              ; $5826: 90 01   
+    INY                      ; $5828: C8      
+    JSR   $8BD4              ; $5829: 20 D4 8B
+    LDY   #$08               ; $582C: A0 08   
+    LDA   ($3F),Y            ; $582E: B1 3F   
+    STA   $68                ; $5830: 85 68   
+    LDY   #$01               ; $5832: A0 01   
+    LDA   ($3F),Y            ; $5834: B1 3F   
+    PHA                      ; $5836: 48      
+    TAX                      ; $5837: AA      
+    INY                      ; $5838: C8      
+    LDA   ($3F),Y            ; $5839: B1 3F   
+    PHA                      ; $583B: 48      
+    TAY                      ; $583C: A8      
+    TXA                      ; $583D: 8A      
+    JSR   $8845              ; $583E: 20 45 88
+    PLA                      ; $5841: 68      
+    TAY                      ; $5842: A8      
+    PLA                      ; $5843: 68      
+    TAX                      ; $5844: AA      
+    STA   $FF04              ; $5845: 8D 04 FF (MMU_LCRD_TOP)
+    JSR   $8C00              ; $5848: 20 00 8C
+    LDA   $3F                ; $584B: A5 3F   
+    CLC                      ; $584D: 18      
+    ADC   #$09               ; $584E: 69 09   
+    LDY   $40                ; $5850: A4 40   
+    BCC   $5855              ; $5852: 90 01   
+    INY                      ; $5854: C8      
+    STA   $FF03              ; $5855: 8D 03 FF (MMU_LCRC_TOP)
+    JSR   $8C87              ; $5858: 20 87 8C
+    LDY   #$08               ; $585B: A0 08   
+    SEC                      ; $585D: 38      
+    SBC   ($3F),Y            ; $585E: F1 3F   
+    BEQ   $57FA              ; $5860: F0 98   
+    LDY   #$11               ; $5862: A0 11   
+    LDA   ($3F),Y            ; $5864: B1 3F   
+    STA   $3D                ; $5866: 85 3D   
+    DEY                      ; $5868: 88      
+    LDA   ($3F),Y            ; $5869: B1 3F   
+    STA   $3E                ; $586B: 85 3E   
+    DEY                      ; $586D: 88      
+    LDA   ($3F),Y            ; $586E: B1 3F   
+    STA   $3C                ; $5870: 85 3C   
+    DEY                      ; $5872: 88      
+    LDA   ($3F),Y            ; $5873: B1 3F   
+    STA   $3B                ; $5875: 85 3B   
+    RTS                      ; $5877: 60      
+    JSR   $795C              ; $5878: 20 5C 79
+CMD_DIM:
+    TAX                      ; $587B: AA      
+    JSR   $7AB4              ; $587C: 20 B4 7A
+    JSR   $0386              ; $587F: 20 86 03
+    BNE   $5878              ; $5882: D0 F4   
+    RTS                      ; $5884: 60      
+CMD_SYS:
+    JSR   $8812              ; $5885: 20 12 88
+    LDA   $16                ; $5888: A5 16   
+    STA   $04                ; $588A: 85 04   
+    LDA   $17                ; $588C: A5 17   
+    STA   $03                ; $588E: 85 03   
+    LDA   $03D5              ; $5890: AD D5 03
+    STA   $02                ; $5893: 85 02   
+    JSR   $9E1E              ; $5895: 20 1E 9E
+    BCC   $589C              ; $5898: 90 02   
+    STX   $06                ; $589A: 86 06   
+    JSR   $9E1E              ; $589C: 20 1E 9E
+    BCC   $58A3              ; $589F: 90 02   
+    STX   $07                ; $58A1: 86 07   
+    JSR   $9E1E              ; $58A3: 20 1E 9E
+    BCC   $58AA              ; $58A6: 90 02   
+    STX   $08                ; $58A8: 86 08   
+    JSR   $9E1E              ; $58AA: 20 1E 9E
+    BCC   $58B1              ; $58AD: 90 02   
+    STX   $05                ; $58AF: 86 05   
+    JMP   $FF6E              ; $58B1: 4C 6E FF (J_JSRFAR)
+CMD_TRON:
+    LDA   #$FF               ; $58B4: A9 FF   
+    BIT.W $00A9              ; $58B6: 2C A9 00
+    STA   $116F              ; $58B9: 8D 6F 11
+    RTS                      ; $58BC: 60      
+CMD_FE_RREG:
+    LDA   #$00               ; $58BD: A9 00   
+    STA   $0D                ; $58BF: 85 0D   
+    JSR   $0386              ; $58C1: 20 86 03
+    BEQ   $58FD              ; $58C4: F0 37   
+    CMP   #$2C               ; $58C6: C9 2C   
+    BEQ   $58EB              ; $58C8: F0 21   
+    JSR   $7AAF              ; $58CA: 20 AF 7A (PTRGET)
+    STA   $4B                ; $58CD: 85 4B   
+    STY   $4C                ; $58CF: 84 4C   
+    LDA   $0F                ; $58D1: A5 0F   
+    BNE   $58FE              ; $58D3: D0 29   
+    LDY   $0D                ; $58D5: A4 0D   
+    LDA.W $0006,Y            ; $58D7: B9 06 00
+    CPY   #$03               ; $58DA: C0 03   
+    BNE   $58E0              ; $58DC: D0 02   
+    LDA   $05                ; $58DE: A5 05   
+    TAY                      ; $58E0: A8      
+    LDA   #$00               ; $58E1: A9 00   
+    JSR   $793C              ; $58E3: 20 3C 79
+    LDA   $10                ; $58E6: A5 10   
+    JSR   $53E3              ; $58E8: 20 E3 53
+    INC   $0D                ; $58EB: E6 0D   
+    LDA   $0D                ; $58ED: A5 0D   
+    CMP   #$04               ; $58EF: C9 04   
+    BCS   $58FD              ; $58F1: B0 0A   
+    JSR   $0386              ; $58F3: 20 86 03
+    BEQ   $58FD              ; $58F6: F0 05   
+    JSR   $0380              ; $58F8: 20 80 03
+    BNE   $58C1              ; $58FB: D0 C4   
+    RTS                      ; $58FD: 60      
+    JMP   $77E7              ; $58FE: 4C E7 77
+    JSR   $7959              ; $5901: 20 59 79
+    JSR   $7AAF              ; $5904: 20 AF 7A (PTRGET)
+    STA   $4B                ; $5907: 85 4B   
+    STY   $4C                ; $5909: 84 4C   
+    JSR   $77DD              ; $590B: 20 DD 77
+    JSR   $8809              ; $590E: 20 09 88
+    DEX                      ; $5911: CA      
+    STX   $78                ; $5912: 86 78   
+    CMP   #$29               ; $5914: C9 29   
+    BEQ   $591C              ; $5916: F0 04   
+    JSR   $8809              ; $5918: 20 09 88
+    BIT   $FFA2              ; $591B: 2C A2 FF (J_SETTMO)
+    STX   $77                ; $591E: 86 77   
+    JSR   $7956              ; $5920: 20 56 79
+    LDA   #$B2               ; $5923: A9 B2   
+    JSR   $795E              ; $5925: 20 5E 79
+    JSR   $77EF              ; $5928: 20 EF 77 (FRMEVL)
+    JSR   $77DD              ; $592B: 20 DD 77
+    LDY   #$02               ; $592E: A0 02   
+    LDA   #$4B               ; $5930: A9 4B   
+    JSR   $03AB              ; $5932: 20 AB 03
+    STA.W $005D,Y            ; $5935: 99 5D 00
+    JSR   $42E7              ; $5938: 20 E7 42
+    STA.W $0060,Y            ; $593B: 99 60 00
+    DEY                      ; $593E: 88      
+    BPL   $5930              ; $593F: 10 EF   
+    SEC                      ; $5941: 38      
+    LDA   $61                ; $5942: A5 61   
+    SBC   $78                ; $5944: E5 78   
+    STA   $61                ; $5946: 85 61   
+    BCS   $594C              ; $5948: B0 02   
+    DEC   $62                ; $594A: C6 62   
+    LDA   $77                ; $594C: A5 77   
+    CMP   $60                ; $594E: C5 60   
+    BCC   $5954              ; $5950: 90 02   
+    LDA   $60                ; $5952: A5 60   
+    TAX                      ; $5954: AA      
+    BEQ   $596F              ; $5955: F0 18   
+    CLC                      ; $5957: 18      
+    ADC   $78                ; $5958: 65 78   
+    BCS   $5972              ; $595A: B0 16   
+    CMP   $5D                ; $595C: C5 5D   
+    BCC   $5962              ; $595E: 90 02   
+    BNE   $5972              ; $5960: D0 10   
+    LDY   $78                ; $5962: A4 78   
+    LDA   #$61               ; $5964: A9 61   
+    JSR   $03AB              ; $5966: 20 AB 03
+    STA   ($5E),Y            ; $5969: 91 5E   
+    INY                      ; $596B: C8      
+    DEX                      ; $596C: CA      
+    BNE   $5964              ; $596D: D0 F5   
+    JMP   $8781              ; $596F: 4C 81 87
+    JMP   $7D28              ; $5972: 4C 28 7D
+CMD_AUTO:
+    JSR   $84F0              ; $5975: 20 F0 84
+    JSR   $50A0              ; $5978: 20 A0 50
+    LDA   $16                ; $597B: A5 16   
+    STA   $74                ; $597D: 85 74   
+    LDA   $17                ; $597F: A5 17   
+    STA   $75                ; $5981: 85 75   
+    JMP   $4D37              ; $5983: 4C 37 4D (BASIC_READY_LOOP)
+CMD_HELP:
+    LDX   $1208              ; $5986: AE 08 12
+    INX                      ; $5989: E8      
+    BEQ   $59A9              ; $598A: F0 1D   
+    LDA   $1209              ; $598C: AD 09 12
+    LDY   $120A              ; $598F: AC 0A 12
+    STA   $16                ; $5992: 85 16   
+    STY   $17                ; $5994: 84 17   
+    JSR   $5064              ; $5996: 20 64 50
+    BCC   $59A9              ; $5999: 90 0E   
+    ROR   $55                ; $599B: 66 55   
+    JSR   $5598              ; $599D: 20 98 55
+    LDX   $16                ; $59A0: A6 16   
+    LDA   $17                ; $59A2: A5 17   
+    JSR   $5123              ; $59A4: 20 23 51
+    LSR   $55                ; $59A7: 46 55   
+    JMP   $5598              ; $59A9: 4C 98 55
+    LDX   $62                ; $59AC: A6 62   
+    TYA                      ; $59AE: 98      
+    CLC                      ; $59AF: 18      
+    ADC   $61                ; $59B0: 65 61   
+    BCC   $59B5              ; $59B2: 90 01   
+    INX                      ; $59B4: E8      
+    CPX   $120F              ; $59B5: EC 0F 12
+    BNE   $59CE              ; $59B8: D0 14   
+    CMP   $120E              ; $59BA: CD 0E 12
+    BCC   $59CE              ; $59BD: 90 0F   
+    BEQ   $59CE              ; $59BF: F0 0D   
+    LSR   $55                ; $59C1: 46 55   
+    LDA   #$12               ; $59C3: A9 12   
+    BIT   $D7                ; $59C5: 24 D7   
+    BPL   $59CB              ; $59C7: 10 02   
+    LDA   #$02               ; $59C9: A9 02   
+    JMP   $560C              ; $59CB: 4C 0C 56
+    RTS                      ; $59CE: 60      
+CMD_GOSUB:
+    JSR   $5A1D              ; $59CF: 20 1D 5A
+    JSR   $0386              ; $59D2: 20 86 03
+    JSR   $59DB              ; $59D5: 20 DB 59 (CMD_GOTO)
+    JMP   $4AF6              ; $59D8: 4C F6 4A
+CMD_GOTO:
+    JSR   $50A0              ; $59DB: 20 A0 50
+    LDA   $0A                ; $59DE: A5 0A   
+    BEQ   $5A1A              ; $59E0: F0 38   
+    JSR   $52A5              ; $59E2: 20 A5 52
+    SEC                      ; $59E5: 38      
+    LDA   $3B                ; $59E6: A5 3B   
+    SBC   $16                ; $59E8: E5 16   
+    LDA   $3C                ; $59EA: A5 3C   
+    SBC   $17                ; $59EC: E5 17   
+    BCS   $59FB              ; $59EE: B0 0B   
+    TYA                      ; $59F0: 98      
+    SEC                      ; $59F1: 38      
+    ADC   $3D                ; $59F2: 65 3D   
+    LDX   $3E                ; $59F4: A6 3E   
+    BCC   $59FF              ; $59F6: 90 07   
+    INX                      ; $59F8: E8      
+    BCS   $59FF              ; $59F9: B0 04   
+    LDA   $2D                ; $59FB: A5 2D   
+    LDX   $2E                ; $59FD: A6 2E   
+    JSR   $5068              ; $59FF: 20 68 50
+    BCC   $5A15              ; $5A02: 90 11   
+    LDA   $61                ; $5A04: A5 61   
+    SBC   #$01               ; $5A06: E9 01   
+    STA   $3D                ; $5A08: 85 3D   
+    LDA   $62                ; $5A0A: A5 62   
+    SBC   #$00               ; $5A0C: E9 00   
+    STA   $3E                ; $5A0E: 85 3E   
+    BIT   $7F                ; $5A10: 24 7F   
+    BPL   $5A81              ; $5A12: 10 6D   
+    RTS                      ; $5A14: 60      
+    LDX   #$11               ; $5A15: A2 11   
+    JMP   $4D3C              ; $5A17: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JMP   $796C              ; $5A1A: 4C 6C 79 (CMD_FE_BEGIN)
+    LDA   #$05               ; $5A1D: A9 05   
+    JSR   $4FFE              ; $5A1F: 20 FE 4F
+    LDY   #$04               ; $5A22: A0 04   
+    LDA   $3E                ; $5A24: A5 3E   
+    STA   ($7D),Y            ; $5A26: 91 7D   
+    DEY                      ; $5A28: 88      
+    LDA   $3D                ; $5A29: A5 3D   
+    STA   ($7D),Y            ; $5A2B: 91 7D   
+    DEY                      ; $5A2D: 88      
+    LDA   $3C                ; $5A2E: A5 3C   
+    STA   ($7D),Y            ; $5A30: 91 7D   
+    DEY                      ; $5A32: 88      
+    LDA   $3B                ; $5A33: A5 3B   
+    STA   ($7D),Y            ; $5A35: 91 7D   
+    DEY                      ; $5A37: 88      
+    LDA   #$8D               ; $5A38: A9 8D   
+    STA   ($7D),Y            ; $5A3A: 91 7D   
+    RTS                      ; $5A3C: 60      
+    JSR   $0380              ; $5A3D: 20 80 03
+    CMP   #$A4               ; $5A40: C9 A4   
+    BNE   $5A4A              ; $5A42: D0 06   
+    JSR   $0380              ; $5A44: 20 80 03
+    JMP   $59DB              ; $5A47: 4C DB 59 (CMD_GOTO)
+    JSR   $87F4              ; $5A4A: 20 F4 87
+    CPX   #$40               ; $5A4D: E0 40   
+    BEQ   $5A54              ; $5A4F: F0 03   
+    JMP   $796C              ; $5A51: 4C 6C 79 (CMD_FE_BEGIN)
+    JSR   $A7E1              ; $5A54: 20 E1 A7
+    BNE   $5A5F              ; $5A57: D0 06   
+    JSR   $A845              ; $5A59: 20 45 A8
+    JMP   $FF4D              ; $5A5C: 4C 4D FF (J_C64MODE)
+    RTS                      ; $5A5F: 60      
+CMD_CONT:
+    BNE   $5A9A              ; $5A60: D0 38   
+    BIT   $7F                ; $5A62: 24 7F   
+    BMI   $5A9A              ; $5A64: 30 34   
+    LDX   #$1A               ; $5A66: A2 1A   
+    LDY   $1203              ; $5A68: AC 03 12
+    BNE   $5A70              ; $5A6B: D0 03   
+    JMP   $4D3C              ; $5A6D: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    LDA   $1202              ; $5A70: AD 02 12
+    STA   $3D                ; $5A73: 85 3D   
+    STY   $3E                ; $5A75: 84 3E   
+    LDA   $1200              ; $5A77: AD 00 12
+    LDY   $1201              ; $5A7A: AC 01 12
+    STA   $3B                ; $5A7D: 85 3B   
+    STY   $3C                ; $5A7F: 84 3C   
+    LDA   #$80               ; $5A81: A9 80   
+    STA   $7F                ; $5A83: 85 7F   
+    ASL   A                  ; $5A85: 0A      
+    STA   $74                ; $5A86: 85 74   
+    STA   $75                ; $5A88: 85 75   
+    STA   $127F              ; $5A8A: 8D 7F 12
+    STA   $F6                ; $5A8D: 85 F6   
+    LDX   #$02               ; $5A8F: A2 02   
+    STA   $1276,X            ; $5A91: 9D 76 12
+    DEX                      ; $5A94: CA      
+    BPL   $5A91              ; $5A95: 10 FA   
+    JMP   $FF90              ; $5A97: 4C 90 FF (J_SETMSG)
+    RTS                      ; $5A9A: 60      
+CMD_RUN:
+    BEQ   $5AB5              ; $5A9B: F0 18   
+    BCC   $5ABB              ; $5A9D: 90 1C   
+    LDA   #$40               ; $5A9F: A9 40   
+    STA   $7F                ; $5AA1: 85 7F   
+    JSR   $A1A7              ; $5AA3: 20 A7 A1 (CMD_DLOAD)
+    JSR   $5A81              ; $5AA6: 20 81 5A
+    JSR   $51F3              ; $5AA9: 20 F3 51
+    JSR   $4F4F              ; $5AAC: 20 4F 4F
+    JSR   $5598              ; $5AAF: 20 98 55
+    JMP   $4AF6              ; $5AB2: 4C F6 4A
+    JSR   $5A81              ; $5AB5: 20 81 5A
+    JMP   $51F3              ; $5AB8: 4C F3 51
+    JSR   $51FA              ; $5ABB: 20 FA 51
+    JSR   $0386              ; $5ABE: 20 86 03
+    JSR   $59DB              ; $5AC1: 20 DB 59 (CMD_GOTO)
+    JSR   $5A81              ; $5AC4: 20 81 5A
+    JMP   $4AF6              ; $5AC7: 4C F6 4A
+CMD_RESTORE:
+    BEQ   $5AE1              ; $5ACA: F0 15   
+    JSR   $8812              ; $5ACC: 20 12 88
+    STY   $16                ; $5ACF: 84 16   
+    STA   $17                ; $5AD1: 85 17   
+    JSR   $5064              ; $5AD3: 20 64 50
+    BCS   $5ADB              ; $5AD6: B0 03   
+    JMP   $5A15              ; $5AD8: 4C 15 5A
+    LDA   $61                ; $5ADB: A5 61   
+    LDY   $62                ; $5ADD: A4 62   
+    BCS   $5AE6              ; $5ADF: B0 05   
+    SEC                      ; $5AE1: 38      
+    LDA   $2D                ; $5AE2: A5 2D   
+    LDY   $2E                ; $5AE4: A4 2E   
+    SBC   #$01               ; $5AE6: E9 01   
+    BCS   $5AEB              ; $5AE8: B0 01   
+    DEY                      ; $5AEA: 88      
+    STA   $43                ; $5AEB: 85 43   
+    STY   $44                ; $5AED: 84 44   
+    RTS                      ; $5AEF: 60      
+    .BYTE $89                                ; $5AF0: 89 [UNRESOLVED]
+    TXA                      ; $5AF1: 8A      
+    STA   $8CA7              ; $5AF2: 8D A7 8C
+    DEC   $D7,X              ; $5AF5: D6 D7   
+    CMP   $20,X              ; $5AF7: D5 20   
+    BEQ   $5A7F              ; $5AF9: F0 84   
+    LDA   #$00               ; $5AFB: A9 00   
+    LDX   #$0A               ; $5AFD: A2 0A   
+    STX   $1170              ; $5AFF: 8E 70 11
+    STA   $1171              ; $5B02: 8D 71 11
+    STX   $1172              ; $5B05: 8E 72 11
+    STA   $1173              ; $5B08: 8D 73 11
+    STA   $5C                ; $5B0B: 85 5C   
+    STA   $5D                ; $5B0D: 85 5D   
+    JSR   $0386              ; $5B0F: 20 86 03
+    BEQ   $5B68              ; $5B12: F0 54   
+    JSR   $50A0              ; $5B14: 20 A0 50
+    LDA   $0A                ; $5B17: A5 0A   
+    BEQ   $5B25              ; $5B19: F0 0A   
+    LDA   $16                ; $5B1B: A5 16   
+    LDX   $17                ; $5B1D: A6 17   
+    STA   $1170              ; $5B1F: 8D 70 11
+    STX   $1171              ; $5B22: 8E 71 11
+    JSR   $9E06              ; $5B25: 20 06 9E
+    BCC   $5B38              ; $5B28: 90 0E   
+    STY   $1172              ; $5B2A: 8C 72 11
+    STA   $1173              ; $5B2D: 8D 73 11
+    ORA   $1172              ; $5B30: 0D 72 11
+    BNE   $5B38              ; $5B33: D0 03   
+    JMP   $7D28              ; $5B35: 4C 28 7D
+    JSR   $9E06              ; $5B38: 20 06 9E
+    BCC   $5B68              ; $5B3B: 90 2B   
+    STY   $5C                ; $5B3D: 84 5C   
+    STY   $16                ; $5B3F: 84 16   
+    STA   $5D                ; $5B41: 85 5D   
+    STA   $17                ; $5B43: 85 17   
+    JSR   $5064              ; $5B45: 20 64 50
+    LDA   $61                ; $5B48: A5 61   
+    LDX   $62                ; $5B4A: A6 62   
+    STA   $5A                ; $5B4C: 85 5A   
+    STX   $5B                ; $5B4E: 86 5B   
+    LDA   $1170              ; $5B50: AD 70 11
+    LDX   $1171              ; $5B53: AE 71 11
+    STA   $16                ; $5B56: 85 16   
+    STX   $17                ; $5B58: 86 17   
+    JSR   $5064              ; $5B5A: 20 64 50
+    SEC                      ; $5B5D: 38      
+    LDA   $61                ; $5B5E: A5 61   
+    SBC   $5A                ; $5B60: E5 5A   
+    LDA   $62                ; $5B62: A5 62   
+    SBC   $5B                ; $5B64: E5 5B   
+    BCC   $5B35              ; $5B66: 90 CD   
+    JSR   $5D68              ; $5B68: 20 68 5D
+    JSR   $5D9C              ; $5B6B: 20 9C 5D
+    INY                      ; $5B6E: C8      
+    JSR   $03C9              ; $5B6F: 20 C9 03
+    BEQ   $5BAE              ; $5B72: F0 3A   
+    INY                      ; $5B74: C8      
+    JSR   $03C9              ; $5B75: 20 C9 03
+    SEC                      ; $5B78: 38      
+    SBC   $5C                ; $5B79: E5 5C   
+    INY                      ; $5B7B: C8      
+    JSR   $03C9              ; $5B7C: 20 C9 03
+    SBC   $5D                ; $5B7F: E5 5D   
+    BCS   $5B8A              ; $5B81: B0 07   
+    JSR   $5B9D              ; $5B83: 20 9D 5B
+    BNE   $5B74              ; $5B86: D0 EC   
+    BEQ   $5BAE              ; $5B88: F0 24   
+    JSR   $5B9D              ; $5B8A: 20 9D 5B
+    BEQ   $5BAE              ; $5B8D: F0 1F   
+    JSR   $5D89              ; $5B8F: 20 89 5D
+    BCS   $5B98              ; $5B92: B0 04   
+    CMP   #$F9               ; $5B94: C9 F9   
+    BCC   $5B8A              ; $5B96: 90 F2   
+    LDX   #$26               ; $5B98: A2 26   
+    JMP   $4D3C              ; $5B9A: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    LDY   #$00               ; $5B9D: A0 00   
+    JSR   $03C9              ; $5B9F: 20 C9 03
+    TAX                      ; $5BA2: AA      
+    INY                      ; $5BA3: C8      
+    JSR   $03C9              ; $5BA4: 20 C9 03
+    BEQ   $5BAD              ; $5BA7: F0 04   
+    STX   $3D                ; $5BA9: 86 3D   
+    STA   $3E                ; $5BAB: 85 3E   
+    RTS                      ; $5BAD: 60      
+    LDA   #$01               ; $5BAE: A9 01   
+    STA   $77                ; $5BB0: 85 77   
+    LDA   $1210              ; $5BB2: AD 10 12
+    LDX   $1211              ; $5BB5: AE 11 12
+    STA   $3F                ; $5BB8: 85 3F   
+    STX   $40                ; $5BBA: 86 40   
+    JSR   $5BFB              ; $5BBC: 20 FB 5B
+    DEC   $77                ; $5BBF: C6 77   
+    JSR   $5BFB              ; $5BC1: 20 FB 5B
+    JSR   $5D99              ; $5BC4: 20 99 5D
+    BEQ   $5BF8              ; $5BC7: F0 2F   
+    JSR   $5D9C              ; $5BC9: 20 9C 5D
+    STA   $16                ; $5BCC: 85 16   
+    INY                      ; $5BCE: C8      
+    JSR   $03C9              ; $5BCF: 20 C9 03
+    SEC                      ; $5BD2: 38      
+    SBC   $5D                ; $5BD3: E5 5D   
+    BCC   $5BF0              ; $5BD5: 90 19   
+    BNE   $5BDF              ; $5BD7: D0 06   
+    LDA   $16                ; $5BD9: A5 16   
+    SBC   $5C                ; $5BDB: E5 5C   
+    BCC   $5BF0              ; $5BDD: 90 11   
+    LDA   $64                ; $5BDF: A5 64   
+    STA   ($3D),Y            ; $5BE1: 91 3D   
+    DEY                      ; $5BE3: 88      
+    LDA   $65                ; $5BE4: A5 65   
+    STA   ($3D),Y            ; $5BE6: 91 3D   
+    JSR   $5D9C              ; $5BE8: 20 9C 5D
+    JSR   $5D80              ; $5BEB: 20 80 5D
+    BEQ   $5BC4              ; $5BEE: F0 D4   
+    JSR   $5D9C              ; $5BF0: 20 9C 5D
+    JSR   $5D83              ; $5BF3: 20 83 5D
+    BEQ   $5BC4              ; $5BF6: F0 CC   
+    JMP   $5EE5              ; $5BF8: 4C E5 5E
+    JSR   $5254              ; $5BFB: 20 54 52
+    JSR   $5D99              ; $5BFE: 20 99 5D
+    BNE   $5C06              ; $5C01: D0 03   
+    JMP   $5D68              ; $5C03: 4C 68 5D
+    JSR   $5D9C              ; $5C06: 20 9C 5D
+    STA   $4B                ; $5C09: 85 4B   
+    JSR   $5D9C              ; $5C0B: 20 9C 5D
+    STA   $4C                ; $5C0E: 85 4C   
+    JSR   $5D9C              ; $5C10: 20 9C 5D
+    CMP   #$22               ; $5C13: C9 22   
+    BNE   $5C22              ; $5C15: D0 0B   
+    JSR   $5D9C              ; $5C17: 20 9C 5D
+    BEQ   $5BFE              ; $5C1A: F0 E2   
+    CMP   #$22               ; $5C1C: C9 22   
+    BNE   $5C17              ; $5C1E: D0 F7   
+    BEQ   $5C10              ; $5C20: F0 EE   
+    TAX                      ; $5C22: AA      
+    BEQ   $5BFE              ; $5C23: F0 D9   
+    BPL   $5C10              ; $5C25: 10 E9   
+    LDX   #$08               ; $5C27: A2 08   
+    CMP   $5AEF,X            ; $5C29: DD EF 5A
+    BEQ   $5C56              ; $5C2C: F0 28   
+    DEX                      ; $5C2E: CA      
+    BNE   $5C29              ; $5C2F: D0 F8   
+    CMP   #$CB               ; $5C31: C9 CB   
+    BNE   $5C40              ; $5C33: D0 0B   
+    JSR   $0380              ; $5C35: 20 80 03
+    BEQ   $5BFE              ; $5C38: F0 C4   
+    CMP   #$A4               ; $5C3A: C9 A4   
+    BEQ   $5C56              ; $5C3C: F0 18   
+    BNE   $5C10              ; $5C3E: D0 D0   
+    CMP   #$FE               ; $5C40: C9 FE   
+    BNE   $5C10              ; $5C42: D0 CC   
+    JSR   $0380              ; $5C44: 20 80 03
+    BEQ   $5C35              ; $5C47: F0 EC   
+    CMP   #$17               ; $5C49: C9 17   
+    BNE   $5C10              ; $5C4B: D0 C3   
+    JSR   $0380              ; $5C4D: 20 80 03
+    BEQ   $5C35              ; $5C50: F0 E3   
+    CMP   #$2C               ; $5C52: C9 2C   
+    BNE   $5C4D              ; $5C54: D0 F7   
+    LDA   $3D                ; $5C56: A5 3D   
+    STA   $1200              ; $5C58: 8D 00 12
+    LDA   $3E                ; $5C5B: A5 3E   
+    STA   $1201              ; $5C5D: 8D 01 12
+    JSR   $0380              ; $5C60: 20 80 03
+    BCS   $5C13              ; $5C63: B0 AE   
+    JSR   $50A0              ; $5C65: 20 A0 50
+    JSR   $5D19              ; $5C68: 20 19 5D
+    LDA   $1200              ; $5C6B: AD 00 12
+    STA   $3D                ; $5C6E: 85 3D   
+    LDA   $1201              ; $5C70: AD 01 12
+    STA   $3E                ; $5C73: 85 3E   
+    JSR   $0380              ; $5C75: 20 80 03
+    LDA   $3D                ; $5C78: A5 3D   
+    BNE   $5C7E              ; $5C7A: D0 02   
+    DEC   $3E                ; $5C7C: C6 3E   
+    DEC   $3D                ; $5C7E: C6 3D   
+    LDX   #$FF               ; $5C80: A2 FF   
+    LDA   $77                ; $5C82: A5 77   
+    BEQ   $5CC7              ; $5C84: F0 41   
+    JSR   $5C8F              ; $5C86: 20 8F 5C
+    CMP   #$2C               ; $5C89: C9 2C   
+    BEQ   $5C56              ; $5C8B: F0 C9   
+    BNE   $5C13              ; $5C8D: D0 84   
+    INX                      ; $5C8F: E8      
+    LDA   $0101,X            ; $5C90: BD 01 01
+    BEQ   $5CB4              ; $5C93: F0 1F   
+    JSR   $0380              ; $5C95: 20 80 03
+    BCC   $5C8F              ; $5C98: 90 F5   
+    INC   $3F                ; $5C9A: E6 3F   
+    BNE   $5CA0              ; $5C9C: D0 02   
+    INC   $40                ; $5C9E: E6 40   
+    SEC                      ; $5CA0: 38      
+    LDA   $3F                ; $5CA1: A5 3F   
+    SBC   $1212              ; $5CA3: ED 12 12
+    LDA   $40                ; $5CA6: A5 40   
+    SBC   $1213              ; $5CA8: ED 13 12
+    BCS   $5CC4              ; $5CAB: B0 17   
+    INX                      ; $5CAD: E8      
+    LDA   $0101,X            ; $5CAE: BD 01 01
+    BNE   $5C9A              ; $5CB1: D0 E7   
+    RTS                      ; $5CB3: 60      
+    JSR   $0380              ; $5CB4: 20 80 03
+    BCS   $5CC3              ; $5CB7: B0 0A   
+    LDA   $3F                ; $5CB9: A5 3F   
+    BNE   $5CBF              ; $5CBB: D0 02   
+    DEC   $40                ; $5CBD: C6 40   
+    DEC   $3F                ; $5CBF: C6 3F   
+    BCC   $5CB4              ; $5CC1: 90 F1   
+    RTS                      ; $5CC3: 60      
+    JMP   $4D3A              ; $5CC4: 4C 3A 4D
+    INX                      ; $5CC7: E8      
+    LDA   $0101,X            ; $5CC8: BD 01 01
+    BEQ   $5CF9              ; $5CCB: F0 2C   
+    PHA                      ; $5CCD: 48      
+    JSR   $5D9C              ; $5CCE: 20 9C 5D
+    CMP   #$3A               ; $5CD1: C9 3A   
+    BCS   $5CE1              ; $5CD3: B0 0C   
+    CMP   #$20               ; $5CD5: C9 20   
+    BEQ   $5CE1              ; $5CD7: F0 08   
+    SEC                      ; $5CD9: 38      
+    SBC   #$30               ; $5CDA: E9 30   
+    SEC                      ; $5CDC: 38      
+    SBC   #$D0               ; $5CDD: E9 D0   
+    BCC   $5CF1              ; $5CDF: 90 10   
+    JSR   $5DA7              ; $5CE1: 20 A7 5D
+    INC   $6D                ; $5CE4: E6 6D   
+    JSR   $5DDF              ; $5CE6: 20 DF 5D
+    INC   $1210              ; $5CE9: EE 10 12
+    BNE   $5CF1              ; $5CEC: D0 03   
+    INC   $1211              ; $5CEE: EE 11 12
+    PLA                      ; $5CF1: 68      
+    LDY   #$00               ; $5CF2: A0 00   
+    STA   ($3D),Y            ; $5CF4: 91 3D   
+    INX                      ; $5CF6: E8      
+    BNE   $5CC8              ; $5CF7: D0 CF   
+    JSR   $0380              ; $5CF9: 20 80 03
+    BCS   $5C89              ; $5CFC: B0 8B   
+    JSR   $5DA7              ; $5CFE: 20 A7 5D
+    DEC   $6D                ; $5D01: C6 6D   
+    JSR   $5DC6              ; $5D03: 20 C6 5D
+    LDA   $1210              ; $5D06: AD 10 12
+    BNE   $5D0E              ; $5D09: D0 03   
+    DEC   $1211              ; $5D0B: CE 11 12
+    DEC   $1210              ; $5D0E: CE 10 12
+    JSR   $0386              ; $5D11: 20 86 03
+    BCC   $5CFE              ; $5D14: 90 E8   
+    JMP   $5C89              ; $5D16: 4C 89 5C
+    JSR   $5D68              ; $5D19: 20 68 5D
+    JSR   $5D99              ; $5D1C: 20 99 5D
+    BNE   $5D2E              ; $5D1F: D0 0D   
+    LDX   #$27               ; $5D21: A2 27   
+    LDA   $4B                ; $5D23: A5 4B   
+    STA   $3B                ; $5D25: 85 3B   
+    LDA   $4C                ; $5D27: A5 4C   
+    STA   $3C                ; $5D29: 85 3C   
+    JMP   $4D3C              ; $5D2B: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JSR   $5D9C              ; $5D2E: 20 9C 5D
+    STA   $5A                ; $5D31: 85 5A   
+    CMP   $16                ; $5D33: C5 16   
+    BNE   $5D5E              ; $5D35: D0 27   
+    JSR   $5D9C              ; $5D37: 20 9C 5D
+    STA   $5B                ; $5D3A: 85 5B   
+    CMP   $17                ; $5D3C: C5 17   
+    BNE   $5D63              ; $5D3E: D0 23   
+    SEC                      ; $5D40: 38      
+    SBC   $5D                ; $5D41: E5 5D   
+    BCC   $5D4D              ; $5D43: 90 08   
+    BNE   $5D55              ; $5D45: D0 0E   
+    LDA   $16                ; $5D47: A5 16   
+    SBC   $5C                ; $5D49: E5 5C   
+    BCS   $5D55              ; $5D4B: B0 08   
+    LDA   $16                ; $5D4D: A5 16   
+    STA   $65                ; $5D4F: 85 65   
+    LDA   $17                ; $5D51: A5 17   
+    STA   $64                ; $5D53: 85 64   
+    LDX   #$90               ; $5D55: A2 90   
+    SEC                      ; $5D57: 38      
+    JSR   $8C75              ; $5D58: 20 75 8C
+    JMP   $8E42              ; $5D5B: 4C 42 8E
+    JSR   $5D9C              ; $5D5E: 20 9C 5D
+    STA   $5B                ; $5D61: 85 5B   
+    JSR   $5D75              ; $5D63: 20 75 5D
+    BEQ   $5D1C              ; $5D66: F0 B4   
+    LDA   $1170              ; $5D68: AD 70 11
+    STA   $65                ; $5D6B: 85 65   
+    LDA   $1171              ; $5D6D: AD 71 11
+    STA   $64                ; $5D70: 85 64   
+    JMP   $5254              ; $5D72: 4C 54 52
+    LDA   $5A                ; $5D75: A5 5A   
+    SEC                      ; $5D77: 38      
+    SBC   $5C                ; $5D78: E5 5C   
+    LDA   $5B                ; $5D7A: A5 5B   
+    SBC   $5D                ; $5D7C: E5 5D   
+    BCC   $5D83              ; $5D7E: 90 03   
+    JSR   $5D89              ; $5D80: 20 89 5D
+    JSR   $5D9C              ; $5D83: 20 9C 5D
+    BNE   $5D83              ; $5D86: D0 FB   
+    RTS                      ; $5D88: 60      
+    LDA   $65                ; $5D89: A5 65   
+    CLC                      ; $5D8B: 18      
+    ADC   $1172              ; $5D8C: 6D 72 11
+    STA   $65                ; $5D8F: 85 65   
+    LDA   $64                ; $5D91: A5 64   
+    ADC   $1173              ; $5D93: 6D 73 11
+    STA   $64                ; $5D96: 85 64   
+    RTS                      ; $5D98: 60      
+    JSR   $5D9C              ; $5D99: 20 9C 5D
+    LDY   #$00               ; $5D9C: A0 00   
+    INC   $3D                ; $5D9E: E6 3D   
+    BNE   $5DA4              ; $5DA0: D0 02   
+    INC   $3E                ; $5DA2: E6 3E   
+    JMP   $03C9              ; $5DA4: 4C C9 03
+    LDA   $3D                ; $5DA7: A5 3D   
+    STA   $24                ; $5DA9: 85 24   
+    LDA   $3E                ; $5DAB: A5 3E   
+    STA   $25                ; $5DAD: 85 25   
+    LDA   $1210              ; $5DAF: AD 10 12
+    STA   $26                ; $5DB2: 85 26   
+    LDA   $1211              ; $5DB4: AD 11 12
+    STA   $27                ; $5DB7: 85 27   
+    LDY   #$00               ; $5DB9: A0 00   
+    STY   $0D                ; $5DBB: 84 0D   
+    STY   $6D                ; $5DBD: 84 6D   
+    RTS                      ; $5DBF: 60      
+    INC   $24                ; $5DC0: E6 24   
+    BNE   $5DC6              ; $5DC2: D0 02   
+    INC   $25                ; $5DC4: E6 25   
+    LDY   $0D                ; $5DC6: A4 0D   
+    INY                      ; $5DC8: C8      
+    JSR   $4305              ; $5DC9: 20 05 43
+    LDY   $6D                ; $5DCC: A4 6D   
+    INY                      ; $5DCE: C8      
+    STA   ($24),Y            ; $5DCF: 91 24   
+    JSR   $5DEE              ; $5DD1: 20 EE 5D
+    BNE   $5DC0              ; $5DD4: D0 EA   
+    RTS                      ; $5DD6: 60      
+    LDA   $26                ; $5DD7: A5 26   
+    BNE   $5DDD              ; $5DD9: D0 02   
+    DEC   $27                ; $5DDB: C6 27   
+    DEC   $26                ; $5DDD: C6 26   
+    LDY   $0D                ; $5DDF: A4 0D   
+    JSR   $03C0              ; $5DE1: 20 C0 03
+    LDY   $6D                ; $5DE4: A4 6D   
+    STA   ($26),Y            ; $5DE6: 91 26   
+    JSR   $5DEE              ; $5DE8: 20 EE 5D
+    BNE   $5DD7              ; $5DEB: D0 EA   
+    RTS                      ; $5DED: 60      
+    LDA   $24                ; $5DEE: A5 24   
+    CMP   $26                ; $5DF0: C5 26   
+    BNE   $5DF8              ; $5DF2: D0 04   
+    LDA   $25                ; $5DF4: A5 25   
+    CMP   $27                ; $5DF6: C5 27   
+    RTS                      ; $5DF8: 60      
+CMD_FOR:
+    LDA   #$80               ; $5DF9: A9 80   
+    STA   $12                ; $5DFB: 85 12   
+    JSR   $53C6              ; $5DFD: 20 C6 53 (CMD_LET)
+    LDA   #$81               ; $5E00: A9 81   
+    JSR   $4FAA              ; $5E02: 20 AA 4F (RUNTIME_STACK_MGR)
+    BEQ   $5E0F              ; $5E05: F0 08   
+    LDA   #$12               ; $5E07: A9 12   
+    JSR   $4FFE              ; $5E09: 20 FE 4F
+    JSR   $5047              ; $5E0C: 20 47 50
+    JSR   $5050              ; $5E0F: 20 50 50
+    JSR   $52A2              ; $5E12: 20 A2 52
+    TYA                      ; $5E15: 98      
+    LDY   #$11               ; $5E16: A0 11   
+    CLC                      ; $5E18: 18      
+    ADC   $3D                ; $5E19: 65 3D   
+    STA   ($7D),Y            ; $5E1B: 91 7D   
+    LDA   $3E                ; $5E1D: A5 3E   
+    ADC   #$00               ; $5E1F: 69 00   
+    DEY                      ; $5E21: 88      
+    STA   ($7D),Y            ; $5E22: 91 7D   
+    LDA   $3C                ; $5E24: A5 3C   
+    DEY                      ; $5E26: 88      
+    STA   ($7D),Y            ; $5E27: 91 7D   
+    LDA   $3B                ; $5E29: A5 3B   
+    DEY                      ; $5E2B: 88      
+    STA   ($7D),Y            ; $5E2C: 91 7D   
+    LDA   #$A4               ; $5E2E: A9 A4   
+    JSR   $795E              ; $5E30: 20 5E 79
+    JSR   $77DA              ; $5E33: 20 DA 77
+    JSR   $77D7              ; $5E36: 20 D7 77
+    LDA   $68                ; $5E39: A5 68   
+    ORA   #$7F               ; $5E3B: 09 7F   
+    AND   $64                ; $5E3D: 25 64   
+    STA   $64                ; $5E3F: 85 64   
+    LDX   #$04               ; $5E41: A2 04   
+    LDY   #$0D               ; $5E43: A0 0D   
+    LDA   $63,X              ; $5E45: B5 63   
+    STA   ($7D),Y            ; $5E47: 91 7D   
+    DEX                      ; $5E49: CA      
+    DEY                      ; $5E4A: 88      
+    BPL   $5E45              ; $5E4B: 10 F8   
+    LDA   #$9C               ; $5E4D: A9 9C   
+    LDY   #$89               ; $5E4F: A0 89   
+    JSR   $8BD4              ; $5E51: 20 D4 8B
+    JSR   $0386              ; $5E54: 20 86 03
+    CMP   #$A9               ; $5E57: C9 A9   
+    BNE   $5E61              ; $5E59: D0 06   
+    JSR   $0380              ; $5E5B: 20 80 03
+    JSR   $77D7              ; $5E5E: 20 D7 77
+    JSR   $8C57              ; $5E61: 20 57 8C
+    PHA                      ; $5E64: 48      
+    JSR   $8C47              ; $5E65: 20 47 8C
+    PLA                      ; $5E68: 68      
+    LDY   #$08               ; $5E69: A0 08   
+    LDX   #$05               ; $5E6B: A2 05   
+    STA   ($7D),Y            ; $5E6D: 91 7D   
+    LDA   $62,X              ; $5E6F: B5 62   
+    DEY                      ; $5E71: 88      
+    DEX                      ; $5E72: CA      
+    BPL   $5E6D              ; $5E73: 10 F8   
+    LDA   $4C                ; $5E75: A5 4C   
+    STA   ($7D),Y            ; $5E77: 91 7D   
+    LDA   $4B                ; $5E79: A5 4B   
+    DEY                      ; $5E7B: 88      
+    STA   ($7D),Y            ; $5E7C: 91 7D   
+    LDA   #$81               ; $5E7E: A9 81   
+    DEY                      ; $5E80: 88      
+    STA   ($7D),Y            ; $5E81: 91 7D   
+    RTS                      ; $5E83: 60      
+    JMP   $796C              ; $5E84: 4C 6C 79 (CMD_FE_BEGIN)
+CMD_DELETE:
+    JSR   $84F0              ; $5E87: 20 F0 84
+    JSR   $0386              ; $5E8A: 20 86 03
+    BEQ   $5E84              ; $5E8D: F0 F5   
+    JSR   $5EFB              ; $5E8F: 20 FB 5E
+    LDA   $61                ; $5E92: A5 61   
+    LDX   $62                ; $5E94: A6 62   
+    STA   $26                ; $5E96: 85 26   
+    STX   $27                ; $5E98: 86 27   
+    JSR   $5064              ; $5E9A: 20 64 50
+    BCC   $5EB4              ; $5E9D: 90 15   
+    LDY   #$01               ; $5E9F: A0 01   
+    JSR   $42EC              ; $5EA1: 20 EC 42
+    DEY                      ; $5EA4: 88      
+    TAX                      ; $5EA5: AA      
+    BNE   $5EAD              ; $5EA6: D0 05   
+    JSR   $42EC              ; $5EA8: 20 EC 42
+    BEQ   $5EB4              ; $5EAB: F0 07   
+    JSR   $42EC              ; $5EAD: 20 EC 42
+    STA   $61                ; $5EB0: 85 61   
+    STX   $62                ; $5EB2: 86 62   
+    LDA   $26                ; $5EB4: A5 26   
+    SEC                      ; $5EB6: 38      
+    SBC   $61                ; $5EB7: E5 61   
+    TAX                      ; $5EB9: AA      
+    LDA   $27                ; $5EBA: A5 27   
+    SBC   $62                ; $5EBC: E5 62   
+    TAY                      ; $5EBE: A8      
+    BCS   $5EE5              ; $5EBF: B0 24   
+    TXA                      ; $5EC1: 8A      
+    CLC                      ; $5EC2: 18      
+    ADC   $1210              ; $5EC3: 6D 10 12
+    STA   $1210              ; $5EC6: 8D 10 12
+    TYA                      ; $5EC9: 98      
+    ADC   $1211              ; $5ECA: 6D 11 12
+    STA   $1211              ; $5ECD: 8D 11 12
+    LDY   #$00               ; $5ED0: A0 00   
+    JSR   $42EC              ; $5ED2: 20 EC 42
+    STA   ($26),Y            ; $5ED5: 91 26   
+    INY                      ; $5ED7: C8      
+    BNE   $5ED2              ; $5ED8: D0 F8   
+    INC   $62                ; $5EDA: E6 62   
+    INC   $27                ; $5EDC: E6 27   
+    LDA   $1211              ; $5EDE: AD 11 12
+    CMP   $27                ; $5EE1: C5 27   
+    BCS   $5ED2              ; $5EE3: B0 ED   
+    JSR   $4F4F              ; $5EE5: 20 4F 4F
+    LDA   $24                ; $5EE8: A5 24   
+    LDX   $25                ; $5EEA: A6 25   
+    CLC                      ; $5EEC: 18      
+    ADC   #$02               ; $5EED: 69 02   
+    STA   $1210              ; $5EEF: 8D 10 12
+    BCC   $5EF5              ; $5EF2: 90 01   
+    INX                      ; $5EF4: E8      
+    STX   $1211              ; $5EF5: 8E 11 12
+    JMP   $4D37              ; $5EF8: 4C 37 4D (BASIC_READY_LOOP)
+    BEQ   $5F0F              ; $5EFB: F0 12   
+    BCC   $5F0F              ; $5EFD: 90 10   
+    CMP   #$AB               ; $5EFF: C9 AB   
+    BNE   $5F0F              ; $5F01: D0 0C   
+    LDY   #$01               ; $5F03: A0 01   
+    JSR   $03C9              ; $5F05: 20 C9 03
+    BEQ   $5F31              ; $5F08: F0 27   
+    CMP   #$3A               ; $5F0A: C9 3A   
+    BEQ   $5F31              ; $5F0C: F0 23   
+    SEC                      ; $5F0E: 38      
+    JSR   $50A0              ; $5F0F: 20 A0 50
+    JSR   $5064              ; $5F12: 20 64 50
+    JSR   $0386              ; $5F15: 20 86 03
+    BEQ   $5F26              ; $5F18: F0 0C   
+    CMP   #$AB               ; $5F1A: C9 AB   
+    BNE   $5F31              ; $5F1C: D0 13   
+    JSR   $0380              ; $5F1E: 20 80 03
+    JSR   $50A0              ; $5F21: 20 A0 50
+    BNE   $5F31              ; $5F24: D0 0B   
+    LDA   $0A                ; $5F26: A5 0A   
+    BNE   $5F30              ; $5F28: D0 06   
+    LDA   #$FF               ; $5F2A: A9 FF   
+    STA   $16                ; $5F2C: 85 16   
+    STA   $17                ; $5F2E: 85 17   
+    RTS                      ; $5F30: 60      
+    JMP   $796C              ; $5F31: 4C 6C 79 (CMD_FE_BEGIN)
+CMD_PUDEF:
+    JSR   $877B              ; $5F34: 20 7B 87
+    TAY                      ; $5F37: A8      
+    DEY                      ; $5F38: 88      
+    CPY   #$04               ; $5F39: C0 04   
+    BCC   $5F40              ; $5F3B: 90 03   
+    JMP   $7D28              ; $5F3D: 4C 28 7D
+    JSR   $03B7              ; $5F40: 20 B7 03
+    STA   $FF03              ; $5F43: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $1204,Y            ; $5F46: 99 04 12
+    DEY                      ; $5F49: 88      
+    BPL   $5F40              ; $5F4A: 10 F4   
+    RTS                      ; $5F4C: 60      
+CMD_TRAP:
+    JSR   $84D9              ; $5F4D: 20 D9 84
+    JSR   $0386              ; $5F50: 20 86 03
+    BEQ   $5F5C              ; $5F53: F0 07   
+    JSR   $8812              ; $5F55: 20 12 88
+    STY   $120B              ; $5F58: 8C 0B 12
+    BIT   $FFA9              ; $5F5B: 2C A9 FF
+    STA   $120C              ; $5F5E: 8D 0C 12
+    RTS                      ; $5F61: 60      
+CMD_RESUME:
+    JSR   $84D9              ; $5F62: 20 D9 84
+    LDX   $120A              ; $5F65: AE 0A 12
+    INX                      ; $5F68: E8      
+    BEQ   $5FDB              ; $5F69: F0 70   
+    JSR   $0386              ; $5F6B: 20 86 03
+    BEQ   $5FB7              ; $5F6E: F0 47   
+    BCC   $5FAC              ; $5F70: 90 3A   
+    CMP   #$82               ; $5F72: C9 82   
+    BNE   $5FD8              ; $5F74: D0 62   
+    JSR   $5FB7              ; $5F76: 20 B7 5F
+    LDY   #$00               ; $5F79: A0 00   
+    JSR   $03C9              ; $5F7B: 20 C9 03
+    BNE   $5FA6              ; $5F7E: D0 26   
+    INY                      ; $5F80: C8      
+    JSR   $03C9              ; $5F81: 20 C9 03
+    BNE   $5F8F              ; $5F84: D0 09   
+    INY                      ; $5F86: C8      
+    JSR   $03C9              ; $5F87: 20 C9 03
+    BNE   $5F8F              ; $5F8A: D0 03   
+    JMP   $4D37              ; $5F8C: 4C 37 4D (BASIC_READY_LOOP)
+    LDY   #$03               ; $5F8F: A0 03   
+    JSR   $03C9              ; $5F91: 20 C9 03
+    STA   $3B                ; $5F94: 85 3B   
+    INY                      ; $5F96: C8      
+    JSR   $03C9              ; $5F97: 20 C9 03
+    STA   $3C                ; $5F9A: 85 3C   
+    TYA                      ; $5F9C: 98      
+    CLC                      ; $5F9D: 18      
+    ADC   $3D                ; $5F9E: 65 3D   
+    STA   $3D                ; $5FA0: 85 3D   
+    BCC   $5FA6              ; $5FA2: 90 02   
+    INC   $3E                ; $5FA4: E6 3E   
+    JSR   $0380              ; $5FA6: 20 80 03
+    JMP   $528F              ; $5FA9: 4C 8F 52 (CMD_DATA)
+    JSR   $8812              ; $5FAC: 20 12 88
+    STA   $17                ; $5FAF: 85 17   
+    JSR   $5FC6              ; $5FB1: 20 C6 5F
+    JMP   $59FB              ; $5FB4: 4C FB 59
+    LDX   #$01               ; $5FB7: A2 01   
+    LDA   $1209,X            ; $5FB9: BD 09 12
+    STA   $3B,X              ; $5FBC: 95 3B   
+    LDA   $120E,X            ; $5FBE: BD 0E 12
+    STA   $3D,X              ; $5FC1: 95 3D   
+    DEX                      ; $5FC3: CA      
+    BPL   $5FB9              ; $5FC4: 10 F3   
+    LDX   #$FF               ; $5FC6: A2 FF   
+    STX   $1208              ; $5FC8: 8E 08 12
+    STX   $1209              ; $5FCB: 8E 09 12
+    STX   $120A              ; $5FCE: 8E 0A 12
+    LDX   $120D              ; $5FD1: AE 0D 12
+    STX   $120C              ; $5FD4: 8E 0C 12
+    RTS                      ; $5FD7: 60      
+    JMP   $796C              ; $5FD8: 4C 6C 79 (CMD_FE_BEGIN)
+    LDX   #$1F               ; $5FDB: A2 1F   
+    JMP   $4D3C              ; $5FDD: 4C 3C 4D (BASIC_ERROR_ENTRY)
+CMD_DO:
+    LDY   #$01               ; $5FE0: A0 01   
+    LDA.W $003D,Y            ; $5FE2: B9 3D 00
+    STA   $1214,Y            ; $5FE5: 99 14 12
+    LDA.W $003B,Y            ; $5FE8: B9 3B 00
+    STA   $1216,Y            ; $5FEB: 99 16 12
+    DEY                      ; $5FEE: 88      
+    BPL   $5FE2              ; $5FEF: 10 F1   
+    JSR   $0386              ; $5FF1: 20 86 03
+    BEQ   $6012              ; $5FF4: F0 1C   
+    CMP   #$FC               ; $5FF6: C9 FC   
+    BEQ   $600B              ; $5FF8: F0 11   
+    CMP   #$FD               ; $5FFA: C9 FD   
+    BNE   $6041              ; $5FFC: D0 43   
+    JSR   $60DB              ; $5FFE: 20 DB 60
+    LDA   $63                ; $6001: A5 63   
+    BNE   $6012              ; $6003: D0 0D   
+    JSR   $0386              ; $6005: 20 86 03
+    JMP   $6047              ; $6008: 4C 47 60
+    JSR   $60DB              ; $600B: 20 DB 60
+    LDA   $63                ; $600E: A5 63   
+    BNE   $6005              ; $6010: D0 F3   
+    LDA   #$05               ; $6012: A9 05   
+    JSR   $4FFE              ; $6014: 20 FE 4F
+    STA   $FF03              ; $6017: 8D 03 FF (MMU_LCRC_TOP)
+    LDY   #$04               ; $601A: A0 04   
+    LDA   $1215              ; $601C: AD 15 12
+    STA   ($7D),Y            ; $601F: 91 7D   
+    DEY                      ; $6021: 88      
+    LDA   $1214              ; $6022: AD 14 12
+    STA   ($7D),Y            ; $6025: 91 7D   
+    DEY                      ; $6027: 88      
+    LDA   $1217              ; $6028: AD 17 12
+    STA   ($7D),Y            ; $602B: 91 7D   
+    DEY                      ; $602D: 88      
+    LDA   $1216              ; $602E: AD 16 12
+    STA   ($7D),Y            ; $6031: 91 7D   
+    DEY                      ; $6033: 88      
+    LDA   #$EB               ; $6034: A9 EB   
+    STA   ($7D),Y            ; $6036: 91 7D   
+    RTS                      ; $6038: 60      
+CMD_EXIT:
+    JSR   $609B              ; $6039: 20 9B 60
+    JSR   $0386              ; $603C: 20 86 03
+    BEQ   $6047              ; $603F: F0 06   
+    JMP   $796C              ; $6041: 4C 6C 79 (CMD_FE_BEGIN)
+    JSR   $0380              ; $6044: 20 80 03
+    BEQ   $6060              ; $6047: F0 17   
+    CMP   #$EC               ; $6049: C9 EC   
+    BEQ   $6087              ; $604B: F0 3A   
+    CMP   #$22               ; $604D: C9 22   
+    BEQ   $605B              ; $604F: F0 0A   
+    CMP   #$EB               ; $6051: C9 EB   
+    BNE   $6044              ; $6053: D0 EF   
+    JSR   $6044              ; $6055: 20 44 60
+    JMP   $6005              ; $6058: 4C 05 60
+    JSR   $537C              ; $605B: 20 7C 53
+    BNE   $6044              ; $605E: D0 E4   
+    CMP   #$3A               ; $6060: C9 3A   
+    BEQ   $6044              ; $6062: F0 E0   
+    BIT   $7F                ; $6064: 24 7F   
+    BPL   $60AA              ; $6066: 10 42   
+    LDY   #$02               ; $6068: A0 02   
+    JSR   $03C9              ; $606A: 20 C9 03
+    BEQ   $60AA              ; $606D: F0 3B   
+    INY                      ; $606F: C8      
+    JSR   $03C9              ; $6070: 20 C9 03
+    STA   $3B                ; $6073: 85 3B   
+    INY                      ; $6075: C8      
+    JSR   $03C9              ; $6076: 20 C9 03
+    STA   $3C                ; $6079: 85 3C   
+    TYA                      ; $607B: 98      
+    CLC                      ; $607C: 18      
+    ADC   $3D                ; $607D: 65 3D   
+    STA   $3D                ; $607F: 85 3D   
+    BCC   $6044              ; $6081: 90 C1   
+    INC   $3E                ; $6083: E6 3E   
+    BNE   $6044              ; $6085: D0 BD   
+    JMP   $528F              ; $6087: 4C 8F 52 (CMD_DATA)
+CMD_LOOP:
+    BEQ   $60C1              ; $608A: F0 35   
+    CMP   #$FD               ; $608C: C9 FD   
+    BEQ   $60BC              ; $608E: F0 2C   
+    CMP   #$FC               ; $6090: C9 FC   
+    BNE   $6041              ; $6092: D0 AD   
+    JSR   $60DB              ; $6094: 20 DB 60
+    LDA   $63                ; $6097: A5 63   
+    BEQ   $60C1              ; $6099: F0 26   
+    LDA   #$EB               ; $609B: A9 EB   
+    JSR   $4FAA              ; $609D: 20 AA 4F (RUNTIME_STACK_MGR)
+    BNE   $60B7              ; $60A0: D0 15   
+    JSR   $5050              ; $60A2: 20 50 50
+    LDY   #$05               ; $60A5: A0 05   
+    JMP   $5059              ; $60A7: 4C 59 50
+    LDA   $1216              ; $60AA: AD 16 12
+    LDX   $1217              ; $60AD: AE 17 12
+    STA   $3B                ; $60B0: 85 3B   
+    STX   $3C                ; $60B2: 86 3C   
+    LDX   #$20               ; $60B4: A2 20   
+    BIT   $21A2              ; $60B6: 2C A2 21
+    JMP   $4D3C              ; $60B9: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    JSR   $60DB              ; $60BC: 20 DB 60
+    BEQ   $609B              ; $60BF: F0 DA   
+    JSR   $609B              ; $60C1: 20 9B 60
+    DEY                      ; $60C4: 88      
+    LDA   ($3F),Y            ; $60C5: B1 3F   
+    STA   $3E                ; $60C7: 85 3E   
+    DEY                      ; $60C9: 88      
+    LDA   ($3F),Y            ; $60CA: B1 3F   
+    STA   $3D                ; $60CC: 85 3D   
+    DEY                      ; $60CE: 88      
+    LDA   ($3F),Y            ; $60CF: B1 3F   
+    JSR   $A83B              ; $60D1: 20 3B A8
+    LDA   ($3F),Y            ; $60D4: B1 3F   
+    STA   $3B                ; $60D6: 85 3B   
+    JMP   $5FE0              ; $60D8: 4C E0 5F (CMD_DO)
+    JSR   $0380              ; $60DB: 20 80 03
+    JMP   $77EF              ; $60DE: 4C EF 77 (FRMEVL)
+    JSR   $87F4              ; $60E1: 20 F4 87
+    DEX                      ; $60E4: CA      
+    CPX   #$08               ; $60E5: E0 08   
+    BCC   $60EC              ; $60E7: 90 03   
+    JMP   $7D28              ; $60E9: 4C 28 7D
+    STX   $77                ; $60EC: 86 77   
+    JSR   $795C              ; $60EE: 20 5C 79
+    JSR   $877B              ; $60F1: 20 7B 87
+    TAY                      ; $60F4: A8      
+    LDA   #$01               ; $60F5: A9 01   
+    STA   $26                ; $60F7: 85 26   
+    LDA   #$24               ; $60F9: A9 24   
+    LDX   $77                ; $60FB: A6 77   
+    INX                      ; $60FD: E8      
+    JSR   $A845              ; $60FE: 20 45 A8
+    JSR   $FF65              ; $6101: 20 65 FF (J_PFKEY)
+    BCS   $6107              ; $6104: B0 01   
+    RTS                      ; $6106: 60      
+    JMP   $4D3A              ; $6107: 4C 3A 4D
+CMD_KEY:
+    BEQ   $6121              ; $610A: F0 15   
+    CMP   #$91               ; $610C: C9 91   
+    BEQ   $611E              ; $610E: F0 0E   
+    CMP   #$FE               ; $6110: C9 FE   
+    BNE   $60E1              ; $6112: D0 CD   
+    JSR   $0380              ; $6114: 20 80 03
+    CMP   #$24               ; $6117: C9 24   
+    BEQ   $611E              ; $6119: F0 03   
+    JMP   $796C              ; $611B: 4C 6C 79 (CMD_FE_BEGIN)
+    JMP   $4846              ; $611E: 4C 46 48 (UNIMPL_CMD_ERR)
+    LDX   #$00               ; $6121: A2 00   
+    LDY   #$00               ; $6123: A0 00   
+    INX                      ; $6125: E8      
+    LDA   $0FFF,X            ; $6126: BD FF 0F
+    BEQ   $617E              ; $6129: F0 53   
+    STA   $78                ; $612B: 85 78   
+    STX   $77                ; $612D: 86 77   
+    LDX   #$05               ; $612F: A2 05   
+    LDA   $A82A,X            ; $6131: BD 2A A8
+    DEX                      ; $6134: CA      
+    BNE   $6139              ; $6135: D0 02   
+    ORA   $77                ; $6137: 05 77   
+    JSR   $9269              ; $6139: 20 69 92
+    TXA                      ; $613C: 8A      
+    BPL   $6131              ; $613D: 10 F2   
+    LDX   #$07               ; $613F: A2 07   
+    LDA   $100A,Y            ; $6141: B9 0A 10
+    INY                      ; $6144: C8      
+    PHA                      ; $6145: 48      
+    STX   $79                ; $6146: 86 79   
+    LDX   #$04               ; $6148: A2 04   
+    CMP   $61A3,X            ; $614A: DD A3 61
+    BEQ   $6183              ; $614D: F0 34   
+    DEX                      ; $614F: CA      
+    BNE   $614A              ; $6150: D0 F8   
+    LDX   $79                ; $6152: A6 79   
+    CPX   #$08               ; $6154: E0 08   
+    BCC   $615F              ; $6156: 90 07   
+    BNE   $6164              ; $6158: D0 0A   
+    LDA   #$2B               ; $615A: A9 2B   
+    JSR   $9269              ; $615C: 20 69 92
+    LDA   #$22               ; $615F: A9 22   
+    JSR   $9269              ; $6161: 20 69 92
+    PLA                      ; $6164: 68      
+    JSR   $9269              ; $6165: 20 69 92
+    LDX   #$09               ; $6168: A2 09   
+    DEC   $78                ; $616A: C6 78   
+    BNE   $6141              ; $616C: D0 D3   
+    CPX   #$09               ; $616E: E0 09   
+    BCC   $6177              ; $6170: 90 05   
+    LDA   #$22               ; $6172: A9 22   
+    JSR   $9269              ; $6174: 20 69 92
+    LDA   #$8D               ; $6177: A9 8D   
+    JSR   $9269              ; $6179: 20 69 92
+    LDX   $77                ; $617C: A6 77   
+    CPX   #$08               ; $617E: E0 08   
+    BNE   $6125              ; $6180: D0 A3   
+    RTS                      ; $6182: 60      
+    LDX   $79                ; $6183: A6 79   
+    LDA   $619A,X            ; $6185: BD 9A 61
+    JSR   $9269              ; $6188: 20 69 92
+    DEX                      ; $618B: CA      
+    CPX   #$03               ; $618C: E0 03   
+    BCS   $6185              ; $618E: B0 F5   
+    PLA                      ; $6190: 68      
+    JSR   $A830              ; $6191: 20 30 A8
+    LDA   #$29               ; $6194: A9 29   
+    JSR   $9269              ; $6196: 20 69 92
+    LDX   #$08               ; $6199: A2 08   
+    BNE   $616A              ; $619B: D0 CD   
+    PLP                      ; $619D: 28      
+    BIT   $52                ; $619E: 24 52   
+    PHA                      ; $61A0: 48      
+    .BYTE $43                                ; $61A1: 43 [UNRESOLVED]
+    .BYTE $2B                                ; $61A2: 2B [UNRESOLVED]
+    .BYTE $22                                ; $61A3: 22 [UNRESOLVED]
+    ORA   $228D              ; $61A4: 0D 8D 22
+    .BYTE $1B                                ; $61A7: 1B [UNRESOLVED]
+CMD_PAINT:
+    JSR   $9E2F              ; $61A8: 20 2F 9E
+    LDX   #$04               ; $61AB: A2 04   
+    JSR   $9E52              ; $61AD: 20 52 9E
+    JSR   $9DF2              ; $61B0: 20 F2 9D
+    JSR   $9E1C              ; $61B3: 20 1C 9E
+    CPX   #$02               ; $61B6: E0 02   
+    BCC   $61BD              ; $61B8: 90 03   
+    JMP   $7D28              ; $61BA: 4C 28 7D
+    TXA                      ; $61BD: 8A      
+    LSR   A                  ; $61BE: 4A      
+    ROR   A                  ; $61BF: 6A      
+    STA   $8B                ; $61C0: 85 8B   
+    BPL   $61C8              ; $61C2: 10 04   
+    LDA   $83                ; $61C4: A5 83   
+    BEQ   $61CF              ; $61C6: F0 07   
+    JSR   $9C49              ; $61C8: 20 49 9C
+    BCS   $61CF              ; $61CB: B0 02   
+    BNE   $61D0              ; $61CD: D0 01   
+    RTS                      ; $61CF: 60      
+    JSR   $92EA              ; $61D0: 20 EA 92 (GARBAG_COLLECT)
+    STA   $FF03              ; $61D3: 8D 03 FF (MMU_LCRC_TOP)
+    LDA   $33                ; $61D6: A5 33   
+    STA   $24                ; $61D8: 85 24   
+    LDA   $34                ; $61DA: A5 34   
+    STA   $25                ; $61DC: 85 25   
+    SEC                      ; $61DE: 38      
+    LDA   $35                ; $61DF: A5 35   
+    SBC   #$03               ; $61E1: E9 03   
+    STA   $1B                ; $61E3: 85 1B   
+    LDA   $36                ; $61E5: A5 36   
+    SBC   #$00               ; $61E7: E9 00   
+    STA   $1C                ; $61E9: 85 1C   
+    LDX   #$00               ; $61EB: A2 00   
+    STX   $63                ; $61ED: 86 63   
+    STX   $64                ; $61EF: 86 64   
+    LDX   $1133              ; $61F1: AE 33 11
+    BNE   $61F9              ; $61F4: D0 03   
+    DEC   $1134              ; $61F6: CE 34 11
+    DEC   $1133              ; $61F9: CE 33 11
+    JSR   $9C49              ; $61FC: 20 49 9C
+    BCS   $6203              ; $61FF: B0 02   
+    BNE   $61F1              ; $6201: D0 EE   
+    INC   $1133              ; $6203: EE 33 11
+    BNE   $620B              ; $6206: D0 03   
+    INC   $1134              ; $6208: EE 34 11
+    JSR   $9C19              ; $620B: 20 19 9C
+    LDX   $1131              ; $620E: AE 31 11
+    BNE   $6216              ; $6211: D0 03   
+    DEC   $1132              ; $6213: CE 32 11
+    DEC   $1131              ; $6216: CE 31 11
+    LDA   $63                ; $6219: A5 63   
+    JSR   $627C              ; $621B: 20 7C 62
+    STA   $63                ; $621E: 85 63   
+    CLC                      ; $6220: 18      
+    LDA   $1131              ; $6221: AD 31 11
+    ADC   #$02               ; $6224: 69 02   
+    STA   $1131              ; $6226: 8D 31 11
+    BCC   $622E              ; $6229: 90 03   
+    INC   $1132              ; $622B: EE 32 11
+    LDA   $64                ; $622E: A5 64   
+    JSR   $627C              ; $6230: 20 7C 62
+    STA   $64                ; $6233: 85 64   
+    LDX   $1131              ; $6235: AE 31 11
+    BNE   $623D              ; $6238: D0 03   
+    DEC   $1132              ; $623A: CE 32 11
+    DEC   $1131              ; $623D: CE 31 11
+    INC   $1133              ; $6240: EE 33 11
+    BNE   $6248              ; $6243: D0 03   
+    INC   $1134              ; $6245: EE 34 11
+    JSR   $9C49              ; $6248: 20 49 9C
+    BCS   $624F              ; $624B: B0 02   
+    BNE   $620B              ; $624D: D0 BC   
+    LDX   #$03               ; $624F: A2 03   
+    LDY   #$00               ; $6251: A0 00   
+    LDA   $25                ; $6253: A5 25   
+    CMP   $34                ; $6255: C5 34   
+    BNE   $625F              ; $6257: D0 06   
+    LDA   $24                ; $6259: A5 24   
+    CMP   $33                ; $625B: C5 33   
+    BEQ   $6279              ; $625D: F0 1A   
+    LDA   $24                ; $625F: A5 24   
+    BNE   $6265              ; $6261: D0 02   
+    DEC   $25                ; $6263: C6 25   
+    DEC   $24                ; $6265: C6 24   
+    JSR   $03B7              ; $6267: 20 B7 03
+    STA   $FF03              ; $626A: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $1131,X            ; $626D: 9D 31 11
+    DEX                      ; $6270: CA      
+    BPL   $625F              ; $6271: 10 EC   
+    JSR   $4BB5              ; $6273: 20 B5 4B
+    JMP   $61EB              ; $6276: 4C EB 61
+    JMP   $9DF2              ; $6279: 4C F2 9D
+    PHA                      ; $627C: 48      
+    JSR   $9C49              ; $627D: 20 49 9C
+    BCS   $629A              ; $6280: B0 18   
+    BEQ   $629A              ; $6282: F0 16   
+    PLA                      ; $6284: 68      
+    BNE   $629D              ; $6285: D0 16   
+    TAX                      ; $6287: AA      
+    TAY                      ; $6288: A8      
+    LDA   $25                ; $6289: A5 25   
+    CMP   $1C                ; $628B: C5 1C   
+    BCC   $629E              ; $628D: 90 0F   
+    BNE   $6297              ; $628F: D0 06   
+    LDA   $24                ; $6291: A5 24   
+    CMP   $1B                ; $6293: C5 1B   
+    BCC   $629E              ; $6295: 90 07   
+    JMP   $4D3A              ; $6297: 4C 3A 4D
+    PLA                      ; $629A: 68      
+    LDA   #$00               ; $629B: A9 00   
+    RTS                      ; $629D: 60      
+    LDA   $1131,X            ; $629E: BD 31 11
+    STA   $FF04              ; $62A1: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($24),Y            ; $62A4: 91 24   
+    STA   $FF03              ; $62A6: 8D 03 FF (MMU_LCRC_TOP)
+    INC   $24                ; $62A9: E6 24   
+    BNE   $62AF              ; $62AB: D0 02   
+    INC   $25                ; $62AD: E6 25   
+    INX                      ; $62AF: E8      
+    CPX   #$04               ; $62B0: E0 04   
+    BNE   $629E              ; $62B2: D0 EA   
+    LDA   #$80               ; $62B4: A9 80   
+    RTS                      ; $62B6: 60      
+CMD_BOX:
+    JSR   $9E2F              ; $62B7: 20 2F 9E
+    LDX   #$1F               ; $62BA: A2 1F   
+    JSR   $9E6D              ; $62BC: 20 6D 9E
+    LDX   #$2B               ; $62BF: A2 2B   
+    JSR   $9E52              ; $62C1: 20 52 9E
+    JSR   $9E06              ; $62C4: 20 06 9E
+    STY   $1154              ; $62C7: 8C 54 11
+    STA   $1155              ; $62CA: 8D 55 11
+    JSR   $9E1C              ; $62CD: 20 1C 9E
+    CPX   #$02               ; $62D0: E0 02   
+    BCC   $62D7              ; $62D2: 90 03   
+    JMP   $7D28              ; $62D4: 4C 28 7D
+    STX   $116C              ; $62D7: 8E 6C 11
+    TXA                      ; $62DA: 8A      
+    PHA                      ; $62DB: 48      
+    JSR   $6389              ; $62DC: 20 89 63
+    PLA                      ; $62DF: 68      
+    BNE   $62FE              ; $62E0: D0 1C   
+    BEQ   $62E7              ; $62E2: F0 03   
+    JSR   $640B              ; $62E4: 20 0B 64
+    JSR   $9B30              ; $62E7: 20 30 9B
+    LDA   $114E              ; $62EA: AD 4E 11
+    BNE   $62E4              ; $62ED: D0 F5   
+    LDX   #$04               ; $62EF: A2 04   
+    LDA   $115B,X            ; $62F1: BD 5B 11
+    STA   $1130,X            ; $62F4: 9D 30 11
+    DEX                      ; $62F7: CA      
+    BNE   $62F1              ; $62F8: D0 F7   
+    STX   $116C              ; $62FA: 8E 6C 11
+    RTS                      ; $62FD: 60      
+    LDX   #$00               ; $62FE: A2 00   
+    LDA   $1149              ; $6300: AD 49 11
+    LSR   A                  ; $6303: 4A      
+    BCC   $6308              ; $6304: 90 02   
+    LDX   #$02               ; $6306: A2 02   
+    LDA   $1160,X            ; $6308: BD 60 11
+    STA   $115A              ; $630B: 8D 5A 11
+    LDA   $1161,X            ; $630E: BD 61 11
+    STA   $115B              ; $6311: 8D 5B 11
+    LDA   #$00               ; $6314: A9 00   
+    LDX   #$03               ; $6316: A2 03   
+    STA   $1156,X            ; $6318: 9D 56 11
+    DEX                      ; $631B: CA      
+    BPL   $6318              ; $631C: 10 FA   
+    LDX   #$07               ; $631E: A2 07   
+    LDA   $1131,X            ; $6320: BD 31 11
+    PHA                      ; $6323: 48      
+    DEX                      ; $6324: CA      
+    BPL   $6320              ; $6325: 10 F9   
+    JSR   $9B30              ; $6327: 20 30 9B
+    LDX   #$00               ; $632A: A2 00   
+    PLA                      ; $632C: 68      
+    STA   $1131,X            ; $632D: 9D 31 11
+    INX                      ; $6330: E8      
+    CPX   #$08               ; $6331: E0 08   
+    BNE   $632C              ; $6333: D0 F7   
+    LDA   $115A              ; $6335: AD 5A 11
+    BNE   $633F              ; $6338: D0 05   
+    DEC   $115B              ; $633A: CE 5B 11
+    BMI   $62EF              ; $633D: 30 B0   
+    DEC   $115A              ; $633F: CE 5A 11
+    LDX   #$25               ; $6342: A2 25   
+    LDY   #$1B               ; $6344: A0 1B   
+    LDA   $1149              ; $6346: AD 49 11
+    LSR   A                  ; $6349: 4A      
+    BCC   $634E              ; $634A: 90 02   
+    LDY   #$19               ; $634C: A0 19   
+    LDA   #$00               ; $634E: A9 00   
+    LSR   A                  ; $6350: 4A      
+    PHA                      ; $6351: 48      
+    JSR   $9D6D              ; $6352: 20 6D 9D
+    STA   $1131,X            ; $6355: 9D 31 11
+    TYA                      ; $6358: 98      
+    STA   $1132,X            ; $6359: 9D 32 11
+    PLA                      ; $635C: 68      
+    BCC   $6361              ; $635D: 90 02   
+    ORA   #$A0               ; $635F: 09 A0   
+    INX                      ; $6361: E8      
+    INX                      ; $6362: E8      
+    LDY   #$19               ; $6363: A0 19   
+    LSR   $1149              ; $6365: 4E 49 11
+    BCC   $636C              ; $6368: 90 02   
+    LDY   #$1B               ; $636A: A0 1B   
+    ROL   $1149              ; $636C: 2E 49 11
+    CPX   #$27               ; $636F: E0 27   
+    BEQ   $6350              ; $6371: F0 DD   
+    LDX   #$06               ; $6373: A2 06   
+    ASL   A                  ; $6375: 0A      
+    BEQ   $6335              ; $6376: F0 BD   
+    BCC   $6382              ; $6378: 90 08   
+    INC   $1131,X            ; $637A: FE 31 11
+    BNE   $6382              ; $637D: D0 03   
+    INC   $1132,X            ; $637F: FE 32 11
+    ASL   A                  ; $6382: 0A      
+    DEX                      ; $6383: CA      
+    DEX                      ; $6384: CA      
+    BPL   $6378              ; $6385: 10 F1   
+    BMI   $631E              ; $6387: 30 95   
+    LDY   #$23               ; $6389: A0 23   
+    JSR   $9A74              ; $638B: 20 74 9A
+    LDX   #$1F               ; $638E: A2 1F   
+    LDY   #$2B               ; $6390: A0 2B   
+    TYA                      ; $6392: 98      
+    PHA                      ; $6393: 48      
+    JSR   $9D99              ; $6394: 20 99 9D
+    STA   $1135,X            ; $6397: 9D 35 11
+    STA   $1139,X            ; $639A: 9D 39 11
+    STA   $1141,X            ; $639D: 9D 41 11
+    TYA                      ; $63A0: 98      
+    STA   $1136,X            ; $63A1: 9D 36 11
+    STA   $113A,X            ; $63A4: 9D 3A 11
+    STA   $1142,X            ; $63A7: 9D 42 11
+    PLA                      ; $63AA: 68      
+    TAY                      ; $63AB: A8      
+    JSR   $9D6D              ; $63AC: 20 6D 9D
+    STA   $1131,X            ; $63AF: 9D 31 11
+    TYA                      ; $63B2: 98      
+    STA   $1132,X            ; $63B3: 9D 32 11
+    LDY   #$2D               ; $63B6: A0 2D   
+    INX                      ; $63B8: E8      
+    INX                      ; $63B9: E8      
+    CPX   #$21               ; $63BA: E0 21   
+    BEQ   $6392              ; $63BC: F0 D4   
+    LDA   #$90               ; $63BE: A9 90   
+    JSR   $9AF3              ; $63C0: 20 F3 9A
+    LDA   $1149              ; $63C3: AD 49 11
+    AND   #$03               ; $63C6: 29 03   
+    STA   $1149              ; $63C8: 8D 49 11
+    TAX                      ; $63CB: AA      
+    LDA   $63ED,X            ; $63CC: BD ED 63
+    JSR   $640B              ; $63CF: 20 0B 64
+    JSR   $9DF2              ; $63D2: 20 F2 9D
+    LDA   $114E              ; $63D5: AD 4E 11
+    JSR   $640B              ; $63D8: 20 0B 64
+    LDX   $1149              ; $63DB: AE 49 11
+    LDA   $63ED,X            ; $63DE: BD ED 63
+    AND   #$F0               ; $63E1: 29 F0   
+    STA   $114F              ; $63E3: 8D 4F 11
+    LDA   $63F1,X            ; $63E6: BD F1 63
+    STA   $114E              ; $63E9: 8D 4E 11
+    RTS                      ; $63EC: 60      
+    LDX   $41E4,Y            ; $63ED: BE E4 41
+    .BYTE $1B                                ; $63F0: 1B [UNRESOLVED]
+    EOR   ($1B,X)            ; $63F1: 41 1B   
+    .BYTE $BE                                ; $63F3: BE [UNRESOLVED]
+    .BYTE $E4                                ; $63F4: E4 [UNRESOLVED]
+BASIC_DESIGNER_CREDITS:
+; --- [DATA] Embedded Designer Credits (FRED B / TERRY R / MIKE I) ($63F5-$640A) ---
+    .BYTE $46, $52, $45, $44, $20, $42, $0D, $54 ; $63F5 [IDENTIFIED_DATA] |FRED B.T|
+    .BYTE $45, $52, $52, $59, $20, $52, $0D, $4D ; $63FD [IDENTIFIED_DATA] |ERRY R.M|
+    .BYTE $49, $4B, $45, $20, $49, $0D           ; $6405 [IDENTIFIED_DATA] |IKE I.|
+    JSR   $6767              ; $640B: 20 67 67
+    LDX   #$04               ; $640E: A2 04   
+    LDA   $1132,X            ; $6410: BD 32 11
+    ASL   A                  ; $6413: 0A      
+    ROR   $1132,X            ; $6414: 7E 32 11
+    ROR   $1131,X            ; $6417: 7E 31 11
+    BCC   $6424              ; $641A: 90 08   
+    INC   $1131,X            ; $641C: FE 31 11
+    BNE   $6424              ; $641F: D0 03   
+    INC   $1132,X            ; $6421: FE 32 11
+    INX                      ; $6424: E8      
+    INX                      ; $6425: E8      
+    CPX   #$06               ; $6426: E0 06   
+    BEQ   $6410              ; $6428: F0 E6   
+    RTS                      ; $642A: 60      
+CMD_SSHAPE:
+    JSR   $A074              ; $642B: 20 74 A0
+    JSR   $7AAF              ; $642E: 20 AF 7A (PTRGET)
+    STA   $FF03              ; $6431: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $115F              ; $6434: 8D 5F 11
+    STY   $1160              ; $6437: 8C 60 11
+    BIT   $0F                ; $643A: 24 0F   
+    BMI   $6441              ; $643C: 30 03   
+    JMP   $77E7              ; $643E: 4C E7 77
+    LDX   #$28               ; $6441: A2 28   
+    JSR   $9E6D              ; $6443: 20 6D 9E
+    LDX   #$04               ; $6446: A2 04   
+    JSR   $9E52              ; $6448: 20 52 9E
+    LDX   #$2A               ; $644B: A2 2A   
+    LDY   #$06               ; $644D: A0 06   
+    LDA   #$02               ; $644F: A9 02   
+    STA   $8E                ; $6451: 85 8E   
+    JSR   $9D99              ; $6453: 20 99 9D
+    TAX                      ; $6456: AA      
+    TYA                      ; $6457: 98      
+    PHA                      ; $6458: 48      
+    LDY   $8E                ; $6459: A4 8E   
+    JSR   $9DF9              ; $645B: 20 F9 9D
+    BCC   $646C              ; $645E: 90 0C   
+    LDA   $1159,Y            ; $6460: B9 59 11
+    STA   $1131,Y            ; $6463: 99 31 11
+    LDA   $115A,Y            ; $6466: B9 5A 11
+    STA   $1132,Y            ; $6469: 99 32 11
+    TXA                      ; $646C: 8A      
+    STA   $1159,Y            ; $646D: 99 59 11
+    STA   $03DB,Y            ; $6470: 99 DB 03
+    PLA                      ; $6473: 68      
+    STA   $115A,Y            ; $6474: 99 5A 11
+    STA   $03DC,Y            ; $6477: 99 DC 03
+    LDX   #$28               ; $647A: A2 28   
+    LDY   #$04               ; $647C: A0 04   
+    DEC   $8E                ; $647E: C6 8E   
+    DEC   $8E                ; $6480: C6 8E   
+    BEQ   $6453              ; $6482: F0 CF   
+    LDY   #$FF               ; $6484: A0 FF   
+    STY   $1155              ; $6486: 8C 55 11
+    LDA   $1131              ; $6489: AD 31 11
+    STA   $115D              ; $648C: 8D 5D 11
+    LDA   $1132              ; $648F: AD 32 11
+    STA   $115E              ; $6492: 8D 5E 11
+    TYA                      ; $6495: 98      
+    JSR   $8690              ; $6496: 20 90 86
+    STA   $FF03              ; $6499: 8D 03 FF (MMU_LCRC_TOP)
+    JSR   $9CE3              ; $649C: 20 E3 9C
+    LDA   ($8C),Y            ; $649F: B1 8C   
+    BCC   $64B1              ; $64A1: 90 0E   
+    LDA   $1131              ; $64A3: AD 31 11
+    BIT   $D8                ; $64A6: 24 D8   
+    BPL   $64AC              ; $64A8: 10 02   
+    SEC                      ; $64AA: 38      
+    ROL   A                  ; $64AB: 2A      
+    AND   #$07               ; $64AC: 29 07   
+    TAX                      ; $64AE: AA      
+    LDA   #$00               ; $64AF: A9 00   
+    BIT   $D8                ; $64B1: 24 D8   
+    BPL   $64B6              ; $64B3: 10 01   
+    DEX                      ; $64B5: CA      
+    STX   $1161              ; $64B6: 8E 61 11
+    ASL   A                  ; $64B9: 0A      
+    DEX                      ; $64BA: CA      
+    BPL   $64B9              ; $64BB: 10 FC   
+    ROR   A                  ; $64BD: 6A      
+    STA   $8E                ; $64BE: 85 8E   
+    LDA   #$08               ; $64C0: A9 08   
+    BIT   $D8                ; $64C2: 24 D8   
+    BPL   $64C7              ; $64C4: 10 01   
+    LSR   A                  ; $64C6: 4A      
+    CLC                      ; $64C7: 18      
+    ADC   $1131              ; $64C8: 6D 31 11
+    STA   $1131              ; $64CB: 8D 31 11
+    BCC   $64D3              ; $64CE: 90 03   
+    INC   $1132              ; $64D0: EE 32 11
+    JSR   $9CE3              ; $64D3: 20 E3 9C
+    LDA   #$00               ; $64D6: A9 00   
+    BCS   $64DC              ; $64D8: B0 02   
+    LDA   ($8C),Y            ; $64DA: B1 8C   
+    STA   $8F                ; $64DC: 85 8F   
+    LDX   $1161              ; $64DE: AE 61 11
+    LSR   A                  ; $64E1: 4A      
+    INX                      ; $64E2: E8      
+    CPX   #$08               ; $64E3: E0 08   
+    BNE   $64E1              ; $64E5: D0 FA   
+    ORA   $8E                ; $64E7: 05 8E   
+    INC   $1155              ; $64E9: EE 55 11
+    LDY   $1155              ; $64EC: AC 55 11
+    CPY   #$FC               ; $64EF: C0 FC   
+    BCC   $64F6              ; $64F1: 90 03   
+    JMP   $A5ED              ; $64F3: 4C ED A5
+    STA   $FF04              ; $64F6: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($64),Y            ; $64F9: 91 64   
+    STA   $FF03              ; $64FB: 8D 03 FF (MMU_LCRC_TOP)
+    LDX   $1161              ; $64FE: AE 61 11
+    LDA   $1159              ; $6501: AD 59 11
+    SEC                      ; $6504: 38      
+    BIT   $D8                ; $6505: 24 D8   
+    BPL   $650C              ; $6507: 10 03   
+    SBC   #$04               ; $6509: E9 04   
+    BIT   $08E9              ; $650B: 2C E9 08
+    STA   $1159              ; $650E: 8D 59 11
+    LDA   $8F                ; $6511: A5 8F   
+    BCS   $64B9              ; $6513: B0 A4   
+    DEC   $115A              ; $6515: CE 5A 11
+    BPL   $64B9              ; $6518: 10 9F   
+    LDX   $115B              ; $651A: AE 5B 11
+    BNE   $6567              ; $651D: D0 48   
+    DEC   $115C              ; $651F: CE 5C 11
+    BPL   $6567              ; $6522: 10 43   
+    BIT   $D8                ; $6524: 24 D8   
+    BPL   $652E              ; $6526: 10 06   
+    ASL   $03DB              ; $6528: 0E DB 03
+    ROL   $03DC              ; $652B: 2E DC 03
+    LDX   #$00               ; $652E: A2 00   
+    LDA   $03DB,X            ; $6530: BD DB 03
+    INY                      ; $6533: C8      
+    STA   $FF04              ; $6534: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($64),Y            ; $6537: 91 64   
+    STA   $FF03              ; $6539: 8D 03 FF (MMU_LCRC_TOP)
+    INX                      ; $653C: E8      
+    CPX   #$04               ; $653D: E0 04   
+    BNE   $6530              ; $653F: D0 EF   
+    INY                      ; $6541: C8      
+    STY   $03DB              ; $6542: 8C DB 03
+    LDA   $64                ; $6545: A5 64   
+    STA   $03DC              ; $6547: 8D DC 03
+    LDA   $65                ; $654A: A5 65   
+    STA   $03DD              ; $654C: 8D DD 03
+    LDA   #$DB               ; $654F: A9 DB   
+    STA   $66                ; $6551: 85 66   
+    LDA   #$03               ; $6553: A9 03   
+    STA   $67                ; $6555: 85 67   
+    LDA   $115F              ; $6557: AD 5F 11
+    STA   $4B                ; $655A: 85 4B   
+    LDA   $1160              ; $655C: AD 60 11
+    STA   $4C                ; $655F: 85 4C   
+    JSR   $5494              ; $6561: 20 94 54
+    JMP   $9DF2              ; $6564: 4C F2 9D
+    DEC   $115B              ; $6567: CE 5B 11
+    INC   $1133              ; $656A: EE 33 11
+    BNE   $6572              ; $656D: D0 03   
+    INC   $1134              ; $656F: EE 34 11
+    LDA   $115D              ; $6572: AD 5D 11
+    STA   $1131              ; $6575: 8D 31 11
+    LDA   $115E              ; $6578: AD 5E 11
+    STA   $1132              ; $657B: 8D 32 11
+    LDA   $03DB              ; $657E: AD DB 03
+    STA   $1159              ; $6581: 8D 59 11
+    LDA   $03DC              ; $6584: AD DC 03
+    STA   $115A              ; $6587: 8D 5A 11
+    JMP   $649C              ; $658A: 4C 9C 64
+CMD_GSHAPE:
+    JSR   $A074              ; $658D: 20 74 A0
+    JSR   $877B              ; $6590: 20 7B 87
+    STA   $FF03              ; $6593: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $1153              ; $6596: 8D 53 11
+    STX   $26                ; $6599: 86 26   
+    STY   $27                ; $659B: 84 27   
+    LDX   #$04               ; $659D: A2 04   
+    JSR   $9E52              ; $659F: 20 52 9E
+    JSR   $9E1C              ; $65A2: 20 1C 9E
+    CPX   #$05               ; $65A5: E0 05   
+    BCC   $65AC              ; $65A7: 90 03   
+    JMP   $7D28              ; $65A9: 4C 28 7D
+    STX   $1154              ; $65AC: 8E 54 11
+    LDX   #$03               ; $65AF: A2 03   
+    LDY   $1153              ; $65B1: AC 53 11
+    CPY   #$05               ; $65B4: C0 05   
+    BCS   $65B9              ; $65B6: B0 01   
+    RTS                      ; $65B8: 60      
+    DEY                      ; $65B9: 88      
+    LDA   #$26               ; $65BA: A9 26   
+    JSR   $03AB              ; $65BC: 20 AB 03
+    STA   $FF03              ; $65BF: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $1159,X            ; $65C2: 9D 59 11
+    DEX                      ; $65C5: CA      
+    BPL   $65B9              ; $65C6: 10 F1   
+    STX   $1155              ; $65C8: 8E 55 11
+    JSR   $9DF2              ; $65CB: 20 F2 9D
+    LDA   $1159              ; $65CE: AD 59 11
+    STA   $115D              ; $65D1: 8D 5D 11
+    LDA   $115A              ; $65D4: AD 5A 11
+    STA   $115E              ; $65D7: 8D 5E 11
+    LDA   #$08               ; $65DA: A9 08   
+    STA   $1169              ; $65DC: 8D 69 11
+    INC   $1155              ; $65DF: EE 55 11
+    LDY   $1155              ; $65E2: AC 55 11
+    LDA   #$26               ; $65E5: A9 26   
+    JSR   $03AB              ; $65E7: 20 AB 03
+    STA   $FF03              ; $65EA: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $1157              ; $65ED: 8D 57 11
+    JSR   $9C49              ; $65F0: 20 49 9C
+    STA   $1156              ; $65F3: 8D 56 11
+    ASL   $1157              ; $65F6: 0E 57 11
+    ROL   A                  ; $65F9: 2A      
+    DEC   $1169              ; $65FA: CE 69 11
+    BIT   $D8                ; $65FD: 24 D8   
+    BPL   $6608              ; $65FF: 10 07   
+    ASL   $1157              ; $6601: 0E 57 11
+    ROL   A                  ; $6604: 2A      
+    DEC   $1169              ; $6605: CE 69 11
+    LDX   $1154              ; $6608: AE 54 11
+    CPX   #$03               ; $660B: E0 03   
+    BCC   $661B              ; $660D: 90 0C   
+    BEQ   $6616              ; $660F: F0 05   
+    EOR   $1156              ; $6611: 4D 56 11
+    BCS   $6627              ; $6614: B0 11   
+    AND   $1156              ; $6616: 2D 56 11
+    BCS   $6627              ; $6619: B0 0C   
+    CPX   #$01               ; $661B: E0 01   
+    BCC   $6627              ; $661D: 90 08   
+    BEQ   $6625              ; $661F: F0 04   
+    ORA   $1156              ; $6621: 0D 56 11
+    BIT   $FF49              ; $6624: 2C 49 FF
+    AND   #$03               ; $6627: 29 03   
+    BIT   $D8                ; $6629: 24 D8   
+    BMI   $662F              ; $662B: 30 02   
+    AND   #$01               ; $662D: 29 01   
+    STA   $83                ; $662F: 85 83   
+    JSR   $9C19              ; $6631: 20 19 9C
+    INC   $1131              ; $6634: EE 31 11
+    BNE   $663C              ; $6637: D0 03   
+    INC   $1132              ; $6639: EE 32 11
+    SEC                      ; $663C: 38      
+    LDA   $115D              ; $663D: AD 5D 11
+    BIT   $D8                ; $6640: 24 D8   
+    BPL   $6647              ; $6642: 10 03   
+    SBC   #$02               ; $6644: E9 02   
+    BIT   $01E9              ; $6646: 2C E9 01
+    STA   $115D              ; $6649: 8D 5D 11
+    LDA   $115E              ; $664C: AD 5E 11
+    SBC   #$00               ; $664F: E9 00   
+    STA   $115E              ; $6651: 8D 5E 11
+    BCS   $6683              ; $6654: B0 2D   
+    LDX   #$01               ; $6656: A2 01   
+    LDA   $1159,X            ; $6658: BD 59 11
+    STA   $115D,X            ; $665B: 9D 5D 11
+    LDA   $1135,X            ; $665E: BD 35 11
+    STA   $1131,X            ; $6661: 9D 31 11
+    DEX                      ; $6664: CA      
+    BPL   $6658              ; $6665: 10 F1   
+    INC   $1133              ; $6667: EE 33 11
+    BNE   $666F              ; $666A: D0 03   
+    INC   $1134              ; $666C: EE 34 11
+    SEC                      ; $666F: 38      
+    LDA   $115B              ; $6670: AD 5B 11
+    SBC   #$01               ; $6673: E9 01   
+    STA   $115B              ; $6675: 8D 5B 11
+    LDA   $115C              ; $6678: AD 5C 11
+    SBC   #$00               ; $667B: E9 00   
+    STA   $115C              ; $667D: 8D 5C 11
+    BCS   $668B              ; $6680: B0 09   
+    RTS                      ; $6682: 60      
+    LDA   $1169              ; $6683: AD 69 11
+    BEQ   $668B              ; $6686: F0 03   
+    JMP   $65F0              ; $6688: 4C F0 65
+    JMP   $65DA              ; $668B: 4C DA 65
+CMD_CIRCLE:
+    JSR   $9E2F              ; $668E: 20 2F 9E
+    LDX   #$1F               ; $6691: A2 1F   
+    JSR   $9E52              ; $6693: 20 52 9E
+    JSR   $9E06              ; $6696: 20 06 9E
+    STY   $1154              ; $6699: 8C 54 11
+    STA   $1155              ; $669C: 8D 55 11
+    JSR   $9E06              ; $669F: 20 06 9E
+    STY   $1156              ; $66A2: 8C 56 11
+    STA   $1157              ; $66A5: 8D 57 11
+    PHP                      ; $66A8: 08      
+    LDX   #$23               ; $66A9: A2 23   
+    JSR   $9D4A              ; $66AB: 20 4A 9D
+    PLP                      ; $66AE: 28      
+    BCS   $66C2              ; $66AF: B0 11   
+    LDA   $1154              ; $66B1: AD 54 11
+    STA   $1156              ; $66B4: 8D 56 11
+    LDA   $1155              ; $66B7: AD 55 11
+    BIT   $D8                ; $66BA: 24 D8   
+    BPL   $66C2              ; $66BC: 10 04   
+    ASL   $1156              ; $66BE: 0E 56 11
+    ROL   A                  ; $66C1: 2A      
+    STA   $1157              ; $66C2: 8D 57 11
+    JSR   $9E06              ; $66C5: 20 06 9E
+    STY   $115C              ; $66C8: 8C 5C 11
+    STA   $115D              ; $66CB: 8D 5D 11
+    JSR   $9E06              ; $66CE: 20 06 9E
+    STY   $115E              ; $66D1: 8C 5E 11
+    STA   $115F              ; $66D4: 8D 5F 11
+    JSR   $9E06              ; $66D7: 20 06 9E
+    STA   $77                ; $66DA: 85 77   
+    TYA                      ; $66DC: 98      
+    LDY   $77                ; $66DD: A4 77   
+    JSR   $9A77              ; $66DF: 20 77 9A
+    LDX   #$2D               ; $66E2: A2 2D   
+    LDY   #$2B               ; $66E4: A0 2B   
+    JSR   $9D7C              ; $66E6: 20 7C 9D
+    BCC   $66F9              ; $66E9: 90 0E   
+    LDA   #$68               ; $66EB: A9 68   
+    LDY   #$01               ; $66ED: A0 01   
+    JSR   $9D70              ; $66EF: 20 70 9D
+    STA   $1131,X            ; $66F2: 9D 31 11
+    TYA                      ; $66F5: 98      
+    STA   $1132,X            ; $66F6: 9D 32 11
+    LDX   #$03               ; $66F9: A2 03   
+    LDA   $1154,X            ; $66FB: BD 54 11
+    STA   $1158,X            ; $66FE: 9D 58 11
+    DEX                      ; $6701: CA      
+    BPL   $66FB              ; $6702: 10 F7   
+    LDA   #$90               ; $6704: A9 90   
+    JSR   $9AF3              ; $6706: 20 F3 9A
+    LDX   #$07               ; $6709: A2 07   
+    LDA   $1154,X            ; $670B: BD 54 11
+    STA   $1160,X            ; $670E: 9D 60 11
+    DEX                      ; $6711: CA      
+    BPL   $670B              ; $6712: 10 F7   
+    JSR   $6750              ; $6714: 20 50 67
+    JSR   $9DF2              ; $6717: 20 F2 9D
+    LDX   #$02               ; $671A: A2 02   
+    JSR   $9E1E              ; $671C: 20 1E 9E
+    TXA                      ; $671F: 8A      
+    BNE   $6725              ; $6720: D0 03   
+    JMP   $7D28              ; $6722: 4C 28 7D
+    STX   $1220              ; $6725: 8E 20 12
+    CLC                      ; $6728: 18      
+    LDA   $1220              ; $6729: AD 20 12
+    ADC   $115C              ; $672C: 6D 5C 11
+    STA   $115C              ; $672F: 8D 5C 11
+    BCC   $6737              ; $6732: 90 03   
+    INC   $115D              ; $6734: EE 5D 11
+    LDX   #$2D               ; $6737: A2 2D   
+    LDY   #$2B               ; $6739: A0 2B   
+    JSR   $9D7C              ; $673B: 20 7C 9D
+    BCS   $6748              ; $673E: B0 08   
+    JSR   $6750              ; $6740: 20 50 67
+    JSR   $9B30              ; $6743: 20 30 9B
+    BCC   $6729              ; $6746: 90 E1   
+    LDY   #$2D               ; $6748: A0 2D   
+    JSR   $6752              ; $674A: 20 52 67
+    JMP   $9B30              ; $674D: 4C 30 9B
+    LDY   #$2B               ; $6750: A0 2B   
+    JSR   $9A74              ; $6752: 20 74 9A
+    LDX   #$07               ; $6755: A2 07   
+    LDA   $1160,X            ; $6757: BD 60 11
+    STA   $1154,X            ; $675A: 9D 54 11
+    DEX                      ; $675D: CA      
+    BPL   $6757              ; $675E: 10 F7   
+    LDA   #$50               ; $6760: A9 50   
+    JSR   $9AF3              ; $6762: 20 F3 9A
+    LDA   #$10               ; $6765: A9 10   
+    STA   $114E              ; $6767: 8D 4E 11
+    LDY   #$1F               ; $676A: A0 1F   
+    LDX   #$23               ; $676C: A2 23   
+    ASL   $114F              ; $676E: 0E 4F 11
+    ROL   $114E              ; $6771: 2E 4E 11
+    JSR   $9D6B              ; $6774: 20 6B 9D
+    INX                      ; $6777: E8      
+    INX                      ; $6778: E8      
+    ASL   $114F              ; $6779: 0E 4F 11
+    ROL   $114E              ; $677C: 2E 4E 11
+    JSR   $9D67              ; $677F: 20 67 9D
+    PHA                      ; $6782: 48      
+    TYA                      ; $6783: 98      
+    PHA                      ; $6784: 48      
+    LDY   #$21               ; $6785: A0 21   
+    INX                      ; $6787: E8      
+    INX                      ; $6788: E8      
+    CPX   #$27               ; $6789: E0 27   
+    BEQ   $676E              ; $678B: F0 E1   
+    LDX   #$03               ; $678D: A2 03   
+    PLA                      ; $678F: 68      
+    STA   $1135,X            ; $6790: 9D 35 11
+    DEX                      ; $6793: CA      
+    BPL   $678F              ; $6794: 10 F9   
+    RTS                      ; $6796: 60      
+CMD_DRAW:
+    JSR   $A074              ; $6797: 20 74 A0
+    LDX   #$01               ; $679A: A2 01   
+    STX   $83                ; $679C: 86 83   
+    JSR   $0386              ; $679E: 20 86 03
+    CMP   #$A4               ; $67A1: C9 A4   
+    BEQ   $67B0              ; $67A3: F0 0B   
+    JSR   $9E32              ; $67A5: 20 32 9E
+    JSR   $0386              ; $67A8: 20 86 03
+    BNE   $67B0              ; $67AB: D0 03   
+    JMP   $9BFB              ; $67AD: 4C FB 9B
+    JSR   $0386              ; $67B0: 20 86 03
+    CMP   #$2C               ; $67B3: C9 2C   
+    BEQ   $67BC              ; $67B5: F0 05   
+    CMP   #$A4               ; $67B7: C9 A4   
+    BEQ   $67BC              ; $67B9: F0 01   
+    RTS                      ; $67BB: 60      
+    PHA                      ; $67BC: 48      
+    JSR   $0380              ; $67BD: 20 80 03
+    LDX   #$04               ; $67C0: A2 04   
+    JSR   $9E70              ; $67C2: 20 70 9E
+    PLA                      ; $67C5: 68      
+    BPL   $67CE              ; $67C6: 10 06   
+    JSR   $9B30              ; $67C8: 20 30 9B
+    JMP   $67B0              ; $67CB: 4C B0 67
+    JSR   $9DF2              ; $67CE: 20 F2 9D
+    JSR   $9BFB              ; $67D1: 20 FB 9B
+    JMP   $67B0              ; $67D4: 4C B0 67
+CMD_CHAR:
+    JSR   $9E32              ; $67D7: 20 32 9E
+    LDX   #$29               ; $67DA: A2 29   
+    LDY   #$1A               ; $67DC: A0 1A   
+    LDA   $D8                ; $67DE: A5 D8   
+    BNE   $67E7              ; $67E0: D0 05   
+    JSR   $FFED              ; $67E2: 20 ED FF (J_SCREEN)
+    INX                      ; $67E5: E8      
+    INY                      ; $67E6: C8      
+    STX   $115E              ; $67E7: 8E 5E 11
+    STY   $115F              ; $67EA: 8C 5F 11
+    JSR   $8809              ; $67ED: 20 09 88
+    CPX   $115E              ; $67F0: EC 5E 11
+    BCS   $6800              ; $67F3: B0 0B   
+    STX   $115E              ; $67F5: 8E 5E 11
+    JSR   $8809              ; $67F8: 20 09 88
+    CPX   $115F              ; $67FB: EC 5F 11
+    BCC   $6803              ; $67FE: 90 03   
+    JMP   $7D28              ; $6800: 4C 28 7D
+    STX   $115F              ; $6803: 8E 5F 11
+    JSR   $0386              ; $6806: 20 86 03
+    BNE   $680F              ; $6809: D0 04   
+    LDA   #$00               ; $680B: A9 00   
+    BEQ   $6815              ; $680D: F0 06   
+    JSR   $795C              ; $680F: 20 5C 79
+    JSR   $877B              ; $6812: 20 7B 87
+    STA   $FF03              ; $6815: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $116E              ; $6818: 8D 6E 11
+    TYA                      ; $681B: 98      
+    PHA                      ; $681C: 48      
+    TXA                      ; $681D: 8A      
+    PHA                      ; $681E: 48      
+    JSR   $9E1C              ; $681F: 20 1C 9E
+    TXA                      ; $6822: 8A      
+    ROR   A                  ; $6823: 6A      
+    ROR   $113D              ; $6824: 6E 3D 11
+    PLA                      ; $6827: 68      
+    STA   $24                ; $6828: 85 24   
+    PLA                      ; $682A: 68      
+    STA   $25                ; $682B: 85 25   
+    LDA   $D8                ; $682D: A5 D8   
+    BNE   $6863              ; $682F: D0 32   
+    LDX   $115F              ; $6831: AE 5F 11
+    LDY   $115E              ; $6834: AC 5E 11
+    CLC                      ; $6837: 18      
+    JSR   $928D              ; $6838: 20 8D 92
+    LDY   #$00               ; $683B: A0 00   
+    BIT   $113D              ; $683D: 2C 3D 11
+    BPL   $6847              ; $6840: 10 05   
+    LDA   #$12               ; $6842: A9 12   
+    JSR   $C00C              ; $6844: 20 0C C0 (ED_JPRT)
+    CPY   $116E              ; $6847: CC 6E 11
+    BEQ   $6858              ; $684A: F0 0C   
+    JSR   $03B7              ; $684C: 20 B7 03
+    JSR   $A845              ; $684F: 20 45 A8
+    JSR   $C00C              ; $6852: 20 0C C0 (ED_JPRT)
+    INY                      ; $6855: C8      
+    BNE   $6847              ; $6856: D0 EF   
+    BIT   $113D              ; $6858: 2C 3D 11
+    BPL   $6862              ; $685B: 10 05   
+    LDA   #$92               ; $685D: A9 92   
+    JSR   $C00C              ; $685F: 20 0C C0 (ED_JPRT)
+    RTS                      ; $6862: 60      
+    JSR   $A074              ; $6863: 20 74 A0
+    LDA   $11EC              ; $6866: AD EC 11
+    STA   $1168              ; $6869: 8D 68 11
+    LDA   $86                ; $686C: A5 86   
+    TAX                      ; $686E: AA      
+    PHA                      ; $686F: 48      
+    LDA   $83                ; $6870: A5 83   
+    PHA                      ; $6872: 48      
+    BIT   $D8                ; $6873: 24 D8   
+    BPL   $6885              ; $6875: 10 0E   
+    PLA                      ; $6877: 68      
+    BEQ   $6890              ; $6878: F0 16   
+    LSR   A                  ; $687A: 4A      
+    BEQ   $6890              ; $687B: F0 13   
+    LDX   $84                ; $687D: A6 84   
+    BCC   $6890              ; $687F: 90 0F   
+    LDX   $85                ; $6881: A6 85   
+    BCS   $6890              ; $6883: B0 0B   
+    LDX   $86                ; $6885: A6 86   
+    PLA                      ; $6887: 68      
+    BNE   $6890              ; $6888: D0 06   
+    JSR   $A845              ; $688A: 20 45 A8
+    LDX   $D021              ; $688D: AE 21 D0 (VIC_BGCOL0)
+    STX   $86                ; $6890: 86 86   
+    LDX   $115F              ; $6892: AE 5F 11
+    LDY   #$00               ; $6895: A0 00   
+    STY   $1160              ; $6897: 8C 60 11
+    LDY   $1160              ; $689A: AC 60 11
+    INC   $1160              ; $689D: EE 60 11
+    JSR   $03B7              ; $68A0: 20 B7 03
+    STA   $FF03              ; $68A3: 8D 03 FF (MMU_LCRC_TOP)
+    DEC   $116E              ; $68A6: CE 6E 11
+    BMI   $68D7              ; $68A9: 30 2C   
+    CMP   #$0E               ; $68AB: C9 0E   
+    BNE   $68B4              ; $68AD: D0 05   
+    LDA   $11EB              ; $68AF: AD EB 11
+    BNE   $68BB              ; $68B2: D0 07   
+    CMP   #$8E               ; $68B4: C9 8E   
+    BNE   $68C0              ; $68B6: D0 08   
+    LDA   $11EC              ; $68B8: AD EC 11
+    STA   $1168              ; $68BB: 8D 68 11
+    BNE   $68C9              ; $68BE: D0 09   
+    LDY   $115E              ; $68C0: AC 5E 11
+    JSR   $68DB              ; $68C3: 20 DB 68
+    INC   $115E              ; $68C6: EE 5E 11
+    CPY   #$27               ; $68C9: C0 27   
+    BCC   $689A              ; $68CB: 90 CD   
+    LDY   #$00               ; $68CD: A0 00   
+    STY   $115E              ; $68CF: 8C 5E 11
+    INX                      ; $68D2: E8      
+    CPX   #$18               ; $68D3: E0 18   
+    BCC   $689A              ; $68D5: 90 C3   
+    PLA                      ; $68D7: 68      
+    STA   $86                ; $68D8: 85 86   
+    RTS                      ; $68DA: 60      
+    PHA                      ; $68DB: 48      
+    JSR   $9C70              ; $68DC: 20 70 9C
+    TYA                      ; $68DF: 98      
+    CLC                      ; $68E0: 18      
+    ADC   $C033,X            ; $68E1: 7D 33 C0
+    STA   $8C                ; $68E4: 85 8C   
+    LDA   $C04C,X            ; $68E6: BD 4C C0
+    ADC   #$00               ; $68E9: 69 00   
+    ASL   $8C                ; $68EB: 06 8C   
+    ROL   A                  ; $68ED: 2A      
+    ASL   $8C                ; $68EE: 06 8C   
+    ROL   A                  ; $68F0: 2A      
+    ASL   $8C                ; $68F1: 06 8C   
+    ROL   A                  ; $68F3: 2A      
+    STA   $8D                ; $68F4: 85 8D   
+    STA   $FF03              ; $68F6: 8D 03 FF (MMU_LCRC_TOP)
+    LDA   #$00               ; $68F9: A9 00   
+    STA   $77                ; $68FB: 85 77   
+    PLA                      ; $68FD: 68      
+    PHA                      ; $68FE: 48      
+    ASL   A                  ; $68FF: 0A      
+    ROL   $77                ; $6900: 26 77   
+    ASL   A                  ; $6902: 0A      
+    ASL   A                  ; $6903: 0A      
+    ROL   $77                ; $6904: 26 77   
+    STA   $26                ; $6906: 85 26   
+    LDA   $77                ; $6908: A5 77   
+    ADC   $1168              ; $690A: 6D 68 11
+    STA   $27                ; $690D: 85 27   
+    TYA                      ; $690F: 98      
+    PHA                      ; $6910: 48      
+    LDY   #$07               ; $6911: A0 07   
+    LDA   $113D              ; $6913: AD 3D 11
+    ASL   A                  ; $6916: 0A      
+    LDA   ($26),Y            ; $6917: B1 26   
+    BCC   $691D              ; $6919: 90 02   
+    EOR   #$FF               ; $691B: 49 FF   
+    BIT   $D8                ; $691D: 24 D8   
+    BPL   $694C              ; $691F: 10 2B   
+    AND   #$AA               ; $6921: 29 AA   
+    STA   $77                ; $6923: 85 77   
+    LDA   $83                ; $6925: A5 83   
+    BNE   $6938              ; $6927: D0 0F   
+    LDA   $77                ; $6929: A5 77   
+    BCS   $6934              ; $692B: B0 07   
+    LSR   A                  ; $692D: 4A      
+    EOR   $77                ; $692E: 45 77   
+    EOR   #$AA               ; $6930: 49 AA   
+    BNE   $694C              ; $6932: D0 18   
+    ORA   #$55               ; $6934: 09 55   
+    BNE   $694C              ; $6936: D0 14   
+    CMP   #$02               ; $6938: C9 02   
+    BNE   $6940              ; $693A: D0 04   
+    LDA   $77                ; $693C: A5 77   
+    BCS   $694C              ; $693E: B0 0C   
+    BCC   $6949              ; $6940: 90 07   
+    LDA   $77                ; $6942: A5 77   
+    LSR   A                  ; $6944: 4A      
+    EOR   $77                ; $6945: 45 77   
+    BCC   $694C              ; $6947: 90 03   
+    LDA   $77                ; $6949: A5 77   
+    LSR   A                  ; $694B: 4A      
+    STA   ($8C),Y            ; $694C: 91 8C   
+    DEY                      ; $694E: 88      
+    BPL   $6913              ; $694F: 10 C2   
+    PLA                      ; $6951: 68      
+    TAY                      ; $6952: A8      
+    PLA                      ; $6953: 68      
+    RTS                      ; $6954: 60      
+CMD_LOCATE:
+    JSR   $A074              ; $6955: 20 74 A0
+    LDX   #$04               ; $6958: A2 04   
+    JSR   $9E70              ; $695A: 20 70 9E
+    JMP   $9DF2              ; $695D: 4C F2 9D
+CMD_SCALE:
+    JSR   $87F4              ; $6960: 20 F4 87
+    CPX   #$02               ; $6963: E0 02   
+    BCC   $696A              ; $6965: 90 03   
+    JMP   $7D28              ; $6967: 4C 28 7D
+    STX   $116A              ; $696A: 8E 6A 11
+    JSR   $0386              ; $696D: 20 86 03
+    BNE   $6986              ; $6970: D0 14   
+    LDX   #$00               ; $6972: A2 00   
+    LDA   #$50               ; $6974: A9 50   
+    LDY   #$32               ; $6976: A0 32   
+    BIT   $D8                ; $6978: 24 D8   
+    BPL   $697D              ; $697A: 10 01   
+    LSR   A                  ; $697C: 4A      
+    STX   $87                ; $697D: 86 87   
+    STA   $88                ; $697F: 85 88   
+    STX   $89                ; $6981: 86 89   
+    STY   $8A                ; $6983: 84 8A   
+    RTS                      ; $6985: 60      
+    JSR   $69C4              ; $6986: 20 C4 69
+    LDA   #$D8               ; $6989: A9 D8   
+    LDY   #$69               ; $698B: A0 69   
+    JSR   $8A89              ; $698D: 20 89 8A
+    JSR   $8B4C              ; $6990: 20 4C 8B (CMD__)
+    JSR   $8815              ; $6993: 20 15 88
+    CMP   #$00               ; $6996: C9 00   
+    BNE   $699E              ; $6998: D0 04   
+    CPY   #$00               ; $699A: C0 00   
+    BEQ   $69D5              ; $699C: F0 37   
+    PHA                      ; $699E: 48      
+    TYA                      ; $699F: 98      
+    PHA                      ; $69A0: 48      
+    JSR   $69C4              ; $69A1: 20 C4 69
+    LDA   #$DD               ; $69A4: A9 DD   
+    LDY   #$69               ; $69A6: A0 69   
+    JSR   $8A89              ; $69A8: 20 89 8A
+    JSR   $8B4C              ; $69AB: 20 4C 8B (CMD__)
+    JSR   $8815              ; $69AE: 20 15 88
+    CMP   #$00               ; $69B1: C9 00   
+    BNE   $69B9              ; $69B3: D0 04   
+    CPY   #$00               ; $69B5: C0 00   
+    BEQ   $69D5              ; $69B7: F0 1C   
+    STY   $89                ; $69B9: 84 89   
+    STA   $8A                ; $69BB: 85 8A   
+    PLA                      ; $69BD: 68      
+    STA   $87                ; $69BE: 85 87   
+    PLA                      ; $69C0: 68      
+    STA   $88                ; $69C1: 85 88   
+    RTS                      ; $69C3: 60      
+    JSR   $795C              ; $69C4: 20 5C 79
+    JSR   $77D7              ; $69C7: 20 D7 77
+    LDA   $68                ; $69CA: A5 68   
+    BMI   $69D5              ; $69CC: 30 07   
+    LDA   $63                ; $69CE: A5 63   
+    CMP   #$90               ; $69D0: C9 90   
+    BCS   $69D5              ; $69D2: B0 01   
+    RTS                      ; $69D4: 60      
+    JMP   $7D28              ; $69D5: 4C 28 7D
+    STA   $FF1F,Y            ; $69D8: 99 1F FF
+    RTS                      ; $69DB: 60      
+    BRK                      ; $69DC: 00      
+    TYA                      ; $69DD: 98      
+    .BYTE $47                                ; $69DE: 47 [UNRESOLVED]
+    .BYTE $FF                                ; $69DF: FF [UNRESOLVED]
+    SEC                      ; $69E0: 38      
+    BRK                      ; $69E1: 00      
+CMD_COLOR:
+    JSR   $87F4              ; $69E2: 20 F4 87
+    CPX   #$07               ; $69E5: E0 07   
+    BCS   $6A49              ; $69E7: B0 60   
+    STX   $77                ; $69E9: 86 77   
+    JSR   $8809              ; $69EB: 20 09 88
+    DEX                      ; $69EE: CA      
+    CPX   #$10               ; $69EF: E0 10   
+    BCS   $6A49              ; $69F1: B0 56   
+    JSR   $A845              ; $69F3: 20 45 A8
+    TXA                      ; $69F6: 8A      
+    LDX   $77                ; $69F7: A6 77   
+    CPX   #$01               ; $69F9: E0 01   
+    BEQ   $6A04              ; $69FB: F0 07   
+    BCS   $6A08              ; $69FD: B0 09   
+    STA   $D021              ; $69FF: 8D 21 D0 (VIC_BGCOL0)
+    BNE   $6A43              ; $6A02: D0 3F   
+    STA   $86                ; $6A04: 85 86   
+    BEQ   $6A43              ; $6A06: F0 3B   
+    CPX   #$03               ; $6A08: E0 03   
+    BEQ   $6A12              ; $6A0A: F0 06   
+    BCS   $6A16              ; $6A0C: B0 08   
+    STA   $84                ; $6A0E: 85 84   
+    BNE   $6A43              ; $6A10: D0 31   
+    STA   $85                ; $6A12: 85 85   
+    BEQ   $6A43              ; $6A14: F0 2D   
+    CPX   #$05               ; $6A16: E0 05   
+    BEQ   $6A21              ; $6A18: F0 07   
+    BCS   $6A32              ; $6A1A: B0 16   
+    STA   $D020              ; $6A1C: 8D 20 D0 (VIC_EXTCOL)
+    BNE   $6A43              ; $6A1F: D0 22   
+    BIT   $D7                ; $6A21: 24 D7   
+    BPL   $6A2D              ; $6A23: 10 08   
+    TAX                      ; $6A25: AA      
+    LDA   $F1                ; $6A26: A5 F1   
+    AND   #$F0               ; $6A28: 29 F0   
+    ORA   $6A4C,X            ; $6A2A: 1D 4C 6A
+    STA   $F1                ; $6A2D: 85 F1   
+    JMP   $6A43              ; $6A2F: 4C 43 6A
+    TAX                      ; $6A32: AA      
+    LDA   #$1A               ; $6A33: A9 1A   
+    STA   $D600              ; $6A35: 8D 00 D6 (VDC_ADDR_STATUS)
+    LDA   $D601              ; $6A38: AD 01 D6 (VDC_DATA)
+    AND   #$F0               ; $6A3B: 29 F0   
+    ORA   $6A4C,X            ; $6A3D: 1D 4C 6A
+    STA   $D601              ; $6A40: 8D 01 D6 (VDC_DATA)
+    JSR   $6A5C              ; $6A43: 20 5C 6A
+    JMP   $9E1E              ; $6A46: 4C 1E 9E
+    JMP   $7D28              ; $6A49: 4C 28 7D
+    BRK                      ; $6A4C: 00      
+    .BYTE $0F                                ; $6A4D: 0F [UNRESOLVED]
+    PHP                      ; $6A4E: 08      
+    .BYTE $07                                ; $6A4F: 07 [UNRESOLVED]
+    .BYTE $0B                                ; $6A50: 0B [UNRESOLVED]
+    .BYTE $04                                ; $6A51: 04 [UNRESOLVED]
+    .BYTE $02                                ; $6A52: 02 [UNRESOLVED]
+    ORA   $0C0A              ; $6A53: 0D 0A 0C
+    ORA   #$06               ; $6A56: 09 06   
+    ORA   ($05,X)            ; $6A58: 01 05   
+    .BYTE $03                                ; $6A5A: 03 [UNRESOLVED]
+    ASL   $86A5              ; $6A5B: 0E A5 86
+    ASL   A                  ; $6A5E: 0A      
+    ASL   A                  ; $6A5F: 0A      
+    ASL   A                  ; $6A60: 0A      
+    ASL   A                  ; $6A61: 0A      
+    STA   $77                ; $6A62: 85 77   
+    JSR   $A845              ; $6A64: 20 45 A8
+    LDA   $D021              ; $6A67: AD 21 D0 (VIC_BGCOL0)
+    AND   #$0F               ; $6A6A: 29 0F   
+    ORA   $77                ; $6A6C: 05 77   
+    STA   $03E2              ; $6A6E: 8D E2 03
+    LDA   $84                ; $6A71: A5 84   
+    ORA   $77                ; $6A73: 05 77   
+    STA   $03E3              ; $6A75: 8D E3 03
+    RTS                      ; $6A78: 60      
+CMD_SCNCLR:
+    BNE   $6A8F              ; $6A79: D0 14   
+    JSR   $818C              ; $6A7B: 20 8C 81
+    CMP   #$05               ; $6A7E: C9 05   
+    BCC   $6A8B              ; $6A80: 90 09   
+    SBC   #$05               ; $6A82: E9 05   
+    BEQ   $6ADE              ; $6A84: F0 58   
+    PHA                      ; $6A86: 48      
+    JSR   $6ADE              ; $6A87: 20 DE 6A
+    PLA                      ; $6A8A: 68      
+    TAX                      ; $6A8B: AA      
+    JMP   $6A9B              ; $6A8C: 4C 9B 6A
+    JSR   $87F4              ; $6A8F: 20 F4 87
+    CPX   #$05               ; $6A92: E0 05   
+    BEQ   $6ADE              ; $6A94: F0 48   
+    BCC   $6A9B              ; $6A96: 90 03   
+    JMP   $7D28              ; $6A98: 4C 28 7D
+    TXA                      ; $6A9B: 8A      
+    BEQ   $6AF2              ; $6A9C: F0 54   
+    JSR   $A074              ; $6A9E: 20 74 A0
+    TXA                      ; $6AA1: 8A      
+    PHA                      ; $6AA2: 48      
+    AND   #$01               ; $6AA3: 29 01   
+    BNE   $6AC8              ; $6AA5: D0 21   
+    JSR   $6AF2              ; $6AA7: 20 F2 6A
+    LDA   $D7                ; $6AAA: A5 D7   
+    PHA                      ; $6AAC: 48      
+    BPL   $6AB2              ; $6AAD: 10 03   
+    JSR   $FF5F              ; $6AAF: 20 5F FF (J_SWAPPER)
+    LDA   $0A34              ; $6AB2: AD 34 0A
+    SEC                      ; $6AB5: 38      
+    SBC   #$30               ; $6AB6: E9 30   
+    LSR   A                  ; $6AB8: 4A      
+    LSR   A                  ; $6AB9: 4A      
+    LSR   A                  ; $6ABA: 4A      
+    TAX                      ; $6ABB: AA      
+    LDY   #$00               ; $6ABC: A0 00   
+    CLC                      ; $6ABE: 18      
+    JSR   $928D              ; $6ABF: 20 8D 92
+    PLA                      ; $6AC2: 68      
+    BPL   $6AC8              ; $6AC3: 10 03   
+    JSR   $FF5F              ; $6AC5: 20 5F FF (J_SWAPPER)
+    PLA                      ; $6AC8: 68      
+    AND   #$02               ; $6AC9: 29 02   
+    BEQ   $6AD0              ; $6ACB: F0 03   
+    JSR   $6B17              ; $6ACD: 20 17 6B
+    JSR   $6B30              ; $6AD0: 20 30 6B
+    LDA   #$00               ; $6AD3: A9 00   
+    LDX   #$03               ; $6AD5: A2 03   
+    STA   $1131,X            ; $6AD7: 9D 31 11
+    DEX                      ; $6ADA: CA      
+    BPL   $6AD7              ; $6ADB: 10 FA   
+    RTS                      ; $6ADD: 60      
+    LDA   $D7                ; $6ADE: A5 D7   
+    PHA                      ; $6AE0: 48      
+    BMI   $6AE6              ; $6AE1: 30 03   
+    JSR   $FF5F              ; $6AE3: 20 5F FF (J_SWAPPER)
+    LDA   #$93               ; $6AE6: A9 93   
+    JSR   $9269              ; $6AE8: 20 69 92
+    PLA                      ; $6AEB: 68      
+    BMI   $6AF1              ; $6AEC: 30 03   
+    JSR   $FF5F              ; $6AEE: 20 5F FF (J_SWAPPER)
+    RTS                      ; $6AF1: 60      
+    LDA   $D7                ; $6AF2: A5 D7   
+    PHA                      ; $6AF4: 48      
+    BPL   $6AFA              ; $6AF5: 10 03   
+    JSR   $FF5F              ; $6AF7: 20 5F FF (J_SWAPPER)
+    LDA   #$93               ; $6AFA: A9 93   
+    JSR   $9269              ; $6AFC: 20 69 92
+    PLA                      ; $6AFF: 68      
+    BPL   $6B05              ; $6B00: 10 03   
+    JSR   $FF5F              ; $6B02: 20 5F FF (J_SWAPPER)
+    RTS                      ; $6B05: 60      
+    STY   $8D                ; $6B06: 84 8D   
+    LDY   #$00               ; $6B08: A0 00   
+    STY   $8C                ; $6B0A: 84 8C   
+    STA   ($8C),Y            ; $6B0C: 91 8C   
+    DEY                      ; $6B0E: 88      
+    BNE   $6B0C              ; $6B0F: D0 FB   
+    INC   $8D                ; $6B11: E6 8D   
+    DEX                      ; $6B13: CA      
+    BNE   $6B0C              ; $6B14: D0 F6   
+    RTS                      ; $6B16: 60      
+    JSR   $A845              ; $6B17: 20 45 A8
+    SEI                      ; $6B1A: 78      
+    LDA   $01                ; $6B1B: A5 01   
+    PHA                      ; $6B1D: 48      
+    AND   #$FE               ; $6B1E: 29 FE   
+    STA   $01                ; $6B20: 85 01   
+    LDA   $85                ; $6B22: A5 85   
+    LDY   #$D8               ; $6B24: A0 D8   
+    LDX   #$04               ; $6B26: A2 04   
+    JSR   $6B06              ; $6B28: 20 06 6B
+    PLA                      ; $6B2B: 68      
+    STA   $01                ; $6B2C: 85 01   
+    CLI                      ; $6B2E: 58      
+    RTS                      ; $6B2F: 60      
+    LDA   #$00               ; $6B30: A9 00   
+    LDY   #$20               ; $6B32: A0 20   
+    LDX   #$20               ; $6B34: A2 20   
+    JSR   $6B06              ; $6B36: 20 06 6B
+    LDA   $03E2              ; $6B39: AD E2 03
+    BIT   $D8                ; $6B3C: 24 D8   
+    BPL   $6B43              ; $6B3E: 10 03   
+    LDA   $03E3              ; $6B40: AD E3 03
+    JSR   $A845              ; $6B43: 20 45 A8
+    LDY   #$1C               ; $6B46: A0 1C   
+    LDX   #$04               ; $6B48: A2 04   
+    JSR   $6B06              ; $6B4A: 20 06 6B
+    LDX   #$3F               ; $6B4D: A2 3F   
+    LDY   #$07               ; $6B4F: A0 07   
+    TXA                      ; $6B51: 8A      
+    STA   $1FF8,Y            ; $6B52: 99 F8 1F
+    DEX                      ; $6B55: CA      
+    DEY                      ; $6B56: 88      
+    BPL   $6B51              ; $6B57: 10 F8   
+    RTS                      ; $6B59: 60      
+CMD_GRAPHIC:
+    CMP   #$9C               ; $6B5A: C9 9C   
+    BNE   $6B69              ; $6B5C: D0 0B   
+    JSR   $A022              ; $6B5E: 20 22 A0
+    JSR   $0380              ; $6B61: 20 80 03
+    LDA   #$00               ; $6B64: A9 00   
+    STA   $D8                ; $6B66: 85 D8   
+    RTS                      ; $6B68: 60      
+    JSR   $87F4              ; $6B69: 20 F4 87
+    TXA                      ; $6B6C: 8A      
+    PHA                      ; $6B6D: 48      
+    CPX   #$05               ; $6B6E: E0 05   
+    BEQ   $6BB4              ; $6B70: F0 42   
+    BCS   $6BC1              ; $6B72: B0 4D   
+    LDA   $6BC4,X            ; $6B74: BD C4 6B
+    STA   $D8                ; $6B77: 85 D8   
+    BEQ   $6B82              ; $6B79: F0 07   
+    JSR   $9F4F              ; $6B7B: 20 4F 9F
+    BIT   $D8                ; $6B7E: 24 D8   
+    BVC   $6B89              ; $6B80: 50 07   
+    BIT   $D7                ; $6B82: 24 D7   
+    BPL   $6B89              ; $6B84: 10 03   
+    JSR   $FF5F              ; $6B86: 20 5F FF (J_SWAPPER)
+    JSR   $9E1C              ; $6B89: 20 1C 9E
+    CPX   #$02               ; $6B8C: E0 02   
+    BCS   $6BC1              ; $6B8E: B0 31   
+    TXA                      ; $6B90: 8A      
+    PHA                      ; $6B91: 48      
+    LDX   #$14               ; $6B92: A2 14   
+    JSR   $9E1E              ; $6B94: 20 1E 9E
+    CPX   #$1A               ; $6B97: E0 1A   
+    BCS   $6BC1              ; $6B99: B0 26   
+    TXA                      ; $6B9B: 8A      
+    ASL   A                  ; $6B9C: 0A      
+    ASL   A                  ; $6B9D: 0A      
+    ASL   A                  ; $6B9E: 0A      
+    ADC   #$30               ; $6B9F: 69 30   
+    STA   $0A34              ; $6BA1: 8D 34 0A
+    PLA                      ; $6BA4: 68      
+    TAY                      ; $6BA5: A8      
+    PLA                      ; $6BA6: 68      
+    TAX                      ; $6BA7: AA      
+    TYA                      ; $6BA8: 98      
+    BEQ   $6BAE              ; $6BA9: F0 03   
+    JSR   $6A92              ; $6BAB: 20 92 6A
+    LDA   #$00               ; $6BAE: A9 00   
+    STA   $116A              ; $6BB0: 8D 6A 11
+    RTS                      ; $6BB3: 60      
+    BIT   $D7                ; $6BB4: 24 D7   
+    BMI   $6B89              ; $6BB6: 30 D1   
+    LDA   $D8                ; $6BB8: A5 D8   
+    AND   #$BF               ; $6BBA: 29 BF   
+    STA   $D8                ; $6BBC: 85 D8   
+    JMP   $6B86              ; $6BBE: 4C 86 6B
+    JMP   $7D28              ; $6BC1: 4C 28 7D
+; --- [DATA] GRAPHIC Mode Flag Bitmask Table ($6BC4-$6BC8) ---
+    .BYTE $00, $20, $60, $A0, $E0                ; $6BC4 [IDENTIFIED_DATA] |. `..|
+CMD_FE_BANK:
+    JSR   $87F4              ; $6BC9: 20 F4 87
+    CPX   #$10               ; $6BCC: E0 10   
+    BCS   $6BD4              ; $6BCE: B0 04   
+    STX   $03D5              ; $6BD0: 8E D5 03
+    RTS                      ; $6BD3: 60      
+    JMP   $7D28              ; $6BD4: 4C 28 7D
+CMD_FE_SLEEP:
+    JSR   $8812              ; $6BD7: 20 12 88
+    LDX   #$00               ; $6BDA: A2 00   
+    SEI                      ; $6BDC: 78      
+    STY   $0A1D              ; $6BDD: 8C 1D 0A
+    STA   $0A1E              ; $6BE0: 8D 1E 0A
+    STX   $0A1F              ; $6BE3: 8E 1F 0A
+    JSR   $6C0C              ; $6BE6: 20 0C 6C
+    JSR   $6C16              ; $6BE9: 20 16 6C
+    JSR   $6C09              ; $6BEC: 20 09 6C
+    LDY   $0A1D              ; $6BEF: AC 1D 0A
+    LDA   $0A1E              ; $6BF2: AD 1E 0A
+    LDX   $0A1F              ; $6BF5: AE 1F 0A
+    JSR   $6C09              ; $6BF8: 20 09 6C
+    JSR   $6C16              ; $6BFB: 20 16 6C
+    CLI                      ; $6BFE: 58      
+    JSR   $4BB5              ; $6BFF: 20 B5 4B
+    LDX   $0A1F              ; $6C02: AE 1F 0A
+    INX                      ; $6C05: E8      
+    BNE   $6BFF              ; $6C06: D0 F7   
+    RTS                      ; $6C08: 60      
+    JSR   $6C0C              ; $6C09: 20 0C 6C
+    ASL   $0A1D              ; $6C0C: 0E 1D 0A
+    ROL   $0A1E              ; $6C0F: 2E 1E 0A
+    ROL   $0A1F              ; $6C12: 2E 1F 0A
+    RTS                      ; $6C15: 60      
+    PHA                      ; $6C16: 48      
+    TYA                      ; $6C17: 98      
+    ADC   $0A1D              ; $6C18: 6D 1D 0A
+    STA   $0A1D              ; $6C1B: 8D 1D 0A
+    PLA                      ; $6C1E: 68      
+    ADC   $0A1E              ; $6C1F: 6D 1E 0A
+    STA   $0A1E              ; $6C22: 8D 1E 0A
+    TXA                      ; $6C25: 8A      
+    ADC   $0A1F              ; $6C26: 6D 1F 0A
+    STA   $0A1F              ; $6C29: 8D 1F 0A
+    RTS                      ; $6C2C: 60      
+CMD_WAIT:
+    JSR   $8803              ; $6C2D: 20 03 88
+    STX   $4B                ; $6C30: 86 4B   
+    LDX   #$00               ; $6C32: A2 00   
+    JSR   $0386              ; $6C34: 20 86 03
+    BEQ   $6C3C              ; $6C37: F0 03   
+    JSR   $8809              ; $6C39: 20 09 88
+    STX   $4C                ; $6C3C: 86 4C   
+    LDY   #$00               ; $6C3E: A0 00   
+    LDX   $03D5              ; $6C40: AE D5 03
+    LDA   #$16               ; $6C43: A9 16   
+    JSR   $FF74              ; $6C45: 20 74 FF (J_INDFET)
+    EOR   $4C                ; $6C48: 45 4C   
+    AND   $4B                ; $6C4A: 25 4B   
+    BEQ   $6C3E              ; $6C4C: F0 F0   
+    RTS                      ; $6C4E: 60      
+CMD_FE_SPRITE:
+    JSR   $6CBB              ; $6C4F: 20 BB 6C
+    JSR   $9E1E              ; $6C52: 20 1E 9E
+    BCC   $6C5C              ; $6C55: 90 05   
+    LDY   #$15               ; $6C57: A0 15   
+    JSR   $6C9B              ; $6C59: 20 9B 6C
+    JSR   $9E1E              ; $6C5C: 20 1E 9E
+    BCC   $6C6F              ; $6C5F: 90 0E   
+    DEX                      ; $6C61: CA      
+    CPX   #$10               ; $6C62: E0 10   
+    BCS   $6C98              ; $6C64: B0 32   
+    TXA                      ; $6C66: 8A      
+    LDX   $77                ; $6C67: A6 77   
+    JSR   $A845              ; $6C69: 20 45 A8
+    STA   $D027,X            ; $6C6C: 9D 27 D0
+    JSR   $9E1E              ; $6C6F: 20 1E 9E
+    BCC   $6C79              ; $6C72: 90 05   
+    LDY   #$1B               ; $6C74: A0 1B   
+    JSR   $6C9B              ; $6C76: 20 9B 6C
+    JSR   $9E1E              ; $6C79: 20 1E 9E
+    BCC   $6C83              ; $6C7C: 90 05   
+    LDY   #$1D               ; $6C7E: A0 1D   
+    JSR   $6C9B              ; $6C80: 20 9B 6C
+    JSR   $9E1E              ; $6C83: 20 1E 9E
+    BCC   $6C8D              ; $6C86: 90 05   
+    LDY   #$17               ; $6C88: A0 17   
+    JSR   $6C9B              ; $6C8A: 20 9B 6C
+    JSR   $9E1E              ; $6C8D: 20 1E 9E
+    BCC   $6C97              ; $6C90: 90 05   
+    LDY   #$1C               ; $6C92: A0 1C   
+    JSR   $6C9B              ; $6C94: 20 9B 6C
+    RTS                      ; $6C97: 60      
+    JMP   $7D28              ; $6C98: 4C 28 7D
+    TXA                      ; $6C9B: 8A      
+    LSR   A                  ; $6C9C: 4A      
+    BNE   $6C98              ; $6C9D: D0 F9   
+    LDX   $77                ; $6C9F: A6 77   
+    LDA   $6CB3,X            ; $6CA1: BD B3 6C
+    JSR   $A845              ; $6CA4: 20 45 A8
+    ORA   $D000,Y            ; $6CA7: 19 00 D0 (VIC_SP0X)
+    BCS   $6CAF              ; $6CAA: B0 03   
+    EOR   $6CB3,X            ; $6CAC: 5D B3 6C
+    STA   $D000,Y            ; $6CAF: 99 00 D0 (VIC_SP0X)
+    RTS                      ; $6CB2: 60      
+; --- [DATA] Bitmask Powers-of-Two Table ($01..$80) ($6CB3-$6CBA) ---
+    .BYTE $01, $02, $04, $08, $10, $20, $40, $80 ; $6CB3 [IDENTIFIED_DATA] |..... @.|
+    JSR   $87F4              ; $6CBB: 20 F4 87
+    DEX                      ; $6CBE: CA      
+    CPX   #$08               ; $6CBF: E0 08   
+    BCS   $6C98              ; $6CC1: B0 D5   
+    STX   $77                ; $6CC3: 86 77   
+    RTS                      ; $6CC5: 60      
+CMD_FE_MOVSPR:
+    JSR   $6CBB              ; $6CC6: 20 BB 6C
+    JSR   $6D9E              ; $6CC9: 20 9E 6D
+    BIT   $116E              ; $6CCC: 2C 6E 11
+    BVC   $6CD4              ; $6CCF: 50 03   
+    JMP   $796C              ; $6CD1: 4C 6C 79 (CMD_FE_BEGIN)
+    STY   $1135              ; $6CD4: 8C 35 11
+    STY   $1137              ; $6CD7: 8C 37 11
+    STA   $1136              ; $6CDA: 8D 36 11
+    STA   $1138              ; $6CDD: 8D 38 11
+    JSR   $6D9E              ; $6CE0: 20 9E 6D
+    BIT   $116E              ; $6CE3: 2C 6E 11
+    BVC   $6D49              ; $6CE6: 50 61   
+    BMI   $6D24              ; $6CE8: 30 3A   
+    TYA                      ; $6CEA: 98      
+    PHA                      ; $6CEB: 48      
+    LDY   #$04               ; $6CEC: A0 04   
+    JSR   $9A74              ; $6CEE: 20 74 9A
+    LDX   $77                ; $6CF1: A6 77   
+    LDY   $6DD9,X            ; $6CF3: BC D9 6D
+    LDA   #$00               ; $6CF6: A9 00   
+    STA   $117E,Y            ; $6CF8: 99 7E 11
+    INY                      ; $6CFB: C8      
+    LDX   #$03               ; $6CFC: A2 03   
+    LSR   $114A,X            ; $6CFE: 5E 4A 11
+    DEX                      ; $6D01: CA      
+    ROR   $114A,X            ; $6D02: 7E 4A 11
+    DEX                      ; $6D05: CA      
+    BPL   $6CFE              ; $6D06: 10 F6   
+    INX                      ; $6D08: E8      
+    LDA   $1149,X            ; $6D09: BD 49 11
+    INY                      ; $6D0C: C8      
+    STA   $117E,Y            ; $6D0D: 99 7E 11
+    CPX   #$04               ; $6D10: E0 04   
+    BNE   $6D08              ; $6D12: D0 F4   
+    LDA   #$00               ; $6D14: A9 00   
+    INY                      ; $6D16: C8      
+    STA   $117E,Y            ; $6D17: 99 7E 11
+    DEX                      ; $6D1A: CA      
+    BNE   $6D16              ; $6D1B: D0 F9   
+    PLA                      ; $6D1D: 68      
+    AND   #$0F               ; $6D1E: 29 0F   
+    STA   $1174,Y            ; $6D20: 99 74 11
+    RTS                      ; $6D23: 60      
+    JSR   $8139              ; $6D24: 20 39 81
+    TAY                      ; $6D27: A8      
+    TXA                      ; $6D28: 8A      
+    JSR   $9A77              ; $6D29: 20 77 9A
+    LDX   #$04               ; $6D2C: A2 04   
+    JSR   $9D4A              ; $6D2E: 20 4A 9D
+    LDX   #$04               ; $6D31: A2 04   
+    CLC                      ; $6D33: 18      
+    JSR   $9ACE              ; $6D34: 20 CE 9A
+    STA   $1131,X            ; $6D37: 9D 31 11
+    TYA                      ; $6D3A: 98      
+    STA   $1132,X            ; $6D3B: 9D 32 11
+    INX                      ; $6D3E: E8      
+    INX                      ; $6D3F: E8      
+    CPX   #$06               ; $6D40: E0 06   
+    BEQ   $6D34              ; $6D42: F0 F0   
+    ROR   $116E              ; $6D44: 6E 6E 11
+    BMI   $6D54              ; $6D47: 30 0B   
+    STY   $1137              ; $6D49: 8C 37 11
+    STA   $1138              ; $6D4C: 8D 38 11
+    LDX   #$04               ; $6D4F: A2 04   
+    JSR   $9D4A              ; $6D51: 20 4A 9D
+    LDA   $77                ; $6D54: A5 77   
+    TAX                      ; $6D56: AA      
+    ASL   A                  ; $6D57: 0A      
+    TAY                      ; $6D58: A8      
+    LDA   $1137              ; $6D59: AD 37 11
+    ASL   $116E              ; $6D5C: 0E 6E 11
+    BCC   $6D6A              ; $6D5F: 90 09   
+    CLC                      ; $6D61: 18      
+    BPL   $6D67              ; $6D62: 10 03   
+    EOR   #$FF               ; $6D64: 49 FF   
+    SEC                      ; $6D66: 38      
+    ADC   $11D7,Y            ; $6D67: 79 D7 11
+    SEI                      ; $6D6A: 78      
+    STA   $11D7,Y            ; $6D6B: 99 D7 11
+    LDA   $1135              ; $6D6E: AD 35 11
+    ASL   $116E              ; $6D71: 0E 6E 11
+    BPL   $6D88              ; $6D74: 10 12   
+    CLC                      ; $6D76: 18      
+    ADC   $11D6,Y            ; $6D77: 79 D6 11
+    STA   $11D6,Y            ; $6D7A: 99 D6 11
+    BCS   $6D82              ; $6D7D: B0 03   
+    INC   $1136              ; $6D7F: EE 36 11
+    LDA   $11E6              ; $6D82: AD E6 11
+    JMP   $6D91              ; $6D85: 4C 91 6D
+    STA   $11D6,Y            ; $6D88: 99 D6 11
+    LDA   $11E6              ; $6D8B: AD E6 11
+    ORA   $6CB3,X            ; $6D8E: 1D B3 6C
+    LSR   $1136              ; $6D91: 4E 36 11
+    BCS   $6D99              ; $6D94: B0 03   
+    EOR   $6CB3,X            ; $6D96: 5D B3 6C
+    STA   $11E6              ; $6D99: 8D E6 11
+    CLI                      ; $6D9C: 58      
+    RTS                      ; $6D9D: 60      
+    JSR   $6DC6              ; $6D9E: 20 C6 6D
+    ROR   $116E              ; $6DA1: 6E 6E 11
+    BPL   $6DB1              ; $6DA4: 10 0B   
+    CMP   #$3B               ; $6DA6: C9 3B   
+    BEQ   $6DBD              ; $6DA8: F0 13   
+    CMP   #$23               ; $6DAA: C9 23   
+    BEQ   $6DBC              ; $6DAC: F0 0E   
+    JMP   $796C              ; $6DAE: 4C 6C 79 (CMD_FE_BEGIN)
+    JSR   $0386              ; $6DB1: 20 86 03
+    CMP   #$AA               ; $6DB4: C9 AA   
+    BEQ   $6DBD              ; $6DB6: F0 05   
+    CMP   #$AB               ; $6DB8: C9 AB   
+    BEQ   $6DBD              ; $6DBA: F0 01   
+    CLC                      ; $6DBC: 18      
+    ROR   $116E              ; $6DBD: 6E 6E 11
+    JSR   $77D7              ; $6DC0: 20 D7 77
+    JMP   $8819              ; $6DC3: 4C 19 88
+    JSR   $0386              ; $6DC6: 20 86 03
+    BEQ   $6DD8              ; $6DC9: F0 0D   
+    CMP   #$2C               ; $6DCB: C9 2C   
+    CLC                      ; $6DCD: 18      
+    BEQ   $6DD1              ; $6DCE: F0 01   
+    SEC                      ; $6DD0: 38      
+    PHP                      ; $6DD1: 08      
+    PHA                      ; $6DD2: 48      
+    JSR   $0380              ; $6DD3: 20 80 03
+    PLA                      ; $6DD6: 68      
+    PLP                      ; $6DD7: 28      
+    RTS                      ; $6DD8: 60      
+; --- [DATA] PLAY Musical Note Semitone Offset Table ($6DD9-$6DE2) ---
+    .BYTE $00, $0B, $16, $21, $2C, $37, $42, $4D ; $6DD9 [IDENTIFIED_DATA] |...!,7BM|
+CMD_FE_PLAY:
+    .BYTE $20, $7B                               ; $6DE1 [IDENTIFIED_DATA] | {|
+    .BYTE $87                                ; $6DE3: 87 [UNRESOLVED]
+    STA   $FF03              ; $6DE4: 8D 03 FF (MMU_LCRC_TOP)
+    STA   $77                ; $6DE7: 85 77   
+    JSR   $6FCE              ; $6DE9: 20 CE 6F
+    STA   $78                ; $6DEC: 85 78   
+    LDY   $78                ; $6DEE: A4 78   
+    CPY   $77                ; $6DF0: C4 77   
+    BEQ   $6E01              ; $6DF2: F0 0D   
+    JSR   $03B7              ; $6DF4: 20 B7 03
+    STA   $FF03              ; $6DF7: 8D 03 FF (MMU_LCRC_TOP)
+    JSR   $6E02              ; $6DFA: 20 02 6E
+    INC   $78                ; $6DFD: E6 78   
+    BNE   $6DEE              ; $6DFF: D0 ED   
+    RTS                      ; $6E01: 60      
+    CMP   #$20               ; $6E02: C9 20   
+    BNE   $6E07              ; $6E04: D0 01   
+    RTS                      ; $6E06: 60      
+    CMP   #$41               ; $6E07: C9 41   
+    BCC   $6E12              ; $6E09: 90 07   
+    CMP   #$48               ; $6E0B: C9 48   
+    BCS   $6E12              ; $6E0D: B0 03   
+    JMP   $6F1E              ; $6E0F: 4C 1E 6F
+    LDX   #$04               ; $6E12: A2 04   
+    CMP   $6FE7,X            ; $6E14: DD E7 6F
+    BNE   $6E1C              ; $6E17: D0 03   
+    JMP   $6F07              ; $6E19: 4C 07 6F
+    DEX                      ; $6E1C: CA      
+    BPL   $6E14              ; $6E1D: 10 F5   
+    CMP   #$52               ; $6E1F: C9 52   
+    BNE   $6E26              ; $6E21: D0 03   
+    JMP   $6F78              ; $6E23: 4C 78 6F
+    CMP   #$2E               ; $6E26: C9 2E   
+    BNE   $6E2D              ; $6E28: D0 03   
+    JMP   $6F03              ; $6E2A: 4C 03 6F
+    LDX   #$05               ; $6E2D: A2 05   
+    CMP   $6FEC,X            ; $6E2F: DD EC 6F
+    BNE   $6E37              ; $6E32: D0 03   
+    JMP   $6F52              ; $6E34: 4C 52 6F
+    DEX                      ; $6E37: CA      
+    BPL   $6E2F              ; $6E38: 10 F5   
+    CMP   #$23               ; $6E3A: C9 23   
+    BNE   $6E41              ; $6E3C: D0 03   
+    JMP   $6F69              ; $6E3E: 4C 69 6F
+    CMP   #$24               ; $6E41: C9 24   
+    BNE   $6E48              ; $6E43: D0 03   
+    JMP   $6F6C              ; $6E45: 4C 6C 6F
+    SEC                      ; $6E48: 38      
+    SBC   #$30               ; $6E49: E9 30   
+    CMP   #$0A               ; $6E4B: C9 0A   
+    BCC   $6E52              ; $6E4D: 90 03   
+    JMP   $6EFD              ; $6E4F: 4C FD 6E
+    ASL   $0126              ; $6E52: 0E 26 01
+    BCS   $6E9D              ; $6E55: B0 46   
+    ASL   $0126              ; $6E57: 0E 26 01
+    BCS   $6EA8              ; $6E5A: B0 4C   
+    ASL   $0126              ; $6E5C: 0E 26 01
+    BCS   $6EB1              ; $6E5F: B0 50   
+    ASL   $0126              ; $6E61: 0E 26 01
+    BCC   $6EDD              ; $6E64: 90 77   
+    CMP   #$02               ; $6E66: C9 02   
+    BCC   $6E6D              ; $6E68: 90 03   
+    JMP   $6EFD              ; $6E6A: 4C FD 6E
+    LSR   A                  ; $6E6D: 4A      
+    LDY   $122F              ; $6E6E: AC 2F 12
+    LDX   $6FE4,Y            ; $6E71: BE E4 6F
+    LDA   $1224,X            ; $6E74: BD 24 12
+    BPL   $6E74              ; $6E77: 10 FB   
+    LDA   $6CB3,Y            ; $6E79: B9 B3 6C
+    ORA   $1273              ; $6E7C: 0D 73 12
+    BCS   $6E84              ; $6E7F: B0 03   
+    EOR   $6CB3,Y            ; $6E81: 59 B3 6C
+    STA   $1273              ; $6E84: 8D 73 12
+    LDA   $1274              ; $6E87: AD 74 12
+    STA   $1275              ; $6E8A: 8D 75 12
+    LDX   #$03               ; $6E8D: A2 03   
+    LDA   $1271,X            ; $6E8F: BD 71 12
+    JSR   $A845              ; $6E92: 20 45 A8
+    STA   $D415,X            ; $6E95: 9D 15 D4
+    DEX                      ; $6E98: CA      
+    BPL   $6E8F              ; $6E99: 10 F4   
+    BMI   $6EF7              ; $6E9B: 30 5A   
+    TAX                      ; $6E9D: AA      
+    DEX                      ; $6E9E: CA      
+    CPX   #$03               ; $6E9F: E0 03   
+    BCS   $6EFD              ; $6EA1: B0 5A   
+    STX   $122F              ; $6EA3: 8E 2F 12
+    BCC   $6EF7              ; $6EA6: 90 4F   
+    CMP   #$07               ; $6EA8: C9 07   
+    BCS   $6EFD              ; $6EAA: B0 51   
+    STA   $122B              ; $6EAC: 8D 2B 12
+    BCC   $6EF7              ; $6EAF: 90 46   
+    TAX                      ; $6EB1: AA      
+    JSR   $A845              ; $6EB2: 20 45 A8
+    LDY   $122F              ; $6EB5: AC 2F 12
+    LDA   $1253,X            ; $6EB8: BD 53 12
+    STA   $1230,Y            ; $6EBB: 99 30 12
+    LDA   $7039,Y            ; $6EBE: B9 39 70
+    TAY                      ; $6EC1: A8      
+    LDA   $123F,X            ; $6EC2: BD 3F 12
+    STA   $D405,Y            ; $6EC5: 99 05 D4
+    LDA   $1249,X            ; $6EC8: BD 49 12
+    STA   $D406,Y            ; $6ECB: 99 06 D4
+    LDA   $125D,X            ; $6ECE: BD 5D 12
+    STA   $D402,Y            ; $6ED1: 99 02 D4
+    LDA   $1267,X            ; $6ED4: BD 67 12
+    STA   $D403,Y            ; $6ED7: 99 03 D4
+    JMP   $6EF7              ; $6EDA: 4C F7 6E
+    TAX                      ; $6EDD: AA      
+    LDA   $1274              ; $6EDE: AD 74 12
+    AND   #$F0               ; $6EE1: 29 F0   
+    ORA   $703C,X            ; $6EE3: 1D 3C 70
+    STA   $1274              ; $6EE6: 8D 74 12
+    LDA   $1275              ; $6EE9: AD 75 12
+    AND   #$F0               ; $6EEC: 29 F0   
+    ORA   $703C,X            ; $6EEE: 1D 3C 70
+    JSR   $A845              ; $6EF1: 20 45 A8
+    STA   $D418              ; $6EF4: 8D 18 D4
+    LDA   #$00               ; $6EF7: A9 00   
+    STA   $0126              ; $6EF9: 8D 26 01
+    RTS                      ; $6EFC: 60      
+    JSR   $6EF7              ; $6EFD: 20 F7 6E
+    JMP   $7D28              ; $6F00: 4C 28 7D
+    STA   $1233              ; $6F03: 8D 33 12
+    RTS                      ; $6F06: 60      
+    LDY   #$80               ; $6F07: A0 80   
+    STY   $1229              ; $6F09: 8C 29 12
+    LDY   #$04               ; $6F0C: A0 04   
+    STY   $122A              ; $6F0E: 8C 2A 12
+    DEX                      ; $6F11: CA      
+    BMI   $6F1D              ; $6F12: 30 09   
+    LSR   $122A              ; $6F14: 4E 2A 12
+    ROR   $1229              ; $6F17: 6E 29 12
+    JMP   $6F11              ; $6F1A: 4C 11 6F
+    RTS                      ; $6F1D: 60      
+    SEC                      ; $6F1E: 38      
+    SBC   #$41               ; $6F1F: E9 41   
+    TAX                      ; $6F21: AA      
+    LDA   $6FF2,X            ; $6F22: BD F2 6F
+    TAX                      ; $6F25: AA      
+    LDA   #$06               ; $6F26: A9 06   
+    SEC                      ; $6F28: 38      
+    SBC   $122B              ; $6F29: ED 2B 12
+    TAY                      ; $6F2C: A8      
+    TXA                      ; $6F2D: 8A      
+    CLC                      ; $6F2E: 18      
+    ADC   $122C              ; $6F2F: 6D 2C 12
+    BPL   $6F37              ; $6F32: 10 03   
+    LDA   #$0B               ; $6F34: A9 0B   
+    INY                      ; $6F36: C8      
+    CMP   #$0C               ; $6F37: C9 0C   
+    BCC   $6F3E              ; $6F39: 90 03   
+    LDA   #$00               ; $6F3B: A9 00   
+    DEY                      ; $6F3D: 88      
+    TAX                      ; $6F3E: AA      
+    LDA   $6FF9,X            ; $6F3F: BD F9 6F
+    STA   $122D              ; $6F42: 8D 2D 12
+    LDA   $7005,X            ; $6F45: BD 05 70
+    DEY                      ; $6F48: 88      
+    BMI   $6F72              ; $6F49: 30 27   
+    LSR   A                  ; $6F4B: 4A      
+    ROR   $122D              ; $6F4C: 6E 2D 12
+    JMP   $6F48              ; $6F4F: 4C 48 6F
+    CMP   #$4D               ; $6F52: C9 4D   
+    BEQ   $6F5D              ; $6F54: F0 07   
+    LDA   $9D1C,X            ; $6F56: BD 1C 9D
+    STA   $0126              ; $6F59: 8D 26 01
+    RTS                      ; $6F5C: 60      
+    LDY   #$05               ; $6F5D: A0 05   
+    LDA   $1223,Y            ; $6F5F: B9 23 12
+    BPL   $6F5F              ; $6F62: 10 FB   
+    DEY                      ; $6F64: 88      
+    DEY                      ; $6F65: 88      
+    BPL   $6F5F              ; $6F66: 10 F7   
+    RTS                      ; $6F68: 60      
+    LDA   #$01               ; $6F69: A9 01   
+    BIT   $FFA9              ; $6F6B: 2C A9 FF
+    STA   $122C              ; $6F6E: 8D 2C 12
+    RTS                      ; $6F71: 60      
+    STA   $122E              ; $6F72: 8D 2E 12
+    LDA   #$00               ; $6F75: A9 00   
+    BIT   $FFA9              ; $6F77: 2C A9 FF
+    PHA                      ; $6F7A: 48      
+    LDX   $122F              ; $6F7B: AE 2F 12
+    LDY   $6FE4,X            ; $6F7E: BC E4 6F
+    LDA   $1224,Y            ; $6F81: B9 24 12
+    BPL   $6F81              ; $6F84: 10 FB   
+    LDA   $1229              ; $6F86: AD 29 12
+    STA   $1223,Y            ; $6F89: 99 23 12
+    LDA   $122A              ; $6F8C: AD 2A 12
+    STA   $1224,Y            ; $6F8F: 99 24 12
+    LDA   $1233              ; $6F92: AD 33 12
+    BEQ   $6FAE              ; $6F95: F0 17   
+    LDA   $122A              ; $6F97: AD 2A 12
+    LSR   A                  ; $6F9A: 4A      
+    PHA                      ; $6F9B: 48      
+    LDA   $1229              ; $6F9C: AD 29 12
+    ROR   A                  ; $6F9F: 6A      
+    CLC                      ; $6FA0: 18      
+    ADC   $1223,Y            ; $6FA1: 79 23 12
+    STA   $1223,Y            ; $6FA4: 99 23 12
+    PLA                      ; $6FA7: 68      
+    ADC   $1224,Y            ; $6FA8: 79 24 12
+    STA   $1224,Y            ; $6FAB: 99 24 12
+    PLA                      ; $6FAE: 68      
+    BMI   $6FCE              ; $6FAF: 30 1D   
+    JSR   $A845              ; $6FB1: 20 45 A8
+    LDY   $7039,X            ; $6FB4: BC 39 70
+    LDA   $122D              ; $6FB7: AD 2D 12
+    STA   $D400,Y            ; $6FBA: 99 00 D4 (SID_BASE)
+    LDA   $122E              ; $6FBD: AD 2E 12
+    STA   $D401,Y            ; $6FC0: 99 01 D4
+    LDA   #$08               ; $6FC3: A9 08   
+    STA   $D404,Y            ; $6FC5: 99 04 D4
+    LDA   $1230,X            ; $6FC8: BD 30 12
+    STA   $D404,Y            ; $6FCB: 99 04 D4
+    LDA   #$00               ; $6FCE: A9 00   
+    STA   $122C              ; $6FD0: 8D 2C 12
+    STA   $1233              ; $6FD3: 8D 33 12
+    RTS                      ; $6FD6: 60      
+CMD_FE_TEMPO:
+    JSR   $87F4              ; $6FD7: 20 F4 87
+    TXA                      ; $6FDA: 8A      
+    BEQ   $6FE1              ; $6FDB: F0 04   
+    STX   $1222              ; $6FDD: 8E 22 12
+    RTS                      ; $6FE0: 60      
+    JMP   $7D28              ; $6FE1: 4C 28 7D
+; --- [DATA] PLAY & ENVELOPE Parameter Lookup Tables ($6FE4-$7045) ---
+    .BYTE $00, $02, $04, $57, $48, $51, $49, $53 ; $6FE4 [IDENTIFIED_DATA] |...WHQIS|
+    .BYTE $56, $4F, $54, $58, $55, $4D, $09, $0B ; $6FEC [IDENTIFIED_DATA] |VOTXUM..|
+    .BYTE $00, $02, $04, $05, $07, $2F, $B6, $83 ; $6FF4 [IDENTIFIED_DATA] |...../..|
+    .BYTE $99, $FC, $B1, $BD, $25, $EF, $20, $BE ; $6FFC [IDENTIFIED_DATA] |....%. .|
+    .BYTE $D1, $4C, $50, $55, $5A, $5F, $65, $6B ; $7004 [IDENTIFIED_DATA] |.LPUZ_ek|
+    .BYTE $72, $78, $80, $87, $8F, $09, $C0, $00 ; $700C [IDENTIFIED_DATA] |rx......|
+    .BYTE $05, $94, $09, $09, $09, $89, $09, $00 ; $7014 [IDENTIFIED_DATA] |........|
+    .BYTE $C0, $F0, $50, $40, $21, $00, $90, $41 ; $701C [IDENTIFIED_DATA] |..P@!..A|
+    .BYTE $00, $41, $21, $11, $81, $11, $21, $41 ; $7024 [IDENTIFIED_DATA] |.A!...!A|
+    .BYTE $41, $41, $11, $06, $00, $00, $00, $00 ; $702C [IDENTIFIED_DATA] |AA......|
+    .BYTE $00, $02, $08, $02, $00, $00, $07, $0E ; $7034 [IDENTIFIED_DATA] |........|
+    .BYTE $00, $01, $03, $05, $07, $08, $0A, $0C ; $703C [IDENTIFIED_DATA] |........|
+    .BYTE $0E, $0F                               ; $7044 [IDENTIFIED_DATA] |..|
+CMD_FE_FILTER:
+    PHA                      ; $7046: 48      
+    LDY   #$03               ; $7047: A0 03   
+    LDA   $1271,Y            ; $7049: B9 71 12
+    STA   $1234,Y            ; $704C: 99 34 12
+    DEY                      ; $704F: 88      
+    BPL   $7049              ; $7050: 10 F7   
+    PLA                      ; $7052: 68      
+    CMP   #$2C               ; $7053: C9 2C   
+    BEQ   $7070              ; $7055: F0 19   
+    JSR   $8812              ; $7057: 20 12 88
+    CMP   #$08               ; $705A: C9 08   
+    BCS   $70BE              ; $705C: B0 60   
+    STY   $1234              ; $705E: 8C 34 12
+    STY   $1235              ; $7061: 8C 35 12
+    LSR   A                  ; $7064: 4A      
+    ROR   $1235              ; $7065: 6E 35 12
+    LSR   A                  ; $7068: 4A      
+    ROR   $1235              ; $7069: 6E 35 12
+    LSR   A                  ; $706C: 4A      
+    ROR   $1235              ; $706D: 6E 35 12
+    LDA   #$10               ; $7070: A9 10   
+    STA   $1238              ; $7072: 8D 38 12
+    JSR   $9E1E              ; $7075: 20 1E 9E
+    BCC   $7091              ; $7078: 90 17   
+    CPX   #$01               ; $707A: E0 01   
+    BCC   $7083              ; $707C: 90 05   
+    BEQ   $7083              ; $707E: F0 03   
+    JMP   $7D28              ; $7080: 4C 28 7D
+    LDA   $1237              ; $7083: AD 37 12
+    ORA   $1238              ; $7086: 0D 38 12
+    BCS   $708E              ; $7089: B0 03   
+    EOR   $1238              ; $708B: 4D 38 12
+    STA   $1237              ; $708E: 8D 37 12
+    ASL   $1238              ; $7091: 0E 38 12
+    BPL   $7075              ; $7094: 10 DF   
+    JSR   $9E1E              ; $7096: 20 1E 9E
+    BCC   $70B2              ; $7099: 90 17   
+    CPX   #$10               ; $709B: E0 10   
+    BCS   $70BE              ; $709D: B0 1F   
+    TXA                      ; $709F: 8A      
+    ASL   A                  ; $70A0: 0A      
+    ASL   A                  ; $70A1: 0A      
+    ASL   A                  ; $70A2: 0A      
+    ASL   A                  ; $70A3: 0A      
+    STA   $1239              ; $70A4: 8D 39 12
+    LDA   $1236              ; $70A7: AD 36 12
+    AND   #$0F               ; $70AA: 29 0F   
+    ORA   $1239              ; $70AC: 0D 39 12
+    STA   $1236              ; $70AF: 8D 36 12
+    LDY   #$03               ; $70B2: A0 03   
+    LDA   $1234,Y            ; $70B4: B9 34 12
+    STA   $1271,Y            ; $70B7: 99 71 12
+    DEY                      ; $70BA: 88      
+    BPL   $70B4              ; $70BB: 10 F7   
+    RTS                      ; $70BD: 60      
+    JMP   $7D28              ; $70BE: 4C 28 7D
+CMD_FE_ENVELOPE:
+    JSR   $87F4              ; $70C1: 20 F4 87
+    CPX   #$0A               ; $70C4: E0 0A   
+    BCC   $70CB              ; $70C6: 90 03   
+    JMP   $7D28              ; $70C8: 4C 28 7D
+    STX   $123A              ; $70CB: 8E 3A 12
+    LDA   $123F,X            ; $70CE: BD 3F 12
+    STA   $123B              ; $70D1: 8D 3B 12
+    LDA   $1249,X            ; $70D4: BD 49 12
+    STA   $123C              ; $70D7: 8D 3C 12
+    LDA   $1253,X            ; $70DA: BD 53 12
+    STA   $123D              ; $70DD: 8D 3D 12
+    LDX   #$00               ; $70E0: A2 00   
+    STX   $123E              ; $70E2: 8E 3E 12
+    JSR   $9E1E              ; $70E5: 20 1E 9E
+    BCC   $7100              ; $70E8: 90 16   
+    TXA                      ; $70EA: 8A      
+    ASL   A                  ; $70EB: 0A      
+    ASL   A                  ; $70EC: 0A      
+    ASL   A                  ; $70ED: 0A      
+    ASL   A                  ; $70EE: 0A      
+    STA   $1239              ; $70EF: 8D 39 12
+    LDX   $123E              ; $70F2: AE 3E 12
+    LDA   $123B,X            ; $70F5: BD 3B 12
+    AND   #$0F               ; $70F8: 29 0F   
+    ORA   $1239              ; $70FA: 0D 39 12
+    STA   $123B,X            ; $70FD: 9D 3B 12
+    JSR   $9E1E              ; $7100: 20 1E 9E
+    BCC   $7119              ; $7103: 90 14   
+    TXA                      ; $7105: 8A      
+    AND   #$0F               ; $7106: 29 0F   
+    STA   $1239              ; $7108: 8D 39 12
+    LDX   $123E              ; $710B: AE 3E 12
+    LDA   $123B,X            ; $710E: BD 3B 12
+    AND   #$F0               ; $7111: 29 F0   
+    ORA   $1239              ; $7113: 0D 39 12
+    STA   $123B,X            ; $7116: 9D 3B 12
+    LDX   $123E              ; $7119: AE 3E 12
+    INX                      ; $711C: E8      
+    CPX   #$01               ; $711D: E0 01   
+    BEQ   $70E2              ; $711F: F0 C1   
+    JSR   $9E1E              ; $7121: 20 1E 9E
+    BCC   $7136              ; $7124: 90 10   
+    LDA   #$15               ; $7126: A9 15   
+    CPX   #$04               ; $7128: E0 04   
+    BEQ   $7133              ; $712A: F0 07   
+    BCS   $70C8              ; $712C: B0 9A   
+    LDA   $6CB7,X            ; $712E: BD B7 6C
+    ORA   #$01               ; $7131: 09 01   
+    STA   $123D              ; $7133: 8D 3D 12
+    JSR   $9E06              ; $7136: 20 06 9E
+    BCC   $714E              ; $7139: 90 13   
+    TAX                      ; $713B: AA      
+    LDA   $123D              ; $713C: AD 3D 12
+    AND   #$40               ; $713F: 29 40   
+    BEQ   $714E              ; $7141: F0 0B   
+    TXA                      ; $7143: 8A      
+    LDX   $123A              ; $7144: AE 3A 12
+    STA   $1267,X            ; $7147: 9D 67 12
+    TYA                      ; $714A: 98      
+    STA   $125D,X            ; $714B: 9D 5D 12
+    LDX   $123A              ; $714E: AE 3A 12
+    LDA   $123B              ; $7151: AD 3B 12
+    STA   $123F,X            ; $7154: 9D 3F 12
+    LDA   $123C              ; $7157: AD 3C 12
+    STA   $1249,X            ; $715A: 9D 49 12
+    LDA   $123D              ; $715D: AD 3D 12
+    STA   $1253,X            ; $7160: 9D 53 12
+    RTS                      ; $7163: 60      
+CMD_FE_COLLISION:
+    JSR   $87F4              ; $7164: 20 F4 87
+    DEX                      ; $7167: CA      
+    CPX   #$03               ; $7168: E0 03   
+    BCS   $718D              ; $716A: B0 21   
+    STX   $1280              ; $716C: 8E 80 12
+    JSR   $9E06              ; $716F: 20 06 9E
+    PHP                      ; $7172: 08      
+    LDX   $1280              ; $7173: AE 80 12
+    STA   $127C,X            ; $7176: 9D 7C 12
+    TYA                      ; $7179: 98      
+    STA   $1279,X            ; $717A: 9D 79 12
+    LDA   $127F              ; $717D: AD 7F 12
+    ORA   $6CB3,X            ; $7180: 1D B3 6C
+    PLP                      ; $7183: 28      
+    BCS   $7189              ; $7184: B0 03   
+    EOR   $6CB3,X            ; $7186: 5D B3 6C
+    STA   $127F              ; $7189: 8D 7F 12
+    RTS                      ; $718C: 60      
+    JMP   $7D28              ; $718D: 4C 28 7D
+CMD_FE_SPRCOLOR:
+    CMP   #$2C               ; $7190: C9 2C   
+    BEQ   $71A2              ; $7192: F0 0E   
+    JSR   $87F4              ; $7194: 20 F4 87
+    DEX                      ; $7197: CA      
+    CPX   #$10               ; $7198: E0 10   
+    BCS   $71B3              ; $719A: B0 17   
+    JSR   $A845              ; $719C: 20 45 A8
+    STX   $D025              ; $719F: 8E 25 D0
+    JSR   $9E1E              ; $71A2: 20 1E 9E
+    BCC   $71B2              ; $71A5: 90 0B   
+    DEX                      ; $71A7: CA      
+    CPX   #$10               ; $71A8: E0 10   
+    BCS   $71B3              ; $71AA: B0 07   
+    JSR   $A845              ; $71AC: 20 45 A8
+    STX   $D026              ; $71AF: 8E 26 D0
+    RTS                      ; $71B2: 60      
+    JMP   $7D28              ; $71B3: 4C 28 7D
+CMD_FE_WIDTH:
+    JSR   $87F4              ; $71B6: 20 F4 87
+    DEX                      ; $71B9: CA      
+    CPX   #$02               ; $71BA: E0 02   
+    BCS   $71C2              ; $71BC: B0 04   
+    STX   $116B              ; $71BE: 8E 6B 11
+    RTS                      ; $71C1: 60      
+    JMP   $7D28              ; $71C2: 4C 28 7D
+CMD_VOL:
+    JSR   $87F4              ; $71C5: 20 F4 87
+    CPX   #$10               ; $71C8: E0 10   
+    BCS   $71E9              ; $71CA: B0 1D   
+    STX   $77                ; $71CC: 86 77   
+    LDA   $1274              ; $71CE: AD 74 12
+    AND   #$F0               ; $71D1: 29 F0   
+    ORA   $77                ; $71D3: 05 77   
+    STA   $1274              ; $71D5: 8D 74 12
+    LDA   $1275              ; $71D8: AD 75 12
+    AND   #$F0               ; $71DB: 29 F0   
+    ORA   $77                ; $71DD: 05 77   
+    STA   $1275              ; $71DF: 8D 75 12
+    JSR   $A845              ; $71E2: 20 45 A8
+    STA   $D418              ; $71E5: 8D 18 D4
+    RTS                      ; $71E8: 60      
+    JMP   $7D28              ; $71E9: 4C 28 7D
+CMD_SOUND:
+    JSR   $87F4              ; $71EC: 20 F4 87
+    DEX                      ; $71EF: CA      
+    CPX   #$03               ; $71F0: E0 03   
+    BCC   $71F7              ; $71F2: 90 03   
+    JMP   $7D28              ; $71F4: 4C 28 7D
+    STX   $1281              ; $71F7: 8E 81 12
+    JSR   $880F              ; $71FA: 20 0F 88
+    STY   $12A5              ; $71FD: 8C A5 12
+    STA   $12A6              ; $7200: 8D A6 12
+    STY   $12AC              ; $7203: 8C AC 12
+    STA   $12AD              ; $7206: 8D AD 12
+    JSR   $880F              ; $7209: 20 0F 88
+    CMP   #$80               ; $720C: C9 80   
+    BCS   $71F4              ; $720E: B0 E4   
+    STY   $12A3              ; $7210: 8C A3 12
+    STA   $12A4              ; $7213: 8D A4 12
+    JSR   $9E1C              ; $7216: 20 1C 9E
+    CPX   #$03               ; $7219: E0 03   
+    BCS   $71F4              ; $721B: B0 D7   
+    TXA                      ; $721D: 8A      
+    STA   $12A9              ; $721E: 8D A9 12
+    AND   #$01               ; $7221: 29 01   
+    PHP                      ; $7223: 08      
+    JSR   $9E06              ; $7224: 20 06 9E
+    STY   $12A7              ; $7227: 8C A7 12
+    STA   $12A8              ; $722A: 8D A8 12
+    JSR   $9E06              ; $722D: 20 06 9E
+    PLP                      ; $7230: 28      
+    BEQ   $7240              ; $7231: F0 0D   
+    PHA                      ; $7233: 48      
+    TYA                      ; $7234: 98      
+    EOR   #$FF               ; $7235: 49 FF   
+    CLC                      ; $7237: 18      
+    ADC   #$01               ; $7238: 69 01   
+    TAY                      ; $723A: A8      
+    PLA                      ; $723B: 68      
+    EOR   #$FF               ; $723C: 49 FF   
+    ADC   #$00               ; $723E: 69 00   
+    STA   $12AB              ; $7240: 8D AB 12
+    TYA                      ; $7243: 98      
+    STA   $12AA              ; $7244: 8D AA 12
+    LDX   #$02               ; $7247: A2 02   
+    JSR   $9E1E              ; $7249: 20 1E 9E
+    CPX   #$04               ; $724C: E0 04   
+    BCS   $721B              ; $724E: B0 CB   
+    LDA   $6CB7,X            ; $7250: BD B7 6C
+    ORA   #$01               ; $7253: 09 01   
+    STA   $12B0              ; $7255: 8D B0 12
+    JSR   $9E06              ; $7258: 20 06 9E
+    BCS   $7261              ; $725B: B0 04   
+    LDA   #$08               ; $725D: A9 08   
+    LDY   #$00               ; $725F: A0 00   
+    CMP   #$10               ; $7261: C9 10   
+    BCS   $71F4              ; $7263: B0 8F   
+    STY   $12AE              ; $7265: 8C AE 12
+    STA   $12AF              ; $7268: 8D AF 12
+    LDA   $12A3              ; $726B: AD A3 12
+    ORA   $12A4              ; $726E: 0D A4 12
+    BEQ   $72B9              ; $7271: F0 46   
+    LDX   $1281              ; $7273: AE 81 12
+    TXA                      ; $7276: 8A      
+    ASL   A                  ; $7277: 0A      
+    TAY                      ; $7278: A8      
+    LDA   $1224,Y            ; $7279: B9 24 12
+    BPL   $7279              ; $727C: 10 FB   
+    LDA   $1285,X            ; $727E: BD 85 12
+    BPL   $727E              ; $7281: 10 FB   
+    LDY   #$00               ; $7283: A0 00   
+    LDA   $12A5,Y            ; $7285: B9 A5 12
+    STA   $1288,X            ; $7288: 9D 88 12
+    INX                      ; $728B: E8      
+    INX                      ; $728C: E8      
+    INX                      ; $728D: E8      
+    INY                      ; $728E: C8      
+    CPY   #$09               ; $728F: C0 09   
+    BNE   $7285              ; $7291: D0 F2   
+    LDX   $1281              ; $7293: AE 81 12
+    LDY   $7039,X            ; $7296: BC 39 70
+    JSR   $A845              ; $7299: 20 45 A8
+    LDA   #$08               ; $729C: A9 08   
+    STA   $D404,Y            ; $729E: 99 04 D4
+    LDA   #$00               ; $72A1: A9 00   
+    STA   $D405,Y            ; $72A3: 99 05 D4
+    LDA   #$F0               ; $72A6: A9 F0   
+    STA   $D406,Y            ; $72A8: 99 06 D4
+    LDX   #$00               ; $72AB: A2 00   
+    LDA   $12AC,X            ; $72AD: BD AC 12
+    STA   $D400,Y            ; $72B0: 99 00 D4 (SID_BASE)
+    INY                      ; $72B3: C8      
+    INX                      ; $72B4: E8      
+    CPX   #$05               ; $72B5: E0 05   
+    BNE   $72AD              ; $72B7: D0 F4   
+    LDX   $1281              ; $72B9: AE 81 12
+    LDY   $12A3              ; $72BC: AC A3 12
+    LDA   $12A4              ; $72BF: AD A4 12
+    SEI                      ; $72C2: 78      
+    STA   $1285,X            ; $72C3: 9D 85 12
+    TYA                      ; $72C6: 98      
+    STA   $1282,X            ; $72C7: 9D 82 12
+    CLI                      ; $72CA: 58      
+    RTS                      ; $72CB: 60      
+CMD_FE_WINDOW:
+    JSR   $87F4              ; $72CC: 20 F4 87
+    CPX   #$28               ; $72CF: E0 28   
+    BIT   $D7                ; $72D1: 24 D7   
+    BPL   $72D7              ; $72D3: 10 02   
+    CPX   #$50               ; $72D5: E0 50   
+    BCS   $7332              ; $72D7: B0 59   
+    STX   $12B3              ; $72D9: 8E B3 12
+    JSR   $8809              ; $72DC: 20 09 88
+    CPX   #$19               ; $72DF: E0 19   
+    BCS   $7332              ; $72E1: B0 4F   
+    STX   $12B4              ; $72E3: 8E B4 12
+    JSR   $8809              ; $72E6: 20 09 88
+    CPX   #$28               ; $72E9: E0 28   
+    BIT   $D7                ; $72EB: 24 D7   
+    BPL   $72F1              ; $72ED: 10 02   
+    CPX   #$50               ; $72EF: E0 50   
+    BCS   $7332              ; $72F1: B0 3F   
+    STX   $12B5              ; $72F3: 8E B5 12
+    CPX   $12B3              ; $72F6: EC B3 12
+    BCC   $7332              ; $72F9: 90 37   
+    JSR   $8809              ; $72FB: 20 09 88
+    CPX   #$19               ; $72FE: E0 19   
+    BCS   $7332              ; $7300: B0 30   
+    STX   $12B6              ; $7302: 8E B6 12
+    CPX   $12B4              ; $7305: EC B4 12
+    BCC   $7332              ; $7308: 90 28   
+    JSR   $9E1C              ; $730A: 20 1C 9E
+    CPX   #$02               ; $730D: E0 02   
+    BCS   $7332              ; $730F: B0 21   
+    TXA                      ; $7311: 8A      
+    PHA                      ; $7312: 48      
+    LDX   $12B3              ; $7313: AE B3 12
+    LDA   $12B4              ; $7316: AD B4 12
+    CLC                      ; $7319: 18      
+    JSR   $C02D              ; $731A: 20 2D C0 (ED_JWINDOW)
+    LDX   $12B5              ; $731D: AE B5 12
+    LDA   $12B6              ; $7320: AD B6 12
+    SEC                      ; $7323: 38      
+    JSR   $C02D              ; $7324: 20 2D C0 (ED_JWINDOW)
+    LDX   #$13               ; $7327: A2 13   
+    PLA                      ; $7329: 68      
+    BEQ   $732E              ; $732A: F0 02   
+    LDX   #$93               ; $732C: A2 93   
+    TXA                      ; $732E: 8A      
+    JMP   $9269              ; $732F: 4C 69 92
+    JMP   $7D28              ; $7332: 4C 28 7D
+CMD_FE_BOOT:
+    LDA   #$E6               ; $7335: A9 E6   
+    LDX   #$FC               ; $7337: A2 FC   
+    JSR   $A3C3              ; $7339: 20 C3 A3
+    LDA   $80                ; $733C: A5 80   
+    LSR   A                  ; $733E: 4A      
+    BCC   $735E              ; $733F: 90 1D   
+    JSR   $A21F              ; $7341: 20 1F A2
+    BCS   $736F              ; $7344: B0 29   
+    LDX   $03D5              ; $7346: AE D5 03
+    LDA   $81                ; $7349: A5 81   
+    LSR   A                  ; $734B: 4A      
+    BCC   $7351              ; $734C: 90 03   
+    LDX   $011F              ; $734E: AE 1F 01
+    STX   $02                ; $7351: 86 02   
+    LDA   $AC                ; $7353: A5 AC   
+    STA   $04                ; $7355: 85 04   
+    LDA   $AD                ; $7357: A5 AD   
+    STA   $03                ; $7359: 85 03   
+    JMP   $FF6E              ; $735B: 4C 6E FF (J_JSRFAR)
+    LDA   $0112              ; $735E: AD 12 01
+    ORA   #$30               ; $7361: 09 30   
+    LDX   $011C              ; $7363: AE 1C 01
+    JSR   $A845              ; $7366: 20 45 A8
+    JSR   $FF53              ; $7369: 20 53 FF (J_BOOT_CALL)
+    BCS   $736F              ; $736C: B0 01   
+    RTS                      ; $736E: 60      
+    JMP   $90D0              ; $736F: 4C D0 90
+CMD_FE_SPRDEF:
+    JSR   $9F4F              ; $7372: 20 4F 9F
+    JSR   $A845              ; $7375: 20 45 A8
+    LDA   #$D0               ; $7378: A9 D0   
+    STA   $1168              ; $737A: 8D 68 11
+    LDA   #$20               ; $737D: A9 20   
+    STA   $D8                ; $737F: 85 D8   
+    JSR   $6B30              ; $7381: 20 30 6B
+    LDY   #$80               ; $7384: A0 80   
+    STY   $113D              ; $7386: 8C 3D 11
+    LDY   #$18               ; $7389: A0 18   
+    LDA   #$20               ; $738B: A9 20   
+    LDX   #$00               ; $738D: A2 00   
+    JSR   $68DB              ; $738F: 20 DB 68
+    INX                      ; $7392: E8      
+    CPX   #$15               ; $7393: E0 15   
+    BCC   $738F              ; $7395: 90 F8   
+    JSR   $68DB              ; $7397: 20 DB 68
+    DEY                      ; $739A: 88      
+    BPL   $7397              ; $739B: 10 FA   
+    JSR   $A845              ; $739D: 20 45 A8
+    LDA   $F1                ; $73A0: A5 F1   
+    PHA                      ; $73A2: 48      
+    LDA   $D021              ; $73A3: AD 21 D0 (VIC_BGCOL0)
+    STA   $F1                ; $73A6: 85 F1   
+    LDA   #$2B               ; $73A8: A9 2B   
+    LDX   #$00               ; $73AA: A2 00   
+    STX   $113D              ; $73AC: 8E 3D 11
+    LDY   #$00               ; $73AF: A0 00   
+    JSR   $68DB              ; $73B1: 20 DB 68
+    INY                      ; $73B4: C8      
+    CPY   #$18               ; $73B5: C0 18   
+    BCC   $73B1              ; $73B7: 90 F8   
+    INX                      ; $73B9: E8      
+    CPX   #$15               ; $73BA: E0 15   
+    BCC   $73AF              ; $73BC: 90 F1   
+    PLA                      ; $73BE: 68      
+    STA   $F1                ; $73BF: 85 F1   
+    JSR   $76D4              ; $73C1: 20 D4 76
+    LDY   #$02               ; $73C4: A0 02   
+    LDX   #$17               ; $73C6: A2 17   
+    LDA   $766C,Y            ; $73C8: B9 6C 76
+    BEQ   $73D3              ; $73CB: F0 06   
+    JSR   $68DB              ; $73CD: 20 DB 68
+    INY                      ; $73D0: C8      
+    BNE   $73C8              ; $73D1: D0 F5   
+    JSR   $A845              ; $73D3: 20 45 A8
+    JSR   $FFE4              ; $73D6: 20 E4 FF (J_GETIN)
+    BEQ   $73D6              ; $73D9: F0 FB   
+    CMP   #$0D               ; $73DB: C9 0D   
+    BNE   $73E7              ; $73DD: D0 08   
+    JSR   $6B30              ; $73DF: 20 30 6B
+    LDA   #$00               ; $73E2: A9 00   
+    STA   $D8                ; $73E4: 85 D8   
+    RTS                      ; $73E6: 60      
+    SEC                      ; $73E7: 38      
+    SBC   #$31               ; $73E8: E9 31   
+    STA   $12FC              ; $73EA: 8D FC 12
+    CMP   #$08               ; $73ED: C9 08   
+    BCS   $73D6              ; $73EF: B0 E5   
+    TAX                      ; $73F1: AA      
+    ASL   A                  ; $73F2: 0A      
+    TAY                      ; $73F3: A8      
+    LDA   $6CB3,X            ; $73F4: BD B3 6C
+    STA   $116D              ; $73F7: 8D 6D 11
+    AND   $D01C              ; $73FA: 2D 1C D0
+    BEQ   $7401              ; $73FD: F0 02   
+    LDA   #$80               ; $73FF: A9 80   
+    STA   $12FA              ; $7401: 8D FA 12
+    LDA   #$08               ; $7404: A9 08   
+    STA   $11D6,Y            ; $7406: 99 D6 11
+    LDA   #$4A               ; $7409: A9 4A   
+    STA   $11D7,Y            ; $740B: 99 D7 11
+    LDA   $116D              ; $740E: AD 6D 11
+    ORA   $11E6              ; $7411: 0D E6 11
+    STA   $11E6              ; $7414: 8D E6 11
+    LDA   $116D              ; $7417: AD 6D 11
+    STA   $D015              ; $741A: 8D 15 D0 (VIC_SPENA)
+    LDX   $12FC              ; $741D: AE FC 12
+    LDY   $6DD9,X            ; $7420: BC D9 6D
+    LDA   #$00               ; $7423: A9 00   
+    STA   $117E,Y            ; $7425: 99 7E 11
+    TXA                      ; $7428: 8A      
+    LDY   #$11               ; $7429: A0 11   
+    LDX   #$17               ; $742B: A2 17   
+    CLC                      ; $742D: 18      
+    ADC   #$31               ; $742E: 69 31   
+    JSR   $68DB              ; $7430: 20 DB 68
+    JSR   $A845              ; $7433: 20 45 A8
+    LDA   $12FC              ; $7436: AD FC 12
+    LSR   A                  ; $7439: 4A      
+    ROR   A                  ; $743A: 6A      
+    ROR   A                  ; $743B: 6A      
+    STA   $4B                ; $743C: 85 4B   
+    LDY   #$0E               ; $743E: A0 0E   
+    BCC   $7443              ; $7440: 90 01   
+    INY                      ; $7442: C8      
+    STY   $4C                ; $7443: 84 4C   
+    JSR   $75D1              ; $7445: 20 D1 75
+    LDY   #$3F               ; $7448: A0 3F   
+    LDA   ($4B),Y            ; $744A: B1 4B   
+    STA   $12B7,Y            ; $744C: 99 B7 12
+    DEY                      ; $744F: 88      
+    BPL   $744A              ; $7450: 10 F8   
+    LDX   #$00               ; $7452: A2 00   
+    STX   $115F              ; $7454: 8E 5F 11
+    STX   $115E              ; $7457: 8E 5E 11
+    JSR   $764A              ; $745A: 20 4A 76
+    JSR   $FFE4              ; $745D: 20 E4 FF (J_GETIN)
+    BEQ   $745D              ; $7460: F0 FB   
+    PHA                      ; $7462: 48      
+    JSR   $764A              ; $7463: 20 4A 76
+    PLA                      ; $7466: 68      
+    LDX   #$10               ; $7467: A2 10   
+    CMP   $76B4,X            ; $7469: DD B4 76
+    BNE   $747B              ; $746C: D0 0D   
+    DEX                      ; $746E: CA      
+    TXA                      ; $746F: 8A      
+    LDX   $12FC              ; $7470: AE FC 12
+    STA   $D027,X            ; $7473: 9D 27 D0
+    JSR   $75D1              ; $7476: 20 D1 75
+    BCS   $745A              ; $7479: B0 DF   
+    DEX                      ; $747B: CA      
+    BNE   $7469              ; $747C: D0 EB   
+    LDX   #$11               ; $747E: A2 11   
+    CMP   $767F,X            ; $7480: DD 7F 76
+    BEQ   $748A              ; $7483: F0 05   
+    DEX                      ; $7485: CA      
+    BPL   $7480              ; $7486: 10 F8   
+    BMI   $745A              ; $7488: 30 D0   
+    TXA                      ; $748A: 8A      
+    TAY                      ; $748B: A8      
+    ASL   A                  ; $748C: 0A      
+    TAX                      ; $748D: AA      
+    LDA   $7691,X            ; $748E: BD 91 76
+    PHA                      ; $7491: 48      
+    LDA   $7692,X            ; $7492: BD 92 76
+    PHA                      ; $7495: 48      
+    RTS                      ; $7496: 60      
+    TYA                      ; $7497: 98      
+    STA   $8F                ; $7498: 85 8F   
+    JSR   $7610              ; $749A: 20 10 76
+    PHA                      ; $749D: 48      
+    LDY   $115E              ; $749E: AC 5E 11
+    LDX   $115F              ; $74A1: AE 5F 11
+    JSR   $76C5              ; $74A4: 20 C5 76
+    PLA                      ; $74A7: 68      
+    JSR   $763F              ; $74A8: 20 3F 76
+    LDY   $115E              ; $74AB: AC 5E 11
+    TYA                      ; $74AE: 98      
+    AND   #$07               ; $74AF: 29 07   
+    TAX                      ; $74B1: AA      
+    TYA                      ; $74B2: 98      
+    LSR   A                  ; $74B3: 4A      
+    LSR   A                  ; $74B4: 4A      
+    LSR   A                  ; $74B5: 4A      
+    CLC                      ; $74B6: 18      
+    ADC   $115F              ; $74B7: 6D 5F 11
+    ADC   $115F              ; $74BA: 6D 5F 11
+    ADC   $115F              ; $74BD: 6D 5F 11
+    TAY                      ; $74C0: A8      
+    LDA   ($4B),Y            ; $74C1: B1 4B   
+    BIT   $12FA              ; $74C3: 2C FA 12
+    BPL   $74E0              ; $74C6: 10 18   
+    STA   $8E                ; $74C8: 85 8E   
+    LDA   $9D1C,X            ; $74CA: BD 1C 9D
+    ORA   $9D1D,X            ; $74CD: 1D 1D 9D
+    PHA                      ; $74D0: 48      
+    ORA   $8E                ; $74D1: 05 8E   
+    STA   $8E                ; $74D3: 85 8E   
+    PLA                      ; $74D5: 68      
+    LDX   $8F                ; $74D6: A6 8F   
+    AND   $9F25,X            ; $74D8: 3D 25 9F
+    EOR   $8E                ; $74DB: 45 8E   
+    JMP   $74EA              ; $74DD: 4C EA 74
+    ORA   $9D1C,X            ; $74E0: 1D 1C 9D
+    ASL   $8F                ; $74E3: 06 8F   
+    BNE   $74EA              ; $74E5: D0 03   
+    EOR   $9D1C,X            ; $74E7: 5D 1C 9D
+    STA   ($4B),Y            ; $74EA: 91 4B   
+    BIT   $12FA              ; $74EC: 2C FA 12
+    BVC   $753F              ; $74EF: 50 4E   
+    JMP   $745A              ; $74F1: 4C 5A 74
+    LDY   #$3F               ; $74F4: A0 3F   
+    LDA   $12B7,Y            ; $74F6: B9 B7 12
+    STA   ($4B),Y            ; $74F9: 91 4B   
+    DEY                      ; $74FB: 88      
+    BPL   $74F6              ; $74FC: 10 F8   
+    LDA   #$00               ; $74FE: A9 00   
+    STA   $D015              ; $7500: 8D 15 D0 (VIC_SPENA)
+    JMP   $73C4              ; $7503: 4C C4 73
+    LDA   $12FA              ; $7506: AD FA 12
+    EOR   #$80               ; $7509: 49 80   
+    STA   $12FA              ; $750B: 8D FA 12
+    JSR   $75D1              ; $750E: 20 D1 75
+    LDA   $115E              ; $7511: AD 5E 11
+    AND   #$FE               ; $7514: 29 FE   
+    STA   $115E              ; $7516: 8D 5E 11
+    LDY   #$1C               ; $7519: A0 1C   
+    BIT   $17A0              ; $751B: 2C A0 17
+    BIT   $1DA0              ; $751E: 2C A0 1D
+    LDA   $D000,Y            ; $7521: B9 00 D0 (VIC_SP0X)
+    LDX   $12FC              ; $7524: AE FC 12
+    EOR   $6CB3,X            ; $7527: 5D B3 6C
+    STA   $D000,Y            ; $752A: 99 00 D0 (VIC_SP0X)
+    JMP   $745A              ; $752D: 4C 5A 74
+    LDY   #$3F               ; $7530: A0 3F   
+    LDA   #$00               ; $7532: A9 00   
+    STA   ($4B),Y            ; $7534: 91 4B   
+    DEY                      ; $7536: 88      
+    BPL   $7534              ; $7537: 10 FB   
+    JSR   $76D4              ; $7539: 20 D4 76
+    JMP   $7452              ; $753C: 4C 52 74
+    LDA   #$01               ; $753F: A9 01   
+    BIT   $FFA9              ; $7541: 2C A9 FF
+    BIT   $12FA              ; $7544: 2C FA 12
+    BPL   $754A              ; $7547: 10 01   
+    ASL   A                  ; $7549: 0A      
+    CLC                      ; $754A: 18      
+    ADC   $115E              ; $754B: 6D 5E 11
+    BMI   $7559              ; $754E: 30 09   
+    CMP   #$18               ; $7550: C9 18   
+    BCS   $7581              ; $7552: B0 2D   
+    STA   $115E              ; $7554: 8D 5E 11
+    BCC   $757E              ; $7557: 90 25   
+    LDX   #$17               ; $7559: A2 17   
+    BIT   $12FA              ; $755B: 2C FA 12
+    BPL   $7561              ; $755E: 10 01   
+    DEX                      ; $7560: CA      
+    STX   $115E              ; $7561: 8E 5E 11
+    LDA   #$FF               ; $7564: A9 FF   
+    BIT   $01A9              ; $7566: 2C A9 01
+    CLC                      ; $7569: 18      
+    ADC   $115F              ; $756A: 6D 5F 11
+    CMP   #$15               ; $756D: C9 15   
+    BCS   $757E              ; $756F: B0 0D   
+    STA   $115F              ; $7571: 8D 5F 11
+    BCC   $757E              ; $7574: 90 08   
+    LDA   $12FA              ; $7576: AD FA 12
+    EOR   #$40               ; $7579: 49 40   
+    STA   $12FA              ; $757B: 8D FA 12
+    JMP   $745A              ; $757E: 4C 5A 74
+    LDA   #$00               ; $7581: A9 00   
+    STA   $115E              ; $7583: 8D 5E 11
+    BEQ   $7567              ; $7586: F0 DF   
+    LDY   #$02               ; $7588: A0 02   
+    LDX   #$18               ; $758A: A2 18   
+    LDA   $7661,Y            ; $758C: B9 61 76
+    BEQ   $7597              ; $758F: F0 06   
+    JSR   $68DB              ; $7591: 20 DB 68
+    INY                      ; $7594: C8      
+    BNE   $758C              ; $7595: D0 F5   
+    JSR   $A845              ; $7597: 20 45 A8
+    JSR   $FFE4              ; $759A: 20 E4 FF (J_GETIN)
+    BEQ   $759A              ; $759D: F0 FB   
+    CMP   #$0D               ; $759F: C9 0D   
+    BEQ   $75C2              ; $75A1: F0 1F   
+    SEC                      ; $75A3: 38      
+    SBC   #$31               ; $75A4: E9 31   
+    CMP   #$08               ; $75A6: C9 08   
+    BCS   $759A              ; $75A8: B0 F0   
+    LSR   A                  ; $75AA: 4A      
+    ROR   A                  ; $75AB: 6A      
+    ROR   A                  ; $75AC: 6A      
+    STA   $8E                ; $75AD: 85 8E   
+    LDY   #$0E               ; $75AF: A0 0E   
+    BCC   $75B4              ; $75B1: 90 01   
+    INY                      ; $75B3: C8      
+    STY   $8F                ; $75B4: 84 8F   
+    LDY   #$3F               ; $75B6: A0 3F   
+    LDA   ($8E),Y            ; $75B8: B1 8E   
+    STA   ($4B),Y            ; $75BA: 91 4B   
+    DEY                      ; $75BC: 88      
+    BPL   $75B8              ; $75BD: 10 F9   
+    JSR   $75D1              ; $75BF: 20 D1 75
+    LDA   #$00               ; $75C2: A9 00   
+    TAY                      ; $75C4: A8      
+    STA   $3E00,Y            ; $75C5: 99 00 3E
+    DEY                      ; $75C8: 88      
+    BNE   $75C5              ; $75C9: D0 FA   
+    JMP   $745A              ; $75CB: 4C 5A 74
+    .BYTE $FF                                ; $75CE: FF [UNRESOLVED]
+    .BYTE $FF                                ; $75CF: FF [UNRESOLVED]
+    .BYTE $FF                                ; $75D0: FF [UNRESOLVED]
+    LDX   #$00               ; $75D1: A2 00   
+    STX   $1160              ; $75D3: 8E 60 11
+    STX   $12FB              ; $75D6: 8E FB 12
+    JSR   $76C5              ; $75D9: 20 C5 76
+    LDY   #$00               ; $75DC: A0 00   
+    LDX   #$08               ; $75DE: A2 08   
+    STY   $116E              ; $75E0: 8C 6E 11
+    LDY   $1160              ; $75E3: AC 60 11
+    LDA   ($4B),Y            ; $75E6: B1 4B   
+    INC   $1160              ; $75E8: EE 60 11
+    LDY   $116E              ; $75EB: AC 6E 11
+    ASL   A                  ; $75EE: 0A      
+    BIT   $12FA              ; $75EF: 2C FA 12
+    BPL   $75F6              ; $75F2: 10 02   
+    ROL   A                  ; $75F4: 2A      
+    DEX                      ; $75F5: CA      
+    PHA                      ; $75F6: 48      
+    ROL   A                  ; $75F7: 2A      
+    JSR   $7610              ; $75F8: 20 10 76
+    JSR   $763F              ; $75FB: 20 3F 76
+    INY                      ; $75FE: C8      
+    PLA                      ; $75FF: 68      
+    DEX                      ; $7600: CA      
+    BNE   $75EE              ; $7601: D0 EB   
+    CPY   #$18               ; $7603: C0 18   
+    BCC   $75DE              ; $7605: 90 D7   
+    LDX   $12FB              ; $7607: AE FB 12
+    INX                      ; $760A: E8      
+    CPX   #$15               ; $760B: E0 15   
+    BCC   $75D6              ; $760D: 90 C7   
+    RTS                      ; $760F: 60      
+    AND   #$03               ; $7610: 29 03   
+    LSR   A                  ; $7612: 4A      
+    ROR   A                  ; $7613: 6A      
+    BEQ   $7625              ; $7614: F0 0F   
+    BIT   $12FA              ; $7616: 2C FA 12
+    BPL   $762A              ; $7619: 10 0F   
+    LDA   $D025              ; $761B: AD 25 D0
+    BCC   $7634              ; $761E: 90 14   
+    LDA   $D026              ; $7620: AD 26 D0
+    BCS   $7634              ; $7623: B0 0F   
+    LDA   $D021              ; $7625: AD 21 D0 (VIC_BGCOL0)
+    BCC   $7634              ; $7628: 90 0A   
+    STX   $8E                ; $762A: 86 8E   
+    LDX   $12FC              ; $762C: AE FC 12
+    LDA   $D027,X            ; $762F: BD 27 D0
+    LDX   $8E                ; $7632: A6 8E   
+    AND   #$0F               ; $7634: 29 0F   
+    STA   $8E                ; $7636: 85 8E   
+    ASL   A                  ; $7638: 0A      
+    ASL   A                  ; $7639: 0A      
+    ASL   A                  ; $763A: 0A      
+    ASL   A                  ; $763B: 0A      
+    ORA   $8E                ; $763C: 05 8E   
+    RTS                      ; $763E: 60      
+    STA   ($8C),Y            ; $763F: 91 8C   
+    BIT   $12FA              ; $7641: 2C FA 12
+    BPL   $7649              ; $7644: 10 03   
+    INY                      ; $7646: C8      
+    STA   ($8C),Y            ; $7647: 91 8C   
+    RTS                      ; $7649: 60      
+    LDX   $115F              ; $764A: AE 5F 11
+    JSR   $76C5              ; $764D: 20 C5 76
+    LDY   $115E              ; $7650: AC 5E 11
+    BIT   $12FA              ; $7653: 2C FA 12
+    BPL   $765B              ; $7656: 10 03   
+    JSR   $765B              ; $7658: 20 5B 76
+    LDA   ($8C),Y            ; $765B: B1 8C   
+    EOR   #$80               ; $765D: 49 80   
+    STA   ($8C),Y            ; $765F: 91 8C   
+    INY                      ; $7661: C8      
+    RTS                      ; $7662: 60      
+    .BYTE $43                                ; $7663: 43 [UNRESOLVED]
+    .BYTE $4F                                ; $7664: 4F [UNRESOLVED]
+    BVC   $76C0              ; $7665: 50 59   
+    JSR   $5246              ; $7667: 20 46 52
+    .BYTE $4F                                ; $766A: 4F [UNRESOLVED]
+    EOR.W $003F              ; $766B: 4D 3F 00
+    .BYTE $53                                ; $766E: 53 [UNRESOLVED]
+    BVC   $76C3              ; $766F: 50 52   
+    EOR   #$54               ; $7671: 49 54   
+    EOR   $20                ; $7673: 45 20   
+    LSR   $4D55              ; $7675: 4E 55 4D
+    .BYTE $42                                ; $7678: 42 [UNRESOLVED]
+    EOR   $52                ; $7679: 45 52   
+    .BYTE $3F                                ; $767B: 3F [UNRESOLVED]
+    JSR.W $0020              ; $767C: 20 20 00
+    AND   ($32),Y            ; $767F: 31 32   
+    .BYTE $33                                ; $7681: 33 [UNRESOLVED]
+    .BYTE $34                                ; $7682: 34 [UNRESOLVED]
+    .BYTE $03                                ; $7683: 03 [UNRESOLVED]
+    STA   $5958              ; $7684: 8D 58 59
+    EOR   $1D9D              ; $7687: 4D 9D 1D
+    STA   ($11),Y            ; $768A: 91 11   
+    .BYTE $93                                ; $768C: 93 [UNRESOLVED]
+    .BYTE $13                                ; $768D: 13 [UNRESOLVED]
+    EOR   ($0D,X)            ; $768E: 41 0D   
+    .BYTE $43                                ; $7690: 43 [UNRESOLVED]
+    .BYTE $74                                ; $7691: 74 [UNRESOLVED]
+    STX   $74,Y              ; $7692: 96 74   
+    STX   $74,Y              ; $7694: 96 74   
+    STX   $74,Y              ; $7696: 96 74   
+    STX   $74,Y              ; $7698: 96 74   
+    .BYTE $F3                                ; $769A: F3 [UNRESOLVED]
+    .BYTE $74                                ; $769B: 74 [UNRESOLVED]
+    SBC   $1E75,X            ; $769C: FD 75 1E
+    ADC   $1B,X              ; $769F: 75 1B   
+    ADC   $05,X              ; $76A1: 75 05   
+    ADC   $41,X              ; $76A3: 75 41   
+    ADC   $3E,X              ; $76A5: 75 3E   
+    ADC   $63,X              ; $76A7: 75 63   
+    ADC   $66,X              ; $76A9: 75 66   
+    ADC   $2F,X              ; $76AB: 75 2F   
+    .BYTE $74                                ; $76AD: 74 [UNRESOLVED]
+    EOR   ($75),Y            ; $76AE: 51 75   
+    ADC   $75,X              ; $76B0: 75 75   
+    .BYTE $80                                ; $76B2: 80 [UNRESOLVED]
+    ADC   $87,X              ; $76B3: 75 87   
+    BCC   $76BC              ; $76B5: 90 05   
+    .BYTE $1C                                ; $76B7: 1C [UNRESOLVED]
+    .BYTE $9F                                ; $76B8: 9F [UNRESOLVED]
+    .BYTE $9C                                ; $76B9: 9C [UNRESOLVED]
+    ASL   $9E1F,X            ; $76BA: 1E 1F 9E
+    STA   ($95,X)            ; $76BD: 81 95   
+    STX   $97,Y              ; $76BF: 96 97   
+    TYA                      ; $76C1: 98      
+    STA   $9B9A,Y            ; $76C2: 99 9A 9B
+    LDA   $C033,X            ; $76C5: BD 33 C0
+    STA   $8C                ; $76C8: 85 8C   
+    LDA   $C04C,X            ; $76CA: BD 4C C0
+    AND   #$03               ; $76CD: 29 03   
+    ORA   #$1C               ; $76CF: 09 1C   
+    STA   $8D                ; $76D1: 85 8D   
+    RTS                      ; $76D3: 60      
+    LDA   $D021              ; $76D4: AD 21 D0 (VIC_BGCOL0)
+    JSR   $7634              ; $76D7: 20 34 76
+    LDX   #$14               ; $76DA: A2 14   
+    PHA                      ; $76DC: 48      
+    JSR   $76C5              ; $76DD: 20 C5 76
+    PLA                      ; $76E0: 68      
+    LDY   #$17               ; $76E1: A0 17   
+    STA   ($8C),Y            ; $76E3: 91 8C   
+    DEY                      ; $76E5: 88      
+    BPL   $76E3              ; $76E6: 10 FB   
+    DEX                      ; $76E8: CA      
+    BPL   $76DC              ; $76E9: 10 F1   
+    RTS                      ; $76EB: 60      
+CMD_FE_SPRSAV:
+    JSR   $777C              ; $76EC: 20 7C 77
+    BCS   $7720              ; $76EF: B0 2F   
+    STA   $4B                ; $76F1: 85 4B   
+    STY   $4C                ; $76F3: 84 4C   
+    LDY   #$3E               ; $76F5: A0 3E   
+    LDA   ($4B),Y            ; $76F7: B1 4B   
+    STA   $12B7,Y            ; $76F9: 99 B7 12
+    DEY                      ; $76FC: 88      
+    BPL   $76F7              ; $76FD: 10 F8   
+    INY                      ; $76FF: C8      
+    STY   $12F7              ; $7700: 8C F7 12
+    STY   $12F9              ; $7703: 8C F9 12
+    LDA   #$17               ; $7706: A9 17   
+    STA   $12F6              ; $7708: 8D F6 12
+    LDA   #$14               ; $770B: A9 14   
+    STA   $12F8              ; $770D: 8D F8 12
+    LDX   #$B7               ; $7710: A2 B7   
+    LDY   #$12               ; $7712: A0 12   
+    STX   $70                ; $7714: 86 70   
+    STY   $71                ; $7716: 84 71   
+    LDA   #$43               ; $7718: A9 43   
+    JSR   $86CC              ; $771A: 20 CC 86
+    JSR   $7799              ; $771D: 20 99 77
+    STX   $03DB              ; $7720: 8E DB 03
+    STA   $03DC              ; $7723: 8D DC 03
+    STY   $03DD              ; $7726: 8C DD 03
+    JSR   $795C              ; $7729: 20 5C 79
+    LDA   $3D                ; $772C: A5 3D   
+    STA   $03E0              ; $772E: 8D E0 03
+    LDA   $3E                ; $7731: A5 3E   
+    STA   $03E1              ; $7733: 8D E1 03
+    JSR   $777C              ; $7736: 20 7C 77
+    BCS   $7760              ; $7739: B0 25   
+    STA   $8C                ; $773B: 85 8C   
+    STY   $8D                ; $773D: 84 8D   
+    LDA   $03DC              ; $773F: AD DC 03
+    STA   $4B                ; $7742: 85 4B   
+    LDA   $03DD              ; $7744: AD DD 03
+    STA   $4C                ; $7747: 85 4C   
+    LDY   #$00               ; $7749: A0 00   
+    CPY   $03DB              ; $774B: CC DB 03
+    BEQ   $775F              ; $774E: F0 0F   
+    LDA   #$4B               ; $7750: A9 4B   
+    JSR   $03AB              ; $7752: 20 AB 03
+    STA   $FF03              ; $7755: 8D 03 FF (MMU_LCRC_TOP)
+    STA   ($8C),Y            ; $7758: 91 8C   
+    INY                      ; $775A: C8      
+    CPY   #$3F               ; $775B: C0 3F   
+    BNE   $774B              ; $775D: D0 EC   
+    RTS                      ; $775F: 60      
+    LDA   $03E0              ; $7760: AD E0 03
+    STA   $3D                ; $7763: 85 3D   
+    LDA   $03E1              ; $7765: AD E1 03
+    STA   $3E                ; $7768: 85 3E   
+    JSR   $7AAF              ; $776A: 20 AF 7A (PTRGET)
+    STA   $4B                ; $776D: 85 4B   
+    STY   $4C                ; $776F: 84 4C   
+    LDA   #$DB               ; $7771: A9 DB   
+    STA   $66                ; $7773: 85 66   
+    LDA   #$03               ; $7775: A9 03   
+    STA   $67                ; $7777: 85 67   
+    JMP   $5405              ; $7779: 4C 05 54
+    JSR   $77EF              ; $777C: 20 EF 77 (FRMEVL)
+    BIT   $0F                ; $777F: 24 0F   
+    BMI   $7799              ; $7781: 30 16   
+    JSR   $87F7              ; $7783: 20 F7 87
+    DEX                      ; $7786: CA      
+    CPX   #$08               ; $7787: E0 08   
+    BCS   $7796              ; $7789: B0 0B   
+    TXA                      ; $778B: 8A      
+    LSR   A                  ; $778C: 4A      
+    ROR   A                  ; $778D: 6A      
+    ROR   A                  ; $778E: 6A      
+    LDY   #$0E               ; $778F: A0 0E   
+    BCC   $7794              ; $7791: 90 01   
+    INY                      ; $7793: C8      
+    CLC                      ; $7794: 18      
+    RTS                      ; $7795: 60      
+    JMP   $7D28              ; $7796: 4C 28 7D
+    LDA   $66                ; $7799: A5 66   
+    LDY   $67                ; $779B: A4 67   
+    JSR   $87E0              ; $779D: 20 E0 87
+    LDY   #$00               ; $77A0: A0 00   
+    JSR   $42E7              ; $77A2: 20 E7 42
+    TAX                      ; $77A5: AA      
+    INY                      ; $77A6: C8      
+    JSR   $42E7              ; $77A7: 20 E7 42
+    PHA                      ; $77AA: 48      
+    INY                      ; $77AB: C8      
+    JSR   $42E7              ; $77AC: 20 E7 42
+    TAY                      ; $77AF: A8      
+    PLA                      ; $77B0: 68      
+    SEC                      ; $77B1: 38      
+    RTS                      ; $77B2: 60      
+CMD_FE_FAST:
+    JSR   $A845              ; $77B3: 20 45 A8
+    LDA   $D011              ; $77B6: AD 11 D0 (VIC_SCROLY)
+    AND   #$6F               ; $77B9: 29 6F   
+    STA   $D011              ; $77BB: 8D 11 D0 (VIC_SCROLY)
+    LDA   #$01               ; $77BE: A9 01   
+    STA   $D030              ; $77C0: 8D 30 D0 (VIC_CLK2MHZ)
+    RTS                      ; $77C3: 60      
+CMD_FE_SLOW:
+    JSR   $A845              ; $77C4: 20 45 A8
+    LDA   #$00               ; $77C7: A9 00   
+    STA   $D030              ; $77C9: 8D 30 D0 (VIC_CLK2MHZ)
+    LDA   $D011              ; $77CC: AD 11 D0 (VIC_SCROLY)
+    AND   #$7F               ; $77CF: 29 7F   
+    ORA   #$10               ; $77D1: 09 10   
+    STA   $D011              ; $77D3: 8D 11 D0 (VIC_SCROLY)
+    RTS                      ; $77D6: 60      
+    JSR   $77EF              ; $77D7: 20 EF 77 (FRMEVL)
+    CLC                      ; $77DA: 18      
+    BCC   $77DE              ; $77DB: 90 01   
+    SEC                      ; $77DD: 38      
+    BIT   $0F                ; $77DE: 24 0F   
+    BMI   $77E5              ; $77E0: 30 03   
+    BCS   $77E7              ; $77E2: B0 03   
+    RTS                      ; $77E4: 60      
+    BCS   $77E4              ; $77E5: B0 FD   
+    LDX   #$16               ; $77E7: A2 16   
+    BIT   $19A2              ; $77E9: 2C A2 19
+    JMP   $4D3C              ; $77EC: 4C 3C 4D (BASIC_ERROR_ENTRY)
+FRMEVL:
+    LDX   $3D                ; $77EF: A6 3D   
+    BNE   $77F5              ; $77F1: D0 02   
+    DEC   $3E                ; $77F3: C6 3E   
+    DEC   $3D                ; $77F5: C6 3D   
+    LDX   #$00               ; $77F7: A2 00   
+    BIT   $48                ; $77F9: 24 48   
+    TXA                      ; $77FB: 8A      
+    PHA                      ; $77FC: 48      
+    TSX                      ; $77FD: BA      
+    CPX   #$63               ; $77FE: E0 63   
+    BCC   $77EA              ; $7800: 90 E8   
+    JSR   $78D7              ; $7802: 20 D7 78 (EVAL)
+    LDA   #$00               ; $7805: A9 00   
+    STA   $4F                ; $7807: 85 4F   
+    JSR   $0386              ; $7809: 20 86 03
+    SEC                      ; $780C: 38      
+    SBC   #$B1               ; $780D: E9 B1   
+    BCC   $7828              ; $780F: 90 17   
+    CMP   #$03               ; $7811: C9 03   
+    BCS   $7828              ; $7813: B0 13   
+    CMP   #$01               ; $7815: C9 01   
+    ROL   A                  ; $7817: 2A      
+    EOR   #$01               ; $7818: 49 01   
+    EOR   $4F                ; $781A: 45 4F   
+    CMP   $4F                ; $781C: C5 4F   
+    BCC   $7881              ; $781E: 90 61   
+    STA   $4F                ; $7820: 85 4F   
+    JSR   $0380              ; $7822: 20 80 03
+    JMP   $780C              ; $7825: 4C 0C 78
+    LDX   $4F                ; $7828: A6 4F   
+    BNE   $7858              ; $782A: D0 2C   
+    BCS   $78AC              ; $782C: B0 7E   
+    ADC   #$07               ; $782E: 69 07   
+    BCC   $78AC              ; $7830: 90 7A   
+    ADC   $0F                ; $7832: 65 0F   
+    BNE   $7839              ; $7834: D0 03   
+    JMP   $870D              ; $7836: 4C 0D 87
+    ADC   #$FF               ; $7839: 69 FF   
+    STA   $24                ; $783B: 85 24   
+    ASL   A                  ; $783D: 0A      
+    ADC   $24                ; $783E: 65 24   
+    TAY                      ; $7840: A8      
+    PLA                      ; $7841: 68      
+    CMP   $4828,Y            ; $7842: D9 28 48 (OPTAB_TABLE)
+    BCS   $78B1              ; $7845: B0 6A   
+    JSR   $77DA              ; $7847: 20 DA 77
+    PHA                      ; $784A: 48      
+    JSR   $7871              ; $784B: 20 71 78
+    PLA                      ; $784E: 68      
+    LDY   $4D                ; $784F: A4 4D   
+    BPL   $786A              ; $7851: 10 17   
+    TAX                      ; $7853: AA      
+    BEQ   $78AF              ; $7854: F0 59   
+    BNE   $78BA              ; $7856: D0 62   
+    LSR   $0F                ; $7858: 46 0F   
+    TXA                      ; $785A: 8A      
+    ROL   A                  ; $785B: 2A      
+    LDX   $3D                ; $785C: A6 3D   
+    BNE   $7862              ; $785E: D0 02   
+    DEC   $3E                ; $7860: C6 3E   
+    DEC   $3D                ; $7862: C6 3D   
+    LDY   #$1B               ; $7864: A0 1B   
+    STA   $4F                ; $7866: 85 4F   
+    BNE   $7841              ; $7868: D0 D7   
+    CMP   $4828,Y            ; $786A: D9 28 48 (OPTAB_TABLE)
+    BCS   $78BA              ; $786D: B0 4B   
+    BCC   $784A              ; $786F: 90 D9   
+    LDA   $482A,Y            ; $7871: B9 2A 48
+    PHA                      ; $7874: 48      
+    LDA   $4829,Y            ; $7875: B9 29 48
+    PHA                      ; $7878: 48      
+    JSR   $7884              ; $7879: 20 84 78
+    LDA   $4F                ; $787C: A5 4F   
+    JMP   $77FA              ; $787E: 4C FA 77
+    JMP   $796C              ; $7881: 4C 6C 79 (CMD_FE_BEGIN)
+    LDA   $68                ; $7884: A5 68   
+    LDX   $4828,Y            ; $7886: BE 28 48 (OPTAB_TABLE)
+    TAY                      ; $7889: A8      
+    CLC                      ; $788A: 18      
+    PLA                      ; $788B: 68      
+    ADC   #$01               ; $788C: 69 01   
+    STA   $24                ; $788E: 85 24   
+    PLA                      ; $7890: 68      
+    ADC   #$00               ; $7891: 69 00   
+    STA   $25                ; $7893: 85 25   
+    TYA                      ; $7895: 98      
+    PHA                      ; $7896: 48      
+    JSR   $8C47              ; $7897: 20 47 8C
+    LDA   $67                ; $789A: A5 67   
+    PHA                      ; $789C: 48      
+    LDA   $66                ; $789D: A5 66   
+    PHA                      ; $789F: 48      
+    LDA   $65                ; $78A0: A5 65   
+    PHA                      ; $78A2: 48      
+    LDA   $64                ; $78A3: A5 64   
+    PHA                      ; $78A5: 48      
+    LDA   $63                ; $78A6: A5 63   
+    PHA                      ; $78A8: 48      
+    JMP   ($0024)            ; $78A9: 6C 24 00
+    LDY   #$FF               ; $78AC: A0 FF   
+    PLA                      ; $78AE: 68      
+    BEQ   $78D4              ; $78AF: F0 23   
+    CMP   #$64               ; $78B1: C9 64   
+    BEQ   $78B8              ; $78B3: F0 03   
+    JSR   $77DA              ; $78B5: 20 DA 77
+    STY   $4D                ; $78B8: 84 4D   
+    PLA                      ; $78BA: 68      
+    LSR   A                  ; $78BB: 4A      
+    STA   $14                ; $78BC: 85 14   
+    PLA                      ; $78BE: 68      
+    STA   $6A                ; $78BF: 85 6A   
+    PLA                      ; $78C1: 68      
+    STA   $6B                ; $78C2: 85 6B   
+    PLA                      ; $78C4: 68      
+    STA   $6C                ; $78C5: 85 6C   
+    PLA                      ; $78C7: 68      
+    STA   $6D                ; $78C8: 85 6D   
+    PLA                      ; $78CA: 68      
+    STA   $6E                ; $78CB: 85 6E   
+    PLA                      ; $78CD: 68      
+    STA   $6F                ; $78CE: 85 6F   
+    EOR   $68                ; $78D0: 45 68   
+    STA   $70                ; $78D2: 85 70   
+    LDA   $63                ; $78D4: A5 63   
+    RTS                      ; $78D6: 60      
+EVAL:
+    JMP   ($030A)            ; $78D7: 6C 0A 03
+    LDA   #$00               ; $78DA: A9 00   
+    STA   $0F                ; $78DC: 85 0F   
+    JSR   $0380              ; $78DE: 20 80 03
+    BCS   $78E8              ; $78E1: B0 05   
+    LDX   #$00               ; $78E3: A2 00   
+    JMP   $8D22              ; $78E5: 4C 22 8D
+    JSR   $7B3C              ; $78E8: 20 3C 7B
+    BCC   $78F0              ; $78EB: 90 03   
+    JMP   $7978              ; $78ED: 4C 78 79
+    CMP   #$FF               ; $78F0: C9 FF   
+    BNE   $7903              ; $78F2: D0 0F   
+    LDA   #$FE               ; $78F4: A9 FE   
+    LDY   #$78               ; $78F6: A0 78   
+    JSR   $8BD4              ; $78F8: 20 D4 8B
+    JMP   $0380              ; $78FB: 4C 80 03
+    .BYTE $82                                ; $78FE: 82 [UNRESOLVED]
+    EOR   #$0F               ; $78FF: 49 0F   
+    .BYTE $DA                                ; $7901: DA [UNRESOLVED]
+    LDA   ($C9,X)            ; $7902: A1 C9   
+    ROL   $DCF0              ; $7904: 2E F0 DC
+    CMP   #$AB               ; $7907: C9 AB   
+    BEQ   $7971              ; $7909: F0 66   
+    CMP   #$AA               ; $790B: C9 AA   
+    BEQ   $78DE              ; $790D: F0 CF   
+    CMP   #$22               ; $790F: C9 22   
+    BNE   $7928              ; $7911: D0 15   
+    LDA   $3D                ; $7913: A5 3D   
+    LDY   $3E                ; $7915: A4 3E   
+    ADC   #$00               ; $7917: 69 00   
+    BCC   $791C              ; $7919: 90 01   
+    INY                      ; $791B: C8      
+    JSR   $869A              ; $791C: 20 9A 86
+    LDX   $72                ; $791F: A6 72   
+    LDY   $73                ; $7921: A4 73   
+    STX   $3D                ; $7923: 86 3D   
+    STY   $3E                ; $7925: 84 3E   
+    RTS                      ; $7927: 60      
+    CMP   #$A8               ; $7928: C9 A8   
+    BNE   $7942              ; $792A: D0 16   
+    LDY   #$18               ; $792C: A0 18   
+    BNE   $7973              ; $792E: D0 43   
+    JSR   $84B4              ; $7930: 20 B4 84 (INT_FP_CONVERSIONS)
+    LDA   $67                ; $7933: A5 67   
+    EOR   #$FF               ; $7935: 49 FF   
+    TAY                      ; $7937: A8      
+    LDA   $66                ; $7938: A5 66   
+    EOR   #$FF               ; $793A: 49 FF   
+    JSR   $84E5              ; $793C: 20 E5 84
+    JMP   $8C70              ; $793F: 4C 70 8C
+    CMP   #$A5               ; $7942: C9 A5   
+    BNE   $7949              ; $7944: D0 03   
+    JMP   $853B              ; $7946: 4C 3B 85
+    CMP   #$B4               ; $7949: C9 B4   
+    BCC   $7950              ; $794B: 90 03    (CHKCHAR_HELPERS)
+    JMP   $4BF7              ; $794D: 4C F7 4B
+CHKCHAR_HELPERS:
+    JSR   $7959              ; $7950: 20 59 79
+    JSR   $77EF              ; $7953: 20 EF 77 (FRMEVL)
+    LDA   #$29               ; $7956: A9 29   
+    BIT   $28A9              ; $7958: 2C A9 28
+    BIT   $2CA9              ; $795B: 2C A9 2C
+    LDY   #$00               ; $795E: A0 00   
+    STA   $79                ; $7960: 85 79   
+    JSR   $03C9              ; $7962: 20 C9 03
+    CMP   $79                ; $7965: C5 79   
+    BNE   $796C              ; $7967: D0 03    (CMD_FE_BEGIN)
+    JMP   $0380              ; $7969: 4C 80 03
+CMD_FE_BEGIN:
+    LDX   #$0B               ; $796C: A2 0B   
+    JMP   $4D3C              ; $796E: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    LDY   #$15               ; $7971: A0 15   
+    PLA                      ; $7973: 68      
+    PLA                      ; $7974: 68      
+    JMP   $784B              ; $7975: 4C 4B 78
+    JSR   $7AAF              ; $7978: 20 AF 7A (PTRGET)
+    STA   $66                ; $797B: 85 66   
+    STY   $67                ; $797D: 84 67   
+    LDX   $47                ; $797F: A6 47   
+    LDY   $48                ; $7981: A4 48   
+    LDA   $0F                ; $7983: A5 0F   
+    BEQ   $79EA              ; $7985: F0 63   
+    LDA   #$00               ; $7987: A9 00   
+    STA   $71                ; $7989: 85 71   
+    CPX   #$54               ; $798B: E0 54   
+    BNE   $79B4              ; $798D: D0 25   
+    CPY   #$C9               ; $798F: C0 C9   
+    BNE   $79B3              ; $7991: D0 20   
+    LDA   $66                ; $7993: A5 66   
+    CMP   #$D2               ; $7995: C9 D2   
+    BNE   $79B3              ; $7997: D0 1A   
+    LDA   $67                ; $7999: A5 67   
+    CMP   #$03               ; $799B: C9 03   
+    BNE   $79B3              ; $799D: D0 14   
+    JSR   $7A1A              ; $799F: 20 1A 7A
+    STY   $60                ; $79A2: 84 60   
+    DEY                      ; $79A4: 88      
+    STY   $72                ; $79A5: 84 72   
+    LDY   #$06               ; $79A7: A0 06   
+    STY   $5F                ; $79A9: 84 5F   
+    LDY   #$24               ; $79AB: A0 24   
+    JSR   $8ECD              ; $79AD: 20 CD 8E
+    JMP   $85B8              ; $79B0: 4C B8 85
+    RTS                      ; $79B3: 60      
+    CPX   #$44               ; $79B4: E0 44   
+    BNE   $79B3              ; $79B6: D0 FB   
+    CPY   #$D3               ; $79B8: C0 D3   
+    BNE   $79B3              ; $79BA: D0 F7   
+    JSR   $79E3              ; $79BC: 20 E3 79
+    LDY   #$FF               ; $79BF: A0 FF   
+    INY                      ; $79C1: C8      
+    LDA   #$7B               ; $79C2: A9 7B   
+    JSR   $03AB              ; $79C4: 20 AB 03
+    CMP   #$00               ; $79C7: C9 00   
+    BNE   $79C1              ; $79C9: D0 F6   
+    TYA                      ; $79CB: 98      
+    JSR   $8688              ; $79CC: 20 88 86
+    TAY                      ; $79CF: A8      
+    BEQ   $79E0              ; $79D0: F0 0E   
+    DEY                      ; $79D2: 88      
+    LDA   #$7B               ; $79D3: A9 7B   
+    JSR   $03AB              ; $79D5: 20 AB 03
+    STA   ($37),Y            ; $79D8: 91 37   
+    TYA                      ; $79DA: 98      
+    BNE   $79D2              ; $79DB: D0 F5   
+    JSR   $8771              ; $79DD: 20 71 87
+    JMP   $86E3              ; $79E0: 4C E3 86
+    LDA   $7A                ; $79E3: A5 7A   
+    BNE   $7A27              ; $79E5: D0 40   
+    JMP   $A778              ; $79E7: 4C 78 A7
+    BIT   $10                ; $79EA: 24 10   
+    BPL   $79FD              ; $79EC: 10 0F   
+    LDY   #$00               ; $79EE: A0 00   
+    JSR   $42E7              ; $79F0: 20 E7 42
+    TAX                      ; $79F3: AA      
+    INY                      ; $79F4: C8      
+    JSR   $42E7              ; $79F5: 20 E7 42
+    TAY                      ; $79F8: A8      
+    TXA                      ; $79F9: 8A      
+    JMP   $793C              ; $79FA: 4C 3C 79
+    LDA   $67                ; $79FD: A5 67   
+    CMP   #$03               ; $79FF: C9 03   
+    BNE   $7A81              ; $7A01: D0 7E   
+    LDA   $66                ; $7A03: A5 66   
+    CMP   #$D2               ; $7A05: C9 D2   
+    BNE   $7A81              ; $7A07: D0 78   
+    CPX   #$54               ; $7A09: E0 54   
+    BNE   $7A28              ; $7A0B: D0 1B   
+    CPY   #$49               ; $7A0D: C0 49   
+    BNE   $7A81              ; $7A0F: D0 70   
+    JSR   $7A1A              ; $7A11: 20 1A 7A
+    TYA                      ; $7A14: 98      
+    LDX   #$A0               ; $7A15: A2 A0   
+    JMP   $8C7B              ; $7A17: 4C 7B 8C
+    JSR   $FFDE              ; $7A1A: 20 DE FF (J_RDTIM)
+    STX   $66                ; $7A1D: 86 66   
+    STY   $65                ; $7A1F: 84 65   
+    STA   $67                ; $7A21: 85 67   
+    LDY   #$00               ; $7A23: A0 00   
+    STY   $64                ; $7A25: 84 64   
+    RTS                      ; $7A27: 60      
+    CPX   #$53               ; $7A28: E0 53   
+    BNE   $7A36              ; $7A2A: D0 0A   
+    CPY   #$54               ; $7A2C: C0 54   
+    BNE   $7A81              ; $7A2E: D0 51   
+    JSR   $FFB7              ; $7A30: 20 B7 FF (J_READST)
+    JMP   $8C68              ; $7A33: 4C 68 8C
+    CPX   #$44               ; $7A36: E0 44   
+    BNE   $7A60              ; $7A38: D0 26   
+    CPY   #$53               ; $7A3A: C0 53   
+    BNE   $7A81              ; $7A3C: D0 43   
+    JSR   $79E3              ; $7A3E: 20 E3 79
+    LDY   #$00               ; $7A41: A0 00   
+    LDA   #$7B               ; $7A43: A9 7B   
+    JSR   $03AB              ; $7A45: 20 AB 03
+    AND   #$0F               ; $7A48: 29 0F   
+    ASL   A                  ; $7A4A: 0A      
+    STA   $11                ; $7A4B: 85 11   
+    ASL   A                  ; $7A4D: 0A      
+    ASL   A                  ; $7A4E: 0A      
+    ADC   $11                ; $7A4F: 65 11   
+    STA   $11                ; $7A51: 85 11   
+    INY                      ; $7A53: C8      
+    LDA   #$7B               ; $7A54: A9 7B   
+    JSR   $03AB              ; $7A56: 20 AB 03
+    AND   #$0F               ; $7A59: 29 0F   
+    ADC   $11                ; $7A5B: 65 11   
+    JMP   $8C68              ; $7A5D: 4C 68 8C
+    CPX   #$45               ; $7A60: E0 45   
+    BNE   $7A81              ; $7A62: D0 1D   
+    CPY   #$52               ; $7A64: C0 52   
+    BEQ   $7A78              ; $7A66: F0 10   
+    CPY   #$4C               ; $7A68: C0 4C   
+    BNE   $7A81              ; $7A6A: D0 15   
+    STA   $FF03              ; $7A6C: 8D 03 FF (MMU_LCRC_TOP)
+    LDA   $120A              ; $7A6F: AD 0A 12
+    LDY   $1209              ; $7A72: AC 09 12
+    JMP   $84C9              ; $7A75: 4C C9 84
+    STA   $FF03              ; $7A78: 8D 03 FF (MMU_LCRC_TOP)
+    LDA   $1208              ; $7A7B: AD 08 12
+    JMP   $8C68              ; $7A7E: 4C 68 8C
+    LDA   $66                ; $7A81: A5 66   
+    LDY   $67                ; $7A83: A4 67   
+    STA   $24                ; $7A85: 85 24   
+    STY   $25                ; $7A87: 84 25   
+    LDY   #$00               ; $7A89: A0 00   
+    JSR   $03B7              ; $7A8B: 20 B7 03
+    STA   $63                ; $7A8E: 85 63   
+    STY   $71                ; $7A90: 84 71   
+    INY                      ; $7A92: C8      
+    JSR   $03B7              ; $7A93: 20 B7 03
+    STA   $68                ; $7A96: 85 68   
+    ORA   #$80               ; $7A98: 09 80   
+    STA   $64                ; $7A9A: 85 64   
+    INY                      ; $7A9C: C8      
+    JSR   $03B7              ; $7A9D: 20 B7 03
+    STA   $65                ; $7AA0: 85 65   
+    INY                      ; $7AA2: C8      
+    JSR   $03B7              ; $7AA3: 20 B7 03
+    STA   $66                ; $7AA6: 85 66   
+    INY                      ; $7AA8: C8      
+    JSR   $03B7              ; $7AA9: 20 B7 03
+    STA   $67                ; $7AAC: 85 67   
+    RTS                      ; $7AAE: 60      
+PTRGET:
+    LDX   #$00               ; $7AAF: A2 00   
+    JSR   $0386              ; $7AB1: 20 86 03
+    STX   $0E                ; $7AB4: 86 0E   
+    STA   $47                ; $7AB6: 85 47   
+    JSR   $0386              ; $7AB8: 20 86 03
+    JSR   $7B3C              ; $7ABB: 20 3C 7B
+    BCS   $7AC3              ; $7ABE: B0 03   
+    JMP   $796C              ; $7AC0: 4C 6C 79 (CMD_FE_BEGIN)
+    LDX   #$00               ; $7AC3: A2 00   
+    STX   $0F                ; $7AC5: 86 0F   
+    STX   $10                ; $7AC7: 86 10   
+    JSR   $0380              ; $7AC9: 20 80 03
+    BCC   $7AD3              ; $7ACC: 90 05   
+    JSR   $7B3C              ; $7ACE: 20 3C 7B
+    BCC   $7ADE              ; $7AD1: 90 0B   
+    TAX                      ; $7AD3: AA      
+    JSR   $0380              ; $7AD4: 20 80 03
+    BCC   $7AD4              ; $7AD7: 90 FB   
+    JSR   $7B3C              ; $7AD9: 20 3C 7B
+    BCS   $7AD4              ; $7ADC: B0 F6   
+    CMP   #$24               ; $7ADE: C9 24   
+    BNE   $7AE8              ; $7AE0: D0 06   
+    LDA   #$FF               ; $7AE2: A9 FF   
+    STA   $0F                ; $7AE4: 85 0F   
+    BNE   $7AF8              ; $7AE6: D0 10   
+    CMP   #$25               ; $7AE8: C9 25   
+    BNE   $7AFF              ; $7AEA: D0 13   
+    LDA   $12                ; $7AEC: A5 12   
+    BNE   $7AC0              ; $7AEE: D0 D0   
+    LDA   #$80               ; $7AF0: A9 80   
+    STA   $10                ; $7AF2: 85 10   
+    ORA   $47                ; $7AF4: 05 47   
+    STA   $47                ; $7AF6: 85 47   
+    TXA                      ; $7AF8: 8A      
+    ORA   #$80               ; $7AF9: 09 80   
+    TAX                      ; $7AFB: AA      
+    JSR   $0380              ; $7AFC: 20 80 03
+    STX   $48                ; $7AFF: 86 48   
+    SEC                      ; $7B01: 38      
+    ORA   $12                ; $7B02: 05 12   
+    SBC   #$28               ; $7B04: E9 28   
+    BNE   $7B0B              ; $7B06: D0 03   
+    JMP   $7CAB              ; $7B08: 4C AB 7C (ARRAY_LOOKUP_DIM)
+    LDY   #$00               ; $7B0B: A0 00   
+    STY   $12                ; $7B0D: 84 12   
+    LDA   $2F                ; $7B0F: A5 2F   
+    LDX   $30                ; $7B11: A6 30   
+    STX   $62                ; $7B13: 86 62   
+    STA   $61                ; $7B15: 85 61   
+    CPX   $32                ; $7B17: E4 32   
+    BNE   $7B1F              ; $7B19: D0 04   
+    CMP   $31                ; $7B1B: C5 31   
+    BEQ   $7B46              ; $7B1D: F0 27   
+    JSR   $4300              ; $7B1F: 20 00 43
+    CMP   $47                ; $7B22: C5 47   
+    BNE   $7B32              ; $7B24: D0 0C   
+    INY                      ; $7B26: C8      
+    JSR   $4300              ; $7B27: 20 00 43
+    CMP   $48                ; $7B2A: C5 48   
+    BNE   $7B31              ; $7B2C: D0 03   
+    JMP   $7C57              ; $7B2E: 4C 57 7C
+    DEY                      ; $7B31: 88      
+    CLC                      ; $7B32: 18      
+    LDA   $61                ; $7B33: A5 61   
+    ADC   #$07               ; $7B35: 69 07   
+    BCC   $7B15              ; $7B37: 90 DC   
+    INX                      ; $7B39: E8      
+    BNE   $7B13              ; $7B3A: D0 D7   
+    CMP   #$41               ; $7B3C: C9 41   
+    BCC   $7B45              ; $7B3E: 90 05   
+    SBC   #$5B               ; $7B40: E9 5B   
+    SEC                      ; $7B42: 38      
+    SBC   #$A5               ; $7B43: E9 A5   
+    RTS                      ; $7B45: 60      
+    TSX                      ; $7B46: BA      
+    LDA   $0102,X            ; $7B47: BD 02 01
+    CMP   #$83               ; $7B4A: C9 83   
+    BEQ   $7B52              ; $7B4C: F0 04   
+    CMP   #$79               ; $7B4E: C9 79   
+    BNE   $7B7C              ; $7B50: D0 2A   
+    LDA   #$D2               ; $7B52: A9 D2   
+    LDY   #$03               ; $7B54: A0 03   
+    RTS                      ; $7B56: 60      
+    CPY   #$C9               ; $7B57: C0 C9   
+    BEQ   $7B52              ; $7B59: F0 F7   
+    CPY   #$49               ; $7B5B: C0 49   
+    BNE   $7B90              ; $7B5D: D0 31   
+    BEQ   $7B79              ; $7B5F: F0 18   
+    CPY   #$D3               ; $7B61: C0 D3   
+    BEQ   $7B79              ; $7B63: F0 14   
+    CPY   #$53               ; $7B65: C0 53   
+    BNE   $7B90              ; $7B67: D0 27   
+    BEQ   $7B79              ; $7B69: F0 0E   
+    CPY   #$54               ; $7B6B: C0 54   
+    BNE   $7B90              ; $7B6D: D0 21   
+    BEQ   $7B79              ; $7B6F: F0 08   
+    CPY   #$52               ; $7B71: C0 52   
+    BEQ   $7B79              ; $7B73: F0 04   
+    CPY   #$4C               ; $7B75: C0 4C   
+    BNE   $7B90              ; $7B77: D0 17   
+    JMP   $796C              ; $7B79: 4C 6C 79 (CMD_FE_BEGIN)
+    LDA   $47                ; $7B7C: A5 47   
+    LDY   $48                ; $7B7E: A4 48   
+    CMP   #$54               ; $7B80: C9 54   
+    BEQ   $7B57              ; $7B82: F0 D3   
+    CMP   #$53               ; $7B84: C9 53   
+    BEQ   $7B6B              ; $7B86: F0 E3   
+    CMP   #$45               ; $7B88: C9 45   
+    BEQ   $7B71              ; $7B8A: F0 E5   
+    CMP   #$44               ; $7B8C: C9 44   
+    BEQ   $7B61              ; $7B8E: F0 D1   
+    LDA   $31                ; $7B90: A5 31   
+    LDY   $32                ; $7B92: A4 32   
+    STA   $61                ; $7B94: 85 61   
+    STY   $62                ; $7B96: 84 62   
+    LDA   $33                ; $7B98: A5 33   
+    LDY   $34                ; $7B9A: A4 34   
+    STA   $5C                ; $7B9C: 85 5C   
+    STY   $5D                ; $7B9E: 84 5D   
+    CLC                      ; $7BA0: 18      
+    ADC   #$07               ; $7BA1: 69 07   
+    BCC   $7BA6              ; $7BA3: 90 01   
+    INY                      ; $7BA5: C8      
+    STA   $5A                ; $7BA6: 85 5A   
+    STY   $5B                ; $7BA8: 84 5B   
+    JSR   $7C66              ; $7BAA: 20 66 7C
+    LDA   $5A                ; $7BAD: A5 5A   
+    LDY   $5B                ; $7BAF: A4 5B   
+    INY                      ; $7BB1: C8      
+    STA   $31                ; $7BB2: 85 31   
+    STY   $32                ; $7BB4: 84 32   
+    STA   $5A                ; $7BB6: 85 5A   
+    STY   $5B                ; $7BB8: 84 5B   
+    LDA   $5A                ; $7BBA: A5 5A   
+    LDX   $5B                ; $7BBC: A6 5B   
+    CPX   $34                ; $7BBE: E4 34   
+    BNE   $7BC8              ; $7BC0: D0 06   
+    CMP   $33                ; $7BC2: C5 33   
+    BNE   $7BC8              ; $7BC4: D0 02   
+    BEQ   $7C40              ; $7BC6: F0 78   
+    STA   $24                ; $7BC8: 85 24   
+    STX   $25                ; $7BCA: 86 25   
+    LDY   #$00               ; $7BCC: A0 00   
+    JSR   $03B7              ; $7BCE: 20 B7 03
+    TAX                      ; $7BD1: AA      
+    INY                      ; $7BD2: C8      
+    JSR   $03B7              ; $7BD3: 20 B7 03
+    PHP                      ; $7BD6: 08      
+    INY                      ; $7BD7: C8      
+    JSR   $03B7              ; $7BD8: 20 B7 03
+    ADC   $5A                ; $7BDB: 65 5A   
+    STA   $5A                ; $7BDD: 85 5A   
+    INY                      ; $7BDF: C8      
+    JSR   $03B7              ; $7BE0: 20 B7 03
+    ADC   $5B                ; $7BE3: 65 5B   
+    STA   $5B                ; $7BE5: 85 5B   
+    PLP                      ; $7BE7: 28      
+    BPL   $7BBA              ; $7BE8: 10 D0   
+    TXA                      ; $7BEA: 8A      
+    BMI   $7BBA              ; $7BEB: 30 CD   
+    INY                      ; $7BED: C8      
+    JSR   $03B7              ; $7BEE: 20 B7 03
+    LDY   #$00               ; $7BF1: A0 00   
+    ASL   A                  ; $7BF3: 0A      
+    ADC   #$05               ; $7BF4: 69 05   
+    ADC   $24                ; $7BF6: 65 24   
+    STA   $24                ; $7BF8: 85 24   
+    BCC   $7BFE              ; $7BFA: 90 02   
+    INC   $25                ; $7BFC: E6 25   
+    LDX   $25                ; $7BFE: A6 25   
+    CPX   $5B                ; $7C00: E4 5B   
+    BNE   $7C08              ; $7C02: D0 04   
+    CMP   $5A                ; $7C04: C5 5A   
+    BEQ   $7BBE              ; $7C06: F0 B6   
+    LDY   #$00               ; $7C08: A0 00   
+    JSR   $03B7              ; $7C0A: 20 B7 03
+    BEQ   $7C33              ; $7C0D: F0 24   
+    STA   $79                ; $7C0F: 85 79   
+    INY                      ; $7C11: C8      
+    JSR   $03B7              ; $7C12: 20 B7 03
+    CLC                      ; $7C15: 18      
+    ADC   $79                ; $7C16: 65 79   
+    STA   $5C                ; $7C18: 85 5C   
+    INY                      ; $7C1A: C8      
+    JSR   $03B7              ; $7C1B: 20 B7 03
+    ADC   #$00               ; $7C1E: 69 00   
+    STA   $5D                ; $7C20: 85 5D   
+    LDY   #$00               ; $7C22: A0 00   
+    JSR   $42E2              ; $7C24: 20 E2 42
+    ADC   #$07               ; $7C27: 69 07   
+    STA   ($5C),Y            ; $7C29: 91 5C   
+    INY                      ; $7C2B: C8      
+    JSR   $42E2              ; $7C2C: 20 E2 42
+    ADC   #$00               ; $7C2F: 69 00   
+    STA   ($5C),Y            ; $7C31: 91 5C   
+    LDA   #$03               ; $7C33: A9 03   
+    CLC                      ; $7C35: 18      
+    ADC   $24                ; $7C36: 65 24   
+    STA   $24                ; $7C38: 85 24   
+    BCC   $7BFE              ; $7C3A: 90 C2   
+    INC   $25                ; $7C3C: E6 25   
+    BNE   $7BFE              ; $7C3E: D0 BE   
+    LDY   #$00               ; $7C40: A0 00   
+    LDA   $47                ; $7C42: A5 47   
+    STA   $FF04              ; $7C44: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($61),Y            ; $7C47: 91 61   
+    INY                      ; $7C49: C8      
+    LDA   $48                ; $7C4A: A5 48   
+    STA   ($61),Y            ; $7C4C: 91 61   
+    LDA   #$00               ; $7C4E: A9 00   
+    INY                      ; $7C50: C8      
+    STA   ($61),Y            ; $7C51: 91 61   
+    CPY   #$06               ; $7C53: C0 06   
+    BNE   $7C50              ; $7C55: D0 F9   
+    LDA   $61                ; $7C57: A5 61   
+    CLC                      ; $7C59: 18      
+    ADC   #$02               ; $7C5A: 69 02   
+    LDY   $62                ; $7C5C: A4 62   
+    BCC   $7C61              ; $7C5E: 90 01   
+    INY                      ; $7C60: C8      
+    STA   $49                ; $7C61: 85 49   
+    STY   $4A                ; $7C63: 84 4A   
+    RTS                      ; $7C65: 60      
+    JSR   $5017              ; $7C66: 20 17 50
+    STA   $33                ; $7C69: 85 33   
+    STY   $34                ; $7C6B: 84 34   
+    SEC                      ; $7C6D: 38      
+    LDA   $5C                ; $7C6E: A5 5C   
+    SBC   $61                ; $7C70: E5 61   
+    STA   $24                ; $7C72: 85 24   
+    TAY                      ; $7C74: A8      
+    LDA   $5D                ; $7C75: A5 5D   
+    SBC   $62                ; $7C77: E5 62   
+    TAX                      ; $7C79: AA      
+    INX                      ; $7C7A: E8      
+    TYA                      ; $7C7B: 98      
+    BEQ   $7CA3              ; $7C7C: F0 25   
+    LDA   $5C                ; $7C7E: A5 5C   
+    SEC                      ; $7C80: 38      
+    SBC   $24                ; $7C81: E5 24   
+    STA   $5C                ; $7C83: 85 5C   
+    BCS   $7C8A              ; $7C85: B0 03   
+    DEC   $5D                ; $7C87: C6 5D   
+    SEC                      ; $7C89: 38      
+    LDA   $5A                ; $7C8A: A5 5A   
+    SBC   $24                ; $7C8C: E5 24   
+    STA   $5A                ; $7C8E: 85 5A   
+    BCS   $7C9B              ; $7C90: B0 09   
+    DEC   $5B                ; $7C92: C6 5B   
+    BCC   $7C9B              ; $7C94: 90 05   
+    JSR   $42E2              ; $7C96: 20 E2 42
+    STA   ($5A),Y            ; $7C99: 91 5A   
+    DEY                      ; $7C9B: 88      
+    BNE   $7C96              ; $7C9C: D0 F8   
+    JSR   $42E2              ; $7C9E: 20 E2 42
+    STA   ($5A),Y            ; $7CA1: 91 5A   
+    DEC   $5D                ; $7CA3: C6 5D   
+    DEC   $5B                ; $7CA5: C6 5B   
+    DEX                      ; $7CA7: CA      
+    BNE   $7C9B              ; $7CA8: D0 F1   
+    RTS                      ; $7CAA: 60      
+ARRAY_LOOKUP_DIM:
+    LDA   $0E                ; $7CAB: A5 0E   
+    ORA   $10                ; $7CAD: 05 10   
+    PHA                      ; $7CAF: 48      
+    LDA   $0F                ; $7CB0: A5 0F   
+    PHA                      ; $7CB2: 48      
+    LDY   #$00               ; $7CB3: A0 00   
+    TYA                      ; $7CB5: 98      
+    PHA                      ; $7CB6: 48      
+    LDA   $48                ; $7CB7: A5 48   
+    PHA                      ; $7CB9: 48      
+    LDA   $47                ; $7CBA: A5 47   
+    PHA                      ; $7CBC: 48      
+    JSR   $84A7              ; $7CBD: 20 A7 84
+    PLA                      ; $7CC0: 68      
+    STA   $47                ; $7CC1: 85 47   
+    PLA                      ; $7CC3: 68      
+    STA   $48                ; $7CC4: 85 48   
+    PLA                      ; $7CC6: 68      
+    TAY                      ; $7CC7: A8      
+    TSX                      ; $7CC8: BA      
+    LDA   $0102,X            ; $7CC9: BD 02 01
+    PHA                      ; $7CCC: 48      
+    LDA   $0101,X            ; $7CCD: BD 01 01
+    PHA                      ; $7CD0: 48      
+    LDA   $66                ; $7CD1: A5 66   
+    STA   $0102,X            ; $7CD3: 9D 02 01
+    LDA   $67                ; $7CD6: A5 67   
+    STA   $0101,X            ; $7CD8: 9D 01 01
+    INY                      ; $7CDB: C8      
+    STY   $0D                ; $7CDC: 84 0D   
+    JSR   $0386              ; $7CDE: 20 86 03
+    LDY   $0D                ; $7CE1: A4 0D   
+    CMP   #$2C               ; $7CE3: C9 2C   
+    BEQ   $7CB5              ; $7CE5: F0 CE   
+    JSR   $7956              ; $7CE7: 20 56 79
+    PLA                      ; $7CEA: 68      
+    STA   $0F                ; $7CEB: 85 0F   
+    PLA                      ; $7CED: 68      
+    STA   $10                ; $7CEE: 85 10   
+    AND   #$7F               ; $7CF0: 29 7F   
+    STA   $0E                ; $7CF2: 85 0E   
+    LDX   $31                ; $7CF4: A6 31   
+    LDA   $32                ; $7CF6: A5 32   
+    STX   $61                ; $7CF8: 86 61   
+    STA   $62                ; $7CFA: 85 62   
+    CMP   $34                ; $7CFC: C5 34   
+    BNE   $7D04              ; $7CFE: D0 04   
+    CPX   $33                ; $7D00: E4 33   
+    BEQ   $7D46              ; $7D02: F0 42   
+    LDY   #$00               ; $7D04: A0 00   
+    JSR   $4300              ; $7D06: 20 00 43
+    INY                      ; $7D09: C8      
+    CMP   $47                ; $7D0A: C5 47   
+    BNE   $7D15              ; $7D0C: D0 07   
+    JSR   $4300              ; $7D0E: 20 00 43
+    CMP   $48                ; $7D11: C5 48   
+    BEQ   $7D2D              ; $7D13: F0 18   
+    INY                      ; $7D15: C8      
+    JSR   $4300              ; $7D16: 20 00 43
+    CLC                      ; $7D19: 18      
+    ADC   $61                ; $7D1A: 65 61   
+    TAX                      ; $7D1C: AA      
+    INY                      ; $7D1D: C8      
+    JSR   $4300              ; $7D1E: 20 00 43
+    ADC   $62                ; $7D21: 65 62   
+    BCC   $7CF8              ; $7D23: 90 D3   
+    LDX   #$12               ; $7D25: A2 12   
+    BIT   $0EA2              ; $7D27: 2C A2 0E
+    JMP   $4D3C              ; $7D2A: 4C 3C 4D (BASIC_ERROR_ENTRY)
+    LDX   #$13               ; $7D2D: A2 13   
+    LDA   $0E                ; $7D2F: A5 0E   
+    BNE   $7D2A              ; $7D31: D0 F7   
+    JSR   $7E71              ; $7D33: 20 71 7E
+    LDY   #$04               ; $7D36: A0 04   
+    JSR   $4300              ; $7D38: 20 00 43
+    STA   $79                ; $7D3B: 85 79   
+    LDA   $0D                ; $7D3D: A5 0D   
+    CMP   $79                ; $7D3F: C5 79   
+    BNE   $7D25              ; $7D41: D0 E2   
+    JMP   $7DD2              ; $7D43: 4C D2 7D
+    JSR   $7E71              ; $7D46: 20 71 7E
+    JSR   $5017              ; $7D49: 20 17 50
+    LDY   #$00               ; $7D4C: A0 00   
+    STY   $73                ; $7D4E: 84 73   
+    LDX   #$05               ; $7D50: A2 05   
+    LDA   $47                ; $7D52: A5 47   
+    STA   $FF04              ; $7D54: 8D 04 FF (MMU_LCRD_TOP)
+    STA   ($61),Y            ; $7D57: 91 61   
+    BPL   $7D5C              ; $7D59: 10 01   
+    DEX                      ; $7D5B: CA      
+    INY                      ; $7D5C: C8      
+    LDA   $48                ; $7D5D: A5 48   
+    STA   ($61),Y            ; $7D5F: 91 61   
+    BPL   $7D65              ; $7D61: 10 02   
+    DEX                      ; $7D63: CA      
+    DEX                      ; $7D64: CA      
+    STX   $72                ; $7D65: 86 72   
+    LDA   $0D                ; $7D67: A5 0D   
+    INY                      ; $7D69: C8      
+    INY                      ; $7D6A: C8      
+    INY                      ; $7D6B: C8      
+    STA   ($61),Y            ; $7D6C: 91 61   
+    LDX   #$0B               ; $7D6E: A2 0B   
+    LDA   #$00               ; $7D70: A9 00   
+    BIT   $0E                ; $7D72: 24 0E   
+    BVC   $7D7E              ; $7D74: 50 08   
+    PLA                      ; $7D76: 68      
+    CLC                      ; $7D77: 18      
+    ADC   #$01               ; $7D78: 69 01   
+    TAX                      ; $7D7A: AA      
+    PLA                      ; $7D7B: 68      
+    ADC   #$00               ; $7D7C: 69 00   
+    INY                      ; $7D7E: C8      
+    STA   ($61),Y            ; $7D7F: 91 61   
+    INY                      ; $7D81: C8      
+    TXA                      ; $7D82: 8A      
+    STA   ($61),Y            ; $7D83: 91 61   
+    JSR   $7E3E              ; $7D85: 20 3E 7E
+    STX   $72                ; $7D88: 86 72   
+    STA   $73                ; $7D8A: 85 73   
+    LDY   $24                ; $7D8C: A4 24   
+    DEC   $0D                ; $7D8E: C6 0D   
+    BNE   $7D6E              ; $7D90: D0 DC   
+    ADC   $5B                ; $7D92: 65 5B   
+    BCS   $7DFD              ; $7D94: B0 67   
+    STA   $5B                ; $7D96: 85 5B   
+    TAY                      ; $7D98: A8      
+    TXA                      ; $7D99: 8A      
+    ADC   $5A                ; $7D9A: 65 5A   
+    BCC   $7DA1              ; $7D9C: 90 03   
+    INY                      ; $7D9E: C8      
+    BEQ   $7DFD              ; $7D9F: F0 5C   
+    JSR   $5017              ; $7DA1: 20 17 50
+    STA   $33                ; $7DA4: 85 33   
+    STY   $34                ; $7DA6: 84 34   
+    LDA   #$00               ; $7DA8: A9 00   
+    INC   $73                ; $7DAA: E6 73   
+    LDY   $72                ; $7DAC: A4 72   
+    BEQ   $7DB5              ; $7DAE: F0 05   
+    DEY                      ; $7DB0: 88      
+    STA   ($5A),Y            ; $7DB1: 91 5A   
+    BNE   $7DB0              ; $7DB3: D0 FB   
+    DEC   $5B                ; $7DB5: C6 5B   
+    DEC   $73                ; $7DB7: C6 73   
+    BNE   $7DB0              ; $7DB9: D0 F5   
+    INC   $5B                ; $7DBB: E6 5B   
+    SEC                      ; $7DBD: 38      
+    LDA   $33                ; $7DBE: A5 33   
+    SBC   $61                ; $7DC0: E5 61   
+    LDY   #$02               ; $7DC2: A0 02   
+    STA   ($61),Y            ; $7DC4: 91 61   
+    LDA   $34                ; $7DC6: A5 34   
+    INY                      ; $7DC8: C8      
+    SBC   $62                ; $7DC9: E5 62   
+    STA   ($61),Y            ; $7DCB: 91 61   
+    LDA   $0E                ; $7DCD: A5 0E   
+    BNE   $7E3D              ; $7DCF: D0 6C   
+    INY                      ; $7DD1: C8      
+    JSR   $4300              ; $7DD2: 20 00 43
+    STA   $0D                ; $7DD5: 85 0D   
+    LDA   #$00               ; $7DD7: A9 00   
+    STA   $72                ; $7DD9: 85 72   
+    STA   $73                ; $7DDB: 85 73   
+    INY                      ; $7DDD: C8      
+    PLA                      ; $7DDE: 68      
+    TAX                      ; $7DDF: AA      
+    STA   $66                ; $7DE0: 85 66   
+    JSR   $4300              ; $7DE2: 20 00 43
+    STA   $79                ; $7DE5: 85 79   
+    PLA                      ; $7DE7: 68      
+    STA   $67                ; $7DE8: 85 67   
+    CMP   $79                ; $7DEA: C5 79   
+    BCC   $7E00              ; $7DEC: 90 12   
+    BNE   $7DFA              ; $7DEE: D0 0A   
+    INY                      ; $7DF0: C8      
+    JSR   $4300              ; $7DF1: 20 00 43
+    STA   $79                ; $7DF4: 85 79   
+    CPX   $79                ; $7DF6: E4 79   
+    BCC   $7E01              ; $7DF8: 90 07   
+    JMP   $7D25              ; $7DFA: 4C 25 7D
+    JMP   $4D3A              ; $7DFD: 4C 3A 4D
+    INY                      ; $7E00: C8      
+    LDA   $73                ; $7E01: A5 73   
+    ORA   $72                ; $7E03: 05 72   
+    CLC                      ; $7E05: 18      
+    BEQ   $7E12              ; $7E06: F0 0A   
+    JSR   $7E3E              ; $7E08: 20 3E 7E
+    TXA                      ; $7E0B: 8A      
+    ADC   $66                ; $7E0C: 65 66   
+    TAX                      ; $7E0E: AA      
+    TYA                      ; $7E0F: 98      
+    LDY   $24                ; $7E10: A4 24   
+    ADC   $67                ; $7E12: 65 67   
+    STX   $72                ; $7E14: 86 72   
+    DEC   $0D                ; $7E16: C6 0D   
+    BNE   $7DDB              ; $7E18: D0 C1   
+    STA   $73                ; $7E1A: 85 73   
+    LDX   #$05               ; $7E1C: A2 05   
+    LDA   $47                ; $7E1E: A5 47   
+    BPL   $7E23              ; $7E20: 10 01   
+    DEX                      ; $7E22: CA      
+    LDA   $48                ; $7E23: A5 48   
+    BPL   $7E29              ; $7E25: 10 02   
+    DEX                      ; $7E27: CA      
+    DEX                      ; $7E28: CA      
+    STX   $2A                ; $7E29: 86 2A   
+    LDA   #$00               ; $7E2B: A9 00   
+    JSR   $7E49              ; $7E2D: 20 49 7E
+    TXA                      ; $7E30: 8A      
+    ADC   $5A                ; $7E31: 65 5A   
+    STA   $49                ; $7E33: 85 49   
+    TYA                      ; $7E35: 98      
+    ADC   $5B                ; $7E36: 65 5B   
+    STA   $4A                ; $7E38: 85 4A   
+    TAY                      ; $7E3A: A8      
+    LDA   $49                ; $7E3B: A5 49   
+    RTS                      ; $7E3D: 60      
+    STY   $24                ; $7E3E: 84 24   
+    JSR   $4300              ; $7E40: 20 00 43
+    STA   $2A                ; $7E43: 85 2A   
+    DEY                      ; $7E45: 88      
+    JSR   $4300              ; $7E46: 20 00 43
+    STA   $2B                ; $7E49: 85 2B   
+    LDA   #$10               ; $7E4B: A9 10   
+    STA   $5F                ; $7E4D: 85 5F   
+    LDX   #$00               ; $7E4F: A2 00   
+    LDY   #$00               ; $7E51: A0 00   
+    TXA                      ; $7E53: 8A      
+    ASL   A                  ; $7E54: 0A      
+    TAX                      ; $7E55: AA      
+    TYA                      ; $7E56: 98      
+    ROL   A                  ; $7E57: 2A      
+    TAY                      ; $7E58: A8      
+    BCS   $7DFD              ; $7E59: B0 A2   
+    ASL   $72                ; $7E5B: 06 72   
+    ROL   $73                ; $7E5D: 26 73   
+    BCC   $7E6C              ; $7E5F: 90 0B   
+    CLC                      ; $7E61: 18      
+    TXA                      ; $7E62: 8A      
+    ADC   $2A                ; $7E63: 65 2A   
+    TAX                      ; $7E65: AA      
+    TYA                      ; $7E66: 98      
+    ADC   $2B                ; $7E67: 65 2B   
+    TAY                      ; $7E69: A8      
+    BCS   $7DFD              ; $7E6A: B0 91   
+    DEC   $5F                ; $7E6C: C6 5F   
+    BNE   $7E53              ; $7E6E: D0 E3   
+    RTS                      ; $7E70: 60      
+    LDA   $0D                ; $7E71: A5 0D   
+    ASL   A                  ; $7E73: 0A      
+    ADC   #$05               ; $7E74: 69 05   
+    ADC   $61                ; $7E76: 65 61   
+    LDY   $62                ; $7E78: A4 62   
+    BCC   $7E7D              ; $7E7A: 90 01   
+    INY                      ; $7E7C: C8      
+    STA   $5A                ; $7E7D: 85 5A   
+    STY   $5B                ; $7E7F: 84 5B   
+    RTS                      ; $7E81: 60      
+; --- [PADDING] Unused ROM Padding ($FF) ($7E82-$7FFD) ---
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7E82 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7E8A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7E92 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7E9A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EA2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EAA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EB2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EBA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EC2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7ECA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7ED2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EDA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EE2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EEA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EF2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7EFA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F02 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F0A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F12 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F1A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F22 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F2A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F32 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F3A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F42 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F4A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F52 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F5A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F62 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F6A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F72 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F7A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F82 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F8A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F92 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7F9A [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FA2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FAA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FB2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FBA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FC2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FCA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FD2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FDA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FE2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FEA [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF ; $7FF2 [PADDING] |........|
+    .BYTE $FF, $FF, $FF, $FF                     ; $7FFA [PADDING] |....|
+; --- [DATA] ROM Revision and Checksum Trailer ($7FFE-$7FFF) ---
+    .BYTE $00, $4C                               ; $7FFE [IDENTIFIED_DATA] |.L|

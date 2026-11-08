@@ -1,0 +1,72 @@
+{
+  "phase": "Phase 3 - Byte-for-Byte ROM Reconstruction Verification",
+  "all_roms_verified_identical": true,
+  "total_bytes_reconstructed": 61440,
+  "results": [
+    {
+      "source_asm": "reconstruction/src/basic_4000_318018_02.asm",
+      "rebuilt_rom": "reconstruction/build/basic-4000.318018-02.bin",
+      "original_rom": "basic-4000.318018-02.bin",
+      "original_size": 16384,
+      "rebuilt_size": 16384,
+      "original_sha256": "c5ddb7c57dd0b6f259b95b9dd0494ba807cbe6dce8f1f19410a0a05833aa0b5e",
+      "rebuilt_sha256": "c5ddb7c57dd0b6f259b95b9dd0494ba807cbe6dce8f1f19410a0a05833aa0b5e",
+      "original_crc32": "2ee6e2fa",
+      "rebuilt_crc32": "2ee6e2fa",
+      "differing_bytes_count": 0,
+      "exact_byte_for_byte_match": true
+    },
+    {
+      "source_asm": "reconstruction/src/basic_8000_318019_02.asm",
+      "rebuilt_rom": "reconstruction/build/basic-8000.318019-02.bin",
+      "original_rom": "basic-8000.318019-02.bin",
+      "original_size": 16384,
+      "rebuilt_size": 16384,
+      "original_sha256": "e1432465b8abafd3397b0e6cb4eb8422449fb3f85c6366e8616b48c35a86ad79",
+      "rebuilt_sha256": "e1432465b8abafd3397b0e6cb4eb8422449fb3f85c6366e8616b48c35a86ad79",
+      "original_crc32": "d551fce0",
+      "rebuilt_crc32": "d551fce0",
+      "differing_bytes_count": 0,
+      "exact_byte_for_byte_match": true
+    },
+    {
+      "source_asm": "reconstruction/src/kernal_c000_318020_03.asm",
+      "rebuilt_rom": "reconstruction/build/kernal.318020-03.bin",
+      "original_rom": "kernal.318020-03.bin",
+      "original_size": 16384,
+      "rebuilt_size": 16384,
+      "original_sha256": "dcb17b5ce33c2490005b5d0f2a4d767ae56e8ab7ed41d6aa20c43173449e4786",
+      "rebuilt_sha256": "dcb17b5ce33c2490005b5d0f2a4d767ae56e8ab7ed41d6aa20c43173449e4786",
+      "original_crc32": "1e94bb02",
+      "rebuilt_crc32": "1e94bb02",
+      "differing_bytes_count": 0,
+      "exact_byte_for_byte_match": true
+    },
+    {
+      "source_asm": "reconstruction/src/characters_390059_01.asm",
+      "rebuilt_rom": "reconstruction/build/characters.390059-01.bin",
+      "original_rom": "characters.390059-01.bin",
+      "original_size": 8192,
+      "rebuilt_size": 8192,
+      "original_sha256": "f08d8f525b44f5cbb3f5776739fcdff737886e1813f1eb7a20aedb128db1d4a8",
+      "rebuilt_sha256": "f08d8f525b44f5cbb3f5776739fcdff737886e1813f1eb7a20aedb128db1d4a8",
+      "original_crc32": "6aaaafe6",
+      "rebuilt_crc32": "6aaaafe6",
+      "differing_bytes_count": 0,
+      "exact_byte_for_byte_match": true
+    },
+    {
+      "source_asm": "reconstruction/src/z80bios_0000.asm",
+      "rebuilt_rom": "reconstruction/build/z80bios.bin",
+      "original_rom": "z80bios.bin",
+      "original_size": 4096,
+      "rebuilt_size": 4096,
+      "original_sha256": "39c7656b326e4ad724ff4b50c995cb3b2b8ff9ed3bb2b4d277eb0ecd3cac062f",
+      "rebuilt_sha256": "39c7656b326e4ad724ff4b50c995cb3b2b8ff9ed3bb2b4d277eb0ecd3cac062f",
+      "original_crc32": "c38d83c6",
+      "rebuilt_crc32": "c38d83c6",
+      "differing_bytes_count": 0,
+      "exact_byte_for_byte_match": true
+    }
+  ]
+}

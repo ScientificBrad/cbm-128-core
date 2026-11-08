@@ -1,0 +1,45 @@
+# Prohibited proprietary binary files (Clean-Room Distribution)
+*.bin
+*.rom
+*.d64
+*.d71
+*.d81
+*.prg
+*.gz
+
+# .NET Build outputs & caches
+**/[Bb]in/
+**/[Oo]bj/
+**/[Pp]ublish/
+build_output/
+*.pdb
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.idea/
+.vscode/
+
+# Python caches & virtual environments
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+venv/
+.env
+
+# Binary releases (Published to GitHub Releases, not bloated into git history)
+releases/*.zip
+releases/Commodore128.exe
+!releases/README.txt
+!releases/LICENSE
+!releases/THIRD_PARTY_NOTICES.md
+!releases/MATRIX.BAS
+
+# OS & temporary files
+Thumbs.db
+[Dd]esktop.ini
+*.tmp

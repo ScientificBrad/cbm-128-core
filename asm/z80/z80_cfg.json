@@ -1,0 +1,1812 @@
+{
+  "rom": "z80bios.bin",
+  "sha256": "39c7656b326e4ad724ff4b50c995cb3b2b8ff9ed3bb2b4d277eb0ecd3cac062f",
+  "entry_points": [
+    {
+      "address": "$0000",
+      "name": "Z80_RESET_ENTRY",
+      "trigger": "Hardware Power-On / Reset"
+    },
+    {
+      "address": "$0008",
+      "name": "Z80_RST08_CPM_BOOT",
+      "trigger": "RST $08 from $FFEE Shared Stub"
+    },
+    {
+      "address": "$0010",
+      "name": "Z80_RST10_MODE_DISPATCH",
+      "trigger": "RST $10 + inline byte (40/80 mode dispatch)"
+    },
+    {
+      "address": "$0018",
+      "name": "Z80_RST18_DIRECT_DISPATCH",
+      "trigger": "RST $18 + inline byte (direct Page $01 dispatch)"
+    },
+    {
+      "address": "$0020",
+      "name": "Z80_RST20_REG_MODE_DISPATCH",
+      "trigger": "RST $20 (register L mode dispatch)"
+    },
+    {
+      "address": "$0028",
+      "name": "Z80_RST28_TABLE_JUMP",
+      "trigger": "RST $28 (register L Page $01 jump)"
+    },
+    {
+      "address": "$0038",
+      "name": "Z80_RST38_IRQ_ENTRY",
+      "trigger": "Z80 IM 1 Maskable Interrupt -> JP $FDFD"
+    },
+    {
+      "address": "$0066",
+      "name": "Z80_NMI_ENTRY",
+      "trigger": "Z80 Non-Maskable Interrupt"
+    },
+    {
+      "address": "$FFE0",
+      "name": "STUB_Z80_SWITCH_TO_8502",
+      "trigger": "Shared RAM Processor Switch Stub (copied from $0EF5)"
+    }
+  ],
+  "dispatch_table_0100": [
+    {
+      "offset": "$00",
+      "rom_address": "$0100",
+      "target": "$0684"
+    },
+    {
+      "offset": "$02",
+      "rom_address": "$0102",
+      "target": "$096E"
+    },
+    {
+      "offset": "$04",
+      "rom_address": "$0104",
+      "target": "$06AB"
+    },
+    {
+      "offset": "$06",
+      "rom_address": "$0106",
+      "target": "$09BC"
+    },
+    {
+      "offset": "$08",
+      "rom_address": "$0108",
+      "target": "$06C2"
+    },
+    {
+      "offset": "$0A",
+      "rom_address": "$010A",
+      "target": "$09DD"
+    },
+    {
+      "offset": "$0C",
+      "rom_address": "$010C",
+      "target": "$06D1"
+    },
+    {
+      "offset": "$0E",
+      "rom_address": "$010E",
+      "target": "$09F1"
+    },
+    {
+      "offset": "$10",
+      "rom_address": "$0110",
+      "target": "$06DD"
+    },
+    {
+      "offset": "$12",
+      "rom_address": "$0112",
+      "target": "$0A31"
+    },
+    {
+      "offset": "$14",
+      "rom_address": "$0114",
+      "target": "$06E8"
+    },
+    {
+      "offset": "$16",
+      "rom_address": "$0116",
+      "target": "$0A3C"
+    },
+    {
+      "offset": "$18",
+      "rom_address": "$0118",
+      "target": "$06F1"
+    },
+    {
+      "offset": "$1A",
+      "rom_address": "$011A",
+      "target": "$0A45"
+    },
+    {
+      "offset": "$1C",
+      "rom_address": "$011C",
+      "target": "$077A"
+    },
+    {
+      "offset": "$1E",
+      "rom_address": "$011E",
+      "target": "$0A48"
+    },
+    {
+      "offset": "$20",
+      "rom_address": "$0120",
+      "target": "$0780"
+    },
+    {
+      "offset": "$22",
+      "rom_address": "$0122",
+      "target": "$0A62"
+    },
+    {
+      "offset": "$24",
+      "rom_address": "$0124",
+      "target": "$0791"
+    },
+    {
+      "offset": "$26",
+      "rom_address": "$0126",
+      "target": "$0A8E"
+    },
+    {
+      "offset": "$28",
+      "rom_address": "$0128",
+      "target": "$07CA"
+    },
+    {
+      "offset": "$2A",
+      "rom_address": "$012A",
+      "target": "$0ABA"
+    },
+    {
+      "offset": "$2C",
+      "rom_address": "$012C",
+      "target": "$07DC"
+    },
+    {
+      "offset": "$2E",
+      "rom_address": "$012E",
+      "target": "$0ADF"
+    },
+    {
+      "offset": "$30",
+      "rom_address": "$0130",
+      "target": "$081E"
+    },
+    {
+      "offset": "$32",
+      "rom_address": "$0132",
+      "target": "$0B2D"
+    },
+    {
+      "offset": "$34",
+      "rom_address": "$0134",
+      "target": "$071B"
+    },
+    {
+      "offset": "$36",
+      "rom_address": "$0136",
+      "target": "$0B7B"
+    },
+    {
+      "offset": "$38",
+      "rom_address": "$0138",
+      "target": "$0710"
+    },
+    {
+      "offset": "$3A",
+      "rom_address": "$013A",
+      "target": "$0B62"
+    },
+    {
+      "offset": "$3C",
+      "rom_address": "$013C",
+      "target": "$091C"
+    },
+    {
+      "offset": "$3E",
+      "rom_address": "$013E",
+      "target": "$0995"
+    },
+    {
+      "offset": "$40",
+      "rom_address": "$0140",
+      "target": "$0927"
+    },
+    {
+      "offset": "$42",
+      "rom_address": "$0142",
+      "target": "$09A2"
+    },
+    {
+      "offset": "$44",
+      "rom_address": "$0144",
+      "target": "$074E"
+    },
+    {
+      "offset": "$46",
+      "rom_address": "$0146",
+      "target": "$0BAE"
+    },
+    {
+      "offset": "$48",
+      "rom_address": "$0148",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$4A",
+      "rom_address": "$014A",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$4C",
+      "rom_address": "$014C",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$4E",
+      "rom_address": "$014E",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$50",
+      "rom_address": "$0150",
+      "target": "$03E3"
+    },
+    {
+      "offset": "$52",
+      "rom_address": "$0152",
+      "target": "$046B"
+    },
+    {
+      "offset": "$54",
+      "rom_address": "$0154",
+      "target": "$0CFA"
+    },
+    {
+      "offset": "$56",
+      "rom_address": "$0156",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$58",
+      "rom_address": "$0158",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$5A",
+      "rom_address": "$015A",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$5C",
+      "rom_address": "$015C",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$5E",
+      "rom_address": "$015E",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$60",
+      "rom_address": "$0160",
+      "target": "$0C3C"
+    },
+    {
+      "offset": "$62",
+      "rom_address": "$0162",
+      "target": "$0C4A"
+    },
+    {
+      "offset": "$64",
+      "rom_address": "$0164",
+      "target": "$0BCF"
+    },
+    {
+      "offset": "$66",
+      "rom_address": "$0166",
+      "target": "$0C0C"
+    },
+    {
+      "offset": "$68",
+      "rom_address": "$0168",
+      "target": "$0526"
+    },
+    {
+      "offset": "$6A",
+      "rom_address": "$016A",
+      "target": "$0532"
+    },
+    {
+      "offset": "$6C",
+      "rom_address": "$016C",
+      "target": "$052C"
+    },
+    {
+      "offset": "$6E",
+      "rom_address": "$016E",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$70",
+      "rom_address": "$0170",
+      "target": "$0C7F"
+    },
+    {
+      "offset": "$72",
+      "rom_address": "$0172",
+      "target": "$0CC2"
+    },
+    {
+      "offset": "$74",
+      "rom_address": "$0174",
+      "target": "$0CC7"
+    },
+    {
+      "offset": "$76",
+      "rom_address": "$0176",
+      "target": "$0CE4"
+    },
+    {
+      "offset": "$78",
+      "rom_address": "$0178",
+      "target": "$00EB"
+    },
+    {
+      "offset": "$7A",
+      "rom_address": "$017A",
+      "target": "$083D"
+    },
+    {
+      "offset": "$7C",
+      "rom_address": "$017C",
+      "target": "$08AE"
+    },
+    {
+      "offset": "$7E",
+      "rom_address": "$017E",
+      "target": "$0660"
+    },
+    {
+      "offset": "$80",
+      "rom_address": "$0180",
+      "target": "$0AC3"
+    }
+  ],
+  "control_flow_edges": [
+    {
+      "from": "$0005",
+      "type": "JP",
+      "inst": "JP $003B"
+    },
+    {
+      "from": "$000D",
+      "type": "JP",
+      "inst": "JP $018C"
+    },
+    {
+      "from": "$0012",
+      "type": "JP",
+      "inst": "JP $0020"
+    },
+    {
+      "from": "$001A",
+      "type": "JP",
+      "inst": "JP $0028"
+    },
+    {
+      "from": "$0024",
+      "type": "JR",
+      "inst": "JR Z,$0028"
+    },
+    {
+      "from": "$002E",
+      "type": "JP",
+      "inst": "JP (HL)"
+    },
+    {
+      "from": "$0038",
+      "type": "JP",
+      "inst": "JP $FDFD"
+    },
+    {
+      "from": "$0052",
+      "type": "JR",
+      "inst": "JR Z,$0059"
+    },
+    {
+      "from": "$0058",
+      "type": "RST",
+      "inst": "RST $00"
+    },
+    {
+      "from": "$007A",
+      "type": "JR",
+      "inst": "JR Z,$0054"
+    },
+    {
+      "from": "$008A",
+      "type": "JR",
+      "inst": "JR NZ,$0084"
+    },
+    {
+      "from": "$00B1",
+      "type": "JP",
+      "inst": "JP $FFE0"
+    },
+    {
+      "from": "$00B4",
+      "type": "CALL",
+      "inst": "CALL $036D"
+    },
+    {
+      "from": "$00C1",
+      "type": "CALL",
+      "inst": "CALL $00D3"
+    },
+    {
+      "from": "$00C4",
+      "type": "CALL",
+      "inst": "CALL Z,$02FA"
+    },
+    {
+      "from": "$00D0",
+      "type": "JR",
+      "inst": "JR NZ,$00BA"
+    },
+    {
+      "from": "$00DD",
+      "type": "DJNZ",
+      "inst": "DJNZ $00D6"
+    },
+    {
+      "from": "$00E5",
+      "type": "JR",
+      "inst": "JR NZ,$00E8"
+    },
+    {
+      "from": "$0183",
+      "type": "JP",
+      "inst": "JP $0933"
+    },
+    {
+      "from": "$0186",
+      "type": "JP",
+      "inst": "JP $0953"
+    },
+    {
+      "from": "$0189",
+      "type": "JP",
+      "inst": "JP $0945"
+    },
+    {
+      "from": "$01B6",
+      "type": "CALL",
+      "inst": "CALL $FFE0"
+    },
+    {
+      "from": "$01C7",
+      "type": "JR",
+      "inst": "JR NZ,$01C1"
+    },
+    {
+      "from": "$01D7",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$01E8",
+      "type": "CALL",
+      "inst": "CALL $05BD"
+    },
+    {
+      "from": "$01F0",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$020F",
+      "type": "CALL",
+      "inst": "CALL $02D2"
+    },
+    {
+      "from": "$0212",
+      "type": "JP",
+      "inst": "JP NZ,$04FF"
+    },
+    {
+      "from": "$021B",
+      "type": "CALL",
+      "inst": "CALL $00B4"
+    },
+    {
+      "from": "$021E",
+      "type": "CALL",
+      "inst": "CALL $00B4"
+    },
+    {
+      "from": "$0226",
+      "type": "JP",
+      "inst": "JP Z,$04FF"
+    },
+    {
+      "from": "$022F",
+      "type": "CALL",
+      "inst": "CALL $036D"
+    },
+    {
+      "from": "$023D",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$0246",
+      "type": "CALL",
+      "inst": "CALL $0534"
+    },
+    {
+      "from": "$024F",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$0269",
+      "type": "CALL",
+      "inst": "CALL $0331"
+    },
+    {
+      "from": "$026F",
+      "type": "CALL",
+      "inst": "CALL $0344"
+    },
+    {
+      "from": "$0276",
+      "type": "JR",
+      "inst": "JR NZ,$026F"
+    },
+    {
+      "from": "$0278",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$028C",
+      "type": "CALL",
+      "inst": "CALL $0324"
+    },
+    {
+      "from": "$028F",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$02A3",
+      "type": "CALL",
+      "inst": "CALL $0324"
+    },
+    {
+      "from": "$02A6",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$02BC",
+      "type": "CALL",
+      "inst": "CALL $0324"
+    },
+    {
+      "from": "$02D1",
+      "type": "JP",
+      "inst": "JP (HL)"
+    },
+    {
+      "from": "$02E0",
+      "type": "CALL",
+      "inst": "CALL $044F"
+    },
+    {
+      "from": "$02E3",
+      "type": "CALL",
+      "inst": "CALL $046B"
+    },
+    {
+      "from": "$02ED",
+      "type": "JR",
+      "inst": "JR NZ,$02F2"
+    },
+    {
+      "from": "$0301",
+      "type": "JR",
+      "inst": "JR Z,$030A"
+    },
+    {
+      "from": "$0307",
+      "type": "JP",
+      "inst": "JP NZ,$0480"
+    },
+    {
+      "from": "$031D",
+      "type": "JR",
+      "inst": "JR Z,$0321"
+    },
+    {
+      "from": "$0321",
+      "type": "JP",
+      "inst": "JP $0229"
+    },
+    {
+      "from": "$0324",
+      "type": "CALL",
+      "inst": "CALL $0331"
+    },
+    {
+      "from": "$032B",
+      "type": "CALL",
+      "inst": "CALL $0344"
+    },
+    {
+      "from": "$032E",
+      "type": "JR",
+      "inst": "JR NZ,$0327"
+    },
+    {
+      "from": "$0336",
+      "type": "JP",
+      "inst": "JP Z,$051B"
+    },
+    {
+      "from": "$034C",
+      "type": "CALL",
+      "inst": "CALL $00FA"
+    },
+    {
+      "from": "$034F",
+      "type": "CALL",
+      "inst": "CALL Z,$036D"
+    },
+    {
+      "from": "$0389",
+      "type": "JR",
+      "inst": "JR Z,$038C"
+    },
+    {
+      "from": "$0399",
+      "type": "CALL",
+      "inst": "CALL $03E3"
+    },
+    {
+      "from": "$03A4",
+      "type": "JR",
+      "inst": "JR Z,$03D0"
+    },
+    {
+      "from": "$03AA",
+      "type": "JR",
+      "inst": "JR Z,$03D0"
+    },
+    {
+      "from": "$03B0",
+      "type": "CALL",
+      "inst": "CALL $03E3"
+    },
+    {
+      "from": "$03B8",
+      "type": "JR",
+      "inst": "JR NZ,$03CD"
+    },
+    {
+      "from": "$03CA",
+      "type": "JR",
+      "inst": "JR NZ,$03B0"
+    },
+    {
+      "from": "$03D0",
+      "type": "CALL",
+      "inst": "CALL $044F"
+    },
+    {
+      "from": "$03DF",
+      "type": "JR",
+      "inst": "JR NZ,$038F"
+    },
+    {
+      "from": "$03F1",
+      "type": "JR",
+      "inst": "JR NC,$03F8"
+    },
+    {
+      "from": "$0403",
+      "type": "JR",
+      "inst": "JR C,$0420"
+    },
+    {
+      "from": "$040E",
+      "type": "JR",
+      "inst": "JR C,$0420"
+    },
+    {
+      "from": "$0418",
+      "type": "JR",
+      "inst": "JR C,$0420"
+    },
+    {
+      "from": "$0428",
+      "type": "JR",
+      "inst": "JR NC,$0425"
+    },
+    {
+      "from": "$043B",
+      "type": "JR",
+      "inst": "JR Z,$0447"
+    },
+    {
+      "from": "$0441",
+      "type": "JR",
+      "inst": "JR Z,$0447"
+    },
+    {
+      "from": "$0445",
+      "type": "JR",
+      "inst": "JR $0440"
+    },
+    {
+      "from": "$0459",
+      "type": "CALL",
+      "inst": "CALL $058C"
+    },
+    {
+      "from": "$045C",
+      "type": "CALL",
+      "inst": "CALL $FFE0"
+    },
+    {
+      "from": "$0468",
+      "type": "JR",
+      "inst": "JR NZ,$049C"
+    },
+    {
+      "from": "$0480",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$049B",
+      "type": "RST",
+      "inst": "RST $08"
+    },
+    {
+      "from": "$049D",
+      "type": "JR",
+      "inst": "JR Z,$049B"
+    },
+    {
+      "from": "$04A6",
+      "type": "JR",
+      "inst": "JR NZ,$0454"
+    },
+    {
+      "from": "$04A8",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$04B8",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$04F6",
+      "type": "JR",
+      "inst": "JR Z,$049B"
+    },
+    {
+      "from": "$04FC",
+      "type": "JR",
+      "inst": "JR NZ,$04EA"
+    },
+    {
+      "from": "$04FE",
+      "type": "RST",
+      "inst": "RST $00"
+    },
+    {
+      "from": "$04FF",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$0507",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$0519",
+      "type": "JR",
+      "inst": "JR $04B8"
+    },
+    {
+      "from": "$051B",
+      "type": "CALL",
+      "inst": "CALL $0526"
+    },
+    {
+      "from": "$0524",
+      "type": "JR",
+      "inst": "JR $0507"
+    },
+    {
+      "from": "$0527",
+      "type": "CALL",
+      "inst": "CALL $0534"
+    },
+    {
+      "from": "$053A",
+      "type": "JR",
+      "inst": "JR Z,$0541"
+    },
+    {
+      "from": "$0551",
+      "type": "JR",
+      "inst": "JR NZ,$055E"
+    },
+    {
+      "from": "$0553",
+      "type": "CALL",
+      "inst": "CALL $0A45"
+    },
+    {
+      "from": "$0556",
+      "type": "CALL",
+      "inst": "CALL $06F1"
+    },
+    {
+      "from": "$0559",
+      "type": "CALL",
+      "inst": "CALL $09F1"
+    },
+    {
+      "from": "$055C",
+      "type": "RST_18_DISPATCH",
+      "param": "$0C",
+      "targets": [
+        "$06D1"
+      ]
+    },
+    {
+      "from": "$0560",
+      "type": "JR",
+      "inst": "JR NZ,$0579"
+    },
+    {
+      "from": "$0565",
+      "type": "CALL",
+      "inst": "CALL $0585"
+    },
+    {
+      "from": "$0568",
+      "type": "CALL",
+      "inst": "CALL $0A48"
+    },
+    {
+      "from": "$056B",
+      "type": "CALL",
+      "inst": "CALL $077A"
+    },
+    {
+      "from": "$0571",
+      "type": "CALL",
+      "inst": "CALL $0585"
+    },
+    {
+      "from": "$0574",
+      "type": "CALL",
+      "inst": "CALL $0A62"
+    },
+    {
+      "from": "$0577",
+      "type": "RST_18_DISPATCH",
+      "param": "$20",
+      "targets": [
+        "$0780"
+      ]
+    },
+    {
+      "from": "$057B",
+      "type": "JR",
+      "inst": "JR Z,$05B6"
+    },
+    {
+      "from": "$0586",
+      "type": "CALL",
+      "inst": "CALL $09BC"
+    },
+    {
+      "from": "$058A",
+      "type": "RST_18_DISPATCH",
+      "param": "$04",
+      "targets": [
+        "$06AB"
+      ]
+    },
+    {
+      "from": "$058F",
+      "type": "CALL",
+      "inst": "CALL $06AB"
+    },
+    {
+      "from": "$0595",
+      "type": "CALL",
+      "inst": "CALL $09BC"
+    },
+    {
+      "from": "$059B",
+      "type": "CALL",
+      "inst": "CALL $05A6"
+    },
+    {
+      "from": "$05A0",
+      "type": "CALL",
+      "inst": "CALL $05B6"
+    },
+    {
+      "from": "$05AB",
+      "type": "JR",
+      "inst": "JR NC,$05A8"
+    },
+    {
+      "from": "$05B1",
+      "type": "CALL",
+      "inst": "CALL $05B5"
+    },
+    {
+      "from": "$05B7",
+      "type": "CALL",
+      "inst": "CALL $096E"
+    },
+    {
+      "from": "$05BB",
+      "type": "RST_18_DISPATCH",
+      "param": "$00",
+      "targets": [
+        "$0684"
+      ]
+    },
+    {
+      "from": "$05C0",
+      "type": "CALL",
+      "inst": "CALL $093D"
+    },
+    {
+      "from": "$05CE",
+      "type": "CALL",
+      "inst": "CALL $0847"
+    },
+    {
+      "from": "$05DA",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$05E6",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$05F2",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$05FE",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$0609",
+      "type": "CALL",
+      "inst": "CALL $0847"
+    },
+    {
+      "from": "$0615",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$0621",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$062D",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$0639",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$0645",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$064E",
+      "type": "CALL",
+      "inst": "CALL $0670"
+    },
+    {
+      "from": "$0656",
+      "type": "CALL",
+      "inst": "CALL $0662"
+    },
+    {
+      "from": "$065E",
+      "type": "JR",
+      "inst": "JR $0662"
+    },
+    {
+      "from": "$0664",
+      "type": "CALL",
+      "inst": "CALL $0670"
+    },
+    {
+      "from": "$066D",
+      "type": "DJNZ",
+      "inst": "DJNZ $0662"
+    },
+    {
+      "from": "$0670",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$067D",
+      "type": "JR",
+      "inst": "JR NC,$067A"
+    },
+    {
+      "from": "$0681",
+      "type": "JR",
+      "inst": "JR NZ,$0675"
+    },
+    {
+      "from": "$0687",
+      "type": "CALL",
+      "inst": "CALL $0907"
+    },
+    {
+      "from": "$068F",
+      "type": "JR",
+      "inst": "JR Z,$06CD"
+    },
+    {
+      "from": "$069E",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$06A5",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$06BA",
+      "type": "CALL",
+      "inst": "CALL $0CCE"
+    },
+    {
+      "from": "$06C0",
+      "type": "JR",
+      "inst": "JR $069C"
+    },
+    {
+      "from": "$06CB",
+      "type": "JR",
+      "inst": "JR $06B7"
+    },
+    {
+      "from": "$06D6",
+      "type": "JR",
+      "inst": "JR Z,$06F9"
+    },
+    {
+      "from": "$06D8",
+      "type": "JR",
+      "inst": "JR NC,$06F4"
+    },
+    {
+      "from": "$06DB",
+      "type": "JR",
+      "inst": "JR $06C8"
+    },
+    {
+      "from": "$06E6",
+      "type": "JR",
+      "inst": "JR $06B7"
+    },
+    {
+      "from": "$06EE",
+      "type": "JR",
+      "inst": "JR NZ,$06E3"
+    },
+    {
+      "from": "$06F2",
+      "type": "JR",
+      "inst": "JR $06E3"
+    },
+    {
+      "from": "$0702",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$070B",
+      "type": "CALL",
+      "inst": "CALL $0841"
+    },
+    {
+      "from": "$070E",
+      "type": "JR",
+      "inst": "JR $06B7"
+    },
+    {
+      "from": "$0720",
+      "type": "JR",
+      "inst": "JR C,$072C"
+    },
+    {
+      "from": "$0724",
+      "type": "CALL",
+      "inst": "CALL $0CE5"
+    },
+    {
+      "from": "$0736",
+      "type": "CALL",
+      "inst": "CALL $0CE8"
+    },
+    {
+      "from": "$073D",
+      "type": "JR",
+      "inst": "JR C,$075A"
+    },
+    {
+      "from": "$0747",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0771",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$077A",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$077E",
+      "type": "JR",
+      "inst": "JR $078E"
+    },
+    {
+      "from": "$0780",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$078E",
+      "type": "JP",
+      "inst": "JP $0841"
+    },
+    {
+      "from": "$0791",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$0799",
+      "type": "JR",
+      "inst": "JR Z,$07C7"
+    },
+    {
+      "from": "$07A1",
+      "type": "CALL",
+      "inst": "CALL $07AD"
+    },
+    {
+      "from": "$07AE",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$07B5",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$07C2",
+      "type": "JR",
+      "inst": "JR NZ,$07AD"
+    },
+    {
+      "from": "$07C7",
+      "type": "JP",
+      "inst": "JP $0905"
+    },
+    {
+      "from": "$07CA",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$07D1",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$07D9",
+      "type": "JP",
+      "inst": "JP $0905"
+    },
+    {
+      "from": "$07E5",
+      "type": "JP",
+      "inst": "JP Z,$0705"
+    },
+    {
+      "from": "$07E8",
+      "type": "JR",
+      "inst": "JR C,$0804"
+    },
+    {
+      "from": "$07F2",
+      "type": "CALL",
+      "inst": "CALL $080A"
+    },
+    {
+      "from": "$07F9",
+      "type": "JR",
+      "inst": "JR NZ,$07F2"
+    },
+    {
+      "from": "$07FB",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$0802",
+      "type": "JR",
+      "inst": "JR $0841"
+    },
+    {
+      "from": "$0807",
+      "type": "JP",
+      "inst": "JP $052C"
+    },
+    {
+      "from": "$0810",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$0824",
+      "type": "CALL",
+      "inst": "CALL $0CC7"
+    },
+    {
+      "from": "$0837",
+      "type": "CALL",
+      "inst": "CALL $08B0"
+    },
+    {
+      "from": "$083A",
+      "type": "JP",
+      "inst": "JP $0705"
+    },
+    {
+      "from": "$083F",
+      "type": "JR",
+      "inst": "JR $0847"
+    },
+    {
+      "from": "$0849",
+      "type": "JR",
+      "inst": "JR Z,$0858"
+    },
+    {
+      "from": "$084F",
+      "type": "CALL",
+      "inst": "CALL $085B"
+    },
+    {
+      "from": "$0856",
+      "type": "DJNZ",
+      "inst": "DJNZ $084B"
+    },
+    {
+      "from": "$085E",
+      "type": "CALL",
+      "inst": "CALL $086C"
+    },
+    {
+      "from": "$0867",
+      "type": "CALL",
+      "inst": "CALL $08FE"
+    },
+    {
+      "from": "$086D",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$0878",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0883",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0892",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0899",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$08A0",
+      "type": "CALL",
+      "inst": "CALL $00FA"
+    },
+    {
+      "from": "$08A5",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$08AC",
+      "type": "JR",
+      "inst": "JR $08A0"
+    },
+    {
+      "from": "$08B2",
+      "type": "JR",
+      "inst": "JR Z,$08C2"
+    },
+    {
+      "from": "$08B8",
+      "type": "CALL",
+      "inst": "CALL $08C5"
+    },
+    {
+      "from": "$08C0",
+      "type": "DJNZ",
+      "inst": "DJNZ $08B4"
+    },
+    {
+      "from": "$08C9",
+      "type": "CALL",
+      "inst": "CALL $08D8"
+    },
+    {
+      "from": "$08D4",
+      "type": "CALL",
+      "inst": "CALL $08FE"
+    },
+    {
+      "from": "$08D9",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$08DE",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$08E9",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$08F0",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$08F7",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0911",
+      "type": "CALL",
+      "inst": "CALL $0916"
+    },
+    {
+      "from": "$0916",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$091C",
+      "type": "CALL",
+      "inst": "CALL $06AB"
+    },
+    {
+      "from": "$0922",
+      "type": "CALL",
+      "inst": "CALL $0933"
+    },
+    {
+      "from": "$0928",
+      "type": "CALL",
+      "inst": "CALL $06AB"
+    },
+    {
+      "from": "$0931",
+      "type": "JR",
+      "inst": "JR $090A"
+    },
+    {
+      "from": "$0938",
+      "type": "CALL",
+      "inst": "CALL $093D"
+    },
+    {
+      "from": "$093E",
+      "type": "CALL",
+      "inst": "CALL $0953"
+    },
+    {
+      "from": "$094C",
+      "type": "JR",
+      "inst": "JR NC,$0949"
+    },
+    {
+      "from": "$0955",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$095C",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$0963",
+      "type": "CALL",
+      "inst": "CALL $0945"
+    },
+    {
+      "from": "$096A",
+      "type": "JR",
+      "inst": "JR NC,$0967"
+    },
+    {
+      "from": "$096F",
+      "type": "CALL",
+      "inst": "CALL $0C7F"
+    },
+    {
+      "from": "$098C",
+      "type": "JR",
+      "inst": "JR Z,$09ED"
+    },
+    {
+      "from": "$0992",
+      "type": "JP",
+      "inst": "JP $0C4A"
+    },
+    {
+      "from": "$0995",
+      "type": "CALL",
+      "inst": "CALL $09C1"
+    },
+    {
+      "from": "$09A3",
+      "type": "CALL",
+      "inst": "CALL $09C1"
+    },
+    {
+      "from": "$09AF",
+      "type": "JR",
+      "inst": "JR Z,$09B3"
+    },
+    {
+      "from": "$09B9",
+      "type": "JP",
+      "inst": "JP $0C4A"
+    },
+    {
+      "from": "$09D0",
+      "type": "CALL",
+      "inst": "CALL $0CCE"
+    },
+    {
+      "from": "$09DA",
+      "type": "JP",
+      "inst": "JP $0C4A"
+    },
+    {
+      "from": "$09EB",
+      "type": "JR",
+      "inst": "JR $09CD"
+    },
+    {
+      "from": "$09F6",
+      "type": "JR",
+      "inst": "JR Z,$0A02"
+    },
+    {
+      "from": "$09F8",
+      "type": "JR",
+      "inst": "JR NC,$09FD"
+    },
+    {
+      "from": "$09FB",
+      "type": "JR",
+      "inst": "JR $09E3"
+    },
+    {
+      "from": "$0A14",
+      "type": "CALL",
+      "inst": "CALL $0B24"
+    },
+    {
+      "from": "$0A2F",
+      "type": "JR",
+      "inst": "JR $09E6"
+    },
+    {
+      "from": "$0A3A",
+      "type": "JR",
+      "inst": "JR $09CD"
+    },
+    {
+      "from": "$0A42",
+      "type": "JR",
+      "inst": "JR NZ,$0A37"
+    },
+    {
+      "from": "$0A46",
+      "type": "JR",
+      "inst": "JR $0A37"
+    },
+    {
+      "from": "$0A4C",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0A53",
+      "type": "CALL",
+      "inst": "CALL $0AB3"
+    },
+    {
+      "from": "$0A60",
+      "type": "JR",
+      "inst": "JR $0A7E"
+    },
+    {
+      "from": "$0A72",
+      "type": "JR",
+      "inst": "JR Z,$0AB3"
+    },
+    {
+      "from": "$0A7B",
+      "type": "CALL",
+      "inst": "CALL $0B24"
+    },
+    {
+      "from": "$0A92",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0A9A",
+      "type": "JR",
+      "inst": "JR Z,$0AB3"
+    },
+    {
+      "from": "$0AA4",
+      "type": "CALL",
+      "inst": "CALL $0AB3"
+    },
+    {
+      "from": "$0ABE",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0AC6",
+      "type": "JR",
+      "inst": "JR Z,$0AB3"
+    },
+    {
+      "from": "$0AD0",
+      "type": "CALL",
+      "inst": "CALL $0AB3"
+    },
+    {
+      "from": "$0AE8",
+      "type": "JR",
+      "inst": "JR Z,$0B1B"
+    },
+    {
+      "from": "$0AEB",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0B19",
+      "type": "JR",
+      "inst": "JR $0B24"
+    },
+    {
+      "from": "$0B36",
+      "type": "JR",
+      "inst": "JR Z,$0B1B"
+    },
+    {
+      "from": "$0B39",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0B60",
+      "type": "JR",
+      "inst": "JR $0B1B"
+    },
+    {
+      "from": "$0B80",
+      "type": "JR",
+      "inst": "JR C,$0B90"
+    },
+    {
+      "from": "$0B84",
+      "type": "CALL",
+      "inst": "CALL $0CE5"
+    },
+    {
+      "from": "$0B92",
+      "type": "JR",
+      "inst": "JR C,$0BBD"
+    },
+    {
+      "from": "$0B96",
+      "type": "JR",
+      "inst": "JR C,$0BA3"
+    },
+    {
+      "from": "$0BD4",
+      "type": "CALL",
+      "inst": "CALL M,$0C3C"
+    },
+    {
+      "from": "$0BDE",
+      "type": "JR",
+      "inst": "JR NZ,$0C0C"
+    },
+    {
+      "from": "$0BE0",
+      "type": "CALL",
+      "inst": "CALL $0CC2"
+    },
+    {
+      "from": "$0BF1",
+      "type": "CALL",
+      "inst": "CALL $0C70"
+    },
+    {
+      "from": "$0BFA",
+      "type": "CALL",
+      "inst": "CALL $0C27"
+    },
+    {
+      "from": "$0C0A",
+      "type": "JR",
+      "inst": "JR $0C27"
+    },
+    {
+      "from": "$0C1B",
+      "type": "CALL",
+      "inst": "CALL $0C27"
+    },
+    {
+      "from": "$0C36",
+      "type": "JR",
+      "inst": "JR NZ,$0C2A"
+    },
+    {
+      "from": "$0C41",
+      "type": "JR",
+      "inst": "JR NC,$0C44"
+    },
+    {
+      "from": "$0C4A",
+      "type": "CALL",
+      "inst": "CALL $0C69"
+    },
+    {
+      "from": "$0C4D",
+      "type": "CALL",
+      "inst": "CALL $0BCF"
+    },
+    {
+      "from": "$0C59",
+      "type": "JR",
+      "inst": "JR C,$0C69"
+    },
+    {
+      "from": "$0C5D",
+      "type": "JR",
+      "inst": "JR NC,$0C69"
+    },
+    {
+      "from": "$0C63",
+      "type": "CALL",
+      "inst": "CALL $0C70"
+    },
+    {
+      "from": "$0C67",
+      "type": "JR",
+      "inst": "JR $0C6C"
+    },
+    {
+      "from": "$0C82",
+      "type": "JR",
+      "inst": "JR Z,$0CC0"
+    },
+    {
+      "from": "$0C8C",
+      "type": "JR",
+      "inst": "JR Z,$0CA7"
+    },
+    {
+      "from": "$0C8E",
+      "type": "JR",
+      "inst": "JR C,$0CB3"
+    },
+    {
+      "from": "$0C97",
+      "type": "JR",
+      "inst": "JR Z,$0CAA"
+    },
+    {
+      "from": "$0C9B",
+      "type": "JR",
+      "inst": "JR Z,$0CAD"
+    },
+    {
+      "from": "$0C9F",
+      "type": "JR",
+      "inst": "JR Z,$0CB0"
+    },
+    {
+      "from": "$0CB5",
+      "type": "JR",
+      "inst": "JR Z,$0CBD"
+    },
+    {
+      "from": "$0CC5",
+      "type": "JR",
+      "inst": "JR $0CCA"
+    },
+    {
+      "from": "$0F03",
+      "type": "RST",
+      "inst": "RST $08"
+    }
+  ]
+}

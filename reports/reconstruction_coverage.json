@@ -1,0 +1,86 @@
+{
+  "phase": "Phase 6 - Bit-Exact ROM Reconstruction Coverage",
+  "overall": {
+    "total_rom_bytes": 61440,
+    "decoded_instruction_bytes": 40696,
+    "decoded_instruction_pct": 66.24,
+    "identified_data_and_padding_bytes": 20476,
+    "identified_data_and_padding_pct": 33.33,
+    "unresolved_bytes": 268,
+    "unresolved_pct": 0.44
+  },
+  "roms": {
+    "basic_low": {
+      "rom_filename": "basic-4000.318018-02.bin",
+      "total_bytes": 16384,
+      "decoded_instruction_bytes": 13925,
+      "decoded_instruction_count": 6550,
+      "identified_data_bytes": 2017,
+      "padding_bytes": 382,
+      "unresolved_bytes": 60,
+      "decoded_instruction_pct": 84.99,
+      "identified_data_pct": 14.64,
+      "identified_tables_strings_only_pct": 12.31,
+      "padding_only_pct": 2.33,
+      "unresolved_pct": 0.37
+    },
+    "basic_high": {
+      "rom_filename": "basic-8000.318019-02.bin",
+      "total_bytes": 16384,
+      "decoded_instruction_bytes": 13414,
+      "decoded_instruction_count": 6350,
+      "identified_data_bytes": 574,
+      "padding_bytes": 2265,
+      "unresolved_bytes": 131,
+      "decoded_instruction_pct": 81.87,
+      "identified_data_pct": 17.33,
+      "identified_tables_strings_only_pct": 3.5,
+      "padding_only_pct": 13.82,
+      "unresolved_pct": 0.8
+    },
+    "kernal": {
+      "rom_filename": "kernal.318020-03.bin",
+      "total_bytes": 16384,
+      "decoded_instruction_bytes": 10335,
+      "decoded_instruction_count": 4880,
+      "identified_data_bytes": 4987,
+      "padding_bytes": 985,
+      "unresolved_bytes": 77,
+      "decoded_instruction_pct": 63.08,
+      "identified_data_pct": 36.45,
+      "identified_tables_strings_only_pct": 30.44,
+      "padding_only_pct": 6.01,
+      "unresolved_pct": 0.47
+    },
+    "z80bios": {
+      "rom_filename": "z80bios.bin",
+      "total_bytes": 4096,
+      "decoded_instruction_bytes": 3022,
+      "decoded_instruction_count": 1595,
+      "identified_data_bytes": 1074,
+      "padding_bytes": 0,
+      "unresolved_bytes": 0,
+      "decoded_instruction_pct": 73.78,
+      "identified_data_pct": 26.22,
+      "identified_tables_strings_only_pct": 26.22,
+      "padding_only_pct": 0.0,
+      "unresolved_pct": 0.0,
+      "note": "Includes 2,882 bytes of decoded Z80A instructions (1,250 instructions) and 1,214 bytes of documented data tables, inline strings, RST dispatch parameters, and embedded MOS 8502 slave payloads ($0D1A-$0EF4)."
+    },
+    "characters": {
+      "rom_filename": "characters.390059-01.bin",
+      "total_bytes": 8192,
+      "decoded_instruction_bytes": 0,
+      "decoded_instruction_count": 0,
+      "identified_data_bytes": 8192,
+      "padding_bytes": 0,
+      "unresolved_bytes": 0,
+      "decoded_instruction_pct": 0.0,
+      "identified_data_pct": 100.0,
+      "identified_tables_strings_only_pct": 100.0,
+      "padding_only_pct": 0.0,
+      "unresolved_pct": 0.0,
+      "note": "Pure 8x8 bitmap glyph ROM (1,024 glyphs x 8 bytes across 4 character sets)."
+    }
+  }
+}

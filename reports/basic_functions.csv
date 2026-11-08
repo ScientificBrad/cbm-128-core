@@ -1,0 +1,220 @@
+address,end_address,symbol,category,rom_image,description,confidence
+$4000,$4002,BASIC_COLD_ENTRY,Entry Vector,318018-02,Cold start entry vector (JMP $4009),CONFIRMED
+$4003,$4005,BASIC_WARM_ENTRY,Entry Vector,318018-02,Warm start / NMI entry vector (JMP $4023),CONFIRMED
+$4006,$4008,BASIC_IRQ_ENTRY,Entry Vector,318018-02,IRQ Sprite/Sound/Collision service vector (JMP $A84D),CONFIRMED
+$4009,$4022,COLD_START,Startup,318018-02,"BASIC 7.0 cold start sequence: JSR $4169, $4045, $419B, $4251, $4142, $4235, $4026",CONFIRMED
+$4023,$4044,WARM_START,Startup,318018-02,"BASIC 7.0 warm start sequence: CLI, init vectors, jump to READY ($4D37)",CONFIRMED
+$4045,$4141,INIT_VECTORS_AND_RAM,Startup,318018-02,"Copy $0380-$03D4 common RAM stub, init $0300-$0313 vectors, Bank 0/1 pointers ($1C01, $0400, $FF00)",CONFIRMED
+$4142,$4168,PRINT_STARTUP_BANNER,Startup,318018-02,Print C128 BASIC V7.0 startup banner ($4107) and copyright messages,CONFIRMED
+$4169,$419A,INIT_MMU_PRECONFIGS,Startup,318018-02,"Set MMU $D501-$D504 preconfiguration registers ($3F, $7F, $01, $41) and sound/sprite state",CONFIRMED
+$419B,$4234,INIT_VIC_SID_GRAPHICS,Startup,318018-02,"Initialize VIC-II/SID shadow registers, default sprite colors, and scale factors",CONFIRMED
+$4251,$4278,TEST_AUTOBOOT_CART,Startup,318018-02,Check for autostart disk boot or cartridge before entering READY,CONFIRMED
+$4279,$42CD,COMMON_RAM_TEMPLATE,Memory Management,318018-02,85-byte template copied to $0380-$03D4 (CHRGET + Bank 0/Bank 1 indirect fetch routines),CONFIRMED
+$42CE,$4309,BANK0_BANK1_HELPERS,Memory Management,318018-02,Helpers for reading/comparing Bank 0 program text ($42D5/$42EC) and Bank 1 variables ($42E7),CONFIRMED
+$430A,$4416,CRUNCH,Tokenizer,318018-02,"Tokenize ASCII input line in $0200 into single-byte ($80-$FD), $FE-prefixed, and $CE-prefixed tokens",CONFIRMED
+$4417,$4608,TOKEN_TABLE_PRIMARY,Table,318018-02,Primary keyword table (126 high-bit terminated strings for tokens $80..$FD),CONFIRMED
+$4609,$46C8,TOKEN_TABLE_FE,Table,318018-02,$FE-prefixed extended statement keyword table (37 strings for $FE $02..$FE $26),CONFIRMED
+$46C9,$46F9,TOKEN_TABLE_CE,Table,318018-02,$CE-prefixed extended function keyword table (9 strings for $CE $02..$CE $0A),CONFIRMED
+$46FC,$47D7,STMDSP_TABLE,Table,318018-02,"Statement dispatch table (110 RTS-1 vectors: $80..$A2, $D5..$FA, $FE $02..$26)",CONFIRMED
+$47D8,$4827,FUNDSP_TABLE,Table,318018-02,Function dispatch table (40 direct 16-bit vectors: $B4..$D4 and $CE $02..$0A),CONFIRMED
+$4828,$4845,OPTAB_TABLE,Table,318018-02,Operator precedence & RTS-1 dispatch table (10 3-byte entries),CONFIRMED
+$4846,$484A,UNIMPL_CMD_ERR,Error Handling,318018-02,LDX #$28; JMP $4D3C (UNIMPLEMENTED COMMAND error for OFF/QUIT),CONFIRMED
+$484B,$4A81,ERRMSG_TABLE,Table,318018-02,41 high-bit terminated BASIC 7.0 error message strings (codes $01..$29),CONFIRMED
+$4A82,$4AA1,FIND_ERRMSG,Error Handling,318018-02,Scan $484B error message table to error index A and set pointer ($26/$27),CONFIRMED
+$4AA2,$4B67,NEWSTT,Execution Engine,318018-02,"Statement execution loop: poll STOP, trace line ($1216), advance TXTPTR ($3D/$3E)",CONFIRMED
+$4B68,$4BAA,GONE,Execution Engine,318018-02,"Decode statement token ($80-$A2, $D5-$FA, or $FE $02-$26) and RTS-dispatch via $46FC",CONFIRMED
+$4BEF,$4C85,EVAL_FUNCTION,Execution Engine,318018-02,Evaluate built-in ($B4-$D4) and $CE-prefixed ($CE $02-$0A) functions via $47D8,CONFIRMED
+$4C86,$4CB5,OP_OR_AND,Execution Engine,318018-02,Bitwise 16-bit OR ($4C86) and AND ($4C89) operator evaluation,CONFIRMED
+$4CB6,$4D2B,OP_RELATIONAL,Execution Engine,318018-02,"Numeric and string relational comparison (<, =, >)",CONFIRMED
+$4D2C,$4D3B,ERR_SYNTAX_DIV0,Error Handling,318018-02,"Common error stubs: OUT OF DATA ($0D), SYNTAX ($0B), DIVISION BY ZERO ($14), OUT OF MEMORY ($10)",CONFIRMED
+$4D3C,$4DC5,ERROR_HANDLER,Error Handling,318018-02,"Central error handler ($0300 IERROR): check TRAP ($1209), store ERRNUM ($120B), print ?...ERROR",CONFIRMED
+$4DC6,$4EF0,MAIN_LINE_LOOP,Execution Engine,318018-02,"Interactive input loop ($0302 IMAIN): read line, crunch ($430A), insert/delete Bank 0 program line or execute direct",CONFIRMED
+$4EF1,$4FA9,LNKPRG_FINDLINE,Program Storage,318018-02,Relink BASIC program lines in Bank 0 ($4F4F) and search for line number ($5064),CONFIRMED
+$4FAA,$5063,RUNTIME_STACK_MGR,Control Flow,318018-02,"Manage 512-byte Software Control-Flow Stack ($0800-$09FF, TOS=$7D/$7E) for FOR/GOSUB/DO frames",CONFIRMED
+$514E,$51DF,QPLOP_DETOKENIZE,Tokenizer,318018-02,"Detokenize ($0306 IQPLOP) single-byte, $FE-prefixed, and $CE-prefixed tokens during LIST",CONFIRMED
+$77D4,$77EE,CHKNUM_CHKSTR,Execution Engine,318018-02,"Type-check routines: FRMNUM ($77D7), CHKNUM ($77DA), CHKSTR ($77DD), TYPE MISMATCH ($77E7)",CONFIRMED
+$77EF,$78D6,FRMEVL,Execution Engine,318018-02,Recursive operator-precedence expression evaluator using $4828 OPTAB,CONFIRMED
+$78D7,$794F,EVAL,Execution Engine,318018-02,"Evaluate single term/atom: literal number, string, variable, array, FN, or function token",CONFIRMED
+$7950,$7975,CHKCHAR_HELPERS,Execution Engine,318018-02,"Syntax check helpers: CHKCLS ')' ($7956), CHKOPN '(' ($7959), CHKCOM ',' ($795C), SYNCHR ($795E)",CONFIRMED
+$7AAF,$7CAA,PTRGET,Variable Storage,318018-02,Locate or allocate 7-byte simple variable in Bank 1 RAM ($2F/$30..$31/$32),CONFIRMED
+$7CAB,$7E70,ARRAY_LOOKUP_DIM,Variable Storage,318018-02,Locate or allocate multi-dimensional array in Bank 1 RAM ($31/$32..$33/$34),CONFIRMED
+$8000,$8005,BASIC_HI_ENTRY,Entry Vector,318019-02,"Upper BASIC ROM header jump table ($8000 JMP $4000, $8003 JMP $51F3)",CONFIRMED
+$84B4,$85AD,INT_FP_CONVERSIONS,Math Engine,318019-02,Convert FAC1 to 16-bit signed integer ($84B4) and signed/unsigned 16-bit to FAC1 ($84C9/$84D4),CONFIRMED
+$85AE,$879E,STRING_ENGINE,String Engine,318019-02,"String allocation ($8690/$86CC), descriptor stack ($18..$21), concatenation ($86FF), FRESTR ($8781)",CONFIRMED
+$87F1,$882D,GETBYT_GETADR,Execution Engine,318019-02,Evaluate 8-bit unsigned byte in X ($87F4 GETBYT) and 16-bit unsigned address in $16/$17 ($8812 GETADR),CONFIRMED
+$882E,$90CF,FP_MATH_LIBRARY,Math Engine,318019-02,"5-byte Floating-Point arithmetic (FADD $8848, FSUB $8831, FMUL $8A27, FDIV $8B4C,LOG,EXP,SIN,COS,TAN,ATN,SQR,RND)",CONFIRMED
+$92EA,$943F,GARBAG_COLLECT,String Engine,318019-02,Bank 1 dynamic string garbage collector using back-pointer marking,CONFIRMED
+$9520,$9A5F,PRINT_USING_PUDEF,I/O & Formatting,318019-02,Formatted output engine for PRINT USING and PUDEF,CONFIRMED
+$9B00,$A07F,GRAPHICS_PRIMITIVES,Graphics Engine,318019-02,"VIC-II bitmapped graphics coordinate scaling, pixel plotting, line drawing, and $1C00-$3FFF memory relocation ($9F4F/$A022)",CONFIRMED
+$A84D,$AAF0,BASIC_IRQ_DRIVER,Interrupt Driver,318019-02,"60 Hz raster/IRQ service for automatic sprite movement (MOVSPR), collision detection (COLLISION), and 3-voice PLAY/SOUND envelope engine",CONFIRMED
+$B000,$B008,MON_ENTRY_TABLE,ML Monitor,318019-02,"ML Monitor entry vectors: $B000 Cold Entry (JMP $B021), $B003 BRK Entry (JMP $B009), $B006 Cmd Parser (JMP $B0B2)",CONFIRMED
+$B009,$B08A,MON_BRK_AND_REG_DISP,ML Monitor,318019-02,Save 8502 registers/bank to $02-$09 on BRK/entry and display PC SR AC XR YR SP header & values ('R' command),CONFIRMED
+$B08B,$B0E5,MON_MAIN_LOOP,ML Monitor,318019-02,"Read command line into $0200, indirect via ($032E) to $B0B2, match 22 command characters in $B0E6, dispatch via $B0FC",CONFIRMED
+$B11A,$B151,MON_BANK_MEM_ACCESS,ML Monitor,318019-02,"Cross-bank memory read ($B11A -> INDFET), write ($B12A -> INDSTA), and compare ($B13D -> INDCMP)",CONFIRMED
+$B152,$B230,MON_MEM_DUMP_MODIFY,ML Monitor,318019-02,Memory examine ('M' $B152) and modify ('>' $B1AB) in 8-byte (40-col) or 16-byte (80-col) rows,CONFIRMED
+$B231,$B2CD,MON_COMPARE_TRANSFER,ML Monitor,318019-02,Compare ('C' $B231) and overlap-safe Transfer ('T' $B234) memory blocks across banks,CONFIRMED
+$B2CE,$B336,MON_HUNT,ML Monitor,318019-02,Hunt ('H' $B2CE) for up to 32 hex bytes or ASCII string across bank memory,CONFIRMED
+$B337,$B3DA,MON_LOAD_SAVE_VERIFY,ML Monitor,318019-02,"Disk/tape Load ('L'), Save ('S'), and Verify ('V') handler via KERNAL LOAD/SAVE",CONFIRMED
+$B3DB,$B405,MON_FILL,ML Monitor,318019-02,Fill ('F' $B3DB) memory range with byte value,CONFIRMED
+$B406,$B598,MON_ASSEMBLER,ML Monitor,318019-02,Single-line 8502 assembler ('A' / '.' $B406): trial-disassemble opcodes $00-$FF to match mnemonic & operand pattern,CONFIRMED
+$B599,$B713,MON_DISASSEMBLER,ML Monitor,318019-02,"8502 disassembler ('D' $B599, ';' $B61F) using packed 5-bit mnemonic tables ($B721/$B761) and mode table ($B770)",CONFIRMED
+$B7A5,$B889,MON_NUM_PARSER,ML Monitor,318019-02,"Multi-radix number parser ($ hex, + dec, & oct, % bin) producing 24-bit bank+address in $60-$62",CONFIRMED
+$B9B1,$BA8F,MON_BASE_CONVERT,ML Monitor,318019-02,"Number base converter ($/+/&/% command at $B9B1): display value in hex, signed/BCD decimal, octal, and 24-bit binary",CONFIRMED
+$BA90,$BB40,MON_DISK_CMD,ML Monitor,318019-02,Disk status/command/directory ('@' $BA90) utility for IEC drives 4-30,CONFIRMED
+$4BCD,,CMD_END,statement_primary,318018-02,Handler for primary token $80 (END),CONFIRMED
+$5DF9,,CMD_FOR,statement_primary,318018-02,Handler for primary token $81 (FOR),CONFIRMED
+$57F4,,CMD_NEXT,statement_primary,318018-02,Handler for primary token $82 (NEXT),CONFIRMED
+$528F,,CMD_DATA,statement_primary,318018-02,Handler for primary token $83 (DATA),CONFIRMED
+$5648,,CMD_INPUT#,statement_primary,318018-02,Handler for primary token $84 (INPUT#),CONFIRMED
+$5662,,CMD_INPUT,statement_primary,318018-02,Handler for primary token $85 (INPUT),CONFIRMED
+$587B,,CMD_DIM,statement_primary,318018-02,Handler for primary token $86 (DIM),CONFIRMED
+$56A9,,CMD_READ,statement_primary,318018-02,Handler for primary token $87 (READ),CONFIRMED
+$53C6,,CMD_LET,statement_primary,318018-02,Handler for primary token $88 (LET),CONFIRMED
+$59DB,,CMD_GOTO,statement_primary,318018-02,Handler for primary token $89 (GOTO),CONFIRMED
+$5A9B,,CMD_RUN,statement_primary,318018-02,Handler for primary token $8A (RUN),CONFIRMED
+$52C5,,CMD_IF,statement_primary,318018-02,Handler for primary token $8B (IF),CONFIRMED
+$5ACA,,CMD_RESTORE,statement_primary,318018-02,Handler for primary token $8C (RESTORE),CONFIRMED
+$59CF,,CMD_GOSUB,statement_primary,318018-02,Handler for primary token $8D (GOSUB),CONFIRMED
+$5262,,CMD_RETURN,statement_primary,318018-02,Handler for primary token $8E (RETURN),CONFIRMED
+$529D,,CMD_REM,statement_primary,318018-02,Handler for primary token $8F (REM),CONFIRMED
+$4BCB,,CMD_STOP,statement_primary,318018-02,Handler for primary token $90 (STOP),CONFIRMED
+$53A3,,CMD_ON,statement_primary,318018-02,Handler for primary token $91 (ON),CONFIRMED
+$6C2D,,CMD_WAIT,statement_primary,318018-02,Handler for primary token $92 (WAIT),CONFIRMED
+$912C,,CMD_LOAD,statement_primary,318019-02,Handler for primary token $93 (LOAD),CONFIRMED
+$9112,,CMD_SAVE,statement_primary,318019-02,Handler for primary token $94 (SAVE),CONFIRMED
+$9129,,CMD_VERIFY,statement_primary,318019-02,Handler for primary token $95 (VERIFY),CONFIRMED
+$84FA,,CMD_DEF,statement_primary,318019-02,Handler for primary token $96 (DEF),CONFIRMED
+$80E5,,CMD_POKE,statement_primary,318019-02,Handler for primary token $97 (POKE),CONFIRMED
+$553A,,CMD_PRINT#,statement_primary,318018-02,Handler for primary token $98 (PRINT#),CONFIRMED
+$555A,,CMD_PRINT,statement_primary,318018-02,Handler for primary token $99 (PRINT),CONFIRMED
+$5A60,,CMD_CONT,statement_primary,318018-02,Handler for primary token $9A (CONT),CONFIRMED
+$50E2,,CMD_LIST,statement_primary,318018-02,Handler for primary token $9B (LIST),CONFIRMED
+$51F8,,CMD_CLR,statement_primary,318018-02,Handler for primary token $9C (CLR),CONFIRMED
+$5540,,CMD_CMD,statement_primary,318018-02,Handler for primary token $9D (CMD),CONFIRMED
+$5885,,CMD_SYS,statement_primary,318018-02,Handler for primary token $9E (SYS),CONFIRMED
+$918D,,CMD_OPEN,statement_primary,318019-02,Handler for primary token $9F (OPEN),CONFIRMED
+$919A,,CMD_CLOSE,statement_primary,318019-02,Handler for primary token $A0 (CLOSE),CONFIRMED
+$5612,,CMD_GET,statement_primary,318018-02,Handler for primary token $A1 (GET),CONFIRMED
+$51D6,,CMD_NEW,statement_primary,318018-02,Handler for primary token $A2 (NEW),CONFIRMED
+$8848,,CMD_+,operator,318019-02,Handler for primary token $AA (+),CONFIRMED
+$8831,,CMD_-,operator,318019-02,Handler for primary token $AB (-),CONFIRMED
+$8A27,,CMD_*,operator,318019-02,Handler for primary token $AC (*),CONFIRMED
+$8B4C,,CMD_/,operator,318019-02,Handler for primary token $AD (/),CONFIRMED
+$8FC1,,CMD_^,operator,318019-02,Handler for primary token $AE (^),CONFIRMED
+$4C89,,CMD_AND,operator,318018-02,Handler for primary token $AF (AND),CONFIRMED
+$4C86,,CMD_OR,operator,318018-02,Handler for primary token $B0 (OR),CONFIRMED
+$8C65,,CMD_SGN,function_primary,318019-02,Handler for primary token $B4 (SGN),CONFIRMED
+$8CFB,,CMD_INT,function_primary,318019-02,Handler for primary token $B5 (INT),CONFIRMED
+$8C84,,CMD_ABS,function_primary,318019-02,Handler for primary token $B6 (ABS),CONFIRMED
+$1218,,CMD_USR,function_primary,318018-02,Handler for primary token $B7 (USR),CONFIRMED
+$8000,,CMD_FRE,function_primary,318019-02,Handler for primary token $B8 (FRE),CONFIRMED
+$84D0,,CMD_POS,function_primary,318019-02,Handler for primary token $B9 (POS),CONFIRMED
+$8FB7,,CMD_SQR,function_primary,318019-02,Handler for primary token $BA (SQR),CONFIRMED
+$8434,,CMD_RND,function_primary,318019-02,Handler for primary token $BB (RND),CONFIRMED
+$89CA,,CMD_LOG,function_primary,318019-02,Handler for primary token $BC (LOG),CONFIRMED
+$9033,,CMD_EXP,function_primary,318019-02,Handler for primary token $BD (EXP),CONFIRMED
+$9409,,CMD_COS,function_primary,318019-02,Handler for primary token $BE (COS),CONFIRMED
+$9410,,CMD_SIN,function_primary,318019-02,Handler for primary token $BF (SIN),CONFIRMED
+$9459,,CMD_TAN,function_primary,318019-02,Handler for primary token $C0 (TAN),CONFIRMED
+$94B3,,CMD_ATN,function_primary,318019-02,Handler for primary token $C1 (ATN),CONFIRMED
+$80C5,,CMD_PEEK,function_primary,318019-02,Handler for primary token $C2 (PEEK),CONFIRMED
+$8668,,CMD_LEN,function_primary,318019-02,Handler for primary token $C3 (LEN),CONFIRMED
+$85AE,,CMD_STR$,function_primary,318019-02,Handler for primary token $C4 (STR$),CONFIRMED
+$804A,,CMD_VAL,function_primary,318019-02,Handler for primary token $C5 (VAL),CONFIRMED
+$8677,,CMD_ASC,function_primary,318019-02,Handler for primary token $C6 (ASC),CONFIRMED
+$85BF,,CMD_CHR$,function_primary,318019-02,Handler for primary token $C7 (CHR$),CONFIRMED
+$85D6,,CMD_LEFT$,function_primary,318019-02,Handler for primary token $C8 (LEFT$),CONFIRMED
+$860A,,CMD_RIGHT$,function_primary,318019-02,Handler for primary token $C9 (RIGHT$),CONFIRMED
+$861C,,CMD_MID$,function_primary,318019-02,Handler for primary token $CA (MID$),CONFIRMED
+$8182,,CMD_GO,function_primary,318019-02,Handler for primary token $CB (GO),CONFIRMED
+$819B,,CMD_RGR,function_primary,318019-02,Handler for primary token $CC (RGR),CONFIRMED
+$81D7,,CMD_RCLR,function_primary,318019-02,Handler for primary token $CD (RCLR),CONFIRMED
+$4C54,,CMD_\x00,prefix_placeholder,318018-02,Handler for primary token $CE (\x00),CONFIRMED
+$9B0C,,CMD_JOY,function_primary,318019-02,Handler for primary token $CF (JOY),CONFIRMED
+$8076,,CMD_RDOT,function_primary,318019-02,Handler for primary token $D0 (RDOT),CONFIRMED
+$8142,,CMD_DEC,function_primary,318019-02,Handler for primary token $D1 (DEC),CONFIRMED
+$80F6,,CMD_HEX$,function_primary,318019-02,Handler for primary token $D2 (HEX$),CONFIRMED
+$824D,,CMD_ERR$,function_primary,318019-02,Handler for primary token $D3 (ERR$),CONFIRMED
+$837C,,CMD_INSTR,function_primary,318019-02,Handler for primary token $D4 (INSTR),CONFIRMED
+$5391,,CMD_ELSE,statement_extended_single_byte,318018-02,Handler for primary token $D5 (ELSE),CONFIRMED
+$5F62,,CMD_RESUME,statement_extended_single_byte,318018-02,Handler for primary token $D6 (RESUME),CONFIRMED
+$5F4D,,CMD_TRAP,statement_extended_single_byte,318018-02,Handler for primary token $D7 (TRAP),CONFIRMED
+$58B4,,CMD_TRON,statement_extended_single_byte,318018-02,Handler for primary token $D8 (TRON),CONFIRMED
+$58B7,,CMD_TROFF,statement_extended_single_byte,318018-02,Handler for primary token $D9 (TROFF),CONFIRMED
+$71EC,,CMD_SOUND,statement_extended_single_byte,318018-02,Handler for primary token $DA (SOUND),CONFIRMED
+$71C5,,CMD_VOL,statement_extended_single_byte,318018-02,Handler for primary token $DB (VOL),CONFIRMED
+$5975,,CMD_AUTO,statement_extended_single_byte,318018-02,Handler for primary token $DC (AUTO),CONFIRMED
+$5F34,,CMD_PUDEF,statement_extended_single_byte,318018-02,Handler for primary token $DD (PUDEF),CONFIRMED
+$6B5A,,CMD_GRAPHIC,statement_extended_single_byte,318018-02,Handler for primary token $DE (GRAPHIC),CONFIRMED
+$61A8,,CMD_PAINT,statement_extended_single_byte,318018-02,Handler for primary token $DF (PAINT),CONFIRMED
+$67D7,,CMD_CHAR,statement_extended_single_byte,318018-02,Handler for primary token $E0 (CHAR),CONFIRMED
+$62B7,,CMD_BOX,statement_extended_single_byte,318018-02,Handler for primary token $E1 (BOX),CONFIRMED
+$668E,,CMD_CIRCLE,statement_extended_single_byte,318018-02,Handler for primary token $E2 (CIRCLE),CONFIRMED
+$658D,,CMD_GSHAPE,statement_extended_single_byte,318018-02,Handler for primary token $E3 (GSHAPE),CONFIRMED
+$642B,,CMD_SSHAPE,statement_extended_single_byte,318018-02,Handler for primary token $E4 (SSHAPE),CONFIRMED
+$6797,,CMD_DRAW,statement_extended_single_byte,318018-02,Handler for primary token $E5 (DRAW),CONFIRMED
+$6955,,CMD_LOCATE,statement_extended_single_byte,318018-02,Handler for primary token $E6 (LOCATE),CONFIRMED
+$69E2,,CMD_COLOR,statement_extended_single_byte,318018-02,Handler for primary token $E7 (COLOR),CONFIRMED
+$6A79,,CMD_SCNCLR,statement_extended_single_byte,318018-02,Handler for primary token $E8 (SCNCLR),CONFIRMED
+$6960,,CMD_SCALE,statement_extended_single_byte,318018-02,Handler for primary token $E9 (SCALE),CONFIRMED
+$5986,,CMD_HELP,statement_extended_single_byte,318018-02,Handler for primary token $EA (HELP),CONFIRMED
+$5FE0,,CMD_DO,statement_extended_single_byte,318018-02,Handler for primary token $EB (DO),CONFIRMED
+$608A,,CMD_LOOP,statement_extended_single_byte,318018-02,Handler for primary token $EC (LOOP),CONFIRMED
+$6039,,CMD_EXIT,statement_extended_single_byte,318018-02,Handler for primary token $ED (EXIT),CONFIRMED
+$A07E,,CMD_DIRECTORY,statement_extended_single_byte,318019-02,Handler for primary token $EE (DIRECTORY),CONFIRMED
+$A18C,,CMD_DSAVE,statement_extended_single_byte,318019-02,Handler for primary token $EF (DSAVE),CONFIRMED
+$A1A7,,CMD_DLOAD,statement_extended_single_byte,318019-02,Handler for primary token $F0 (DLOAD),CONFIRMED
+$A267,,CMD_HEADER,statement_extended_single_byte,318019-02,Handler for primary token $F1 (HEADER),CONFIRMED
+$A2A1,,CMD_SCRATCH,statement_extended_single_byte,318019-02,Handler for primary token $F2 (SCRATCH),CONFIRMED
+$A32F,,CMD_COLLECT,statement_extended_single_byte,318019-02,Handler for primary token $F3 (COLLECT),CONFIRMED
+$A346,,CMD_COPY,statement_extended_single_byte,318019-02,Handler for primary token $F4 (COPY),CONFIRMED
+$A36E,,CMD_RENAME,statement_extended_single_byte,318019-02,Handler for primary token $F5 (RENAME),CONFIRMED
+$A37C,,CMD_BACKUP,statement_extended_single_byte,318019-02,Handler for primary token $F6 (BACKUP),CONFIRMED
+$5E87,,CMD_DELETE,statement_extended_single_byte,318018-02,Handler for primary token $F7 (DELETE),CONFIRMED
+$5AF8,,CMD_RENUMBER,statement_extended_single_byte,318018-02,Handler for primary token $F8 (RENUMBER),CONFIRMED
+$610A,,CMD_KEY,statement_extended_single_byte,318018-02,Handler for primary token $F9 (KEY),CONFIRMED
+$B000,,CMD_MONITOR,statement_extended_single_byte,318019-02,Handler for primary token $FA (MONITOR),CONFIRMED
+$6BC9,,CMD_FE_BANK,statement_fe_prefixed,318018-02,Handler for extended token $FE $02 (BANK),CONFIRMED
+$7046,,CMD_FE_FILTER,statement_fe_prefixed,318018-02,Handler for extended token $FE $03 (FILTER),CONFIRMED
+$6DE1,,CMD_FE_PLAY,statement_fe_prefixed,318018-02,Handler for extended token $FE $04 (PLAY),CONFIRMED
+$6FD7,,CMD_FE_TEMPO,statement_fe_prefixed,318018-02,Handler for extended token $FE $05 (TEMPO),CONFIRMED
+$6CC6,,CMD_FE_MOVSPR,statement_fe_prefixed,318018-02,Handler for extended token $FE $06 (MOVSPR),CONFIRMED
+$6C4F,,CMD_FE_SPRITE,statement_fe_prefixed,318018-02,Handler for extended token $FE $07 (SPRITE),CONFIRMED
+$7190,,CMD_FE_SPRCOLOR,statement_fe_prefixed,318018-02,Handler for extended token $FE $08 (SPRCOLOR),CONFIRMED
+$58BD,,CMD_FE_RREG,statement_fe_prefixed,318018-02,Handler for extended token $FE $09 (RREG),CONFIRMED
+$70C1,,CMD_FE_ENVELOPE,statement_fe_prefixed,318018-02,Handler for extended token $FE $0A (ENVELOPE),CONFIRMED
+$6BD7,,CMD_FE_SLEEP,statement_fe_prefixed,318018-02,Handler for extended token $FE $0B (SLEEP),CONFIRMED
+$A07E,,CMD_FE_CATALOG,statement_fe_prefixed,318019-02,Handler for extended token $FE $0C (CATALOG),CONFIRMED
+$A11D,,CMD_FE_DOPEN,statement_fe_prefixed,318019-02,Handler for extended token $FE $0D (DOPEN),CONFIRMED
+$A134,,CMD_FE_APPEND,statement_fe_prefixed,318019-02,Handler for extended token $FE $0E (APPEND),CONFIRMED
+$A16F,,CMD_FE_DCLOSE,statement_fe_prefixed,318019-02,Handler for extended token $FE $0F (DCLOSE),CONFIRMED
+$A1C8,,CMD_FE_BSAVE,statement_fe_prefixed,318019-02,Handler for extended token $FE $10 (BSAVE),CONFIRMED
+$A218,,CMD_FE_BLOAD,statement_fe_prefixed,318019-02,Handler for extended token $FE $11 (BLOAD),CONFIRMED
+$A2D7,,CMD_FE_RECORD,statement_fe_prefixed,318019-02,Handler for extended token $FE $12 (RECORD),CONFIRMED
+$A362,,CMD_FE_CONCAT,statement_fe_prefixed,318019-02,Handler for extended token $FE $13 (CONCAT),CONFIRMED
+$A1A4,,CMD_FE_DVERIFY,statement_fe_prefixed,318019-02,Handler for extended token $FE $14 (DVERIFY),CONFIRMED
+$A322,,CMD_FE_DCLEAR,statement_fe_prefixed,318019-02,Handler for extended token $FE $15 (DCLEAR),CONFIRMED
+$76EC,,CMD_FE_SPRSAV,statement_fe_prefixed,318018-02,Handler for extended token $FE $16 (SPRSAV),CONFIRMED
+$7164,,CMD_FE_COLLISION,statement_fe_prefixed,318018-02,Handler for extended token $FE $17 (COLLISION),CONFIRMED
+$796C,,CMD_FE_BEGIN,statement_fe_prefixed,318018-02,Handler for extended token $FE $18 (BEGIN),CONFIRMED
+$528F,,CMD_FE_BEND,statement_fe_prefixed,318018-02,Handler for extended token $FE $19 (BEND),CONFIRMED
+$72CC,,CMD_FE_WINDOW,statement_fe_prefixed,318018-02,Handler for extended token $FE $1A (WINDOW),CONFIRMED
+$7335,,CMD_FE_BOOT,statement_fe_prefixed,318018-02,Handler for extended token $FE $1B (BOOT),CONFIRMED
+$71B6,,CMD_FE_WIDTH,statement_fe_prefixed,318018-02,Handler for extended token $FE $1C (WIDTH),CONFIRMED
+$7372,,CMD_FE_SPRDEF,statement_fe_prefixed,318018-02,Handler for extended token $FE $1D (SPRDEF),CONFIRMED
+$4846,,CMD_FE_QUIT,statement_fe_prefixed,318018-02,Handler for extended token $FE $1E (QUIT),CONFIRMED
+$AA1F,,CMD_FE_STASH,statement_fe_prefixed,318019-02,Handler for extended token $FE $1F (STASH),CONFIRMED
+$AA24,,CMD_FE_FETCH,statement_fe_prefixed,318019-02,Handler for extended token $FE $21 (FETCH),CONFIRMED
+$AA29,,CMD_FE_SWAP,statement_fe_prefixed,318019-02,Handler for extended token $FE $23 (SWAP),CONFIRMED
+$4846,,CMD_FE_OFF,statement_fe_prefixed,318018-02,Handler for extended token $FE $24 (OFF),CONFIRMED
+$77B3,,CMD_FE_FAST,statement_fe_prefixed,318018-02,Handler for extended token $FE $25 (FAST),CONFIRMED
+$77C4,,CMD_FE_SLOW,statement_fe_prefixed,318018-02,Handler for extended token $FE $26 (SLOW),CONFIRMED
+$824D,,FN_CE_POT,function_ce_prefixed,318019-02,Handler for extended function $CE $02 (POT),CONFIRMED
+$837C,,FN_CE_BUMP,function_ce_prefixed,318019-02,Handler for extended function $CE $03 (BUMP),CONFIRMED
+$82AE,,FN_CE_PEN,function_ce_prefixed,318019-02,Handler for extended function $CE $04 (PEN),CONFIRMED
+$8397,,FN_CE_RSPPOS,function_ce_prefixed,318019-02,Handler for extended function $CE $05 (RSPPOS),CONFIRMED
+$831E,,FN_CE_RSPRITE,function_ce_prefixed,318019-02,Handler for extended function $CE $06 (RSPRITE),CONFIRMED
+$8361,,FN_CE_RSPCOLOR,function_ce_prefixed,318019-02,Handler for extended function $CE $07 (RSPCOLOR),CONFIRMED
+$83E1,,FN_CE_XOR,function_ce_prefixed,318019-02,Handler for extended function $CE $08 (XOR),CONFIRMED
+$8407,,FN_CE_RWINDOW,function_ce_prefixed,318019-02,Handler for extended function $CE $09 (RWINDOW),CONFIRMED
+$82FA,,FN_CE_POINTER,function_ce_prefixed,318019-02,Handler for extended function $CE $0A (POINTER),CONFIRMED

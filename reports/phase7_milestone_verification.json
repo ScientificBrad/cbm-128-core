@@ -1,0 +1,96 @@
+{
+  "M1_MOS8502": {
+    "status": "PASS",
+    "binary_adc": "0x40",
+    "bcd_adc": "0x46",
+    "indexed_loop_sum": 100,
+    "brk_vector_pc": "$2000"
+  },
+  "M2_Z80": {
+    "status": "PASS",
+    "ldir_copied_bytes": [
+      "0xDE",
+      "0xAD",
+      "0xBE",
+      "0xEF"
+    ],
+    "alt_a_register": "0xAA",
+    "processor_handoff_mcr": "0xB1"
+  },
+  "M3_MMU_BANKING": {
+    "status": "PASS",
+    "rom_read_at_4000": "0x4C",
+    "bank0_ram_under_rom_at_4000": "0x99",
+    "bank1_ram_at_4000": "0x77",
+    "common_ram_chrget_at_0380": "0xE6"
+  },
+  "M4_M5_M6_BOOT_AND_STARTUP": {
+    "status": "PASS",
+    "z80_boot_instructions": 161,
+    "first_cpu_switch": {
+      "cycle": 1824,
+      "from_cpu": "Z80",
+      "to_cpu": "8502",
+      "z80_pc": "$FFED",
+      "m8502_pc": "$0000",
+      "mcr": "$B1",
+      "cr": "$3E"
+    },
+    "mmu_pcrs": [
+      "0x3F",
+      "0x7F",
+      "0x01",
+      "0x41"
+    ],
+    "vdc_font_nonzero_bytes": 3495,
+    "startup_banner_verified": true
+  },
+  "M7_PRINT_2_PLUS_2": {
+    "status": "PASS",
+    "screen_lines": [
+      "READY.",
+      "PRINT 2+2",
+      "4",
+      "READY."
+    ]
+  },
+  "M8_BASIC_PROGRAM_AND_SID": {
+    "status": "PASS",
+    "program_output": "SUM= 55 BANK1= 1026",
+    "sid_volume": 15,
+    "sid_voice1_freq": 4096,
+    "sid_pcm_peak": 5400
+  },
+  "M9_KEYBOARD_AND_DUAL_VIDEO": {
+    "status": "PASS",
+    "vdc_80col_output_verified": true
+  },
+  "M10_DEBUGGER_AND_ROM_LOADER": {
+    "status": "PASS",
+    "trace_events_recorded": 10,
+    "breakpoint_hit_at": "$C262",
+    "register_snapshot": {
+      "active_cpu": "8502",
+      "clock_mhz": 1,
+      "mmu_cr": "$00",
+      "mmu_mcr": "$B7",
+      "mmu_rcr": "$04",
+      "m8502": {
+        "PC": "$C262",
+        "A": "$00",
+        "X": "$00",
+        "Y": "$00",
+        "SP": "$F2",
+        "P": "$22"
+      },
+      "z80": {
+        "PC": "$FFED",
+        "AF": "$B140",
+        "BC": "$D505",
+        "DE": "$FFEF",
+        "HL": "$1100",
+        "SP": "$FFFF"
+      }
+    }
+  }
+}

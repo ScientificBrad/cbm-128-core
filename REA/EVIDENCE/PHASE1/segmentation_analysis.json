@@ -1,0 +1,841 @@
+{
+  "basic_lower_4000": {
+    "entry_vectors_4000": [
+      {
+        "vector_addr": "$4000",
+        "file_offset": "0x0000",
+        "instruction": "JMP $4023",
+        "target_addr": "$4023"
+      },
+      {
+        "vector_addr": "$4003",
+        "file_offset": "0x0003",
+        "instruction": "JMP $4009",
+        "target_addr": "$4009"
+      },
+      {
+        "vector_addr": "$4006",
+        "file_offset": "0x0006",
+        "instruction": "JMP $A84D",
+        "target_addr": "$A84D"
+      }
+    ],
+    "first_64_bytes_hex": "4c23404c09404c4da820ccff207a41208d41201241203852a9008515584c374d00ffff207a41205142204540209b41ad040a09018d040aa2038e000aa2fb9a20",
+    "last_64_bytes_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff004c"
+  },
+  "padding_runs_min16": {
+    "basic-4000.318018-02.bin": [
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x3E82",
+        "file_offset_end": "0x3FFD",
+        "cpu_start": "$7E82",
+        "cpu_end": "$7FFD",
+        "length": 380
+      }
+    ],
+    "basic-8000.318019-02.bin": [
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x2A6E",
+        "file_offset_end": "0x2E62",
+        "cpu_start": "$AA6E",
+        "cpu_end": "$AE62",
+        "length": 1013
+      },
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x2FA8",
+        "file_offset_end": "0x2FFF",
+        "cpu_start": "$AFA8",
+        "cpu_end": "$AFFF",
+        "length": 88
+      },
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x3B72",
+        "file_offset_end": "0x3FFD",
+        "cpu_start": "$BB72",
+        "cpu_end": "$BFFD",
+        "length": 1164
+      }
+    ],
+    "kernal.318020-03.bin": [
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x0EF5",
+        "file_offset_end": "0x0FFD",
+        "cpu_start": "$CEF5",
+        "cpu_end": "$CFFD",
+        "length": 265
+      },
+      {
+        "byte": "0x00",
+        "file_offset_start": "0x22C7",
+        "file_offset_end": "0x22D7",
+        "cpu_start": "$E2C7",
+        "cpu_end": "$E2D7",
+        "length": 17
+      },
+      {
+        "byte": "0xFF",
+        "file_offset_start": "0x3C3B",
+        "file_offset_end": "0x3F04",
+        "cpu_start": "$FC3B",
+        "cpu_end": "$FF04",
+        "length": 714
+      }
+    ],
+    "characters.390059-01.bin": [],
+    "z80bios.bin": []
+  },
+  "basic_upper_8000": {
+    "first_32_bytes_hex": "20f787e0019005f0314c287d38ad1212ed1012a8ad1312ed1112b02ba635e8c8",
+    "b000_vectors": [
+      {
+        "vector_addr": "$B000",
+        "file_offset": "0x3000",
+        "instruction": "JMP $B021",
+        "target_addr": "$B021"
+      },
+      {
+        "vector_addr": "$B003",
+        "file_offset": "0x3003",
+        "instruction": "JMP $B009",
+        "target_addr": "$B009"
+      },
+      {
+        "vector_addr": "$B006",
+        "file_offset": "0x3006",
+        "instruction": "JMP $B0B2",
+        "target_addr": "$B0B2"
+      }
+    ],
+    "b000_first_64_hex": "4c21b04c09b04cb2b0207dff0d425245414b0700688502a205689503ca10fa3025a9008d00ff8506850785088505a900a0b085048403a90f8502207dff0d4d4f",
+    "last_64_bytes_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff003a"
+  },
+  "kernal_c000": {
+    "editor_jump_table_c000": [
+      {
+        "vector_addr": "$C000",
+        "file_offset": "0x0000",
+        "instruction": "JMP $C07B",
+        "target_addr": "$C07B"
+      },
+      {
+        "vector_addr": "$C003",
+        "file_offset": "0x0003",
+        "instruction": "JMP $CC34",
+        "target_addr": "$CC34"
+      },
+      {
+        "vector_addr": "$C006",
+        "file_offset": "0x0006",
+        "instruction": "JMP $C234",
+        "target_addr": "$C234"
+      },
+      {
+        "vector_addr": "$C009",
+        "file_offset": "0x0009",
+        "instruction": "JMP $C29B",
+        "target_addr": "$C29B"
+      },
+      {
+        "vector_addr": "$C00C",
+        "file_offset": "0x000C",
+        "instruction": "JMP $C72D",
+        "target_addr": "$C72D"
+      },
+      {
+        "vector_addr": "$C00F",
+        "file_offset": "0x000F",
+        "instruction": "JMP $CC5B",
+        "target_addr": "$CC5B"
+      },
+      {
+        "vector_addr": "$C012",
+        "file_offset": "0x0012",
+        "instruction": "JMP $C55D",
+        "target_addr": "$C55D"
+      },
+      {
+        "vector_addr": "$C015",
+        "file_offset": "0x0015",
+        "instruction": "JMP $C651",
+        "target_addr": "$C651"
+      },
+      {
+        "vector_addr": "$C018",
+        "file_offset": "0x0018",
+        "instruction": "JMP $CC6A",
+        "target_addr": "$CC6A"
+      },
+      {
+        "vector_addr": "$C01B",
+        "file_offset": "0x001B",
+        "instruction": "JMP $CD57",
+        "target_addr": "$CD57"
+      },
+      {
+        "vector_addr": "$C01E",
+        "file_offset": "0x001E",
+        "instruction": "JMP $C9C1",
+        "target_addr": "$C9C1"
+      },
+      {
+        "vector_addr": "$C021",
+        "file_offset": "0x0021",
+        "instruction": "JMP $CCA2",
+        "target_addr": "$CCA2"
+      },
+      {
+        "vector_addr": "$C024",
+        "file_offset": "0x0024",
+        "instruction": "JMP $C194",
+        "target_addr": "$C194"
+      },
+      {
+        "vector_addr": "$C027",
+        "file_offset": "0x0027",
+        "instruction": "JMP $CE0C",
+        "target_addr": "$CE0C"
+      },
+      {
+        "vector_addr": "$C02A",
+        "file_offset": "0x002A",
+        "instruction": "JMP $CD2E",
+        "target_addr": "$CD2E"
+      },
+      {
+        "vector_addr": "$C02D",
+        "file_offset": "0x002D",
+        "instruction": "JMP $CA1B",
+        "target_addr": "$CA1B"
+      },
+      {
+        "vector_addr": "$C030",
+        "file_offset": "0x0030",
+        "instruction": "RAW FF FF FF",
+        "target_addr": null
+      },
+      {
+        "vector_addr": "$C033",
+        "file_offset": "0x0033",
+        "instruction": "RAW 00 28 50",
+        "target_addr": null
+      },
+      {
+        "vector_addr": "$C036",
+        "file_offset": "0x0036",
+        "instruction": "RAW 78 A0 C8",
+        "target_addr": null
+      },
+      {
+        "vector_addr": "$C039",
+        "file_offset": "0x0039",
+        "instruction": "RAW F0 18 40",
+        "target_addr": null
+      },
+      {
+        "vector_addr": "$C03C",
+        "file_offset": "0x003C",
+        "instruction": "RAW 68 90 B8",
+        "target_addr": null
+      },
+      {
+        "vector_addr": "$C03F",
+        "file_offset": "0x003F",
+        "instruction": "RAW E0 08 30",
+        "target_addr": null
+      }
+    ],
+    "kernal_extended_jump_table_ff47": [
+      {
+        "vector_addr": "$FF47",
+        "file_offset": "0x3F47",
+        "instruction": "JMP $E5FB",
+        "target_addr": "$E5FB"
+      },
+      {
+        "vector_addr": "$FF4A",
+        "file_offset": "0x3F4A",
+        "instruction": "JMP $F23D",
+        "target_addr": "$F23D"
+      },
+      {
+        "vector_addr": "$FF4D",
+        "file_offset": "0x3F4D",
+        "instruction": "JMP $E24B",
+        "target_addr": "$E24B"
+      },
+      {
+        "vector_addr": "$FF50",
+        "file_offset": "0x3F50",
+        "instruction": "JMP $F7A5",
+        "target_addr": "$F7A5"
+      },
+      {
+        "vector_addr": "$FF53",
+        "file_offset": "0x3F53",
+        "instruction": "JMP $F890",
+        "target_addr": "$F890"
+      },
+      {
+        "vector_addr": "$FF56",
+        "file_offset": "0x3F56",
+        "instruction": "JMP $F867",
+        "target_addr": "$F867"
+      },
+      {
+        "vector_addr": "$FF59",
+        "file_offset": "0x3F59",
+        "instruction": "JMP $F79D",
+        "target_addr": "$F79D"
+      },
+      {
+        "vector_addr": "$FF5C",
+        "file_offset": "0x3F5C",
+        "instruction": "JMP $F786",
+        "target_addr": "$F786"
+      },
+      {
+        "vector_addr": "$FF5F",
+        "file_offset": "0x3F5F",
+        "instruction": "JMP $C02A",
+        "target_addr": "$C02A"
+      },
+      {
+        "vector_addr": "$FF62",
+        "file_offset": "0x3F62",
+        "instruction": "JMP $C027",
+        "target_addr": "$C027"
+      },
+      {
+        "vector_addr": "$FF65",
+        "file_offset": "0x3F65",
+        "instruction": "JMP $C021",
+        "target_addr": "$C021"
+      },
+      {
+        "vector_addr": "$FF68",
+        "file_offset": "0x3F68",
+        "instruction": "JMP $F73F",
+        "target_addr": "$F73F"
+      },
+      {
+        "vector_addr": "$FF6B",
+        "file_offset": "0x3F6B",
+        "instruction": "JMP $F7EC",
+        "target_addr": "$F7EC"
+      },
+      {
+        "vector_addr": "$FF6E",
+        "file_offset": "0x3F6E",
+        "instruction": "JMP $02CD",
+        "target_addr": "$02CD"
+      },
+      {
+        "vector_addr": "$FF71",
+        "file_offset": "0x3F71",
+        "instruction": "JMP $02E3",
+        "target_addr": "$02E3"
+      },
+      {
+        "vector_addr": "$FF74",
+        "file_offset": "0x3F74",
+        "instruction": "JMP $F7D0",
+        "target_addr": "$F7D0"
+      },
+      {
+        "vector_addr": "$FF77",
+        "file_offset": "0x3F77",
+        "instruction": "JMP $F7DA",
+        "target_addr": "$F7DA"
+      },
+      {
+        "vector_addr": "$FF7A",
+        "file_offset": "0x3F7A",
+        "instruction": "JMP $F7E3",
+        "target_addr": "$F7E3"
+      },
+      {
+        "vector_addr": "$FF7D",
+        "file_offset": "0x3F7D",
+        "instruction": "JMP $FA17",
+        "target_addr": "$FA17"
+      },
+      {
+        "vector_addr": "$FF80",
+        "file_offset": "0x3F80",
+        "instruction": "RAW 00 4C 00",
+        "target_addr": null
+      }
+    ],
+    "kernal_standard_jump_table_ff81": [
+      {
+        "vector_addr": "$FF81",
+        "file_offset": "0x3F81",
+        "instruction": "JMP $C000",
+        "target_addr": "$C000"
+      },
+      {
+        "vector_addr": "$FF84",
+        "file_offset": "0x3F84",
+        "instruction": "JMP $E109",
+        "target_addr": "$E109"
+      },
+      {
+        "vector_addr": "$FF87",
+        "file_offset": "0x3F87",
+        "instruction": "JMP $E093",
+        "target_addr": "$E093"
+      },
+      {
+        "vector_addr": "$FF8A",
+        "file_offset": "0x3F8A",
+        "instruction": "JMP $E056",
+        "target_addr": "$E056"
+      },
+      {
+        "vector_addr": "$FF8D",
+        "file_offset": "0x3F8D",
+        "instruction": "JMP $E05B",
+        "target_addr": "$E05B"
+      },
+      {
+        "vector_addr": "$FF90",
+        "file_offset": "0x3F90",
+        "instruction": "JMP $F75C",
+        "target_addr": "$F75C"
+      },
+      {
+        "vector_addr": "$FF93",
+        "file_offset": "0x3F93",
+        "instruction": "JMP $E4D2",
+        "target_addr": "$E4D2"
+      },
+      {
+        "vector_addr": "$FF96",
+        "file_offset": "0x3F96",
+        "instruction": "JMP $E4E0",
+        "target_addr": "$E4E0"
+      },
+      {
+        "vector_addr": "$FF99",
+        "file_offset": "0x3F99",
+        "instruction": "JMP $F763",
+        "target_addr": "$F763"
+      },
+      {
+        "vector_addr": "$FF9C",
+        "file_offset": "0x3F9C",
+        "instruction": "JMP $F772",
+        "target_addr": "$F772"
+      },
+      {
+        "vector_addr": "$FF9F",
+        "file_offset": "0x3F9F",
+        "instruction": "JMP $C012",
+        "target_addr": "$C012"
+      },
+      {
+        "vector_addr": "$FFA2",
+        "file_offset": "0x3FA2",
+        "instruction": "JMP $F75F",
+        "target_addr": "$F75F"
+      },
+      {
+        "vector_addr": "$FFA5",
+        "file_offset": "0x3FA5",
+        "instruction": "JMP $E43E",
+        "target_addr": "$E43E"
+      },
+      {
+        "vector_addr": "$FFA8",
+        "file_offset": "0x3FA8",
+        "instruction": "JMP $E503",
+        "target_addr": "$E503"
+      },
+      {
+        "vector_addr": "$FFAB",
+        "file_offset": "0x3FAB",
+        "instruction": "JMP $E515",
+        "target_addr": "$E515"
+      },
+      {
+        "vector_addr": "$FFAE",
+        "file_offset": "0x3FAE",
+        "instruction": "JMP $E526",
+        "target_addr": "$E526"
+      },
+      {
+        "vector_addr": "$FFB1",
+        "file_offset": "0x3FB1",
+        "instruction": "JMP $E33E",
+        "target_addr": "$E33E"
+      },
+      {
+        "vector_addr": "$FFB4",
+        "file_offset": "0x3FB4",
+        "instruction": "JMP $E33B",
+        "target_addr": "$E33B"
+      },
+      {
+        "vector_addr": "$FFB7",
+        "file_offset": "0x3FB7",
+        "instruction": "JMP $F744",
+        "target_addr": "$F744"
+      },
+      {
+        "vector_addr": "$FFBA",
+        "file_offset": "0x3FBA",
+        "instruction": "JMP $F738",
+        "target_addr": "$F738"
+      },
+      {
+        "vector_addr": "$FFBD",
+        "file_offset": "0x3FBD",
+        "instruction": "JMP $F731",
+        "target_addr": "$F731"
+      },
+      {
+        "vector_addr": "$FFC0",
+        "file_offset": "0x3FC0",
+        "instruction": "JMP ($031A)",
+        "target_addr": "($031A)"
+      },
+      {
+        "vector_addr": "$FFC3",
+        "file_offset": "0x3FC3",
+        "instruction": "JMP ($031C)",
+        "target_addr": "($031C)"
+      },
+      {
+        "vector_addr": "$FFC6",
+        "file_offset": "0x3FC6",
+        "instruction": "JMP ($031E)",
+        "target_addr": "($031E)"
+      },
+      {
+        "vector_addr": "$FFC9",
+        "file_offset": "0x3FC9",
+        "instruction": "JMP ($0320)",
+        "target_addr": "($0320)"
+      },
+      {
+        "vector_addr": "$FFCC",
+        "file_offset": "0x3FCC",
+        "instruction": "JMP ($0322)",
+        "target_addr": "($0322)"
+      },
+      {
+        "vector_addr": "$FFCF",
+        "file_offset": "0x3FCF",
+        "instruction": "JMP ($0324)",
+        "target_addr": "($0324)"
+      },
+      {
+        "vector_addr": "$FFD2",
+        "file_offset": "0x3FD2",
+        "instruction": "JMP ($0326)",
+        "target_addr": "($0326)"
+      },
+      {
+        "vector_addr": "$FFD5",
+        "file_offset": "0x3FD5",
+        "instruction": "JMP $F265",
+        "target_addr": "$F265"
+      },
+      {
+        "vector_addr": "$FFD8",
+        "file_offset": "0x3FD8",
+        "instruction": "JMP $F53E",
+        "target_addr": "$F53E"
+      },
+      {
+        "vector_addr": "$FFDB",
+        "file_offset": "0x3FDB",
+        "instruction": "JMP $F665",
+        "target_addr": "$F665"
+      },
+      {
+        "vector_addr": "$FFDE",
+        "file_offset": "0x3FDE",
+        "instruction": "JMP $F65E",
+        "target_addr": "$F65E"
+      },
+      {
+        "vector_addr": "$FFE1",
+        "file_offset": "0x3FE1",
+        "instruction": "JMP ($0328)",
+        "target_addr": "($0328)"
+      },
+      {
+        "vector_addr": "$FFE4",
+        "file_offset": "0x3FE4",
+        "instruction": "JMP ($032A)",
+        "target_addr": "($032A)"
+      },
+      {
+        "vector_addr": "$FFE7",
+        "file_offset": "0x3FE7",
+        "instruction": "JMP ($032C)",
+        "target_addr": "($032C)"
+      },
+      {
+        "vector_addr": "$FFEA",
+        "file_offset": "0x3FEA",
+        "instruction": "JMP $F5F8",
+        "target_addr": "$F5F8"
+      },
+      {
+        "vector_addr": "$FFED",
+        "file_offset": "0x3FED",
+        "instruction": "JMP $C00F",
+        "target_addr": "$C00F"
+      },
+      {
+        "vector_addr": "$FFF0",
+        "file_offset": "0x3FF0",
+        "instruction": "JMP $C018",
+        "target_addr": "$C018"
+      },
+      {
+        "vector_addr": "$FFF3",
+        "file_offset": "0x3FF3",
+        "instruction": "JMP $F781",
+        "target_addr": "$F781"
+      }
+    ],
+    "hardware_vectors_fff6_ffff": {
+      "FFFA_NMI": "$FF05",
+      "FFFC_RESET": "$FF3D",
+      "FFFE_IRQ_BRK": "$FF17",
+      "FFF6_SYSTEM_VECTOR": "$FFFF",
+      "FFF8_SYSTEM_VECTOR": "$E224"
+    }
+  },
+  "z80bios": {
+    "rst_and_nmi_vectors": {
+      "$0000": "3e3e3200ffc33b00",
+      "$0008": "31773c3e3fc38c01",
+      "$0010": "e16ec32000000000",
+      "$0018": "e16ec32800000000",
+      "$0020": "3a0ffda728022c2c",
+      "$0028": "26017e23666fe900",
+      "$0030": "30352f31322f3835",
+      "$0038": "c3fdfd012fd011fc",
+      "$0066": "ed790d3ded790d0d"
+    },
+    "last_64_bytes_hex": "0d1202070c1101060b1000050a0f01060b1002070c1103080d1204090e00050a0f02070c1104090e01060b1003080d00050a0f03080d01060b1004090e02070c"
+  },
+  "character_rom_analysis": {
+    "quarter_0_0000_07FF_sha256": "3cf89732b10b1d51a267f74df35f10a154108b444a3a0ec9e51ef7ddefb668a1",
+    "quarter_1_0800_0FFF_sha256": "badb3b49e5377494e39665f7873b1aae08c6f1b9b3ae1252e62399a10eb6ef8f",
+    "quarter_2_1000_17FF_sha256": "3cf89732b10b1d51a267f74df35f10a154108b444a3a0ec9e51ef7ddefb668a1",
+    "quarter_3_1800_1FFF_sha256": "012554c38e7ef3fa8495f897343b9aed3499063feaa2a6d6a2fa41171ab0be41",
+    "q0_vs_q2_differing_glyphs_count": 0,
+    "q0_vs_q2_differing_glyphs": [],
+    "q1_vs_q3_differing_glyphs_count": 33,
+    "q1_vs_q3_differing_glyphs": [
+      {
+        "char_index": 2,
+        "char_hex": "0x02",
+        "qa_bytes": "0060607c66667c00",
+        "qb_bytes": "60607c6666667c00"
+      },
+      {
+        "char_index": 3,
+        "char_hex": "0x03",
+        "qa_bytes": "00003c6060603c00",
+        "qb_bytes": "00003c6660663c00"
+      },
+      {
+        "char_index": 4,
+        "char_hex": "0x04",
+        "qa_bytes": "0006063e66663e00",
+        "qb_bytes": "06063e6666663e00"
+      },
+      {
+        "char_index": 5,
+        "char_hex": "0x05",
+        "qa_bytes": "00003c667e603c00",
+        "qb_bytes": "00003c667e603e00"
+      },
+      {
+        "char_index": 6,
+        "char_hex": "0x06",
+        "qa_bytes": "000e183e18181800",
+        "qb_bytes": "1c36307830303000"
+      },
+      {
+        "char_index": 8,
+        "char_hex": "0x08",
+        "qa_bytes": "0060607c66666600",
+        "qb_bytes": "60607c6666666600"
+      },
+      {
+        "char_index": 9,
+        "char_hex": "0x09",
+        "qa_bytes": "0018003818183c00",
+        "qb_bytes": "1800181818181800"
+      },
+      {
+        "char_index": 10,
+        "char_hex": "0x0A",
+        "qa_bytes": "000600060606063c",
+        "qb_bytes": "060006060606663c"
+      },
+      {
+        "char_index": 11,
+        "char_hex": "0x0B",
+        "qa_bytes": "0060606c786c6600",
+        "qb_bytes": "6060666c787c6600"
+      },
+      {
+        "char_index": 12,
+        "char_hex": "0x0C",
+        "qa_bytes": "0038181818183c00",
+        "qb_bytes": "3818181818183c00"
+      },
+      {
+        "char_index": 13,
+        "char_hex": "0x0D",
+        "qa_bytes": "0000667f7f6b6300",
+        "qb_bytes": "000063777f6b6300"
+      },
+      {
+        "char_index": 19,
+        "char_hex": "0x13",
+        "qa_bytes": "00003e603c067c00",
+        "qb_bytes": "00003c603c067c00"
+      },
+      {
+        "char_index": 20,
+        "char_hex": "0x14",
+        "qa_bytes": "00187e1818180e00",
+        "qb_bytes": "3030fc3030361c00"
+      },
+      {
+        "char_index": 21,
+        "char_hex": "0x15",
+        "qa_bytes": "0000666666663e00",
+        "qb_bytes": "0000666666663c00"
+      },
+      {
+        "char_index": 23,
+        "char_hex": "0x17",
+        "qa_bytes": "0000636b7f3e3600",
+        "qb_bytes": "0000636b7f362200"
+      },
+      {
+        "char_index": 25,
+        "char_hex": "0x19",
+        "qa_bytes": "00006666663e0c78",
+        "qb_bytes": "00006666663e067c"
+      },
+      {
+        "char_index": 128,
+        "char_hex": "0x80",
+        "qa_bytes": "c39991919f99c3ff",
+        "qb_bytes": "c39991919f9dc3ff"
+      },
+      {
+        "char_index": 130,
+        "char_hex": "0x82",
+        "qa_bytes": "ff9f9f83999983ff",
+        "qb_bytes": "9f9f8399999983ff"
+      },
+      {
+        "char_index": 131,
+        "char_hex": "0x83",
+        "qa_bytes": "ffffc39f9f9fc3ff",
+        "qb_bytes": "ffffc3999f99c3ff"
+      },
+      {
+        "char_index": 132,
+        "char_hex": "0x84",
+        "qa_bytes": "fff9f9c19999c1ff",
+        "qb_bytes": "f9f9c1999999c1ff"
+      },
+      {
+        "char_index": 133,
+        "char_hex": "0x85",
+        "qa_bytes": "ffffc399819fc3ff",
+        "qb_bytes": "ffffc399819fc1ff"
+      },
+      {
+        "char_index": 134,
+        "char_hex": "0x86",
+        "qa_bytes": "fff1e7c1e7e7e7ff",
+        "qb_bytes": "e3c9cf87cfcfcfff"
+      },
+      {
+        "char_index": 136,
+        "char_hex": "0x88",
+        "qa_bytes": "ff9f9f83999999ff",
+        "qb_bytes": "9f9f8399999999ff"
+      },
+      {
+        "char_index": 137,
+        "char_hex": "0x89",
+        "qa_bytes": "ffe7ffc7e7e7c3ff",
+        "qb_bytes": "e7ffe7e7e7e7e7ff"
+      },
+      {
+        "char_index": 138,
+        "char_hex": "0x8A",
+        "qa_bytes": "fff9fff9f9f9f9c3",
+        "qb_bytes": "f9fff9f9f9f999c3"
+      },
+      {
+        "char_index": 139,
+        "char_hex": "0x8B",
+        "qa_bytes": "ff9f9f93879399ff",
+        "qb_bytes": "9f9f9993878399ff"
+      },
+      {
+        "char_index": 140,
+        "char_hex": "0x8C",
+        "qa_bytes": "ffc7e7e7e7e7c3ff",
+        "qb_bytes": "c7e7e7e7e7e7c3ff"
+      },
+      {
+        "char_index": 141,
+        "char_hex": "0x8D",
+        "qa_bytes": "ffff998080949cff",
+        "qb_bytes": "ffff9c8880949cff"
+      },
+      {
+        "char_index": 147,
+        "char_hex": "0x93",
+        "qa_bytes": "ffffc19fc3f983ff",
+        "qb_bytes": "ffffc39fc3f983ff"
+      },
+      {
+        "char_index": 148,
+        "char_hex": "0x94",
+        "qa_bytes": "ffe781e7e7e7f1ff",
+        "qb_bytes": "cfcf03cfcfc9e3ff"
+      },
+      {
+        "char_index": 149,
+        "char_hex": "0x95",
+        "qa_bytes": "ffff99999999c1ff",
+        "qb_bytes": "ffff99999999c3ff"
+      },
+      {
+        "char_index": 151,
+        "char_hex": "0x97",
+        "qa_bytes": "ffff9c9480c1c9ff",
+        "qb_bytes": "ffff9c9480c9ddff"
+      },
+      {
+        "char_index": 153,
+        "char_hex": "0x99",
+        "qa_bytes": "ffff999999c1f387",
+        "qb_bytes": "ffff999999c1f983"
+      }
+    ]
+  }
+}

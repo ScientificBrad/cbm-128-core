@@ -1,0 +1,1273 @@
+{
+  "b4_0300_0420_hex": "a9614cab03a9244c9f036c0403a53d48a53e482086034c1c4320800390fb6c0c03b0034cb243c900f077c93af0ebc93fd004a999d050c980900bc9fff0dba00120cc43f0cec922d00d208003c900f051c922f0c5d0f3a946a00920e2439006a981a200f04ba946a0c920e2439006a981a2ffd03ca944a01720e243909cc000f00320cc43a50da000913dc98ff00dc983d087208003208f524c1343208003209d52a63d68853e68853d388ae53da8c860650d488820cc43a9fee8d002a9cea000913dc868913d2080034c19431898653d8524a53e69008525a0ffc8b124913dd0f96085258424a000840d88c8b13d38f124f0f8c980f01bb1243003c8d0f9c8e60d1898652485249002e62518a000b124d0da050d850d60454ec4464fd24e4558",
+  "b4_06F0_0850_hex": "4fd7504f494e5445d2000000cc4bf85df3578e52475661567a58a856c553da599a5ac452c95ace5961529c52ca4ba2532c6c2b9111912891f984e480395559555f5ae150f7513f5584588c9199911156d5519053615f4c5fb358b658eb71c4717459335f596ba761d667b6628d668c652a6496675469e169786a5f698559df5f896038607da08ba1a6a166a2a0a22ea345a36da37ba3865ef75a0961ffafc86b4570e06dd66fc56c4e6c8f71bc58c070d66b7da01ca133a16ea1c7a117a2d6a261a3a3a121a3eb7663716b798e52cb723473b571717345481eaa000023aa000028aa4548b277c377658cfb8c848c18120080d084b78f3484ca893390099410945994b394c5806886ae854a807786bf85d6850a861c8682819b81000003820c9b76804281f6804d827c83ae8297831e836183e1830784fa827947887930887b268a7b4b8b7fc08f50884c46854c7df98f5a2f7964b54ca2284c3c4d544f4f204d",
+  "b4_09D0_0A90_hex": "d94c4f41c4425245414b00a043414e275420524553554dc54c4f4f50204e4f5420464f554ec44c4f4f5020574954484f55542044cf444952454354204d4f4445204f4e4cd94e4f20475241504849435320415245c142414420444953cb42454e44204e4f5420464f554ec44c494e45204e554d42455220544f4f204c415247c5554e5245534f4c564544205245464552454e43c5554e494d504c454d454e54454420434f4d4d414ec446494c4520524541c4aaa000a94b8526a9488527ca300e",
+  "tokens_table_1": {
+    "start_cpu": "$4417",
+    "end_cpu": "$4608",
+    "terminator": "0x00",
+    "count": 126,
+    "items": [
+      {
+        "index": 0,
+        "offset": "0x0417",
+        "cpu_addr": "$4417",
+        "text": "END"
+      },
+      {
+        "index": 1,
+        "offset": "0x041A",
+        "cpu_addr": "$441A",
+        "text": "FOR"
+      },
+      {
+        "index": 2,
+        "offset": "0x041D",
+        "cpu_addr": "$441D",
+        "text": "NEXT"
+      },
+      {
+        "index": 3,
+        "offset": "0x0421",
+        "cpu_addr": "$4421",
+        "text": "DATA"
+      },
+      {
+        "index": 4,
+        "offset": "0x0425",
+        "cpu_addr": "$4425",
+        "text": "INPUT#"
+      },
+      {
+        "index": 5,
+        "offset": "0x042B",
+        "cpu_addr": "$442B",
+        "text": "INPUT"
+      },
+      {
+        "index": 6,
+        "offset": "0x0430",
+        "cpu_addr": "$4430",
+        "text": "DIM"
+      },
+      {
+        "index": 7,
+        "offset": "0x0433",
+        "cpu_addr": "$4433",
+        "text": "READ"
+      },
+      {
+        "index": 8,
+        "offset": "0x0437",
+        "cpu_addr": "$4437",
+        "text": "LET"
+      },
+      {
+        "index": 9,
+        "offset": "0x043A",
+        "cpu_addr": "$443A",
+        "text": "GOTO"
+      },
+      {
+        "index": 10,
+        "offset": "0x043E",
+        "cpu_addr": "$443E",
+        "text": "RUN"
+      },
+      {
+        "index": 11,
+        "offset": "0x0441",
+        "cpu_addr": "$4441",
+        "text": "IF"
+      },
+      {
+        "index": 12,
+        "offset": "0x0443",
+        "cpu_addr": "$4443",
+        "text": "RESTORE"
+      },
+      {
+        "index": 13,
+        "offset": "0x044A",
+        "cpu_addr": "$444A",
+        "text": "GOSUB"
+      },
+      {
+        "index": 14,
+        "offset": "0x044F",
+        "cpu_addr": "$444F",
+        "text": "RETURN"
+      },
+      {
+        "index": 15,
+        "offset": "0x0455",
+        "cpu_addr": "$4455",
+        "text": "REM"
+      },
+      {
+        "index": 16,
+        "offset": "0x0458",
+        "cpu_addr": "$4458",
+        "text": "STOP"
+      },
+      {
+        "index": 17,
+        "offset": "0x045C",
+        "cpu_addr": "$445C",
+        "text": "ON"
+      },
+      {
+        "index": 18,
+        "offset": "0x045E",
+        "cpu_addr": "$445E",
+        "text": "WAIT"
+      },
+      {
+        "index": 19,
+        "offset": "0x0462",
+        "cpu_addr": "$4462",
+        "text": "LOAD"
+      },
+      {
+        "index": 20,
+        "offset": "0x0466",
+        "cpu_addr": "$4466",
+        "text": "SAVE"
+      },
+      {
+        "index": 21,
+        "offset": "0x046A",
+        "cpu_addr": "$446A",
+        "text": "VERIFY"
+      },
+      {
+        "index": 22,
+        "offset": "0x0470",
+        "cpu_addr": "$4470",
+        "text": "DEF"
+      },
+      {
+        "index": 23,
+        "offset": "0x0473",
+        "cpu_addr": "$4473",
+        "text": "POKE"
+      },
+      {
+        "index": 24,
+        "offset": "0x0477",
+        "cpu_addr": "$4477",
+        "text": "PRINT#"
+      },
+      {
+        "index": 25,
+        "offset": "0x047D",
+        "cpu_addr": "$447D",
+        "text": "PRINT"
+      },
+      {
+        "index": 26,
+        "offset": "0x0482",
+        "cpu_addr": "$4482",
+        "text": "CONT"
+      },
+      {
+        "index": 27,
+        "offset": "0x0486",
+        "cpu_addr": "$4486",
+        "text": "LIST"
+      },
+      {
+        "index": 28,
+        "offset": "0x048A",
+        "cpu_addr": "$448A",
+        "text": "CLR"
+      },
+      {
+        "index": 29,
+        "offset": "0x048D",
+        "cpu_addr": "$448D",
+        "text": "CMD"
+      },
+      {
+        "index": 30,
+        "offset": "0x0490",
+        "cpu_addr": "$4490",
+        "text": "SYS"
+      },
+      {
+        "index": 31,
+        "offset": "0x0493",
+        "cpu_addr": "$4493",
+        "text": "OPEN"
+      },
+      {
+        "index": 32,
+        "offset": "0x0497",
+        "cpu_addr": "$4497",
+        "text": "CLOSE"
+      },
+      {
+        "index": 33,
+        "offset": "0x049C",
+        "cpu_addr": "$449C",
+        "text": "GET"
+      },
+      {
+        "index": 34,
+        "offset": "0x049F",
+        "cpu_addr": "$449F",
+        "text": "NEW"
+      },
+      {
+        "index": 35,
+        "offset": "0x04A2",
+        "cpu_addr": "$44A2",
+        "text": "TAB("
+      },
+      {
+        "index": 36,
+        "offset": "0x04A6",
+        "cpu_addr": "$44A6",
+        "text": "TO"
+      },
+      {
+        "index": 37,
+        "offset": "0x04A8",
+        "cpu_addr": "$44A8",
+        "text": "FN"
+      },
+      {
+        "index": 38,
+        "offset": "0x04AA",
+        "cpu_addr": "$44AA",
+        "text": "SPC("
+      },
+      {
+        "index": 39,
+        "offset": "0x04AE",
+        "cpu_addr": "$44AE",
+        "text": "THEN"
+      },
+      {
+        "index": 40,
+        "offset": "0x04B2",
+        "cpu_addr": "$44B2",
+        "text": "NOT"
+      },
+      {
+        "index": 41,
+        "offset": "0x04B5",
+        "cpu_addr": "$44B5",
+        "text": "STEP"
+      },
+      {
+        "index": 42,
+        "offset": "0x04B9",
+        "cpu_addr": "$44B9",
+        "text": "+"
+      },
+      {
+        "index": 43,
+        "offset": "0x04BA",
+        "cpu_addr": "$44BA",
+        "text": "-"
+      },
+      {
+        "index": 44,
+        "offset": "0x04BB",
+        "cpu_addr": "$44BB",
+        "text": "*"
+      },
+      {
+        "index": 45,
+        "offset": "0x04BC",
+        "cpu_addr": "$44BC",
+        "text": "/"
+      },
+      {
+        "index": 46,
+        "offset": "0x04BD",
+        "cpu_addr": "$44BD",
+        "text": "^"
+      },
+      {
+        "index": 47,
+        "offset": "0x04BE",
+        "cpu_addr": "$44BE",
+        "text": "AND"
+      },
+      {
+        "index": 48,
+        "offset": "0x04C1",
+        "cpu_addr": "$44C1",
+        "text": "OR"
+      },
+      {
+        "index": 49,
+        "offset": "0x04C3",
+        "cpu_addr": "$44C3",
+        "text": ">"
+      },
+      {
+        "index": 50,
+        "offset": "0x04C4",
+        "cpu_addr": "$44C4",
+        "text": "="
+      },
+      {
+        "index": 51,
+        "offset": "0x04C5",
+        "cpu_addr": "$44C5",
+        "text": "<"
+      },
+      {
+        "index": 52,
+        "offset": "0x04C6",
+        "cpu_addr": "$44C6",
+        "text": "SGN"
+      },
+      {
+        "index": 53,
+        "offset": "0x04C9",
+        "cpu_addr": "$44C9",
+        "text": "INT"
+      },
+      {
+        "index": 54,
+        "offset": "0x04CC",
+        "cpu_addr": "$44CC",
+        "text": "ABS"
+      },
+      {
+        "index": 55,
+        "offset": "0x04CF",
+        "cpu_addr": "$44CF",
+        "text": "USR"
+      },
+      {
+        "index": 56,
+        "offset": "0x04D2",
+        "cpu_addr": "$44D2",
+        "text": "FRE"
+      },
+      {
+        "index": 57,
+        "offset": "0x04D5",
+        "cpu_addr": "$44D5",
+        "text": "POS"
+      },
+      {
+        "index": 58,
+        "offset": "0x04D8",
+        "cpu_addr": "$44D8",
+        "text": "SQR"
+      },
+      {
+        "index": 59,
+        "offset": "0x04DB",
+        "cpu_addr": "$44DB",
+        "text": "RND"
+      },
+      {
+        "index": 60,
+        "offset": "0x04DE",
+        "cpu_addr": "$44DE",
+        "text": "LOG"
+      },
+      {
+        "index": 61,
+        "offset": "0x04E1",
+        "cpu_addr": "$44E1",
+        "text": "EXP"
+      },
+      {
+        "index": 62,
+        "offset": "0x04E4",
+        "cpu_addr": "$44E4",
+        "text": "COS"
+      },
+      {
+        "index": 63,
+        "offset": "0x04E7",
+        "cpu_addr": "$44E7",
+        "text": "SIN"
+      },
+      {
+        "index": 64,
+        "offset": "0x04EA",
+        "cpu_addr": "$44EA",
+        "text": "TAN"
+      },
+      {
+        "index": 65,
+        "offset": "0x04ED",
+        "cpu_addr": "$44ED",
+        "text": "ATN"
+      },
+      {
+        "index": 66,
+        "offset": "0x04F0",
+        "cpu_addr": "$44F0",
+        "text": "PEEK"
+      },
+      {
+        "index": 67,
+        "offset": "0x04F4",
+        "cpu_addr": "$44F4",
+        "text": "LEN"
+      },
+      {
+        "index": 68,
+        "offset": "0x04F7",
+        "cpu_addr": "$44F7",
+        "text": "STR$"
+      },
+      {
+        "index": 69,
+        "offset": "0x04FB",
+        "cpu_addr": "$44FB",
+        "text": "VAL"
+      },
+      {
+        "index": 70,
+        "offset": "0x04FE",
+        "cpu_addr": "$44FE",
+        "text": "ASC"
+      },
+      {
+        "index": 71,
+        "offset": "0x0501",
+        "cpu_addr": "$4501",
+        "text": "CHR$"
+      },
+      {
+        "index": 72,
+        "offset": "0x0505",
+        "cpu_addr": "$4505",
+        "text": "LEFT$"
+      },
+      {
+        "index": 73,
+        "offset": "0x050A",
+        "cpu_addr": "$450A",
+        "text": "RIGHT$"
+      },
+      {
+        "index": 74,
+        "offset": "0x0510",
+        "cpu_addr": "$4510",
+        "text": "MID$"
+      },
+      {
+        "index": 75,
+        "offset": "0x0514",
+        "cpu_addr": "$4514",
+        "text": "GO"
+      },
+      {
+        "index": 76,
+        "offset": "0x0516",
+        "cpu_addr": "$4516",
+        "text": "RGR"
+      },
+      {
+        "index": 77,
+        "offset": "0x0519",
+        "cpu_addr": "$4519",
+        "text": "RCLR"
+      },
+      {
+        "index": 78,
+        "offset": "0x051D",
+        "cpu_addr": "$451D",
+        "text": "\u0000"
+      },
+      {
+        "index": 79,
+        "offset": "0x051E",
+        "cpu_addr": "$451E",
+        "text": "JOY"
+      },
+      {
+        "index": 80,
+        "offset": "0x0521",
+        "cpu_addr": "$4521",
+        "text": "RDOT"
+      },
+      {
+        "index": 81,
+        "offset": "0x0525",
+        "cpu_addr": "$4525",
+        "text": "DEC"
+      },
+      {
+        "index": 82,
+        "offset": "0x0528",
+        "cpu_addr": "$4528",
+        "text": "HEX$"
+      },
+      {
+        "index": 83,
+        "offset": "0x052C",
+        "cpu_addr": "$452C",
+        "text": "ERR$"
+      },
+      {
+        "index": 84,
+        "offset": "0x0530",
+        "cpu_addr": "$4530",
+        "text": "INSTR"
+      },
+      {
+        "index": 85,
+        "offset": "0x0535",
+        "cpu_addr": "$4535",
+        "text": "ELSE"
+      },
+      {
+        "index": 86,
+        "offset": "0x0539",
+        "cpu_addr": "$4539",
+        "text": "RESUME"
+      },
+      {
+        "index": 87,
+        "offset": "0x053F",
+        "cpu_addr": "$453F",
+        "text": "TRAP"
+      },
+      {
+        "index": 88,
+        "offset": "0x0543",
+        "cpu_addr": "$4543",
+        "text": "TRON"
+      },
+      {
+        "index": 89,
+        "offset": "0x0547",
+        "cpu_addr": "$4547",
+        "text": "TROFF"
+      },
+      {
+        "index": 90,
+        "offset": "0x054C",
+        "cpu_addr": "$454C",
+        "text": "SOUND"
+      },
+      {
+        "index": 91,
+        "offset": "0x0551",
+        "cpu_addr": "$4551",
+        "text": "VOL"
+      },
+      {
+        "index": 92,
+        "offset": "0x0554",
+        "cpu_addr": "$4554",
+        "text": "AUTO"
+      },
+      {
+        "index": 93,
+        "offset": "0x0558",
+        "cpu_addr": "$4558",
+        "text": "PUDEF"
+      },
+      {
+        "index": 94,
+        "offset": "0x055D",
+        "cpu_addr": "$455D",
+        "text": "GRAPHIC"
+      },
+      {
+        "index": 95,
+        "offset": "0x0564",
+        "cpu_addr": "$4564",
+        "text": "PAINT"
+      },
+      {
+        "index": 96,
+        "offset": "0x0569",
+        "cpu_addr": "$4569",
+        "text": "CHAR"
+      },
+      {
+        "index": 97,
+        "offset": "0x056D",
+        "cpu_addr": "$456D",
+        "text": "BOX"
+      },
+      {
+        "index": 98,
+        "offset": "0x0570",
+        "cpu_addr": "$4570",
+        "text": "CIRCLE"
+      },
+      {
+        "index": 99,
+        "offset": "0x0576",
+        "cpu_addr": "$4576",
+        "text": "GSHAPE"
+      },
+      {
+        "index": 100,
+        "offset": "0x057C",
+        "cpu_addr": "$457C",
+        "text": "SSHAPE"
+      },
+      {
+        "index": 101,
+        "offset": "0x0582",
+        "cpu_addr": "$4582",
+        "text": "DRAW"
+      },
+      {
+        "index": 102,
+        "offset": "0x0586",
+        "cpu_addr": "$4586",
+        "text": "LOCATE"
+      },
+      {
+        "index": 103,
+        "offset": "0x058C",
+        "cpu_addr": "$458C",
+        "text": "COLOR"
+      },
+      {
+        "index": 104,
+        "offset": "0x0591",
+        "cpu_addr": "$4591",
+        "text": "SCNCLR"
+      },
+      {
+        "index": 105,
+        "offset": "0x0597",
+        "cpu_addr": "$4597",
+        "text": "SCALE"
+      },
+      {
+        "index": 106,
+        "offset": "0x059C",
+        "cpu_addr": "$459C",
+        "text": "HELP"
+      },
+      {
+        "index": 107,
+        "offset": "0x05A0",
+        "cpu_addr": "$45A0",
+        "text": "DO"
+      },
+      {
+        "index": 108,
+        "offset": "0x05A2",
+        "cpu_addr": "$45A2",
+        "text": "LOOP"
+      },
+      {
+        "index": 109,
+        "offset": "0x05A6",
+        "cpu_addr": "$45A6",
+        "text": "EXIT"
+      },
+      {
+        "index": 110,
+        "offset": "0x05AA",
+        "cpu_addr": "$45AA",
+        "text": "DIRECTORY"
+      },
+      {
+        "index": 111,
+        "offset": "0x05B3",
+        "cpu_addr": "$45B3",
+        "text": "DSAVE"
+      },
+      {
+        "index": 112,
+        "offset": "0x05B8",
+        "cpu_addr": "$45B8",
+        "text": "DLOAD"
+      },
+      {
+        "index": 113,
+        "offset": "0x05BD",
+        "cpu_addr": "$45BD",
+        "text": "HEADER"
+      },
+      {
+        "index": 114,
+        "offset": "0x05C3",
+        "cpu_addr": "$45C3",
+        "text": "SCRATCH"
+      },
+      {
+        "index": 115,
+        "offset": "0x05CA",
+        "cpu_addr": "$45CA",
+        "text": "COLLECT"
+      },
+      {
+        "index": 116,
+        "offset": "0x05D1",
+        "cpu_addr": "$45D1",
+        "text": "COPY"
+      },
+      {
+        "index": 117,
+        "offset": "0x05D5",
+        "cpu_addr": "$45D5",
+        "text": "RENAME"
+      },
+      {
+        "index": 118,
+        "offset": "0x05DB",
+        "cpu_addr": "$45DB",
+        "text": "BACKUP"
+      },
+      {
+        "index": 119,
+        "offset": "0x05E1",
+        "cpu_addr": "$45E1",
+        "text": "DELETE"
+      },
+      {
+        "index": 120,
+        "offset": "0x05E7",
+        "cpu_addr": "$45E7",
+        "text": "RENUMBER"
+      },
+      {
+        "index": 121,
+        "offset": "0x05EF",
+        "cpu_addr": "$45EF",
+        "text": "KEY"
+      },
+      {
+        "index": 122,
+        "offset": "0x05F2",
+        "cpu_addr": "$45F2",
+        "text": "MONITOR"
+      },
+      {
+        "index": 123,
+        "offset": "0x05F9",
+        "cpu_addr": "$45F9",
+        "text": "USING"
+      },
+      {
+        "index": 124,
+        "offset": "0x05FE",
+        "cpu_addr": "$45FE",
+        "text": "UNTIL"
+      },
+      {
+        "index": 125,
+        "offset": "0x0603",
+        "cpu_addr": "$4603",
+        "text": "WHILE"
+      }
+    ]
+  },
+  "tokens_table_2": {
+    "start_cpu": "$4609",
+    "end_cpu": "$46C8",
+    "terminator": "0x00",
+    "count": 37,
+    "items": [
+      {
+        "index": 0,
+        "offset": "0x0609",
+        "cpu_addr": "$4609",
+        "text": "BANK"
+      },
+      {
+        "index": 1,
+        "offset": "0x060D",
+        "cpu_addr": "$460D",
+        "text": "FILTER"
+      },
+      {
+        "index": 2,
+        "offset": "0x0613",
+        "cpu_addr": "$4613",
+        "text": "PLAY"
+      },
+      {
+        "index": 3,
+        "offset": "0x0617",
+        "cpu_addr": "$4617",
+        "text": "TEMPO"
+      },
+      {
+        "index": 4,
+        "offset": "0x061C",
+        "cpu_addr": "$461C",
+        "text": "MOVSPR"
+      },
+      {
+        "index": 5,
+        "offset": "0x0622",
+        "cpu_addr": "$4622",
+        "text": "SPRITE"
+      },
+      {
+        "index": 6,
+        "offset": "0x0628",
+        "cpu_addr": "$4628",
+        "text": "SPRCOLOR"
+      },
+      {
+        "index": 7,
+        "offset": "0x0630",
+        "cpu_addr": "$4630",
+        "text": "RREG"
+      },
+      {
+        "index": 8,
+        "offset": "0x0634",
+        "cpu_addr": "$4634",
+        "text": "ENVELOPE"
+      },
+      {
+        "index": 9,
+        "offset": "0x063C",
+        "cpu_addr": "$463C",
+        "text": "SLEEP"
+      },
+      {
+        "index": 10,
+        "offset": "0x0641",
+        "cpu_addr": "$4641",
+        "text": "CATALOG"
+      },
+      {
+        "index": 11,
+        "offset": "0x0648",
+        "cpu_addr": "$4648",
+        "text": "DOPEN"
+      },
+      {
+        "index": 12,
+        "offset": "0x064D",
+        "cpu_addr": "$464D",
+        "text": "APPEND"
+      },
+      {
+        "index": 13,
+        "offset": "0x0653",
+        "cpu_addr": "$4653",
+        "text": "DCLOSE"
+      },
+      {
+        "index": 14,
+        "offset": "0x0659",
+        "cpu_addr": "$4659",
+        "text": "BSAVE"
+      },
+      {
+        "index": 15,
+        "offset": "0x065E",
+        "cpu_addr": "$465E",
+        "text": "BLOAD"
+      },
+      {
+        "index": 16,
+        "offset": "0x0663",
+        "cpu_addr": "$4663",
+        "text": "RECORD"
+      },
+      {
+        "index": 17,
+        "offset": "0x0669",
+        "cpu_addr": "$4669",
+        "text": "CONCAT"
+      },
+      {
+        "index": 18,
+        "offset": "0x066F",
+        "cpu_addr": "$466F",
+        "text": "DVERIFY"
+      },
+      {
+        "index": 19,
+        "offset": "0x0676",
+        "cpu_addr": "$4676",
+        "text": "DCLEAR"
+      },
+      {
+        "index": 20,
+        "offset": "0x067C",
+        "cpu_addr": "$467C",
+        "text": "SPRSAV"
+      },
+      {
+        "index": 21,
+        "offset": "0x0682",
+        "cpu_addr": "$4682",
+        "text": "COLLISION"
+      },
+      {
+        "index": 22,
+        "offset": "0x068B",
+        "cpu_addr": "$468B",
+        "text": "BEGIN"
+      },
+      {
+        "index": 23,
+        "offset": "0x0690",
+        "cpu_addr": "$4690",
+        "text": "BEND"
+      },
+      {
+        "index": 24,
+        "offset": "0x0694",
+        "cpu_addr": "$4694",
+        "text": "WINDOW"
+      },
+      {
+        "index": 25,
+        "offset": "0x069A",
+        "cpu_addr": "$469A",
+        "text": "BOOT"
+      },
+      {
+        "index": 26,
+        "offset": "0x069E",
+        "cpu_addr": "$469E",
+        "text": "WIDTH"
+      },
+      {
+        "index": 27,
+        "offset": "0x06A3",
+        "cpu_addr": "$46A3",
+        "text": "SPRDEF"
+      },
+      {
+        "index": 28,
+        "offset": "0x06A9",
+        "cpu_addr": "$46A9",
+        "text": "QUIT"
+      },
+      {
+        "index": 29,
+        "offset": "0x06AD",
+        "cpu_addr": "$46AD",
+        "text": "STASH"
+      },
+      {
+        "index": 30,
+        "offset": "0x06B2",
+        "cpu_addr": "$46B2",
+        "text": " "
+      },
+      {
+        "index": 31,
+        "offset": "0x06B3",
+        "cpu_addr": "$46B3",
+        "text": "FETCH"
+      },
+      {
+        "index": 32,
+        "offset": "0x06B8",
+        "cpu_addr": "$46B8",
+        "text": " "
+      },
+      {
+        "index": 33,
+        "offset": "0x06B9",
+        "cpu_addr": "$46B9",
+        "text": "SWAP"
+      },
+      {
+        "index": 34,
+        "offset": "0x06BD",
+        "cpu_addr": "$46BD",
+        "text": "OFF"
+      },
+      {
+        "index": 35,
+        "offset": "0x06C0",
+        "cpu_addr": "$46C0",
+        "text": "FAST"
+      },
+      {
+        "index": 36,
+        "offset": "0x06C4",
+        "cpu_addr": "$46C4",
+        "text": "SLOW"
+      }
+    ]
+  },
+  "errors_table_1": {
+    "start_cpu": "$484B",
+    "end_cpu": "$49DA",
+    "terminator": "0x00",
+    "count": 29,
+    "items": [
+      {
+        "index": 0,
+        "offset": "0x084B",
+        "cpu_addr": "$484B",
+        "text": "TOO MANY FILES"
+      },
+      {
+        "index": 1,
+        "offset": "0x0859",
+        "cpu_addr": "$4859",
+        "text": "FILE OPEN"
+      },
+      {
+        "index": 2,
+        "offset": "0x0862",
+        "cpu_addr": "$4862",
+        "text": "FILE NOT OPEN"
+      },
+      {
+        "index": 3,
+        "offset": "0x086F",
+        "cpu_addr": "$486F",
+        "text": "FILE NOT FOUND"
+      },
+      {
+        "index": 4,
+        "offset": "0x087D",
+        "cpu_addr": "$487D",
+        "text": "DEVICE NOT PRESENT"
+      },
+      {
+        "index": 5,
+        "offset": "0x088F",
+        "cpu_addr": "$488F",
+        "text": "NOT INPUT FILE"
+      },
+      {
+        "index": 6,
+        "offset": "0x089D",
+        "cpu_addr": "$489D",
+        "text": "NOT OUTPUT FILE"
+      },
+      {
+        "index": 7,
+        "offset": "0x08AC",
+        "cpu_addr": "$48AC",
+        "text": "MISSING FILE NAME"
+      },
+      {
+        "index": 8,
+        "offset": "0x08BD",
+        "cpu_addr": "$48BD",
+        "text": "ILLEGAL DEVICE NUMBER"
+      },
+      {
+        "index": 9,
+        "offset": "0x08D2",
+        "cpu_addr": "$48D2",
+        "text": "NEXT WITHOUT FOR"
+      },
+      {
+        "index": 10,
+        "offset": "0x08E2",
+        "cpu_addr": "$48E2",
+        "text": "SYNTAX"
+      },
+      {
+        "index": 11,
+        "offset": "0x08E8",
+        "cpu_addr": "$48E8",
+        "text": "RETURN WITHOUT GOSUB"
+      },
+      {
+        "index": 12,
+        "offset": "0x08FC",
+        "cpu_addr": "$48FC",
+        "text": "OUT OF DATA"
+      },
+      {
+        "index": 13,
+        "offset": "0x0907",
+        "cpu_addr": "$4907",
+        "text": "ILLEGAL QUANTITY"
+      },
+      {
+        "index": 14,
+        "offset": "0x0917",
+        "cpu_addr": "$4917",
+        "text": "OVERFLOW"
+      },
+      {
+        "index": 15,
+        "offset": "0x091F",
+        "cpu_addr": "$491F",
+        "text": "OUT OF MEMORY"
+      },
+      {
+        "index": 16,
+        "offset": "0x092C",
+        "cpu_addr": "$492C",
+        "text": "UNDEF'D STATEMENT"
+      },
+      {
+        "index": 17,
+        "offset": "0x093D",
+        "cpu_addr": "$493D",
+        "text": "BAD SUBSCRIPT"
+      },
+      {
+        "index": 18,
+        "offset": "0x094A",
+        "cpu_addr": "$494A",
+        "text": "REDIM'D ARRAY"
+      },
+      {
+        "index": 19,
+        "offset": "0x0957",
+        "cpu_addr": "$4957",
+        "text": "DIVISION BY ZERO"
+      },
+      {
+        "index": 20,
+        "offset": "0x0967",
+        "cpu_addr": "$4967",
+        "text": "ILLEGAL DIRECT"
+      },
+      {
+        "index": 21,
+        "offset": "0x0975",
+        "cpu_addr": "$4975",
+        "text": "TYPE MISMATCH"
+      },
+      {
+        "index": 22,
+        "offset": "0x0982",
+        "cpu_addr": "$4982",
+        "text": "STRING TOO LONG"
+      },
+      {
+        "index": 23,
+        "offset": "0x0991",
+        "cpu_addr": "$4991",
+        "text": "FILE DATA"
+      },
+      {
+        "index": 24,
+        "offset": "0x099A",
+        "cpu_addr": "$499A",
+        "text": "FORMULA TOO COMPLEX"
+      },
+      {
+        "index": 25,
+        "offset": "0x09AD",
+        "cpu_addr": "$49AD",
+        "text": "CAN'T CONTINUE"
+      },
+      {
+        "index": 26,
+        "offset": "0x09BB",
+        "cpu_addr": "$49BB",
+        "text": "UNDEF'D FUNCTION"
+      },
+      {
+        "index": 27,
+        "offset": "0x09CB",
+        "cpu_addr": "$49CB",
+        "text": "VERIFY"
+      },
+      {
+        "index": 28,
+        "offset": "0x09D1",
+        "cpu_addr": "$49D1",
+        "text": "LOAD"
+      }
+    ]
+  },
+  "errors_table_2": {
+    "start_cpu": "$49DB",
+    "end_cpu": "$4A84",
+    "terminator": "0x00",
+    "count": 14,
+    "items": [
+      {
+        "index": 0,
+        "offset": "0x09DB",
+        "cpu_addr": "$49DB",
+        "text": " "
+      },
+      {
+        "index": 1,
+        "offset": "0x09DC",
+        "cpu_addr": "$49DC",
+        "text": "CAN'T RESUME"
+      },
+      {
+        "index": 2,
+        "offset": "0x09E8",
+        "cpu_addr": "$49E8",
+        "text": "LOOP NOT FOUND"
+      },
+      {
+        "index": 3,
+        "offset": "0x09F6",
+        "cpu_addr": "$49F6",
+        "text": "LOOP WITHOUT DO"
+      },
+      {
+        "index": 4,
+        "offset": "0x0A05",
+        "cpu_addr": "$4A05",
+        "text": "DIRECT MODE ONLY"
+      },
+      {
+        "index": 5,
+        "offset": "0x0A15",
+        "cpu_addr": "$4A15",
+        "text": "NO GRAPHICS AREA"
+      },
+      {
+        "index": 6,
+        "offset": "0x0A25",
+        "cpu_addr": "$4A25",
+        "text": "BAD DISK"
+      },
+      {
+        "index": 7,
+        "offset": "0x0A2D",
+        "cpu_addr": "$4A2D",
+        "text": "BEND NOT FOUND"
+      },
+      {
+        "index": 8,
+        "offset": "0x0A3B",
+        "cpu_addr": "$4A3B",
+        "text": "LINE NUMBER TOO LARGE"
+      },
+      {
+        "index": 9,
+        "offset": "0x0A50",
+        "cpu_addr": "$4A50",
+        "text": "UNRESOLVED REFERENCE"
+      },
+      {
+        "index": 10,
+        "offset": "0x0A64",
+        "cpu_addr": "$4A64",
+        "text": "UNIMPLEMENTED COMMAND"
+      },
+      {
+        "index": 11,
+        "offset": "0x0A79",
+        "cpu_addr": "$4A79",
+        "text": "FILE READ"
+      },
+      {
+        "index": 12,
+        "offset": "0x0A82",
+        "cpu_addr": "$4A82",
+        "text": "*"
+      },
+      {
+        "index": 13,
+        "offset": "0x0A83",
+        "cpu_addr": "$4A83",
+        "text": " "
+      }
+    ]
+  }
+}

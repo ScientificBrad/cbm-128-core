@@ -1,0 +1,71 @@
+name: Commodore 128 CI & Architecture Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-verify:
+    name: Build, Verify Architecture & Publish
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest reportlab
+
+      - name: Copyright & Prohibited Binaries Audit
+        shell: pwsh
+        run: |
+          Write-Host "Auditing Git tracked files for proprietary binaries..."
+          $prohibited = git ls-files | Where-Object { $_ -match '\.(bin|rom|d64|d71|d81|prg)$' }
+          if ($prohibited) {
+            Write-Error "PROHIBITED PROPRIETARY BINARIES DETECTED IN GIT TRACKING:`n$prohibited"
+            exit 1
+          }
+          Write-Host "CLEAN AUDIT PASSED: No proprietary ROM or disk binaries are tracked in Git." -ForegroundColor Green
+
+      - name: Run C# xUnit Test Suite (ROM-Free Mode)
+        run: |
+          dotnet test tests/Commodore128.Tests/Commodore128.Tests.csproj --configuration Release --verbosity normal
+
+      - name: Run Python Architectural Tests (ROM-Free Mode)
+        run: |
+          python -m pytest tests/test_romfree_architecture.py -v
+
+      - name: Publish Self-Contained Win-x64 Executable
+        run: |
+          dotnet publish src/Commodore128/Commodore128.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o build_output/
+
+      - name: Verify Executable Smoke Test
+        shell: pwsh
+        run: |
+          ./build_output/Commodore128.exe --help
+
+      - name: Compile Technical Whitepaper PDF
+        run: |
+          python scripts/build_pdf_report.py
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: commodore128-build
+          path: |
+            build_output/Commodore128.exe
+            Commodore_128_Dual_CPU_Reconstruction_Report.pdf

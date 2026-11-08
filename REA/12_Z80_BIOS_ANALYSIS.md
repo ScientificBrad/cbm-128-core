@@ -1,6 +1,6 @@
 # PHASE 4 DELIVERABLE 1: Z80 BIOS REVERSE ENGINEERING ANALYSIS
 
-**Project:** `cbm-128-core` (Project 002: Commodore 128 1985 Firmware & Hardware Analysis)  
+**Project:** `cbm-128-core` (Commodore 128 1985 Firmware & Hardware Analysis)  
 **Target Binary:** `D:\Emulation\C128\z80bios.bin` (4,096 bytes) / `D:\Emulation\C128\kernal.318020-03.bin` (`0x1000–0x1FFF`)  
 **Commodore Part Number:** `252202-01` (embedded in `318020-03`)  
 **SHA-256:** `39c7656b326e4ad724ff4b50c995cb3b2b8ff9ed3bb2b4d277eb0ecd3cac062f`  

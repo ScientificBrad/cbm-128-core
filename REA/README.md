@@ -1,8 +1,6 @@
 # Reverse Engineering Archive (REA)
-**Project 002: Commodore 128 Dual-CPU Reverse Engineering & Emulation**  
-**Author:** ScientificBrad Research Series
 
-This directory contains the primary reverse engineering evidence, architectural analyses, disassembly ledgers, and compatibility findings generated during the reconstruction of the Commodore 128 system.
+This directory contains reverse engineering evidence, architectural analyses, disassembly ledgers, and compatibility findings generated during the reconstruction of the Commodore 128 system.
 
 ---
 

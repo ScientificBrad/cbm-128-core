@@ -1,12 +1,10 @@
 # Reverse Engineering Analysis & Firmware Decomposition
-**Project 002: Commodore 128 Dual-CPU Reconstruction**  
-**Author:** ScientificBrad Research & Digital Preservation
 
 ---
 
 ## 1. Methodology & Analysis Framework
 
-Project 002 undertook a full reverse engineering and architectural reconstruction of the Commodore 128 firmware set. The investigation employed a three-tiered methodology:
+This project undertook a full reverse engineering and architectural reconstruction of the Commodore 128 firmware set. The investigation employed a three-tiered methodology:
 1. **Static Binary Decomposition:** Disassembly and symbol recovery across all four physical mask ROM chips using automated pattern matchers and control flow graph analyzers.
 2. **Dynamic Trace Reconstruction:** Executing firmware subroutines within step-accurate CPU emulators, capturing register states, MMU transitions, and bus activity.
 3. **Round-Trip Clean Reassembly:** Reconstructing complete, comment-annotated assembly source code in `asm/` and re-assembling them to verify byte-for-byte binary parity.

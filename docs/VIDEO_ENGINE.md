@@ -1,6 +1,4 @@
 # Commodore 128 Video Subsystem & Rendering Engine
-**Project 002: Dual-CPU Reverse Engineering & Emulation**  
-**Author:** ScientificBrad Research & Digital Preservation
 
 ---
 

@@ -1,6 +1,4 @@
 # Building & Compilation Guide
-**Project 002: Commodore 128 Dual-CPU Reconstruction**  
-**Author:** ScientificBrad Research & Digital Preservation
 
 ---
 

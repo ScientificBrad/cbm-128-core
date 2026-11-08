@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Publication-grade PDF Whitepaper Generator for Project 002:
+Publication-grade PDF Whitepaper Generator for:
 Commodore 128 Dual-CPU Reverse Engineering & Emulation.
 Generates `Commodore_128_Dual_CPU_Reconstruction_Report.pdf`.
 """
@@ -44,7 +44,7 @@ class NumberedCanvas(canvas.Canvas):
 
         # Header (pages > 1)
         if self._pageNumber > 1:
-            self.drawString(54, letter[1] - 36, "ScientificBrad | Project 002: Commodore 128 Dual-CPU Reconstruction")
+            self.drawString(54, letter[1] - 36, "Commodore 128 Dual-CPU Architecture Reconstruction")
             self.drawRightString(letter[0] - 54, letter[1] - 36, "Technical Report v1.0")
             self.setStrokeColor(colors.HexColor("#CCCCCC"))
             self.setLineWidth(0.5)
@@ -172,13 +172,13 @@ def build_pdf():
     # Meta Table
     meta_data = [
         [
-            Paragraph("<b>Author:</b> ScientificBrad", body_style),
-            Paragraph("<b>Series:</b> Historical Systems (Project 002)", body_style),
-            Paragraph("<b>Target System:</b> Commodore 128 (1985)", body_style)
+            Paragraph("<b>Target System:</b> Commodore 128 (1985)", body_style),
+            Paragraph("<b>Architecture:</b> Dual-CPU (8502 + Z80A)", body_style),
+            Paragraph("<b>Memory:</b> 128 KB (MMU 8722)", body_style)
         ],
         [
             Paragraph("<b>Release:</b> v0.1.0", body_style),
-            Paragraph("<b>Status:</b> Production Verified", body_style),
+            Paragraph("<b>License:</b> MIT License", body_style),
             Paragraph("<b>Test Coverage:</b> 36/36 Passed (100%)", body_style)
         ]
     ]
@@ -196,7 +196,7 @@ def build_pdf():
     # Section 1: Executive Summary
     story.append(Paragraph("1. Executive Summary & Verification Achievements", h1_style))
     story.append(Paragraph(
-        "Project 002 provides a full-scale, clean-room software reconstruction and architectural emulation of the Commodore 128 personal computer. "
+        "This report provides a full-scale, clean-room software reconstruction and architectural emulation of the Commodore 128 personal computer. "
         "Through primary mask ROM reverse engineering, dynamic bus tracing, and hardware-accurate cycle models, the system faithfully recreates the "
         "interaction between the <b>MOS 8502</b> and <b>Zilog Z80A</b> microprocessors, the custom <b>MMU 8722</b> memory controller, and dual video display pipelines.",
         body_style
@@ -380,7 +380,7 @@ def build_pdf():
 
     # Sign-off box
     sign_off = [
-        [Paragraph("<b>ARCHITECTURAL AUDIT SIGN-OFF:</b> All verification criteria for Project 002 have been satisfied. "
+        [Paragraph("<b>ARCHITECTURAL AUDIT SIGN-OFF:</b> All verification criteria have been satisfied. "
                    "The Commodore 128 core achieves full functional parity across both CPU architectures, dual display modes, CP/M 3.0, and commercial gaming. "
                    "Recommended for immediate public release on GitHub: <code>https://github.com/ScientificBrad/cbm-128-core</code>.", body_style)]
     ]

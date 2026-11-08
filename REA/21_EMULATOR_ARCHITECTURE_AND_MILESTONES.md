@@ -1,6 +1,6 @@
 # PHASE 7: COMMODORE 128 EMULATOR ARCHITECTURE AND MILESTONE VERIFICATION
 
-**Project:** `cbm-128-core` (Project 002: Commodore 128 Complete ROM Reverse Engineering & Emulator Development)  
+**Project:** `cbm-128-core` (Commodore 128 ROM Reverse Engineering & Emulator Development)  
 **Target Firmware:** 1985 Commodore 128 System ROM Set (`basic-4000.318018-02.bin`, `basic-8000.318019-02.bin`, `kernal.318020-03.bin`, `characters.390059-01.bin`, `z80bios.bin`)  
 **Architectures:** MOS 8502 (1.02 MHz / 2.04 MHz) & Zilog Z80A (4 MHz / 2 MHz effective)  
 **Implementation Targets:**

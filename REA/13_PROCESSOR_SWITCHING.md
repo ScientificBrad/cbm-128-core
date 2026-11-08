@@ -1,6 +1,6 @@
 # PHASE 4 DELIVERABLE 2: DUAL-PROCESSOR SWITCHING & CO-PROCESSOR ARCHITECTURE
 
-**Project:** `cbm-128-core` (Project 002: Commodore 128 1985 Firmware & Hardware Analysis)  
+**Project:** `cbm-128-core` (Commodore 128 1985 Firmware & Hardware Analysis)  
 **Target Hardware:** MOS 8722 MMU (`$D505` Mode Configuration Register), Zilog Z80A, MOS 8502  
 **Primary ROM Evidence:** `z80bios.bin` (`$0000–$00B3`, `$018C–$01B8`, `$044F–$046A`, `$0D1A–$0F03`) & `kernal.318020-03.bin` (`$E242–$E26A`, `$F890–$F9FB`, `$FF3D–$FF46`)  
 **Methodology Classification:** `CONFIRMED`

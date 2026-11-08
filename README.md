@@ -2,15 +2,14 @@
 
 <div align="center">
 
-[![Series](https://img.shields.io/badge/Series-Project%20002-blue.svg?style=for-the-badge)](https://github.com/ScientificBrad)
 [![Release](https://img.shields.io/badge/Release-v0.1.0-brightgreen.svg?style=for-the-badge)](https://github.com/ScientificBrad/cbm-128-core/releases)
 [![Build](https://img.shields.io/badge/.NET-8.0%20%7C%20Python%203.10+-purple.svg?style=for-the-badge)](#building--installation)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Dual-CPU](https://img.shields.io/badge/Architecture-MOS%208502%20%2B%20Zilog%20Z80A-orange.svg?style=for-the-badge)](docs/ARCHITECTURE.md)
 [![Tests](https://img.shields.io/badge/Tests-36%20Passed%20(100%25)-success.svg?style=for-the-badge)](docs/TESTING.md)
 
-**An independent, clean-room hardware reconstruction and architectural emulation of the Commodore 128 personal computer (1985).**  
-*Featuring cycle-accurate MOS 8502 and Zilog Z80A microprocessors, MMU 8722 banking, dual VIC-IIe/VDC video engines, genuine BASIC 7.0, CP/M Plus 3.0, and commercial game execution.*
+**A hardware-accurate reconstruction and cycle-level emulator for the Commodore 128 (1985).**  
+*Featuring MOS 8502 and Zilog Z80A microprocessors, MMU 8722 banking, dual VIC-IIe/VDC video engines, genuine BASIC 7.0, CP/M Plus 3.0, and commercial game execution.*
 
 [Architecture](docs/ARCHITECTURE.md) • [Video Engine](docs/VIDEO_ENGINE.md) • [CP/M 3.0](docs/CPM_COMPATIBILITY.md) • [Game Compatibility](docs/GAME_COMPATIBILITY.md) • [ROM Verification](docs/ROM_VERIFICATION.md) • [Reverse Engineering Archive](REA/README.md) • [Whitepaper PDF](Commodore_128_Dual_CPU_Reconstruction_Report.pdf)
 
@@ -18,15 +17,15 @@
 
 ---
 
-## Executive Summary
+## Overview
 
-Project 002 of the **ScientificBrad Historical Computer Reverse-Engineering Series** provides a complete, hardware-accurate reconstruction of the Commodore 128 personal computer. Designed from the silicon up using primary ROM disassembly, hardware bus traces, and cycle-exact timing models, this project demonstrates:
+This repository provides a clean-room software reconstruction and architectural emulator for the Commodore 128 personal computer. Built using primary ROM disassembly, hardware bus traces, and cycle-accurate execution models, it implements:
 
-1. **Dual-CPU Execution:** Seamless hardware handovers between the **MOS 8502** (1/2 MHz) and **Zilog Z80A** (4 MHz) microprocessors via the custom MMU 8722 and `$FFD0-$FFEF` common memory stub.
-2. **Commodore BASIC 7.0:** Execution of the genuine 32 KB BASIC 7.0 environment, featuring dual-bank tokenization (`122,365 BYTES FREE`) with program code in Bank 0 and variable storage isolated in Bank 1.
-3. **Genuine CP/M Plus 3.0:** Authentic boot from original 1571 D64 floppy disk images, running the CP/M Console Command Processor (`CCP.COM`), disk directory searches (`DIR`), and repaired Time-of-Day clock services (`B:DATE`).
+1. **Dual-CPU Execution:** Hardware handovers between the **MOS 8502** (1/2 MHz) and **Zilog Z80A** (4 MHz) microprocessors via the custom MMU 8722 and the `$FFD0-$FFEF` common memory stub.
+2. **Commodore BASIC 7.0:** Cold boot into the genuine 32 KB BASIC 7.0 environment, featuring dual-bank tokenization (`122,365 BYTES FREE`) with program code in Bank 0 and variable storage in Bank 1.
+3. **CP/M Plus 3.0:** Booting original 1571 D64 floppy disk images into CP/M Plus 3.0, running the Console Command Processor (`CCP.COM`), directory searches (`DIR`), and Time-of-Day clock services (`B:DATE`).
 4. **Commercial Game Compatibility:** Native Commodore 128 execution of Shaun Southern's *Kikstart 128* (1986), including MMU all-RAM configuration, 35 KB decompression, multicolor bitmap title rendering, and the split-screen race engine at `$5CC4`.
-5. **Clean Distribution & Verification:** Complete ROM-free testing pipeline allowing public CI builds without proprietary Commodore firmware.
+5. **ROM-Free Testing Pipeline:** Unit and architecture test suite that runs cleanly in CI without requiring copyrighted ROM dumps.
 
 ---
 
@@ -60,10 +59,10 @@ The Z80 microprocessor takes bus priority upon cold reset, retrieves the CP/M bo
   <img src="docs/images/07_cpm_date.png" alt="CP/M Repaired Date and Time" width="45%" />
 </div>
 
-> **Note on CP/M DATE Repair:** The original CP/M `B:DATE` utility initially reported invalid times (`97:??:??`) due to unlatched reads on the CIA 1 Time of Day (TOD) clock. Reconstructing the hardware register latch on `$DC0B` and 60 Hz BCD prescaler restored authentic real-time clock functionality.
+> **Note on CP/M DATE Repair:** The CP/M `B:DATE` utility initially reported invalid times (`97:??:??`) due to unlatched reads on the CIA 1 Time of Day (TOD) clock. Reconstructing the hardware register latch on `$DC0B` and 60 Hz BCD prescaler restored authentic real-time clock functionality.
 
 ### 4. Commercial Game Execution: Kikstart 128 (1986)
-Execution of genuine retail media for *Kikstart 128* by Shaun Southern / Mr. Chip Software, verifying native C128 mode loading, memory decompression, multicolor bitmap rendering, and the split-screen motocross race engine:
+Execution of retail media for *Kikstart 128* by Shaun Southern / Mr. Chip Software, verifying native C128 mode loading, memory decompression, multicolor bitmap rendering, and the split-screen motocross race engine:
 
 <div align="center">
   <img src="docs/images/08_kikstart_menu.png" alt="Kikstart 128 Title Screen" width="48%" />
@@ -117,7 +116,7 @@ Execution of genuine retail media for *Kikstart 128* by Shaun Southern / Mr. Chi
 
 ## Technical Documentation Suite
 
-Comprehensive technical papers, disassembly listings, and architectural guides are available in [`docs/`](docs/) and [`REA/`](REA/):
+Technical papers, disassembly listings, and architectural guides:
 
 - 🏛️ [**System Architecture (`docs/ARCHITECTURE.md`)**](docs/ARCHITECTURE.md): Dual-CPU handover, MMU register maps, memory banking, and bus timing.
 - 🎨 [**Video Engine (`docs/VIDEO_ENGINE.md`)**](docs/VIDEO_ENGINE.md): VIC-IIe modes, 16-color palette definitions, sprites, and raster split rendering.
@@ -128,7 +127,7 @@ Comprehensive technical papers, disassembly listings, and architectural guides a
 - 🔨 [**Building Guide (`docs/BUILDING.md`)**](docs/BUILDING.md): Build instructions for Windows, Linux, and macOS.
 - 🧪 [**Testing Guide (`docs/TESTING.md`)**](docs/TESTING.md): C# xUnit and Python test suites.
 - 📜 [**Reverse Engineering Archive (`REA/README.md`)**](REA/README.md): Primary index of 25 engineering reports (Reports 01-25).
-- 📄 [**Technical Report & Whitepaper (PDF)**](Commodore_128_Dual_CPU_Reconstruction_Report.pdf): Complete publication-grade technical report.
+- 📄 [**Technical Report & Whitepaper (PDF)**](Commodore_128_Dual_CPU_Reconstruction_Report.pdf): Technical report in PDF format.
 
 ---
 
@@ -208,18 +207,7 @@ TOTAL VERIFICATION PASS RATE                  : 100% (36/36)
 
 ---
 
-## The ScientificBrad Series
-
-This project is part of the **ScientificBrad Historical Computer Reverse-Engineering Series**, dedicated to reconstructing seminal computing architectures through rigorous reverse engineering, cycle-exact emulation, and digital preservation:
-
-| Project | System | Release Year | Status | Repository |
-| :---: | :--- | :---: | :---: | :--- |
-| **001** | **Commodore 4064 / Educator 64** | 1983 | Complete | [ScientificBrad/cbm-4064-core](https://github.com/ScientificBrad/cbm-4064-core) |
-| **002** | **Commodore 128 (Dual-CPU)** | 1985 | Complete (v0.1.0) | [ScientificBrad/cbm-128-core](https://github.com/ScientificBrad/cbm-128-core) |
-
----
-
 ## License & Third-Party Notices
 
-- **Software License:** MIT License (c) 2026 ScientificBrad Research & Digital Preservation. See [LICENSE](LICENSE) for details.
+- **Software License:** MIT License. See [LICENSE](LICENSE) for details.
 - **Third-Party Notices:** Commodore, C128, C64, VIC-II, SID, and CP/M are trademarks of their respective historical rights holders. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

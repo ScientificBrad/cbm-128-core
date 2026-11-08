@@ -1,6 +1,4 @@
 # Commodore 128 System Architecture Specification
-**Project 002: Dual-CPU Reverse Engineering & Emulation**  
-**Author:** ScientificBrad Research & Digital Preservation
 
 ---
 

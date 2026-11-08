@@ -1,8 +1,7 @@
 # ROM Verification & Integrity Report
-**Project 002: Commodore 128 Dual-CPU Reconstruction**  
+**Target:** Commodore 128 System Firmware  
 **Classification:** Technical Verification Audit  
-**Date:** November 2026  
-**Auditor:** ScientificBrad Research & Digital Preservation
+**Date:** November 2026
 
 ---
 

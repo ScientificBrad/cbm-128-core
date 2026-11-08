@@ -78,7 +78,7 @@ def render_terminal_screen(lines, title="COMMODORE 128", fg_color=(0, 255, 68), 
     # Status footer
     draw.rectangle([4, height - 24, width - 5, height - 5], fill=(15, 15, 15))
     draw.line([4, height - 24, width - 5, height - 24], fill=border_color, width=1)
-    status_text = "[8502 Core: 0.985 MHz] [MMU: Mode 0] [RAM: 128KB] [ScientificBrad Project 002]"
+    status_text = "[8502 Core: 0.985 MHz] [MMU: Mode 0] [RAM: 128KB] [Commodore 128]"
     draw.text((12, height - 20), status_text, fill=(140, 140, 140), font=font_header)
 
     return img

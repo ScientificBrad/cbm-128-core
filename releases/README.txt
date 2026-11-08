@@ -1,6 +1,6 @@
 ================================================================================
 COMMODORE 128 DUAL-CPU EMULATOR (v0.1.0)
-ScientificBrad Historical Computer Reverse-Engineering Series (Project 002)
+Commodore 128 Reconstruction & Architecture Verification
 ================================================================================
 
 An independent, clean-room reconstruction and architectural emulation of the

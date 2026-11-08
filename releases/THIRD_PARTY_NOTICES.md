@@ -1,6 +1,5 @@
 # Third-Party Notices & Intellectual Property Disclaimers
-**Project 002: Commodore 128 Dual-CPU Reconstruction**  
-**Author:** ScientificBrad Research & Digital Preservation
+**Commodore 128 Dual-CPU Reconstruction**
 
 ---
 

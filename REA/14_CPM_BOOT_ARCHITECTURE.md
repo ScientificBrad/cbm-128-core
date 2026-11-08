@@ -1,6 +1,6 @@
 # PHASE 4 DELIVERABLE 3: CP/M 3.0 (`CPM+.SYS`) BOOT ARCHITECTURE & DISK SPECIFICATION
 
-**Project:** `cbm-128-core` (Project 002: Commodore 128 1985 Firmware & Hardware Analysis)  
+**Project:** `cbm-128-core` (Commodore 128 1985 Firmware & Hardware Analysis)  
 **Primary ROM Evidence:** `z80bios.bin` (`$00B4–$00F9`, `$018C–$0525`, `$0D22–$0EE4`, `$0FB5–$0FFF`)  
 **Methodology Classification:** `CONFIRMED`
 

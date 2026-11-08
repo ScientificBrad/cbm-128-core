@@ -1,6 +1,6 @@
 # PHASE 9 DELIVERABLE 1: COMMODORE 1571 DISK ARCHITECTURE, BURST PROTOCOL & D71/D64 SPECIFICATION
 
-**Project:** `cbm-128-core` (Project 002: Commodore 128 1985 Firmware & Hardware Analysis)  
+**Project:** `cbm-128-core` (Commodore 128 1985 Firmware & Hardware Analysis)  
 **Target Hardware:** Commodore 1571 Floppy Disk Drive, MOS 8502, Zilog Z80A, MOS 6526 CIA1/CIA2  
 **Target Firmware:** `z80bios.bin` (`$018C–$0525`, `$0D22–$0EE4`), `kernal.318020-03.bin` (`$F890–$F9FB`), `CPM+.SYS`  
 **Methodology Classification:** `CONFIRMED`
